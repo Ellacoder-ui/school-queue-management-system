@@ -1,0 +1,2192 @@
+{
+  "run_id": "a982ed79",
+  "result": "READ_ONLY_DIAGNOSIS_COMPLETE_STRICT_PRUNING_FAIL_RETAINED",
+  "started_at": "2026-10-18T06:06:51.307015+00:00",
+  "retained_mutation": false,
+  "new_backup": false,
+  "isolated_restore_executed": false,
+  "docker_resource_mutation": false,
+  "google_credential_contents_accessed": false,
+  "pinned_source_review": {
+    "file": "realtime_lifecycle_pinned_source_9aab6f3b.json",
+    "sha256": "b01cfdca8d72c133246b6670b646041fe04f29fbbbad1a3c47222507e518fb7b"
+  },
+  "realtime": {
+    "image": "public.ecr.aws/supabase/realtime:v2.143.4",
+    "image_id": "sha256:35e99d3f1cbba5aa5585e8ac3cf70ecc54909ee4aee0626effed93c60fb41439",
+    "release": "16.4.0.4 2.143.4",
+    "configuration_from_environment_and_pinned_defaults": {
+      "RUN_JANITOR": {
+        "explicit_container_environment": true,
+        "value": true
+      },
+      "JANITOR_RUN_AFTER_IN_MS": {
+        "explicit_container_environment": false,
+        "value": 600000
+      },
+      "JANITOR_SCHEDULE_TIMER_IN_MS": {
+        "explicit_container_environment": false,
+        "value": 14400000
+      },
+      "JANITOR_SCHEDULE_RANDOMIZE": {
+        "explicit_container_environment": false,
+        "value": true
+      },
+      "JANITOR_MAX_CHILDREN": {
+        "explicit_container_environment": false,
+        "value": 5
+      },
+      "JANITOR_CHUNK_SIZE": {
+        "explicit_container_environment": false,
+        "value": 10
+      },
+      "JANITOR_CHILDREN_TIMEOUT": {
+        "explicit_container_environment": false,
+        "value": 5000
+      }
+    },
+    "in_memory_application_environment_read": false,
+    "audit_settings": {
+      "pgaudit.log": "none",
+      "log_duration": "off",
+      "log_statement": "ddl",
+      "logging_collector": "off",
+      "track_commit_timestamp": "off",
+      "log_min_duration_statement": "-1",
+      "pg_stat_statements.track_utility": "on"
+    },
+    "exact_drop_statement_statistics": [
+      {
+        "role": "supabase_admin",
+        "rows": 0,
+        "calls": 1
+      }
+    ],
+    "bounded_logs": {
+      "requested_tail": 600,
+      "requested_since": "12h",
+      "lines": 601,
+      "fixed_category_events": [
+        {
+          "category": "partition-creation",
+          "timestamp": "2026-10-18T05:51:37.333995755Z"
+        },
+        {
+          "category": "partition-creation",
+          "timestamp": "2026-10-18T06:06:37.240820329Z"
+        }
+      ],
+      "events_truncated": false,
+      "raw_text_persisted": false,
+      "establishes_deletion_time_emptiness": false
+    }
+  },
+  "postgres_before": {
+    "strict_classifier": {
+      "result": "FAIL",
+      "unexpected_changes": [
+        "catalog [changed]",
+        "rows.\"realtime\".\"messages_2026_10_14\" [missing]",
+        "schema.columns.realtime.messages_2026_10_14:binary_payload [missing]",
+        "schema.columns.realtime.messages_2026_10_14:event [missing]",
+        "schema.columns.realtime.messages_2026_10_14:extension [missing]",
+        "schema.columns.realtime.messages_2026_10_14:id [missing]",
+        "schema.columns.realtime.messages_2026_10_14:inserted_at [missing]",
+        "schema.columns.realtime.messages_2026_10_14:payload [missing]",
+        "schema.columns.realtime.messages_2026_10_14:private [missing]",
+        "schema.columns.realtime.messages_2026_10_14:skip_broadcast [missing]",
+        "schema.columns.realtime.messages_2026_10_14:topic [missing]",
+        "schema.columns.realtime.messages_2026_10_14:updated_at [missing]",
+        "schema.constraints.realtime.messages_2026_10_14:messages_2026_10_14_pkey [missing]",
+        "schema.constraints.realtime.messages_2026_10_14:messages_payload_exclusive [missing]",
+        "schema.indexes.realtime.messages_2026_10_14_inserted_at_topic_idx [missing]",
+        "schema.indexes.realtime.messages_2026_10_14_pkey [missing]",
+        "schema.partitions.realtime.messages_2026_10_14 [missing]",
+        "schema.publication.supabase_realtime_messages_publication:realtime.messages_2026_10_14 [missing]",
+        "schema.relations.realtime.messages_2026_10_14 [missing]"
+      ]
+    },
+    "logical_tables": 70,
+    "removed_tables": [
+      "\"realtime\".\"messages_2026_10_14\""
+    ],
+    "added_tables": [],
+    "unequal_shared_non_subscription_tables": [],
+    "shared_non_subscription_tables": 69,
+    "last_snapshot_removed_counts": {
+      "\"realtime\".\"messages_2026_10_14\"": 0
+    },
+    "schema_sections_equal": {
+      "schemas": true,
+      "relations": false,
+      "functions": true,
+      "defaults": true,
+      "constraints": false,
+      "indexes": false,
+      "triggers": true,
+      "columns": false,
+      "policies": true,
+      "extensions": true,
+      "publication": false,
+      "publication_options": true,
+      "types": true,
+      "sequences": true,
+      "partitions": false
+    },
+    "roles_equal": true,
+    "additional_acl_settings_equal": true,
+    "routing_equal": true,
+    "ancillary_equal": true,
+    "state": {
+      "active": 0,
+      "counts": {
+        "days": 7,
+        "audits": 32,
+        "events": 57,
+        "tickets": 20,
+        "accounts": 39,
+        "counters": 5,
+        "requests": 69,
+        "services": 5
+      },
+      "routes": {
+        "1": [
+          "TP"
+        ],
+        "2": [
+          "SOA"
+        ],
+        "3": [
+          "PNEP"
+        ],
+        "4": [
+          "REF"
+        ],
+        "5": [
+          "ADJ"
+        ]
+      },
+      "versions": [
+        "20261016000100",
+        "20261016000200",
+        "20261016000300",
+        "20261016000400",
+        "20261016000500",
+        "20261016000600"
+      ],
+      "open_days": 0,
+      "rls_count": 15,
+      "assignments": [
+        {
+          "total": 1,
+          "counter": 1,
+          "eligible": 1
+        },
+        {
+          "total": 1,
+          "counter": 2,
+          "eligible": 1
+        },
+        {
+          "total": 0,
+          "counter": 3,
+          "eligible": 0
+        },
+        {
+          "total": 0,
+          "counter": 4,
+          "eligible": 0
+        },
+        {
+          "total": 2,
+          "counter": 5,
+          "eligible": 1
+        }
+      ],
+      "publication": [
+        "queue_display.counter_state",
+        "queue_display.service_state"
+      ],
+      "private_usage": false,
+      "current_day_closed": false
+    },
+    "sequences": {
+      "\"auth\".\"refresh_tokens_id_seq\"": {
+        "is_called": true,
+        "last_value": 48
+      },
+      "\"realtime\".\"subscription_id_seq\"": {
+        "is_called": true,
+        "last_value": 406
+      },
+      "\"supabase_functions\".\"hooks_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      }
+    },
+    "subscription_scope": {
+      "count": 2,
+      "invalid_rows": 0
+    }
+  },
+  "source_identity": {
+    "project": "school-queue-local",
+    "workdir": "C:\\Users\\Hp\\school-queue-management-system",
+    "client_endpoint": "127.0.0.1:54322/postgres",
+    "cluster": "7696959712798593061",
+    "server": "17.11",
+    "readonly": true,
+    "config_sha256": "a929af299d0c49ec0a0632cf1a84a8227bdbdf250e1f23a2d3be53e3a2b003a8",
+    "migration_sha256": {
+      "20261016000100_queue_tables.sql": "274141dbab99dbaad959f2343633ee0bd440b240a29b5664ca304e283934d7d7",
+      "20261016000200_queue_operations.sql": "65c943d4fea282c07e06bab6b759882f7fcec678ddf960869dd60a52db911883",
+      "20261016000300_queue_administration.sql": "7a4ad627112f0bc3109417bec237b13000e1c06002d536f7c9feab5261eb4883",
+      "20261016000400_queue_seed_security.sql": "95bd4918550dddae84672c148c6a616c9d12928b78097a82815a26a35146746e",
+      "20261016000500_queue_read_context.sql": "793a68b375d69044dc4900749867576b5c45a6b4173725191ffbaeb66a2dd31a",
+      "20261016000600_fixed_counter_routing.sql": "9d854ab795e3ef3098fa1d3a05cb6541242d0c8e503a8ebee1acfe9df418137c"
+    }
+  },
+  "partition_inventory": [
+    {
+      "name": "messages",
+      "catalog": {
+        "kind": "p",
+        "bound": null,
+        "owner": "supabase_realtime_admin",
+        "table": "messages",
+        "schema": "realtime",
+        "columns": [
+          "topic",
+          "extension",
+          "payload",
+          "event",
+          "private",
+          "updated_at",
+          "inserted_at",
+          "id",
+          "binary_payload",
+          "skip_broadcast"
+        ],
+        "parents": [],
+        "extension": null,
+        "is_partition": false,
+        "partition_key": "RANGE (inserted_at)",
+        "extension_config": false,
+        "extension_condition": null
+      },
+      "rows": 0,
+      "row_fingerprint_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "relation_security": {
+        "acl": [
+          {
+            "grantee": "anon",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "INSERT"
+          },
+          {
+            "grantee": "anon",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "SELECT"
+          },
+          {
+            "grantee": "anon",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "UPDATE"
+          },
+          {
+            "grantee": "authenticated",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "INSERT"
+          },
+          {
+            "grantee": "authenticated",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "SELECT"
+          },
+          {
+            "grantee": "authenticated",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "UPDATE"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "DELETE"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "INSERT"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "MAINTAIN"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "REFERENCES"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "SELECT"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRIGGER"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRUNCATE"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "UPDATE"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "DELETE"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": true,
+            "privilege": "INSERT"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "MAINTAIN"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "REFERENCES"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": true,
+            "privilege": "SELECT"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRIGGER"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRUNCATE"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "UPDATE"
+          },
+          {
+            "grantee": "service_role",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "INSERT"
+          },
+          {
+            "grantee": "service_role",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "SELECT"
+          },
+          {
+            "grantee": "service_role",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "UPDATE"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "DELETE"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "INSERT"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "MAINTAIN"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "REFERENCES"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "SELECT"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRIGGER"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRUNCATE"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "UPDATE"
+          }
+        ],
+        "rls": true,
+        "kind": "p",
+        "view": null,
+        "owner": "supabase_realtime_admin",
+        "options": null,
+        "force_rls": false,
+        "persistence": "p",
+        "replica_identity": "d"
+      },
+      "live_leaf_evidence": null
+    },
+    {
+      "name": "messages_2026_10_15",
+      "catalog": {
+        "kind": "r",
+        "bound": "FOR VALUES FROM ('2026-10-15 00:00:00') TO ('2026-10-16 00:00:00')",
+        "owner": "supabase_realtime_admin",
+        "table": "messages_2026_10_15",
+        "schema": "realtime",
+        "columns": [
+          "topic",
+          "extension",
+          "payload",
+          "event",
+          "private",
+          "updated_at",
+          "inserted_at",
+          "id",
+          "binary_payload",
+          "skip_broadcast"
+        ],
+        "parents": [
+          {
+            "table": "messages",
+            "schema": "realtime",
+            "sequence": 1
+          }
+        ],
+        "extension": null,
+        "is_partition": true,
+        "partition_key": null,
+        "extension_config": false,
+        "extension_condition": null
+      },
+      "rows": 0,
+      "row_fingerprint_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "relation_security": {
+        "acl": [
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "DELETE"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "INSERT"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "MAINTAIN"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "REFERENCES"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "SELECT"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRIGGER"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRUNCATE"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "UPDATE"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "DELETE"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": true,
+            "privilege": "INSERT"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "MAINTAIN"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "REFERENCES"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": true,
+            "privilege": "SELECT"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRIGGER"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRUNCATE"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "UPDATE"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "DELETE"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "INSERT"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "MAINTAIN"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "REFERENCES"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "SELECT"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRIGGER"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRUNCATE"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "UPDATE"
+          }
+        ],
+        "rls": false,
+        "kind": "r",
+        "view": null,
+        "owner": "supabase_realtime_admin",
+        "options": null,
+        "force_rls": false,
+        "persistence": "p",
+        "replica_identity": "d"
+      },
+      "live_leaf_evidence": {
+        "index_parents": {
+          "messages_2026_10_15_pkey": "realtime.messages_pkey",
+          "messages_2026_10_15_inserted_at_topic_idx": "realtime.messages_inserted_at_topic_index"
+        },
+        "column_acl_absent": true,
+        "browser_access_denied": true
+      }
+    },
+    {
+      "name": "messages_2026_10_16",
+      "catalog": {
+        "kind": "r",
+        "bound": "FOR VALUES FROM ('2026-10-16 00:00:00') TO ('2026-10-17 00:00:00')",
+        "owner": "supabase_realtime_admin",
+        "table": "messages_2026_10_16",
+        "schema": "realtime",
+        "columns": [
+          "topic",
+          "extension",
+          "payload",
+          "event",
+          "private",
+          "updated_at",
+          "inserted_at",
+          "id",
+          "binary_payload",
+          "skip_broadcast"
+        ],
+        "parents": [
+          {
+            "table": "messages",
+            "schema": "realtime",
+            "sequence": 1
+          }
+        ],
+        "extension": null,
+        "is_partition": true,
+        "partition_key": null,
+        "extension_config": false,
+        "extension_condition": null
+      },
+      "rows": 0,
+      "row_fingerprint_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "relation_security": {
+        "acl": [
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "DELETE"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "INSERT"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "MAINTAIN"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "REFERENCES"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "SELECT"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRIGGER"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRUNCATE"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "UPDATE"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "DELETE"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": true,
+            "privilege": "INSERT"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "MAINTAIN"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "REFERENCES"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": true,
+            "privilege": "SELECT"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRIGGER"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRUNCATE"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "UPDATE"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "DELETE"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "INSERT"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "MAINTAIN"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "REFERENCES"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "SELECT"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRIGGER"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRUNCATE"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "UPDATE"
+          }
+        ],
+        "rls": false,
+        "kind": "r",
+        "view": null,
+        "owner": "supabase_realtime_admin",
+        "options": null,
+        "force_rls": false,
+        "persistence": "p",
+        "replica_identity": "d"
+      },
+      "live_leaf_evidence": {
+        "index_parents": {
+          "messages_2026_10_16_pkey": "realtime.messages_pkey",
+          "messages_2026_10_16_inserted_at_topic_idx": "realtime.messages_inserted_at_topic_index"
+        },
+        "column_acl_absent": true,
+        "browser_access_denied": true
+      }
+    },
+    {
+      "name": "messages_2026_10_17",
+      "catalog": {
+        "kind": "r",
+        "bound": "FOR VALUES FROM ('2026-10-17 00:00:00') TO ('2026-10-18 00:00:00')",
+        "owner": "supabase_realtime_admin",
+        "table": "messages_2026_10_17",
+        "schema": "realtime",
+        "columns": [
+          "topic",
+          "extension",
+          "payload",
+          "event",
+          "private",
+          "updated_at",
+          "inserted_at",
+          "id",
+          "binary_payload",
+          "skip_broadcast"
+        ],
+        "parents": [
+          {
+            "table": "messages",
+            "schema": "realtime",
+            "sequence": 1
+          }
+        ],
+        "extension": null,
+        "is_partition": true,
+        "partition_key": null,
+        "extension_config": false,
+        "extension_condition": null
+      },
+      "rows": 0,
+      "row_fingerprint_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "relation_security": {
+        "acl": [
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "DELETE"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "INSERT"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "MAINTAIN"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "REFERENCES"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "SELECT"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRIGGER"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRUNCATE"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "UPDATE"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "DELETE"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": true,
+            "privilege": "INSERT"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "MAINTAIN"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "REFERENCES"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": true,
+            "privilege": "SELECT"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRIGGER"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRUNCATE"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "UPDATE"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "DELETE"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "INSERT"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "MAINTAIN"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "REFERENCES"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "SELECT"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRIGGER"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRUNCATE"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "UPDATE"
+          }
+        ],
+        "rls": false,
+        "kind": "r",
+        "view": null,
+        "owner": "supabase_realtime_admin",
+        "options": null,
+        "force_rls": false,
+        "persistence": "p",
+        "replica_identity": "d"
+      },
+      "live_leaf_evidence": {
+        "index_parents": {
+          "messages_2026_10_17_pkey": "realtime.messages_pkey",
+          "messages_2026_10_17_inserted_at_topic_idx": "realtime.messages_inserted_at_topic_index"
+        },
+        "column_acl_absent": true,
+        "browser_access_denied": true
+      }
+    },
+    {
+      "name": "messages_2026_10_18",
+      "catalog": {
+        "kind": "r",
+        "bound": "FOR VALUES FROM ('2026-10-18 00:00:00') TO ('2026-10-19 00:00:00')",
+        "owner": "supabase_realtime_admin",
+        "table": "messages_2026_10_18",
+        "schema": "realtime",
+        "columns": [
+          "topic",
+          "extension",
+          "payload",
+          "event",
+          "private",
+          "updated_at",
+          "inserted_at",
+          "id",
+          "binary_payload",
+          "skip_broadcast"
+        ],
+        "parents": [
+          {
+            "table": "messages",
+            "schema": "realtime",
+            "sequence": 1
+          }
+        ],
+        "extension": null,
+        "is_partition": true,
+        "partition_key": null,
+        "extension_config": false,
+        "extension_condition": null
+      },
+      "rows": 0,
+      "row_fingerprint_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "relation_security": {
+        "acl": [
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "DELETE"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "INSERT"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "MAINTAIN"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "REFERENCES"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "SELECT"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRIGGER"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRUNCATE"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "UPDATE"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "DELETE"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": true,
+            "privilege": "INSERT"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "MAINTAIN"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "REFERENCES"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": true,
+            "privilege": "SELECT"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRIGGER"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRUNCATE"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "UPDATE"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "DELETE"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "INSERT"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "MAINTAIN"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "REFERENCES"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "SELECT"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRIGGER"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRUNCATE"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "UPDATE"
+          }
+        ],
+        "rls": false,
+        "kind": "r",
+        "view": null,
+        "owner": "supabase_realtime_admin",
+        "options": null,
+        "force_rls": false,
+        "persistence": "p",
+        "replica_identity": "d"
+      },
+      "live_leaf_evidence": {
+        "index_parents": {
+          "messages_2026_10_18_pkey": "realtime.messages_pkey",
+          "messages_2026_10_18_inserted_at_topic_idx": "realtime.messages_inserted_at_topic_index"
+        },
+        "column_acl_absent": true,
+        "browser_access_denied": true
+      }
+    },
+    {
+      "name": "messages_2026_10_19",
+      "catalog": {
+        "kind": "r",
+        "bound": "FOR VALUES FROM ('2026-10-19 00:00:00') TO ('2026-10-20 00:00:00')",
+        "owner": "supabase_realtime_admin",
+        "table": "messages_2026_10_19",
+        "schema": "realtime",
+        "columns": [
+          "topic",
+          "extension",
+          "payload",
+          "event",
+          "private",
+          "updated_at",
+          "inserted_at",
+          "id",
+          "binary_payload",
+          "skip_broadcast"
+        ],
+        "parents": [
+          {
+            "table": "messages",
+            "schema": "realtime",
+            "sequence": 1
+          }
+        ],
+        "extension": null,
+        "is_partition": true,
+        "partition_key": null,
+        "extension_config": false,
+        "extension_condition": null
+      },
+      "rows": 0,
+      "row_fingerprint_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "relation_security": {
+        "acl": [
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "DELETE"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "INSERT"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "MAINTAIN"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "REFERENCES"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "SELECT"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRIGGER"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRUNCATE"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "UPDATE"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "DELETE"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": true,
+            "privilege": "INSERT"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "MAINTAIN"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "REFERENCES"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": true,
+            "privilege": "SELECT"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRIGGER"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRUNCATE"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "UPDATE"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "DELETE"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "INSERT"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "MAINTAIN"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "REFERENCES"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "SELECT"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRIGGER"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRUNCATE"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "UPDATE"
+          }
+        ],
+        "rls": false,
+        "kind": "r",
+        "view": null,
+        "owner": "supabase_realtime_admin",
+        "options": null,
+        "force_rls": false,
+        "persistence": "p",
+        "replica_identity": "d"
+      },
+      "live_leaf_evidence": {
+        "index_parents": {
+          "messages_2026_10_19_pkey": "realtime.messages_pkey",
+          "messages_2026_10_19_inserted_at_topic_idx": "realtime.messages_inserted_at_topic_index"
+        },
+        "column_acl_absent": true,
+        "browser_access_denied": true
+      }
+    },
+    {
+      "name": "messages_2026_10_20",
+      "catalog": {
+        "kind": "r",
+        "bound": "FOR VALUES FROM ('2026-10-20 00:00:00') TO ('2026-10-21 00:00:00')",
+        "owner": "supabase_realtime_admin",
+        "table": "messages_2026_10_20",
+        "schema": "realtime",
+        "columns": [
+          "topic",
+          "extension",
+          "payload",
+          "event",
+          "private",
+          "updated_at",
+          "inserted_at",
+          "id",
+          "binary_payload",
+          "skip_broadcast"
+        ],
+        "parents": [
+          {
+            "table": "messages",
+            "schema": "realtime",
+            "sequence": 1
+          }
+        ],
+        "extension": null,
+        "is_partition": true,
+        "partition_key": null,
+        "extension_config": false,
+        "extension_condition": null
+      },
+      "rows": 0,
+      "row_fingerprint_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "relation_security": {
+        "acl": [
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "DELETE"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "INSERT"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "MAINTAIN"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "REFERENCES"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "SELECT"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRIGGER"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRUNCATE"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "UPDATE"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "DELETE"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": true,
+            "privilege": "INSERT"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "MAINTAIN"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "REFERENCES"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": true,
+            "privilege": "SELECT"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRIGGER"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRUNCATE"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "UPDATE"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "DELETE"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "INSERT"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "MAINTAIN"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "REFERENCES"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "SELECT"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRIGGER"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRUNCATE"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "UPDATE"
+          }
+        ],
+        "rls": false,
+        "kind": "r",
+        "view": null,
+        "owner": "supabase_realtime_admin",
+        "options": null,
+        "force_rls": false,
+        "persistence": "p",
+        "replica_identity": "d"
+      },
+      "live_leaf_evidence": {
+        "index_parents": {
+          "messages_2026_10_20_pkey": "realtime.messages_pkey",
+          "messages_2026_10_20_inserted_at_topic_idx": "realtime.messages_inserted_at_topic_index"
+        },
+        "column_acl_absent": true,
+        "browser_access_denied": true
+      }
+    },
+    {
+      "name": "messages_2026_10_21",
+      "catalog": {
+        "kind": "r",
+        "bound": "FOR VALUES FROM ('2026-10-21 00:00:00') TO ('2026-10-22 00:00:00')",
+        "owner": "supabase_realtime_admin",
+        "table": "messages_2026_10_21",
+        "schema": "realtime",
+        "columns": [
+          "topic",
+          "extension",
+          "payload",
+          "event",
+          "private",
+          "updated_at",
+          "inserted_at",
+          "id",
+          "binary_payload",
+          "skip_broadcast"
+        ],
+        "parents": [
+          {
+            "table": "messages",
+            "schema": "realtime",
+            "sequence": 1
+          }
+        ],
+        "extension": null,
+        "is_partition": true,
+        "partition_key": null,
+        "extension_config": false,
+        "extension_condition": null
+      },
+      "rows": 0,
+      "row_fingerprint_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "relation_security": {
+        "acl": [
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "DELETE"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "INSERT"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "MAINTAIN"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "REFERENCES"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "SELECT"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRIGGER"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRUNCATE"
+          },
+          {
+            "grantee": "dashboard_user",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "UPDATE"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "DELETE"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": true,
+            "privilege": "INSERT"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "MAINTAIN"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "REFERENCES"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": true,
+            "privilege": "SELECT"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRIGGER"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRUNCATE"
+          },
+          {
+            "grantee": "postgres",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "UPDATE"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "DELETE"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "INSERT"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "MAINTAIN"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "REFERENCES"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "SELECT"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRIGGER"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "TRUNCATE"
+          },
+          {
+            "grantee": "supabase_realtime_admin",
+            "grantor": "supabase_realtime_admin",
+            "grantable": false,
+            "privilege": "UPDATE"
+          }
+        ],
+        "rls": false,
+        "kind": "r",
+        "view": null,
+        "owner": "supabase_realtime_admin",
+        "options": null,
+        "force_rls": false,
+        "persistence": "p",
+        "replica_identity": "d"
+      },
+      "live_leaf_evidence": {
+        "index_parents": {
+          "messages_2026_10_21_pkey": "realtime.messages_pkey",
+          "messages_2026_10_21_inserted_at_topic_idx": "realtime.messages_inserted_at_topic_index"
+        },
+        "column_acl_absent": true,
+        "browser_access_denied": true
+      }
+    }
+  ],
+  "encrypted_attempt_integrity": {
+    "b44b72f5": {
+      "recorded_artifacts_decrypted_and_hash_verified": 4,
+      "evidence_sha256": "3b4171c63e4f13592ce34a4742e7c936718380a2640baba399a9c9a82fd9fc58",
+      "original_result": "FAIL_STOPPED",
+      "rewritten": false
+    },
+    "93426091": {
+      "recorded_artifacts_decrypted_and_hash_verified": 9,
+      "evidence_sha256": "d88a82e21d383b4177b8c49ed275ad922f648622bb653ef7c7fe34ca0684bf0b",
+      "original_result": "FAIL_STOPPED",
+      "rewritten": false
+    },
+    "8fa0e0c7": {
+      "recorded_artifacts_decrypted_and_hash_verified": 10,
+      "evidence_sha256": "fea35fefd265a3973386e9e22558a38c1b450f3c3fe835d48b28739c76beaa0d",
+      "original_result": "FAIL_STOPPED",
+      "rewritten": false
+    }
+  },
+  "historical_archive_review": {
+    "historical_tables": 71,
+    "eligible_for_separately_authorized_isolated_verification": true,
+    "recoverability_verified": false,
+    "current_inventory_recovery_prerequisite_satisfied": false,
+    "archive_plain_bytes": 537857,
+    "archive_plain_sha256": "d6c831973afee9feddfa59637d5f6eaeb5a6a85e51a43a53844b07f1ceb1a29c",
+    "coverage": {
+      "logical_tables": 71,
+      "physical_tables": 70,
+      "table_data_entries": 70,
+      "partitioned_parents": [
+        "\"realtime\".\"messages\""
+      ],
+      "partition_attachments": 8,
+      "extension_recreated_empty_tables": [],
+      "template_extensions_to_verify": [
+        "plpgsql"
+      ]
+    },
+    "pg_restore_reconstruction_exit": 0,
+    "native_raw_sql_sha256": "72e4af8dcb70fd1fdbdf09f8e18db6df8c59056d67b8d746eef5649ad79c9716",
+    "decoded_sql_sha256": "86b34914f934ffcf7c19b8670f44d321af2061b055ed2c93ee3632e4c445050f",
+    "multiline_application_bodies": 23,
+    "exact_bodies_raw": 0,
+    "crt_expanded_bodies_raw": 23,
+    "exact_bodies_decoded": 23,
+    "binary_bytes_unchanged": true,
+    "sql_executed": false
+  },
+  "analytics": {
+    "tables": 39,
+    "rows": 1210,
+    "preservation": {
+      "narrow_operational_row_changes": [
+        {
+          "table": "oban_jobs",
+          "before_count": 1012,
+          "after_count": 1012
+        },
+        {
+          "table": "oban_peers",
+          "before_count": 1,
+          "after_count": 1
+        }
+      ],
+      "other_rows_security_roles_settings_exact": true,
+      "job_sequence": {
+        "is_called": true,
+        "last_value": 2101
+      }
+    },
+    "backup_or_restore_started": false
+  },
+  "historical_bundles": {
+    "fresh_70_bundle_sha256": "50164d4afb5083a83044f5ee3df3d13b1b2002ba29ee03143e460c181b915a52",
+    "older": {
+      "five_version": {
+        "result": "PASS",
+        "bundle_sha256": "d07b80bacdabf46e26ba51b4f38552870ca9043713ac3ea5db191f91c48f71fb",
+        "protected_access": true,
+        "pre_cutover_recovery_point_preserved": true,
+        "restore_repeated": false,
+        "artifact_sha256": {
+          "retained_postgres_before_006.dump": "7df177a07d74617057d1f518e92588fa19de3452c3f1a64c9e26f84b62ac259e",
+          "source_snapshot_manifest.json": "df786c0e63034692d8416244e4eab5c887dd9cd06b3747026ac0dc254ed7d67f",
+          "roles_without_passwords.sql": "882a23b88288987a5fdddcc6082fff2bccf8cfd63023692b8b743f6066b6eee3",
+          "schema_privileges_recovery_v1.sql": "ff293d31a018deca0bef619d610abc6789044bfd6dd530e9840381079ab00161",
+          "schema_privileges_recovery_v1.json": "d07b80bacdabf46e26ba51b4f38552870ca9043713ac3ea5db191f91c48f71fb",
+          "database_environment_recovery_v1.sql": "2e01815187ec6d2800098af04bc6b5c2a5eb001df6837137db3cdcd4d9420368",
+          "database_environment_proposal_v1.json": "8b8785cc42412f1760cda4542dd21f26e6c10e4645d2ad053636da7464af355e",
+          "additional_privileges_baseline_v1.json": "057991cb2a02bb6a60d07a7501f54f765c7bdb50e23437eee71b2b6ff476e69f"
+        }
+      },
+      "six_version": {
+        "directory": "C:\\Users\\Hp\\school-queue-management-system\\.local-backups\\post006_20261016T163319Z_4c79fb00",
+        "evidence_sha256": "c8040fe21f10507b986ccfc21dfd6f2995bbe493fb0bac2e498b5a107d347244",
+        "bundle": {
+          "bytes": 3130,
+          "filename": "recovery_bundle_manifest.json",
+          "sha256": "a6b4d717c905b313abc99a62225daf8336684a6a13cf19a608e326a9eee0a5d9"
+        },
+        "artifacts": {
+          "database_environment_recovery.sql": {
+            "bytes": 6804,
+            "sha256": "54f08268e0ace6ce2797e4f2250d51c8f5303328e66a5b7397552df58ea6a63b"
+          },
+          "database_environment_source.json": {
+            "bytes": 2440,
+            "sha256": "c68ef99f782b69431d2b2e326a1480fc32e315230e2c5f5e494d136cf50ea2f7"
+          },
+          "retained_postgres_after_006.dump": {
+            "bytes": 530803,
+            "sha256": "a265d14fbd85daf52ffefb26754cd893effb2f01bdbec092328ce78b511de80c"
+          },
+          "roles_without_passwords.sql": {
+            "bytes": 6274,
+            "sha256": "48aeb839a16374f00df55277ca1eab6d666a11eeaf0cd4fc9501918f144e4c06"
+          },
+          "schema_privileges_recovery.sql": {
+            "bytes": 6295,
+            "sha256": "3f2d86fe78ef43ed0b8c3fbeba3bce0583183e368616a2579c7fffb5dac40cec"
+          },
+          "source_snapshot_manifest.json": {
+            "bytes": 869670,
+            "sha256": "9304c08e1dd66b7867ffcf508acee8968e91b45d01babf4ed59bda5263a8e7a1"
+          }
+        }
+      }
+    }
+  },
+  "provider": {
+    "google_enabled": false,
+    "real_auth_mutation": false
+  },
+  "offline_tests": {
+    "passed": 63,
+    "failed": 0,
+    "skipped": 0
+  },
+  "postgres_after": {
+    "strict_classifier": {
+      "result": "FAIL",
+      "unexpected_changes": [
+        "catalog [changed]",
+        "rows.\"realtime\".\"messages_2026_10_14\" [missing]",
+        "schema.columns.realtime.messages_2026_10_14:binary_payload [missing]",
+        "schema.columns.realtime.messages_2026_10_14:event [missing]",
+        "schema.columns.realtime.messages_2026_10_14:extension [missing]",
+        "schema.columns.realtime.messages_2026_10_14:id [missing]",
+        "schema.columns.realtime.messages_2026_10_14:inserted_at [missing]",
+        "schema.columns.realtime.messages_2026_10_14:payload [missing]",
+        "schema.columns.realtime.messages_2026_10_14:private [missing]",
+        "schema.columns.realtime.messages_2026_10_14:skip_broadcast [missing]",
+        "schema.columns.realtime.messages_2026_10_14:topic [missing]",
+        "schema.columns.realtime.messages_2026_10_14:updated_at [missing]",
+        "schema.constraints.realtime.messages_2026_10_14:messages_2026_10_14_pkey [missing]",
+        "schema.constraints.realtime.messages_2026_10_14:messages_payload_exclusive [missing]",
+        "schema.indexes.realtime.messages_2026_10_14_inserted_at_topic_idx [missing]",
+        "schema.indexes.realtime.messages_2026_10_14_pkey [missing]",
+        "schema.partitions.realtime.messages_2026_10_14 [missing]",
+        "schema.publication.supabase_realtime_messages_publication:realtime.messages_2026_10_14 [missing]",
+        "schema.relations.realtime.messages_2026_10_14 [missing]"
+      ]
+    },
+    "logical_tables": 70,
+    "removed_tables": [
+      "\"realtime\".\"messages_2026_10_14\""
+    ],
+    "added_tables": [],
+    "unequal_shared_non_subscription_tables": [],
+    "shared_non_subscription_tables": 69,
+    "last_snapshot_removed_counts": {
+      "\"realtime\".\"messages_2026_10_14\"": 0
+    },
+    "schema_sections_equal": {
+      "schemas": true,
+      "relations": false,
+      "functions": true,
+      "defaults": true,
+      "constraints": false,
+      "indexes": false,
+      "triggers": true,
+      "columns": false,
+      "policies": true,
+      "extensions": true,
+      "publication": false,
+      "publication_options": true,
+      "types": true,
+      "sequences": true,
+      "partitions": false
+    },
+    "roles_equal": true,
+    "additional_acl_settings_equal": true,
+    "routing_equal": true,
+    "ancillary_equal": true,
+    "state": {
+      "active": 0,
+      "counts": {
+        "days": 7,
+        "audits": 32,
+        "events": 57,
+        "tickets": 20,
+        "accounts": 39,
+        "counters": 5,
+        "requests": 69,
+        "services": 5
+      },
+      "routes": {
+        "1": [
+          "TP"
+        ],
+        "2": [
+          "SOA"
+        ],
+        "3": [
+          "PNEP"
+        ],
+        "4": [
+          "REF"
+        ],
+        "5": [
+          "ADJ"
+        ]
+      },
+      "versions": [
+        "20261016000100",
+        "20261016000200",
+        "20261016000300",
+        "20261016000400",
+        "20261016000500",
+        "20261016000600"
+      ],
+      "open_days": 0,
+      "rls_count": 15,
+      "assignments": [
+        {
+          "total": 1,
+          "counter": 1,
+          "eligible": 1
+        },
+        {
+          "total": 1,
+          "counter": 2,
+          "eligible": 1
+        },
+        {
+          "total": 0,
+          "counter": 3,
+          "eligible": 0
+        },
+        {
+          "total": 0,
+          "counter": 4,
+          "eligible": 0
+        },
+        {
+          "total": 2,
+          "counter": 5,
+          "eligible": 1
+        }
+      ],
+      "publication": [
+        "queue_display.counter_state",
+        "queue_display.service_state"
+      ],
+      "private_usage": false,
+      "current_day_closed": false
+    },
+    "sequences": {
+      "\"auth\".\"refresh_tokens_id_seq\"": {
+        "is_called": true,
+        "last_value": 48
+      },
+      "\"realtime\".\"subscription_id_seq\"": {
+        "is_called": true,
+        "last_value": 406
+      },
+      "\"supabase_functions\".\"hooks_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      }
+    },
+    "subscription_scope": {
+      "count": 2,
+      "invalid_rows": 0
+    }
+  },
+  "all_existing_backup_files": {
+    "files": 81,
+    "sha256": "385138f0c3da32fca227d8511d527d679a96899e43d65cd8ec5142ad63f5a8f4"
+  },
+  "frozen_inputs_unchanged": 243,
+  "retained_services_resources_unchanged": true,
+  "google_store_metadata_only_unchanged": true,
+  "partial_clones_still_stopped": true,
+  "repair_activation_locks_intact": true,
+  "recoverability_certified": false,
+  "current_inventory_recovery_prerequisites_satisfied": false,
+  "finished_at": "2026-10-18T06:07:23.857554+00:00"
+}

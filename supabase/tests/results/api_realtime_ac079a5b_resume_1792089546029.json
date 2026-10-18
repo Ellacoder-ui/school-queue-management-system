@@ -1,0 +1,26 @@
+{
+  "run": "ac079a5b",
+  "target": "127.0.0.1:54321 / 127.0.0.1:54322",
+  "checks": [
+    {
+      "name": "Catalog: RLS, grants and publication exclude private data",
+      "result": "PASS"
+    },
+    {
+      "name": "Fixture or test infrastructure setup",
+      "result": "FAIL",
+      "reason": "Local setup failed; raw output suppressed"
+    }
+  ],
+  "realtime": [],
+  "limitations": [
+    "Current business day is closed; successful issue_ticket is not exercised.",
+    "Negative Realtime observations are bounded; private publication/grants are also inspected.",
+    "Public sanitized feeds remain public after account disable/revocation by design."
+  ],
+  "passed": 1,
+  "failed": 1,
+  "existing_fixture_rows_preserved": true,
+  "endpoints": [],
+  "new_fixture_records_retained": true
+}

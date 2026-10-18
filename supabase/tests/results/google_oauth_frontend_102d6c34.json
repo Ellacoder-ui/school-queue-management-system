@@ -1,0 +1,105 @@
+{
+  "run": "102d6c34",
+  "real_google_login": false,
+  "auth_writes_forwarded": false,
+  "checks": [
+    {
+      "name": "Real Vue product exposes one Google button and no password/role selection",
+      "result": "PASS"
+    },
+    {
+      "name": "Unconfigured provider shows a safe error without OAuth navigation",
+      "result": "PASS"
+    },
+    {
+      "name": "Mocked full PKCE callback verifies ordinary shared dashboard despite ADMIN metadata/email",
+      "result": "PASS"
+    },
+    {
+      "name": "Reload restores the session only through mocked getUser/current-context checks",
+      "result": "PASS"
+    },
+    {
+      "name": "Authoritative cashier/admin context overrides metadata with existing session",
+      "result": "PASS"
+    },
+    {
+      "name": "Revoked role and disabled account immediately clear prior workspace on revalidation",
+      "result": "PASS"
+    },
+    {
+      "name": "Mock logout and Google account switching cannot retain previous context",
+      "result": "PASS"
+    },
+    {
+      "name": "Repeated callback reconciles without a second exchange",
+      "result": "PASS"
+    },
+    {
+      "name": "Mock Google cancellation is scrubbed and grants no workspace",
+      "result": "PASS"
+    },
+    {
+      "name": "Mock expired code gives generic reconciliation without automatic re-exchange",
+      "result": "PASS"
+    },
+    {
+      "name": "SDK missing verifier fails locally before any token HTTP request",
+      "result": "PASS"
+    },
+    {
+      "name": "Callback/login desktop and mobile render without overflow or private canaries",
+      "result": "PASS"
+    },
+    {
+      "name": "Development password form is isolated at /dev/login",
+      "result": "PASS"
+    },
+    {
+      "name": "Anonymous /display remains available without Auth controls after callback errors",
+      "result": "FAIL",
+      "reason": "Public board did not synchronize"
+    }
+  ],
+  "screenshots": [
+    "google_oauth_frontend_102d6c34_1440.png",
+    "google_oauth_frontend_102d6c34_390.png"
+  ],
+  "result": "FAIL",
+  "failure": "Public board did not synchronize",
+  "blocked": [],
+  "runtime_errors": [],
+  "passed": 13,
+  "failed": 1,
+  "source_preservation": {
+    "result": "PASS",
+    "project": "school-queue-local",
+    "database": "127.0.0.1:54322/postgres",
+    "api": "http://127.0.0.1:54321",
+    "six_migrations_and_file_hashes_verified": true,
+    "provisioning_trigger_verified": true,
+    "logical_tables": 69,
+    "recovery_artifacts_verified": true,
+    "recovery_bundle_sha256": "a6b4d717c905b313abc99a62225daf8336684a6a13cf19a608e326a9eee0a5d9",
+    "auth_nonsecret_settings": {
+      "GOTRUE_DISABLE_SIGNUP": "false",
+      "GOTRUE_SITE_URL": "http://127.0.0.1:3000",
+      "GOTRUE_MAILER_AUTOCONFIRM": "true",
+      "GOTRUE_URI_ALLOW_LIST": "https://127.0.0.1:3000",
+      "GOTRUE_MFA_TOTP_VERIFY_ENABLED": "false",
+      "GOTRUE_EXTERNAL_EMAIL_ENABLED": "true",
+      "GOTRUE_MFA_TOTP_ENROLL_ENABLED": "false"
+    },
+    "source_application_auth_writes": false,
+    "all_table_rows_and_security_unchanged": true,
+    "other_sequences_unchanged": true,
+    "realtime_sequence_before": {
+      "is_called": true,
+      "last_value": 84
+    },
+    "realtime_sequence_after": {
+      "is_called": true,
+      "last_value": 84
+    }
+  }
+}

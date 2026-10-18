@@ -1,0 +1,19 @@
+{
+  "result": "READ_ONLY_DECODER_DEFECT_REPRODUCED",
+  "checked_at": "2026-10-18T05:15:09.609592+00:00",
+  "original_run": "b44b72f5",
+  "original_evidence_sha256": "3b4171c63e4f13592ce34a4742e7c936718380a2640baba399a9c9a82fd9fc58",
+  "original_executed_code_hash_matches_manifest": true,
+  "raw_crlf_line_count": 859,
+  "original_failure_category": "Unmatched or ambiguous archive table identity",
+  "lf_decoded_archive_counts": {
+    "logical_tables": 71,
+    "physical_tables": 70,
+    "table_data_entries": 70,
+    "partition_attachments": 8
+  },
+  "archive_and_private_rows_unchanged": true,
+  "new_dump_or_restore": false,
+  "original_attempt_still_failed": true,
+  "later_sequence_observation_is_not_a_dump_window_check": true
+}

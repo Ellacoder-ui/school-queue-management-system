@@ -1,0 +1,8 @@
+{
+  "result": "PASS_READ_ONLY_DISABLED_PROVIDER_AND_LOCKS",
+  "checked_at": "2026-10-18T05:43:28.324027+00:00",
+  "google_enabled": false,
+  "google_credential_contents_accessed": false,
+  "real_auth_login_or_mutation": false,
+  "retained_vector_and_activation_locks_intact": true
+}

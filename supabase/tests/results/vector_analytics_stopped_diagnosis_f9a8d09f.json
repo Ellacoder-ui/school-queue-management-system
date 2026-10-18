@@ -1,0 +1,2452 @@
+{
+  "all_eleven_services_and_vector_definition_preserved": true,
+  "all_retained_execution_locked": true,
+  "analytics": {
+    "additional": {
+      "column_acls": {
+        "count": 0,
+        "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      "database": {
+        "count": 5,
+        "sha256": "c27131fb37c6a78dc80ef53cc81a28fb0a8727eb489884f1c7c46356e67b4e14"
+      },
+      "database_settings": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "sequence_acls": {
+        "count": 28,
+        "sha256": "73e198446d72ba7b782eb31d1d501a30f4b63fc55af6890861aa78f3aeaacac8"
+      },
+      "type_acls": {
+        "count": 1,
+        "sha256": "b4a6c4881c5c55021c345d8de9a6437352df9231583b212fed75cfc76ff77449"
+      }
+    },
+    "browser_roles": {
+      "anon": {
+        "schema_usage": false,
+        "table_select_count": 0,
+        "table_write_count": 0
+      },
+      "authenticated": {
+        "schema_usage": false,
+        "table_select_count": 0,
+        "table_write_count": 0
+      },
+      "service_role": {
+        "schema_usage": false,
+        "table_select_count": 0,
+        "table_write_count": 0
+      }
+    },
+    "catalog_sha256": "a2bae8786a65b0270994e921ed828a4c0f84683042ecf4db4de3418cdb718842",
+    "client_endpoint": "127.0.0.1:54322/_supabase",
+    "database_privileges": {
+      "acl": [
+        {
+          "grantable": false,
+          "grantee": "PUBLIC",
+          "grantor": "postgres",
+          "privilege": "CONNECT"
+        },
+        {
+          "grantable": false,
+          "grantee": "PUBLIC",
+          "grantor": "postgres",
+          "privilege": "TEMPORARY"
+        },
+        {
+          "grantable": false,
+          "grantee": "postgres",
+          "grantor": "postgres",
+          "privilege": "CONNECT"
+        },
+        {
+          "grantable": false,
+          "grantee": "postgres",
+          "grantor": "postgres",
+          "privilege": "CREATE"
+        },
+        {
+          "grantable": false,
+          "grantee": "postgres",
+          "grantor": "postgres",
+          "privilege": "TEMPORARY"
+        }
+      ],
+      "allow_connections": true,
+      "connection_limit": -1,
+      "owner": "postgres",
+      "tablespace": "pg_default"
+    },
+    "dependencies": {
+      "foreign_servers": 0,
+      "foreign_tables": 0,
+      "foreign_wrappers": 0,
+      "large_objects": 0,
+      "materialized_views": 0,
+      "preload_hash": "c86529c79212f24d9b4465c6faadc86c7ac17ede3e3b3b916fd51ef989d4de50",
+      "prepared_transactions": 0,
+      "replication_slots": 1,
+      "server_version": "17.11",
+      "subscriptions": 0
+    },
+    "extensions": {
+      "plpgsql": {
+        "owner": "supabase_admin",
+        "schema": "pg_catalog",
+        "version": "1.0"
+      }
+    },
+    "identity": {
+      "cluster": "7696959712798593061",
+      "collation": "en_US.UTF-8",
+      "ctype": "en_US.UTF-8",
+      "database": "_supabase",
+      "database_bytes": 11679411,
+      "encoding": "UTF8",
+      "locale": "en-US",
+      "locale_provider": "i",
+      "read_only": "on",
+      "recovery": false,
+      "version_num": 170011
+    },
+    "job_state_counts": {
+      "completed": 1011
+    },
+    "metadata": {
+      "columns": {
+        "count": 359,
+        "sha256": "cf4c3ac69506b9a0a680b1a4f8cc23763b8d36329b6dcdfb4f449fd3d253f705"
+      },
+      "constraints": {
+        "count": 74,
+        "sha256": "052fe5277cf8d835c77be0ddb83047765efa3777a744832cd5836ab3f0206cbc"
+      },
+      "defaults": {
+        "count": 0,
+        "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      "extensions": {
+        "count": 1,
+        "sha256": "8ac4aa47646e8adc15ee23e774992e4d815b638ce6dcd850337a8231358bb120"
+      },
+      "functions": {
+        "count": 0,
+        "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      "indexes": {
+        "count": 93,
+        "sha256": "407dd8a2e179b06a618ac05ed884f0c6a36b09ece1109463191dae402475121d"
+      },
+      "partitions": {
+        "count": 39,
+        "sha256": "c0e4ee2d76e5c03ea8f420f6dec2ba98fe7e52886d0f81229804fa49cba2e724"
+      },
+      "policies": {
+        "count": 0,
+        "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      "publication": {
+        "count": 11,
+        "sha256": "f25e8d38be4eb9780fc8679b57563ccf7402da455b6321f0b68fd03b2250e0ac"
+      },
+      "publication_options": {
+        "count": 1,
+        "sha256": "dc14cf37ebeeecd68ff946463310020afbd315595b8f9d57be4a711b76eb228d"
+      },
+      "relations": {
+        "count": 39,
+        "sha256": "cabe4215740e792c76c1c663ce6f2715ff98012fe72464d5c48d422acf076e25"
+      },
+      "schemas": {
+        "count": 3,
+        "sha256": "c7be4a6692cb6f8b8fff378f96852b0990ffd7ee79a1f4cec9de694cb9286778"
+      },
+      "sequences": {
+        "count": 28,
+        "sha256": "f9352141f61b31fd93de5977c394a74c302a4c27df27b8a49a7ce90a2fab3893"
+      },
+      "triggers": {
+        "count": 0,
+        "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      "types": {
+        "count": 1,
+        "sha256": "7150dde672f7ff7360431a05239994f832564ce4843bdfbcb1794b147ba8561a"
+      }
+    },
+    "publication_member_identities": [
+      "01958dc8a879b5dc099d8749a2fac4b52fe65b31db02235fb41a8c24e1f3dbdd",
+      "08f0a6faf7a5aa7c789b145c7cff19195b6de4019bebdaa288602e0acf38c1a0",
+      "3c21f0714aa02f441a00758f2fd514ecd8a87ead2d3672e8d9657c3775a2c4ae",
+      "4e668e6ae8df75076517f7a95fee3f7ce213e1b3a688316d3ec134eaf753b65c",
+      "5bd7bd74933b9483f48015768ad0eb527305c3e784369f419a6fce4bff591751",
+      "85c17ff93b1d65cc1d009a52132f0c8a74bf39e0b6e94e91df4d45cc3a8832d1",
+      "867be2c01bdffabac1452fd64c4785b82c1f84d51eb3e6d157b40863f2d165d9",
+      "adae1dc775764cdffd1e80bdb1c5b5a58cbf5210358be86b1aff7f00e3c4728e",
+      "be436ade6303253ad9cdf338e3451b55f4a45da85884c9d27928684ea91eb097",
+      "d0562b451b1e34ebb3b25ff769f47a8e8ac725fc11c4ee9cc63848be23c223f3",
+      "ea9a311e5b9008fe19b432dd8d3d50e9c96f316cb47f2bc1a9a4d174dab82eb4"
+    ],
+    "publications": {
+      "logflare_pub": {
+        "all_tables": false,
+        "delete": true,
+        "insert": true,
+        "owner": "supabase_admin",
+        "truncate": true,
+        "update": true,
+        "via_root": false
+      }
+    },
+    "replication_slots": [
+      {
+        "active": true,
+        "confirmed_flush_lsn_sha256": "a6a058950fd908467b166b7ce1768a11e0f93d8ed03ec26b8d3d31abac46c8e9",
+        "failover": false,
+        "holder_application_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "holder_role": "supabase_admin",
+        "name_sha256": "ea051865a5609dada923e9fcb9d510c919380a3330ab6fcc0e5d67bc79f26e8d",
+        "plugin": "pgoutput",
+        "temporary": true,
+        "type": "logical",
+        "wal_status": "reserved"
+      }
+    ],
+    "roles": {
+      "count": 31,
+      "memberships": 25,
+      "sha256": "fe7e8c517b421f0a3ffd22b4b96205f223facec6a6779b432c1943ef74cd51cd"
+    },
+    "row_count": 1209,
+    "row_payloads_emitted": false,
+    "schema_owners": [
+      "pg_database_owner",
+      "postgres"
+    ],
+    "schema_privileges": {
+      "_analytics": {
+        "acl": [
+          {
+            "grantable": false,
+            "grantee": "postgres",
+            "grantor": "postgres",
+            "privilege": "CREATE"
+          },
+          {
+            "grantable": false,
+            "grantee": "postgres",
+            "grantor": "postgres",
+            "privilege": "USAGE"
+          }
+        ],
+        "owner": "postgres"
+      },
+      "_supavisor": {
+        "acl": [
+          {
+            "grantable": false,
+            "grantee": "postgres",
+            "grantor": "postgres",
+            "privilege": "CREATE"
+          },
+          {
+            "grantable": false,
+            "grantee": "postgres",
+            "grantor": "postgres",
+            "privilege": "USAGE"
+          }
+        ],
+        "owner": "postgres"
+      },
+      "public": {
+        "acl": [
+          {
+            "grantable": false,
+            "grantee": "PUBLIC",
+            "grantor": "pg_database_owner",
+            "privilege": "USAGE"
+          },
+          {
+            "grantable": false,
+            "grantee": "pg_database_owner",
+            "grantor": "pg_database_owner",
+            "privilege": "CREATE"
+          },
+          {
+            "grantable": false,
+            "grantee": "pg_database_owner",
+            "grantor": "pg_database_owner",
+            "privilege": "USAGE"
+          }
+        ],
+        "owner": "pg_database_owner"
+      }
+    },
+    "schemas": [
+      "_analytics",
+      "_supavisor",
+      "public"
+    ],
+    "sequences": {
+      "\"_analytics\".\"alert_queries_backends_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"alert_queries_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"backends_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"billing_accounts_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"billing_counts_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"endpoint_queries_id_seq\"": {
+        "is_called": true,
+        "last_value": 2
+      },
+      "\"_analytics\".\"key_values_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"oauth_access_grants_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"oauth_access_tokens_id_seq\"": {
+        "is_called": true,
+        "last_value": 1
+      },
+      "\"_analytics\".\"oauth_applications_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"oban_jobs_id_seq\"": {
+        "is_called": true,
+        "last_value": 1996
+      },
+      "\"_analytics\".\"partner_users_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"partners_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"payment_methods_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"plans_id_seq\"": {
+        "is_called": true,
+        "last_value": 1
+      },
+      "\"_analytics\".\"rules_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"saved_search_counters_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"saved_searches_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"source_backends_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"source_schemas_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"sources_backends_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"sources_id_seq\"": {
+        "is_called": true,
+        "last_value": 9
+      },
+      "\"_analytics\".\"system_metrics_id_seq\"": {
+        "is_called": true,
+        "last_value": 1
+      },
+      "\"_analytics\".\"team_users_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"teams_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"users_id_seq\"": {
+        "is_called": true,
+        "last_value": 1
+      },
+      "\"_analytics\".\"vercel_auths_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"versions_id_seq\"": {
+        "is_called": true,
+        "last_value": 2
+      }
+    },
+    "settings": [],
+    "table_count": 39,
+    "tables": [
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "79c47897f4e2513753b589fd41eb668782228fb172c48c7759811b884f559228",
+        "index_bytes": 24576,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "alert_queries",
+        "total_bytes": 32768
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "71ade5737e9f68d33f15ec7d5e9ff3ba8dda570944d0d7c165f8fa962f811cc4",
+        "index_bytes": 16384,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "alert_queries_backends",
+        "total_bytes": 16384
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "411f24eeaf831dd875576805fc89dd2d55e99a7ae9ea7dd3a1150fcaf711b146",
+        "index_bytes": 16384,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "backends",
+        "total_bytes": 24576
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "61a055335a9fe15aa741111bffb32cdce37b3db28628cbf2963bf06882ed8f3a",
+        "index_bytes": 24576,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "billing_accounts",
+        "total_bytes": 32768
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "8ecd5c14549e5f62ebb9b51cc7f28e2308be2ac5e4d82c6a9c9db38f4a80ca20",
+        "index_bytes": 32768,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "billing_counts",
+        "total_bytes": 32768
+      },
+      {
+        "count": 2,
+        "force_rls": false,
+        "heap_bytes": 8192,
+        "identity_sha256": "cfeb19ac0e1f2fcd6a030e0544c519fe8c3a3f0788eb164c0351edf3c274db23",
+        "index_bytes": 65536,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4c66308275413c7200edcd98644f3b2206102b50025b5330e9f84837d02b11e4",
+        "table": "endpoint_queries",
+        "total_bytes": 81920
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "4074309aa96b7f575138c27bc12a0470379bd80e24e09b8293834fb065b6274d",
+        "index_bytes": 16384,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "key_values",
+        "total_bytes": 24576
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "dc9eed5cec098c9d0c1284e407770e6413e207cc5969133f6b2023bff390620b",
+        "index_bytes": 57344,
+        "kind": "r",
+        "owner": "postgres",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "log_events_<source-ff31c89989d9>",
+        "total_bytes": 65536
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "510e7d91a362bab9864bc4cb0391a84d45b4fca3ec0a5769341fe58bf6d9f7de",
+        "index_bytes": 57344,
+        "kind": "r",
+        "owner": "postgres",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "log_events_<source-0c1caf6de0e5>",
+        "total_bytes": 65536
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "1230dc69f4775a84e586221baf42a269ebd6cfdb28964a2be50d5ed3fc7f67f2",
+        "index_bytes": 57344,
+        "kind": "r",
+        "owner": "postgres",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "log_events_<source-982e05c312e5>",
+        "total_bytes": 65536
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "be7a96bc17b8ffeca472ae53ee6e22a3803f911828eea57ee694cdb58f1c684a",
+        "index_bytes": 57344,
+        "kind": "r",
+        "owner": "postgres",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "log_events_<source-374c17ab66e8>",
+        "total_bytes": 65536
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "7696525b497ec0a605117178d244b90286f9c6941531f1de12ef513b728a6293",
+        "index_bytes": 57344,
+        "kind": "r",
+        "owner": "postgres",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "log_events_<source-86447464755f>",
+        "total_bytes": 65536
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "f49b6eab263e16da2795960f5d0b53259fea103194cb93f1c03282d1ae06a944",
+        "index_bytes": 57344,
+        "kind": "r",
+        "owner": "postgres",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "log_events_<source-ca488a463129>",
+        "total_bytes": 65536
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "6db55fa1ac59447aef4e05c3119608277e618806b2bfbea7936938a36d60bb22",
+        "index_bytes": 57344,
+        "kind": "r",
+        "owner": "postgres",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "log_events_<source-28ec11e83110>",
+        "total_bytes": 65536
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "5d5dd649c29cdf9d2f6153fbf05b785ce71902df05232f295d23f6ede9d0ae00",
+        "index_bytes": 57344,
+        "kind": "r",
+        "owner": "postgres",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "log_events_<source-7dc265e41d0d>",
+        "total_bytes": 65536
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "bde41b705a33a3420dfd0f70972edc0f541a8412cb6c5f4f4b63091731803beb",
+        "index_bytes": 57344,
+        "kind": "r",
+        "owner": "postgres",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "log_events_<source-8929457a6ef1>",
+        "total_bytes": 65536
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "1ee9e0e034378545185ce7e0ee566e16a3d4e374a85f773dd69a0174a71561c1",
+        "index_bytes": 16384,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "oauth_access_grants",
+        "total_bytes": 24576
+      },
+      {
+        "count": 1,
+        "force_rls": false,
+        "heap_bytes": 8192,
+        "identity_sha256": "3b59e9ada4bf4e7a95b86c948290476945d100dd978da757e02ca59742e38bfa",
+        "index_bytes": 65536,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "817afeaa9532f13bbffcc0e181cfd3d887dfc86d421a88b742b24e15330f5229",
+        "table": "oauth_access_tokens",
+        "total_bytes": 81920
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "3af42c22407574f4dd965cb522a64f9c43e94207137c2b6edf93767e4c9988a1",
+        "index_bytes": 24576,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "oauth_applications",
+        "total_bytes": 32768
+      },
+      {
+        "count": 1011,
+        "force_rls": false,
+        "heap_bytes": 434176,
+        "identity_sha256": "c3c61bfbba897f8c80ac1247d211c7533f4859816f4a9b91f146c423d17ceab2",
+        "index_bytes": 368640,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "67cc0866ef9c265b7d7c24282d5690da24117b6cc817a8ea260d15b2fec294b9",
+        "table": "oban_jobs",
+        "total_bytes": 843776
+      },
+      {
+        "count": 1,
+        "force_rls": false,
+        "heap_bytes": 8192,
+        "identity_sha256": "71a6ed5dc4f7525658daebede22b6423a780ecb990421c388cb51d811d4b6757",
+        "index_bytes": 24576,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "u",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "d7006bb1bf73f70f40521f68b30333408f887f9398294e0a05f525c0d56686ea",
+        "table": "oban_peers",
+        "total_bytes": 81920
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "39a27c1d7829328b69f6b38dc19b20f1292cae146deda286af757d9cea9b31b1",
+        "index_bytes": 24576,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "partner_users",
+        "total_bytes": 24576
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "855e8193db75deea16c368a4df40e4b72170762ce118cbf933d0010783452fe8",
+        "index_bytes": 8192,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "partners",
+        "total_bytes": 16384
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "6f574b04260243babdc378458bee1b42acb676b511afcecf89bbac21540c6246",
+        "index_bytes": 24576,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "payment_methods",
+        "total_bytes": 32768
+      },
+      {
+        "count": 1,
+        "force_rls": false,
+        "heap_bytes": 8192,
+        "identity_sha256": "446cfeb7a73437e6657849a2b8c8750fb8b253d21a73009f914a7e7a98c4f3f6",
+        "index_bytes": 16384,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "44b5d5d434be41a1c9915b0688575f0bbda567cbf3ea8edc7497351661a4224a",
+        "table": "plans",
+        "total_bytes": 32768
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "2bf0f90de94b5ea0e88aaeed6388079136b7a9db258c7cd1a71546941e8de456",
+        "index_bytes": 24576,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "rules",
+        "total_bytes": 32768
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "7752ed7ce900e1dd9d59f821de047869f7ad877b3f4802122bea32239d316c94",
+        "index_bytes": 16384,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "saved_search_counters",
+        "total_bytes": 24576
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "f113c503e19c3b58dd32df586f29d4b2aa4ab0905d51b1c0c223cfbf59162acb",
+        "index_bytes": 24576,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "saved_searches",
+        "total_bytes": 32768
+      },
+      {
+        "count": 180,
+        "force_rls": false,
+        "heap_bytes": 8192,
+        "identity_sha256": "2bb4e924b0cdfc60c872f9de732ab675454151a8db117b0d52b3f45cdf4e48df",
+        "index_bytes": 16384,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "c10b597c778ff288ef69aaab60be218b0b1083edcf97d2cf41efcd38b5cd676a",
+        "table": "schema_migrations",
+        "total_bytes": 24576
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "259206d8d6fbe7fc352b8f7ee830582fad1922f315c707c52880ef7faf0ac7ab",
+        "index_bytes": 8192,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "source_backends",
+        "total_bytes": 16384
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "a8f84e52e4d34b84ceae3636df157c1fa8d0934f82e3489dacf5e70f3751292e",
+        "index_bytes": 16384,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "source_schemas",
+        "total_bytes": 24576
+      },
+      {
+        "count": 9,
+        "force_rls": false,
+        "heap_bytes": 8192,
+        "identity_sha256": "953a976c018fc17933680103129ad89f91f6bafd4e190eee1139144960e4916b",
+        "index_bytes": 98304,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "ce30a37b9b0743a0d113870a3c05f7492c0d238534e2a3e2e3049c96edd154c0",
+        "table": "sources",
+        "total_bytes": 114688
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "6507a2a7aa63aa7ea49ecd4a504688a25f6a3abcc9bb2fcc9ddf0a67f8995150",
+        "index_bytes": 8192,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "sources_backends",
+        "total_bytes": 8192
+      },
+      {
+        "count": 1,
+        "force_rls": false,
+        "heap_bytes": 8192,
+        "identity_sha256": "9c898c80d94c30a7256a8c64d7856867dd95782210bd194fef68e1b262a84f8a",
+        "index_bytes": 32768,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "86a741ef18450416018563eae32969cf5430ee32be6cb5ccb2571ffec5146143",
+        "table": "system_metrics",
+        "total_bytes": 40960
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "bb760180f05e3e08e10d66de1b739c80a92ad65b94dc857fdb4f30e778be8835",
+        "index_bytes": 24576,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "team_users",
+        "total_bytes": 32768
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "b9d0b5a45dd0dcfc24b9ad4cb2f9a1db8107328411341f707dbeb1178a76f38d",
+        "index_bytes": 24576,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "teams",
+        "total_bytes": 32768
+      },
+      {
+        "count": 1,
+        "force_rls": false,
+        "heap_bytes": 8192,
+        "identity_sha256": "e03739bf0a33cd53dcd97cba5264d5c595cd9aa3da640c8917948a3031de2f48",
+        "index_bytes": 49152,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "2c018e516cb2b4b812142a61357988c4955f708016ffd413db917da398288de6",
+        "table": "users",
+        "total_bytes": 65536
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "2c44f900941085d6db79b2043887d633e7dcfc5baa4e557d41b435890943ce16",
+        "index_bytes": 8192,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "vercel_auths",
+        "total_bytes": 16384
+      },
+      {
+        "count": 2,
+        "force_rls": false,
+        "heap_bytes": 8192,
+        "identity_sha256": "f84d97895f1f181bb96e0489c4064c1cc910466a321e37de8b22c381edbc00ef",
+        "index_bytes": 32768,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "d4f5730eaa9546231a5782d5922df2946a331d6e2666b285aa4cc809347a4141",
+        "table": "versions",
+        "total_bytes": 65536
+      }
+    ]
+  },
+  "analytics_after": {
+    "additional": {
+      "column_acls": {
+        "count": 0,
+        "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      "database": {
+        "count": 5,
+        "sha256": "c27131fb37c6a78dc80ef53cc81a28fb0a8727eb489884f1c7c46356e67b4e14"
+      },
+      "database_settings": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "sequence_acls": {
+        "count": 28,
+        "sha256": "73e198446d72ba7b782eb31d1d501a30f4b63fc55af6890861aa78f3aeaacac8"
+      },
+      "type_acls": {
+        "count": 1,
+        "sha256": "b4a6c4881c5c55021c345d8de9a6437352df9231583b212fed75cfc76ff77449"
+      }
+    },
+    "browser_roles": {
+      "anon": {
+        "schema_usage": false,
+        "table_select_count": 0,
+        "table_write_count": 0
+      },
+      "authenticated": {
+        "schema_usage": false,
+        "table_select_count": 0,
+        "table_write_count": 0
+      },
+      "service_role": {
+        "schema_usage": false,
+        "table_select_count": 0,
+        "table_write_count": 0
+      }
+    },
+    "catalog_sha256": "a2bae8786a65b0270994e921ed828a4c0f84683042ecf4db4de3418cdb718842",
+    "client_endpoint": "127.0.0.1:54322/_supabase",
+    "database_privileges": {
+      "acl": [
+        {
+          "grantable": false,
+          "grantee": "PUBLIC",
+          "grantor": "postgres",
+          "privilege": "CONNECT"
+        },
+        {
+          "grantable": false,
+          "grantee": "PUBLIC",
+          "grantor": "postgres",
+          "privilege": "TEMPORARY"
+        },
+        {
+          "grantable": false,
+          "grantee": "postgres",
+          "grantor": "postgres",
+          "privilege": "CONNECT"
+        },
+        {
+          "grantable": false,
+          "grantee": "postgres",
+          "grantor": "postgres",
+          "privilege": "CREATE"
+        },
+        {
+          "grantable": false,
+          "grantee": "postgres",
+          "grantor": "postgres",
+          "privilege": "TEMPORARY"
+        }
+      ],
+      "allow_connections": true,
+      "connection_limit": -1,
+      "owner": "postgres",
+      "tablespace": "pg_default"
+    },
+    "dependencies": {
+      "foreign_servers": 0,
+      "foreign_tables": 0,
+      "foreign_wrappers": 0,
+      "large_objects": 0,
+      "materialized_views": 0,
+      "preload_hash": "c86529c79212f24d9b4465c6faadc86c7ac17ede3e3b3b916fd51ef989d4de50",
+      "prepared_transactions": 0,
+      "replication_slots": 1,
+      "server_version": "17.11",
+      "subscriptions": 0
+    },
+    "extensions": {
+      "plpgsql": {
+        "owner": "supabase_admin",
+        "schema": "pg_catalog",
+        "version": "1.0"
+      }
+    },
+    "identity": {
+      "cluster": "7696959712798593061",
+      "collation": "en_US.UTF-8",
+      "ctype": "en_US.UTF-8",
+      "database": "_supabase",
+      "database_bytes": 11679411,
+      "encoding": "UTF8",
+      "locale": "en-US",
+      "locale_provider": "i",
+      "read_only": "on",
+      "recovery": false,
+      "version_num": 170011
+    },
+    "job_state_counts": {
+      "completed": 1011
+    },
+    "metadata": {
+      "columns": {
+        "count": 359,
+        "sha256": "cf4c3ac69506b9a0a680b1a4f8cc23763b8d36329b6dcdfb4f449fd3d253f705"
+      },
+      "constraints": {
+        "count": 74,
+        "sha256": "052fe5277cf8d835c77be0ddb83047765efa3777a744832cd5836ab3f0206cbc"
+      },
+      "defaults": {
+        "count": 0,
+        "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      "extensions": {
+        "count": 1,
+        "sha256": "8ac4aa47646e8adc15ee23e774992e4d815b638ce6dcd850337a8231358bb120"
+      },
+      "functions": {
+        "count": 0,
+        "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      "indexes": {
+        "count": 93,
+        "sha256": "407dd8a2e179b06a618ac05ed884f0c6a36b09ece1109463191dae402475121d"
+      },
+      "partitions": {
+        "count": 39,
+        "sha256": "c0e4ee2d76e5c03ea8f420f6dec2ba98fe7e52886d0f81229804fa49cba2e724"
+      },
+      "policies": {
+        "count": 0,
+        "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      "publication": {
+        "count": 11,
+        "sha256": "f25e8d38be4eb9780fc8679b57563ccf7402da455b6321f0b68fd03b2250e0ac"
+      },
+      "publication_options": {
+        "count": 1,
+        "sha256": "dc14cf37ebeeecd68ff946463310020afbd315595b8f9d57be4a711b76eb228d"
+      },
+      "relations": {
+        "count": 39,
+        "sha256": "cabe4215740e792c76c1c663ce6f2715ff98012fe72464d5c48d422acf076e25"
+      },
+      "schemas": {
+        "count": 3,
+        "sha256": "c7be4a6692cb6f8b8fff378f96852b0990ffd7ee79a1f4cec9de694cb9286778"
+      },
+      "sequences": {
+        "count": 28,
+        "sha256": "f9352141f61b31fd93de5977c394a74c302a4c27df27b8a49a7ce90a2fab3893"
+      },
+      "triggers": {
+        "count": 0,
+        "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a"
+      },
+      "types": {
+        "count": 1,
+        "sha256": "7150dde672f7ff7360431a05239994f832564ce4843bdfbcb1794b147ba8561a"
+      }
+    },
+    "publication_member_identities": [
+      "01958dc8a879b5dc099d8749a2fac4b52fe65b31db02235fb41a8c24e1f3dbdd",
+      "08f0a6faf7a5aa7c789b145c7cff19195b6de4019bebdaa288602e0acf38c1a0",
+      "3c21f0714aa02f441a00758f2fd514ecd8a87ead2d3672e8d9657c3775a2c4ae",
+      "4e668e6ae8df75076517f7a95fee3f7ce213e1b3a688316d3ec134eaf753b65c",
+      "5bd7bd74933b9483f48015768ad0eb527305c3e784369f419a6fce4bff591751",
+      "85c17ff93b1d65cc1d009a52132f0c8a74bf39e0b6e94e91df4d45cc3a8832d1",
+      "867be2c01bdffabac1452fd64c4785b82c1f84d51eb3e6d157b40863f2d165d9",
+      "adae1dc775764cdffd1e80bdb1c5b5a58cbf5210358be86b1aff7f00e3c4728e",
+      "be436ade6303253ad9cdf338e3451b55f4a45da85884c9d27928684ea91eb097",
+      "d0562b451b1e34ebb3b25ff769f47a8e8ac725fc11c4ee9cc63848be23c223f3",
+      "ea9a311e5b9008fe19b432dd8d3d50e9c96f316cb47f2bc1a9a4d174dab82eb4"
+    ],
+    "publications": {
+      "logflare_pub": {
+        "all_tables": false,
+        "delete": true,
+        "insert": true,
+        "owner": "supabase_admin",
+        "truncate": true,
+        "update": true,
+        "via_root": false
+      }
+    },
+    "replication_slots": [
+      {
+        "active": true,
+        "confirmed_flush_lsn_sha256": "a6a058950fd908467b166b7ce1768a11e0f93d8ed03ec26b8d3d31abac46c8e9",
+        "failover": false,
+        "holder_application_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "holder_role": "supabase_admin",
+        "name_sha256": "ea051865a5609dada923e9fcb9d510c919380a3330ab6fcc0e5d67bc79f26e8d",
+        "plugin": "pgoutput",
+        "temporary": true,
+        "type": "logical",
+        "wal_status": "reserved"
+      }
+    ],
+    "roles": {
+      "count": 31,
+      "memberships": 25,
+      "sha256": "fe7e8c517b421f0a3ffd22b4b96205f223facec6a6779b432c1943ef74cd51cd"
+    },
+    "row_count": 1209,
+    "row_payloads_emitted": false,
+    "schema_owners": [
+      "pg_database_owner",
+      "postgres"
+    ],
+    "schema_privileges": {
+      "_analytics": {
+        "acl": [
+          {
+            "grantable": false,
+            "grantee": "postgres",
+            "grantor": "postgres",
+            "privilege": "CREATE"
+          },
+          {
+            "grantable": false,
+            "grantee": "postgres",
+            "grantor": "postgres",
+            "privilege": "USAGE"
+          }
+        ],
+        "owner": "postgres"
+      },
+      "_supavisor": {
+        "acl": [
+          {
+            "grantable": false,
+            "grantee": "postgres",
+            "grantor": "postgres",
+            "privilege": "CREATE"
+          },
+          {
+            "grantable": false,
+            "grantee": "postgres",
+            "grantor": "postgres",
+            "privilege": "USAGE"
+          }
+        ],
+        "owner": "postgres"
+      },
+      "public": {
+        "acl": [
+          {
+            "grantable": false,
+            "grantee": "PUBLIC",
+            "grantor": "pg_database_owner",
+            "privilege": "USAGE"
+          },
+          {
+            "grantable": false,
+            "grantee": "pg_database_owner",
+            "grantor": "pg_database_owner",
+            "privilege": "CREATE"
+          },
+          {
+            "grantable": false,
+            "grantee": "pg_database_owner",
+            "grantor": "pg_database_owner",
+            "privilege": "USAGE"
+          }
+        ],
+        "owner": "pg_database_owner"
+      }
+    },
+    "schemas": [
+      "_analytics",
+      "_supavisor",
+      "public"
+    ],
+    "sequences": {
+      "\"_analytics\".\"alert_queries_backends_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"alert_queries_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"backends_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"billing_accounts_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"billing_counts_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"endpoint_queries_id_seq\"": {
+        "is_called": true,
+        "last_value": 2
+      },
+      "\"_analytics\".\"key_values_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"oauth_access_grants_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"oauth_access_tokens_id_seq\"": {
+        "is_called": true,
+        "last_value": 1
+      },
+      "\"_analytics\".\"oauth_applications_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"oban_jobs_id_seq\"": {
+        "is_called": true,
+        "last_value": 1996
+      },
+      "\"_analytics\".\"partner_users_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"partners_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"payment_methods_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"plans_id_seq\"": {
+        "is_called": true,
+        "last_value": 1
+      },
+      "\"_analytics\".\"rules_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"saved_search_counters_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"saved_searches_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"source_backends_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"source_schemas_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"sources_backends_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"sources_id_seq\"": {
+        "is_called": true,
+        "last_value": 9
+      },
+      "\"_analytics\".\"system_metrics_id_seq\"": {
+        "is_called": true,
+        "last_value": 1
+      },
+      "\"_analytics\".\"team_users_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"teams_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"users_id_seq\"": {
+        "is_called": true,
+        "last_value": 1
+      },
+      "\"_analytics\".\"vercel_auths_id_seq\"": {
+        "is_called": false,
+        "last_value": 1
+      },
+      "\"_analytics\".\"versions_id_seq\"": {
+        "is_called": true,
+        "last_value": 2
+      }
+    },
+    "settings": [],
+    "table_count": 39,
+    "tables": [
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "79c47897f4e2513753b589fd41eb668782228fb172c48c7759811b884f559228",
+        "index_bytes": 24576,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "alert_queries",
+        "total_bytes": 32768
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "71ade5737e9f68d33f15ec7d5e9ff3ba8dda570944d0d7c165f8fa962f811cc4",
+        "index_bytes": 16384,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "alert_queries_backends",
+        "total_bytes": 16384
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "411f24eeaf831dd875576805fc89dd2d55e99a7ae9ea7dd3a1150fcaf711b146",
+        "index_bytes": 16384,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "backends",
+        "total_bytes": 24576
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "61a055335a9fe15aa741111bffb32cdce37b3db28628cbf2963bf06882ed8f3a",
+        "index_bytes": 24576,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "billing_accounts",
+        "total_bytes": 32768
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "8ecd5c14549e5f62ebb9b51cc7f28e2308be2ac5e4d82c6a9c9db38f4a80ca20",
+        "index_bytes": 32768,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "billing_counts",
+        "total_bytes": 32768
+      },
+      {
+        "count": 2,
+        "force_rls": false,
+        "heap_bytes": 8192,
+        "identity_sha256": "cfeb19ac0e1f2fcd6a030e0544c519fe8c3a3f0788eb164c0351edf3c274db23",
+        "index_bytes": 65536,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4c66308275413c7200edcd98644f3b2206102b50025b5330e9f84837d02b11e4",
+        "table": "endpoint_queries",
+        "total_bytes": 81920
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "4074309aa96b7f575138c27bc12a0470379bd80e24e09b8293834fb065b6274d",
+        "index_bytes": 16384,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "key_values",
+        "total_bytes": 24576
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "dc9eed5cec098c9d0c1284e407770e6413e207cc5969133f6b2023bff390620b",
+        "index_bytes": 57344,
+        "kind": "r",
+        "owner": "postgres",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "log_events_<source-ff31c89989d9>",
+        "total_bytes": 65536
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "510e7d91a362bab9864bc4cb0391a84d45b4fca3ec0a5769341fe58bf6d9f7de",
+        "index_bytes": 57344,
+        "kind": "r",
+        "owner": "postgres",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "log_events_<source-0c1caf6de0e5>",
+        "total_bytes": 65536
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "1230dc69f4775a84e586221baf42a269ebd6cfdb28964a2be50d5ed3fc7f67f2",
+        "index_bytes": 57344,
+        "kind": "r",
+        "owner": "postgres",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "log_events_<source-982e05c312e5>",
+        "total_bytes": 65536
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "be7a96bc17b8ffeca472ae53ee6e22a3803f911828eea57ee694cdb58f1c684a",
+        "index_bytes": 57344,
+        "kind": "r",
+        "owner": "postgres",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "log_events_<source-374c17ab66e8>",
+        "total_bytes": 65536
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "7696525b497ec0a605117178d244b90286f9c6941531f1de12ef513b728a6293",
+        "index_bytes": 57344,
+        "kind": "r",
+        "owner": "postgres",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "log_events_<source-86447464755f>",
+        "total_bytes": 65536
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "f49b6eab263e16da2795960f5d0b53259fea103194cb93f1c03282d1ae06a944",
+        "index_bytes": 57344,
+        "kind": "r",
+        "owner": "postgres",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "log_events_<source-ca488a463129>",
+        "total_bytes": 65536
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "6db55fa1ac59447aef4e05c3119608277e618806b2bfbea7936938a36d60bb22",
+        "index_bytes": 57344,
+        "kind": "r",
+        "owner": "postgres",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "log_events_<source-28ec11e83110>",
+        "total_bytes": 65536
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "5d5dd649c29cdf9d2f6153fbf05b785ce71902df05232f295d23f6ede9d0ae00",
+        "index_bytes": 57344,
+        "kind": "r",
+        "owner": "postgres",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "log_events_<source-7dc265e41d0d>",
+        "total_bytes": 65536
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "bde41b705a33a3420dfd0f70972edc0f541a8412cb6c5f4f4b63091731803beb",
+        "index_bytes": 57344,
+        "kind": "r",
+        "owner": "postgres",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "log_events_<source-8929457a6ef1>",
+        "total_bytes": 65536
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "1ee9e0e034378545185ce7e0ee566e16a3d4e374a85f773dd69a0174a71561c1",
+        "index_bytes": 16384,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "oauth_access_grants",
+        "total_bytes": 24576
+      },
+      {
+        "count": 1,
+        "force_rls": false,
+        "heap_bytes": 8192,
+        "identity_sha256": "3b59e9ada4bf4e7a95b86c948290476945d100dd978da757e02ca59742e38bfa",
+        "index_bytes": 65536,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "817afeaa9532f13bbffcc0e181cfd3d887dfc86d421a88b742b24e15330f5229",
+        "table": "oauth_access_tokens",
+        "total_bytes": 81920
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "3af42c22407574f4dd965cb522a64f9c43e94207137c2b6edf93767e4c9988a1",
+        "index_bytes": 24576,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "oauth_applications",
+        "total_bytes": 32768
+      },
+      {
+        "count": 1011,
+        "force_rls": false,
+        "heap_bytes": 434176,
+        "identity_sha256": "c3c61bfbba897f8c80ac1247d211c7533f4859816f4a9b91f146c423d17ceab2",
+        "index_bytes": 368640,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "67cc0866ef9c265b7d7c24282d5690da24117b6cc817a8ea260d15b2fec294b9",
+        "table": "oban_jobs",
+        "total_bytes": 843776
+      },
+      {
+        "count": 1,
+        "force_rls": false,
+        "heap_bytes": 8192,
+        "identity_sha256": "71a6ed5dc4f7525658daebede22b6423a780ecb990421c388cb51d811d4b6757",
+        "index_bytes": 24576,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "u",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "d7006bb1bf73f70f40521f68b30333408f887f9398294e0a05f525c0d56686ea",
+        "table": "oban_peers",
+        "total_bytes": 81920
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "39a27c1d7829328b69f6b38dc19b20f1292cae146deda286af757d9cea9b31b1",
+        "index_bytes": 24576,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "partner_users",
+        "total_bytes": 24576
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "855e8193db75deea16c368a4df40e4b72170762ce118cbf933d0010783452fe8",
+        "index_bytes": 8192,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "partners",
+        "total_bytes": 16384
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "6f574b04260243babdc378458bee1b42acb676b511afcecf89bbac21540c6246",
+        "index_bytes": 24576,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "payment_methods",
+        "total_bytes": 32768
+      },
+      {
+        "count": 1,
+        "force_rls": false,
+        "heap_bytes": 8192,
+        "identity_sha256": "446cfeb7a73437e6657849a2b8c8750fb8b253d21a73009f914a7e7a98c4f3f6",
+        "index_bytes": 16384,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "44b5d5d434be41a1c9915b0688575f0bbda567cbf3ea8edc7497351661a4224a",
+        "table": "plans",
+        "total_bytes": 32768
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "2bf0f90de94b5ea0e88aaeed6388079136b7a9db258c7cd1a71546941e8de456",
+        "index_bytes": 24576,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "rules",
+        "total_bytes": 32768
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "7752ed7ce900e1dd9d59f821de047869f7ad877b3f4802122bea32239d316c94",
+        "index_bytes": 16384,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "saved_search_counters",
+        "total_bytes": 24576
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "f113c503e19c3b58dd32df586f29d4b2aa4ab0905d51b1c0c223cfbf59162acb",
+        "index_bytes": 24576,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "saved_searches",
+        "total_bytes": 32768
+      },
+      {
+        "count": 180,
+        "force_rls": false,
+        "heap_bytes": 8192,
+        "identity_sha256": "2bb4e924b0cdfc60c872f9de732ab675454151a8db117b0d52b3f45cdf4e48df",
+        "index_bytes": 16384,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "c10b597c778ff288ef69aaab60be218b0b1083edcf97d2cf41efcd38b5cd676a",
+        "table": "schema_migrations",
+        "total_bytes": 24576
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "259206d8d6fbe7fc352b8f7ee830582fad1922f315c707c52880ef7faf0ac7ab",
+        "index_bytes": 8192,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "source_backends",
+        "total_bytes": 16384
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "a8f84e52e4d34b84ceae3636df157c1fa8d0934f82e3489dacf5e70f3751292e",
+        "index_bytes": 16384,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "source_schemas",
+        "total_bytes": 24576
+      },
+      {
+        "count": 9,
+        "force_rls": false,
+        "heap_bytes": 8192,
+        "identity_sha256": "953a976c018fc17933680103129ad89f91f6bafd4e190eee1139144960e4916b",
+        "index_bytes": 98304,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "ce30a37b9b0743a0d113870a3c05f7492c0d238534e2a3e2e3049c96edd154c0",
+        "table": "sources",
+        "total_bytes": 114688
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "6507a2a7aa63aa7ea49ecd4a504688a25f6a3abcc9bb2fcc9ddf0a67f8995150",
+        "index_bytes": 8192,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "sources_backends",
+        "total_bytes": 8192
+      },
+      {
+        "count": 1,
+        "force_rls": false,
+        "heap_bytes": 8192,
+        "identity_sha256": "9c898c80d94c30a7256a8c64d7856867dd95782210bd194fef68e1b262a84f8a",
+        "index_bytes": 32768,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "86a741ef18450416018563eae32969cf5430ee32be6cb5ccb2571ffec5146143",
+        "table": "system_metrics",
+        "total_bytes": 40960
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "bb760180f05e3e08e10d66de1b739c80a92ad65b94dc857fdb4f30e778be8835",
+        "index_bytes": 24576,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "team_users",
+        "total_bytes": 32768
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "b9d0b5a45dd0dcfc24b9ad4cb2f9a1db8107328411341f707dbeb1178a76f38d",
+        "index_bytes": 24576,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "teams",
+        "total_bytes": 32768
+      },
+      {
+        "count": 1,
+        "force_rls": false,
+        "heap_bytes": 8192,
+        "identity_sha256": "e03739bf0a33cd53dcd97cba5264d5c595cd9aa3da640c8917948a3031de2f48",
+        "index_bytes": 49152,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "2c018e516cb2b4b812142a61357988c4955f708016ffd413db917da398288de6",
+        "table": "users",
+        "total_bytes": 65536
+      },
+      {
+        "count": 0,
+        "force_rls": false,
+        "heap_bytes": 0,
+        "identity_sha256": "2c44f900941085d6db79b2043887d633e7dcfc5baa4e557d41b435890943ce16",
+        "index_bytes": 8192,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "table": "vercel_auths",
+        "total_bytes": 16384
+      },
+      {
+        "count": 2,
+        "force_rls": false,
+        "heap_bytes": 8192,
+        "identity_sha256": "f84d97895f1f181bb96e0489c4064c1cc910466a321e37de8b22c381edbc00ef",
+        "index_bytes": 32768,
+        "kind": "r",
+        "owner": "supabase_admin",
+        "partition": false,
+        "persistence": "p",
+        "rls": false,
+        "schema": "_analytics",
+        "sha256": "d4f5730eaa9546231a5782d5922df2946a331d6e2666b285aa4cc809347a4141",
+        "table": "versions",
+        "total_bytes": 65536
+      }
+    ]
+  },
+  "analytics_comparison": {
+    "additional_privileges_settings_equal": true,
+    "catalog_equal": true,
+    "changed_tables": [],
+    "roles_equal": true,
+    "schema_security_equal": true,
+    "sequences_equal": true
+  },
+  "backup_or_restore": false,
+  "backup_tree": {
+    "files": 50,
+    "sha256": "9ae20f6cf67e0c894217892abf1fe48e56ad6e6858215a8da23614455d77ac81"
+  },
+  "credential_metadata_unchanged": true,
+  "docker_inventory_unchanged": true,
+  "finished_at": "2026-10-18T04:29:41.115851+00:00",
+  "google_credential_contents_accessed": false,
+  "historical_bundles": {
+    "five_version": {
+      "artifact_sha256": {
+        "additional_privileges_baseline_v1.json": "057991cb2a02bb6a60d07a7501f54f765c7bdb50e23437eee71b2b6ff476e69f",
+        "database_environment_proposal_v1.json": "8b8785cc42412f1760cda4542dd21f26e6c10e4645d2ad053636da7464af355e",
+        "database_environment_recovery_v1.sql": "2e01815187ec6d2800098af04bc6b5c2a5eb001df6837137db3cdcd4d9420368",
+        "retained_postgres_before_006.dump": "7df177a07d74617057d1f518e92588fa19de3452c3f1a64c9e26f84b62ac259e",
+        "roles_without_passwords.sql": "882a23b88288987a5fdddcc6082fff2bccf8cfd63023692b8b743f6066b6eee3",
+        "schema_privileges_recovery_v1.json": "d07b80bacdabf46e26ba51b4f38552870ca9043713ac3ea5db191f91c48f71fb",
+        "schema_privileges_recovery_v1.sql": "ff293d31a018deca0bef619d610abc6789044bfd6dd530e9840381079ab00161",
+        "source_snapshot_manifest.json": "df786c0e63034692d8416244e4eab5c887dd9cd06b3747026ac0dc254ed7d67f"
+      },
+      "bundle_sha256": "d07b80bacdabf46e26ba51b4f38552870ca9043713ac3ea5db191f91c48f71fb",
+      "pre_cutover_recovery_point_preserved": true,
+      "protected_access": true,
+      "restore_repeated": false,
+      "result": "PASS"
+    },
+    "six_version": {
+      "artifacts": {
+        "database_environment_recovery.sql": {
+          "bytes": 6804,
+          "sha256": "54f08268e0ace6ce2797e4f2250d51c8f5303328e66a5b7397552df58ea6a63b"
+        },
+        "database_environment_source.json": {
+          "bytes": 2440,
+          "sha256": "c68ef99f782b69431d2b2e326a1480fc32e315230e2c5f5e494d136cf50ea2f7"
+        },
+        "retained_postgres_after_006.dump": {
+          "bytes": 530803,
+          "sha256": "a265d14fbd85daf52ffefb26754cd893effb2f01bdbec092328ce78b511de80c"
+        },
+        "roles_without_passwords.sql": {
+          "bytes": 6274,
+          "sha256": "48aeb839a16374f00df55277ca1eab6d666a11eeaf0cd4fc9501918f144e4c06"
+        },
+        "schema_privileges_recovery.sql": {
+          "bytes": 6295,
+          "sha256": "3f2d86fe78ef43ed0b8c3fbeba3bce0583183e368616a2579c7fffb5dac40cec"
+        },
+        "source_snapshot_manifest.json": {
+          "bytes": 869670,
+          "sha256": "9304c08e1dd66b7867ffcf508acee8968e91b45d01babf4ed59bda5263a8e7a1"
+        }
+      },
+      "bundle": {
+        "bytes": 3130,
+        "filename": "recovery_bundle_manifest.json",
+        "sha256": "a6b4d717c905b313abc99a62225daf8336684a6a13cf19a608e326a9eee0a5d9"
+      },
+      "directory": "C:\\Users\\Hp\\school-queue-management-system\\.local-backups\\post006_20261016T163319Z_4c79fb00",
+      "evidence_sha256": "c8040fe21f10507b986ccfc21dfd6f2995bbe493fb0bac2e498b5a107d347244"
+    }
+  },
+  "historical_inputs_unchanged": 179,
+  "locked_review": {
+    "codeHashes": {
+      "scripts/LocalGoogleActivation.ps1": "6d86077b48351ba557286a352783e6d64dedbff69cc98e346eb69cd0e9e4c671",
+      "scripts/Repair-LocalVector.ps1": "12358769a5fba30f3dbefd2d3ddd93eb71ff585071996c2ea7860c28e605146c",
+      "scripts/Start-LocalGoogleAuth.ps1": "4050f0c21538070c062888f8792434caa2fd1ad1cc44fd87eab1284f1a8f488d",
+      "scripts/VectorRepairStorage.ps1": "49fa85f2558d3d75056a64d4da84b08f2900da709413aa5c77451285587e9528",
+      "scripts/vectorRepairCore.mjs": "61d292a3ac151bc9ada04dbd5f165b080b89dd17c1123d71a99a6ebd3115f76f",
+      "scripts/vectorRetainedReview.mjs": "a01f8060438d2221027b2484148bbc45f44380e240581b0074616a08e2f5fd8b",
+      "supabase/tests/inspect_analytics_recovery.py": "f3a674af12f3a4f52bfcd11a455b510938270fef18a3da2dad2920e6547a0cf1",
+      "tests/security/review_retained_vector.mjs": "8bbca75ce5d8ec3fd8f63c3b1154b8a7788ebcc1bca87b02e354d0681eefed79"
+    },
+    "originalCaptureCreated": false,
+    "receipt": {
+      "backupStillRequired": true,
+      "candidateHash": "6c324eefcc718aa847e8d2343c63116e096f190dd0cc92db7c8f000d0d373f78",
+      "codeSha256": "96626a4af116463e707821d429ce788d4542ccfaa494255dd1414fd49edab3cb",
+      "originalHash": "971c737a78fae5d7f363148b5f26876ee93fe2a826c2999d4fd8808521b5bab8",
+      "originalId": "b6d521af4f244e0ab8ede06130d31bf067e9483ed1dd920544759b607cc9bc59",
+      "recoveryPlanSha256": "31e728e8a5c169a962f93005020d218f5167412292ab35a84765c3afbc87180b",
+      "repairLocked": true,
+      "result": "LOCKED_REVIEW_VALID",
+      "rollbackLocked": true,
+      "socketReprobeStillRequired": true,
+      "sourceReceiptSha256": "3760b8e9f90b9abdcee18d97b8a4ba4b70875864e68b41aa3d3bcf910a1a21dc",
+      "startupLocked": true
+    },
+    "recoveryPlan": {
+      "archive": {
+        "excludedTables": [],
+        "format": "custom",
+        "fullDatabase": true,
+        "includeUnlogged": true,
+        "physicalDataEntries": 39,
+        "schemaFilters": [],
+        "tableFilters": [],
+        "tables": [
+          {
+            "identitySha256": "1230dc69f4775a84e586221baf42a269ebd6cfdb28964a2be50d5ed3fc7f67f2",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "1ee9e0e034378545185ce7e0ee566e16a3d4e374a85f773dd69a0174a71561c1",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "259206d8d6fbe7fc352b8f7ee830582fad1922f315c707c52880ef7faf0ac7ab",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "2bb4e924b0cdfc60c872f9de732ab675454151a8db117b0d52b3f45cdf4e48df",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "2bf0f90de94b5ea0e88aaeed6388079136b7a9db258c7cd1a71546941e8de456",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "2c44f900941085d6db79b2043887d633e7dcfc5baa4e557d41b435890943ce16",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "39a27c1d7829328b69f6b38dc19b20f1292cae146deda286af757d9cea9b31b1",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "3af42c22407574f4dd965cb522a64f9c43e94207137c2b6edf93767e4c9988a1",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "3b59e9ada4bf4e7a95b86c948290476945d100dd978da757e02ca59742e38bfa",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "4074309aa96b7f575138c27bc12a0470379bd80e24e09b8293834fb065b6274d",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "411f24eeaf831dd875576805fc89dd2d55e99a7ae9ea7dd3a1150fcaf711b146",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "446cfeb7a73437e6657849a2b8c8750fb8b253d21a73009f914a7e7a98c4f3f6",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "510e7d91a362bab9864bc4cb0391a84d45b4fca3ec0a5769341fe58bf6d9f7de",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "5d5dd649c29cdf9d2f6153fbf05b785ce71902df05232f295d23f6ede9d0ae00",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "61a055335a9fe15aa741111bffb32cdce37b3db28628cbf2963bf06882ed8f3a",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "6507a2a7aa63aa7ea49ecd4a504688a25f6a3abcc9bb2fcc9ddf0a67f8995150",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "6db55fa1ac59447aef4e05c3119608277e618806b2bfbea7936938a36d60bb22",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "6f574b04260243babdc378458bee1b42acb676b511afcecf89bbac21540c6246",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "71a6ed5dc4f7525658daebede22b6423a780ecb990421c388cb51d811d4b6757",
+            "persistence": "u"
+          },
+          {
+            "identitySha256": "71ade5737e9f68d33f15ec7d5e9ff3ba8dda570944d0d7c165f8fa962f811cc4",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "7696525b497ec0a605117178d244b90286f9c6941531f1de12ef513b728a6293",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "7752ed7ce900e1dd9d59f821de047869f7ad877b3f4802122bea32239d316c94",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "79c47897f4e2513753b589fd41eb668782228fb172c48c7759811b884f559228",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "855e8193db75deea16c368a4df40e4b72170762ce118cbf933d0010783452fe8",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "8ecd5c14549e5f62ebb9b51cc7f28e2308be2ac5e4d82c6a9c9db38f4a80ca20",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "953a976c018fc17933680103129ad89f91f6bafd4e190eee1139144960e4916b",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "9c898c80d94c30a7256a8c64d7856867dd95782210bd194fef68e1b262a84f8a",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "a8f84e52e4d34b84ceae3636df157c1fa8d0934f82e3489dacf5e70f3751292e",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "b9d0b5a45dd0dcfc24b9ad4cb2f9a1db8107328411341f707dbeb1178a76f38d",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "bb760180f05e3e08e10d66de1b739c80a92ad65b94dc857fdb4f30e778be8835",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "bde41b705a33a3420dfd0f70972edc0f541a8412cb6c5f4f4b63091731803beb",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "be7a96bc17b8ffeca472ae53ee6e22a3803f911828eea57ee694cdb58f1c684a",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "c3c61bfbba897f8c80ac1247d211c7533f4859816f4a9b91f146c423d17ceab2",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "cfeb19ac0e1f2fcd6a030e0544c519fe8c3a3f0788eb164c0351edf3c274db23",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "dc9eed5cec098c9d0c1284e407770e6413e207cc5969133f6b2023bff390620b",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "e03739bf0a33cd53dcd97cba5264d5c595cd9aa3da640c8917948a3031de2f48",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "f113c503e19c3b58dd32df586f29d4b2aa4ab0905d51b1c0c223cfbf59162acb",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "f49b6eab263e16da2795960f5d0b53259fea103194cb93f1c03282d1ae06a944",
+            "persistence": "p"
+          },
+          {
+            "identitySha256": "f84d97895f1f181bb96e0489c4064c1cc910466a321e37de8b22c381edbc00ef",
+            "persistence": "p"
+          }
+        ]
+      },
+      "external": {
+        "crossDatabaseAtomicityClaim": false,
+        "reconstructPeerLeasesOnlyAfterExactComparisonAndSeparateServiceReview": true,
+        "replicationSlots": 1,
+        "serviceSecretsKeysAndRolePasswordsRequireSeparateProtectedProcedure": true,
+        "slotProgressRecoveredByDump": false,
+        "workersMayNotConnectToClone": true
+      },
+      "protection": [
+        "new-run-create-new",
+        "no-reparse-points",
+        "current-user-and-SYSTEM-only",
+        "git-ignored-untracked",
+        "encrypted-sensitive-archive-and-supplements",
+        "private-readback-and-hash-binding",
+        "no-passwords-in-role-supplement"
+      ],
+      "recoverabilityVerified": false,
+      "requiresSeparateBackupApproval": true,
+      "restore": {
+        "actualRequired": true,
+        "clean": false,
+        "distinctCluster": true,
+        "exactComparison": [
+          "all-tables-including-unlogged-and-empty",
+          "partitions-and-attachments",
+          "all-schema-security-sections",
+          "roles-memberships",
+          "all-sequences",
+          "database-schema-column-type-acls",
+          "database-role-settings",
+          "publication-definitions"
+        ],
+        "negativeTargetTest": true,
+        "network": "none",
+        "newVolume": true,
+        "ownersAndACLs": true,
+        "retainStoppedClone": true,
+        "sameImageLocalePreloadExtensions": true,
+        "servicesStarted": [],
+        "sourceDerivedSupplementsOnly": true,
+        "tcp": false
+      },
+      "source": {
+        "assessmentSha256": "df53b068d7fa884bd500e0ff091af745d35e6502c3c5e82d47bbb1e540e36a77",
+        "catalogSha256": "a2bae8786a65b0270994e921ed828a4c0f84683042ecf4db4de3418cdb718842",
+        "cluster": "7696959712798593061",
+        "database": "_supabase",
+        "endpoint": "127.0.0.1:54322"
+      },
+      "sourceGuards": [
+        "exact-loopback-project-cluster-volumes-images",
+        "postgres-six-migration-routing-security-gate",
+        "exported-repeatable-read-read-only-snapshot",
+        "manifest-hashed-before-dump",
+        "all-table-canonical-fingerprints",
+        "non-mvcc-sequences-roles-acls-settings-before-after",
+        "fail-on-unreviewed-churn-no-worker-stop",
+        "no-historical-rebase"
+      ],
+      "status": "DESIGN_ONLY_NOT_A_BACKUP",
+      "version": 1
+    },
+    "volumeCount": 17
+  },
+  "result": "DIAGNOSIS_COMPLETE_STRICT_PREREQUISITE_STILL_BLOCKED",
+  "retained_mutation": false,
+  "run_id": "f9a8d09f",
+  "source_diagnosis": {
+    "active": 0,
+    "added_tables": [
+      {
+        "count": 0,
+        "table": "\"realtime\".\"messages_2026_10_21\""
+      }
+    ],
+    "existing_bundle_sha256": "50164d4afb5083a83044f5ee3df3d13b1b2002ba29ee03143e460c181b915a52",
+    "existing_classifier_result": {
+      "all_other_rows_objects_roles_privileges_exact": true,
+      "empty_partition_additions": [
+        "\"realtime\".\"messages_2026_10_21\""
+      ],
+      "logical_tables": 71,
+      "original_tables_exact_except_scoped_subscription": true,
+      "result": "PASS",
+      "subscription_rows_after": 2,
+      "subscription_rows_before": 2,
+      "subscription_sequence_after": {
+        "is_called": true,
+        "last_value": 386
+      },
+      "subscription_sequence_before": {
+        "is_called": true,
+        "last_value": 298
+      },
+      "unexpected_changes": []
+    },
+    "google_enabled": false,
+    "logical_tables": 71,
+    "migration_count": 6,
+    "open_days": 0,
+    "recovery_evidence_hash": "e1cdfd117369f4469b2b74a1f66ad520d664b848e8452b1009e782ec06d78784",
+    "removed_tables": [],
+    "state_counts": {
+      "accounts": 39,
+      "audits": 32,
+      "counters": 5,
+      "days": 7,
+      "events": 57,
+      "requests": 69,
+      "services": 5,
+      "tickets": 20
+    }
+  },
+  "started_at": "2026-10-18T04:29:25.849889+00:00",
+  "strict_70_table_prerequisite": "FAIL_NOT_REPAIRED"
+}

@@ -1,0 +1,5 @@
+{
+  "result": "FAIL_READ_ONLY_REFERENCE",
+  "checked_at": "2026-10-18T05:43:30.631688+00:00",
+  "failure": "DAR_REFERENCE_NOT_VERIFIED"
+}

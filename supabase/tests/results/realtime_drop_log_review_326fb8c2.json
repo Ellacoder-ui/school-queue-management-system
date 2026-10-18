@@ -1,0 +1,11 @@
+{
+  "result": "READ_ONLY_BOUNDED_DROP_LOG_REVIEW",
+  "checked_at": "2026-10-18T06:08:22.060649+00:00",
+  "requested_since": "8h",
+  "requested_tail": 1500,
+  "lines": 308,
+  "matching_events": [],
+  "proves_pre_drop_emptiness": false,
+  "identifies_actor_process": false,
+  "docker_resources_unchanged": true
+}

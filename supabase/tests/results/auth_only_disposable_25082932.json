@@ -1,0 +1,33 @@
+{
+  "run_id": "25082932",
+  "started_at": "2026-10-18T07:06:08.644Z",
+  "result": "FAIL_STOPPED",
+  "checks": [
+    {
+      "name": "separate disposable database ready; no retained volumes or published ports",
+      "result": "PASS"
+    },
+    {
+      "name": "missing synthetic credentials rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "approved DPAPI mechanism private dummy write/read-back",
+      "result": "PASS"
+    },
+    {
+      "name": "production credential bridge remains locked",
+      "result": "PASS"
+    }
+  ],
+  "containers": [
+    "c4dbf71b8dad3f78c3b2ad7e4428ed5c345e8df427c9671cad38dc75045b7c3e",
+    "f09fac4cd87bfd0781e12ac4a4ae6d987ebe7995c2e0684b7ff94746dafcf249",
+    "1bcb43a7dda7a1173091d0981544c9a44c0a836d456fdedbfe7c613c875f0232"
+  ],
+  "retained_operations": false,
+  "real_credentials_read": false,
+  "network_id": "2920d741da8faa1e274678b4625fc3666fcd2e745159f521ab72d6d10953e933",
+  "failure": "AGO_AUTH_STOPPED",
+  "completed_at": "2026-10-18T07:06:22.820Z"
+}

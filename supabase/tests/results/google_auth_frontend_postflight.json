@@ -1,0 +1,155 @@
+{
+  "result": "FAIL_EXACT_SOURCE_PRESERVATION_GATE",
+  "protected_application_auth_and_migration_rows_unchanged": true,
+  "changed_original_tables": [
+    "\"realtime\".\"subscription\""
+  ],
+  "new_tables": [
+    "\"realtime\".\"messages_2026_10_20\""
+  ],
+  "original_table_count": 69,
+  "current_logical_table_count": 70,
+  "new_empty_realtime_partition": {
+    "rls": false,
+    "bound": "FOR VALUES FROM ('2026-10-20 00:00:00') TO ('2026-10-21 00:00:00')",
+    "owner": "supabase_realtime_admin",
+    "parent": "realtime.messages",
+    "row_count": 0,
+    "is_partition": true
+  },
+  "schema_difference_inventory": {
+    "columns": {
+      "added": [
+        "realtime.messages_2026_10_20:binary_payload",
+        "realtime.messages_2026_10_20:event",
+        "realtime.messages_2026_10_20:extension",
+        "realtime.messages_2026_10_20:id",
+        "realtime.messages_2026_10_20:inserted_at",
+        "realtime.messages_2026_10_20:payload",
+        "realtime.messages_2026_10_20:private",
+        "realtime.messages_2026_10_20:skip_broadcast",
+        "realtime.messages_2026_10_20:topic",
+        "realtime.messages_2026_10_20:updated_at"
+      ],
+      "removed": [],
+      "changed": []
+    },
+    "constraints": {
+      "added": [
+        "realtime.messages_2026_10_20:messages_2026_10_20_pkey",
+        "realtime.messages_2026_10_20:messages_payload_exclusive"
+      ],
+      "removed": [],
+      "changed": []
+    },
+    "indexes": {
+      "added": [
+        "realtime.messages_2026_10_20_inserted_at_topic_idx",
+        "realtime.messages_2026_10_20_pkey"
+      ],
+      "removed": [],
+      "changed": []
+    },
+    "partitions": {
+      "added": [
+        "realtime.messages_2026_10_20"
+      ],
+      "removed": [],
+      "changed": []
+    },
+    "publication": {
+      "added": [
+        "supabase_realtime_messages_publication:realtime.messages_2026_10_20"
+      ],
+      "removed": [],
+      "changed": []
+    },
+    "relations": {
+      "added": [
+        "realtime.messages_2026_10_20"
+      ],
+      "removed": [],
+      "changed": []
+    }
+  },
+  "roles_unchanged": true,
+  "additional_privileges_settings_unchanged": true,
+  "state": {
+    "active": 0,
+    "counts": {
+      "days": 7,
+      "audits": 32,
+      "events": 57,
+      "tickets": 20,
+      "accounts": 39,
+      "counters": 5,
+      "requests": 69,
+      "services": 5
+    },
+    "routes": {
+      "1": [
+        "TP"
+      ],
+      "2": [
+        "SOA"
+      ],
+      "3": [
+        "PNEP"
+      ],
+      "4": [
+        "REF"
+      ],
+      "5": [
+        "ADJ"
+      ]
+    },
+    "versions": [
+      "20261016000100",
+      "20261016000200",
+      "20261016000300",
+      "20261016000400",
+      "20261016000500",
+      "20261016000600"
+    ],
+    "open_days": 0,
+    "rls_count": 15,
+    "assignments": [
+      {
+        "total": 1,
+        "counter": 1,
+        "eligible": 1
+      },
+      {
+        "total": 1,
+        "counter": 2,
+        "eligible": 1
+      },
+      {
+        "total": 0,
+        "counter": 3,
+        "eligible": 0
+      },
+      {
+        "total": 0,
+        "counter": 4,
+        "eligible": 0
+      },
+      {
+        "total": 2,
+        "counter": 5,
+        "eligible": 1
+      }
+    ],
+    "publication": [
+      "queue_display.counter_state",
+      "queue_display.service_state"
+    ],
+    "private_usage": false,
+    "current_day_closed": true
+  },
+  "recovery_artifact_hashes_associations_and_acl_verified": true,
+  "google_provider_enabled": false,
+  "source_sql_or_auth_writes_requested": false,
+  "preservation_fence_relaxed": false,
+  "historical_baseline_rewritten": false
+}

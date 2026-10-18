@@ -1,0 +1,678 @@
+{
+  "acl": {
+    "allowed_principals": "current user and SYSTEM",
+    "directory_inheritance_removed": true,
+    "files_checked": 3,
+    "git_ignored": true
+  },
+  "archive_completeness": {
+    "dumped_tables": [
+      "\"_realtime\".\"extensions\"",
+      "\"_realtime\".\"feature_flags\"",
+      "\"_realtime\".\"schema_migrations\"",
+      "\"_realtime\".\"tenants\"",
+      "\"auth\".\"audit_log_entries\"",
+      "\"auth\".\"custom_oauth_providers\"",
+      "\"auth\".\"flow_state\"",
+      "\"auth\".\"identities\"",
+      "\"auth\".\"instances\"",
+      "\"auth\".\"mfa_amr_claims\"",
+      "\"auth\".\"mfa_challenges\"",
+      "\"auth\".\"mfa_factors\"",
+      "\"auth\".\"mfa_recovery_code_sets\"",
+      "\"auth\".\"mfa_recovery_codes\"",
+      "\"auth\".\"oauth_authorizations\"",
+      "\"auth\".\"oauth_client_states\"",
+      "\"auth\".\"oauth_clients\"",
+      "\"auth\".\"oauth_consents\"",
+      "\"auth\".\"one_time_tokens\"",
+      "\"auth\".\"refresh_tokens\"",
+      "\"auth\".\"saml_providers\"",
+      "\"auth\".\"saml_relay_states\"",
+      "\"auth\".\"schema_migrations\"",
+      "\"auth\".\"scim_tokens\"",
+      "\"auth\".\"scim_users\"",
+      "\"auth\".\"sessions\"",
+      "\"auth\".\"sso_domains\"",
+      "\"auth\".\"sso_providers\"",
+      "\"auth\".\"users\"",
+      "\"auth\".\"webauthn_challenges\"",
+      "\"auth\".\"webauthn_credentials\"",
+      "\"queue_display\".\"counter_state\"",
+      "\"queue_display\".\"service_state\"",
+      "\"queue_private\".\"accounts\"",
+      "\"queue_private\".\"admin_audit_events\"",
+      "\"queue_private\".\"counter_services\"",
+      "\"queue_private\".\"counters\"",
+      "\"queue_private\".\"operation_requests\"",
+      "\"queue_private\".\"queue_days\"",
+      "\"queue_private\".\"service_day_state\"",
+      "\"queue_private\".\"services\"",
+      "\"queue_private\".\"settings\"",
+      "\"queue_private\".\"staff_counter_assignments\"",
+      "\"queue_private\".\"student_profiles\"",
+      "\"queue_private\".\"ticket_events\"",
+      "\"queue_private\".\"tickets\"",
+      "\"realtime\".\"messages_2026_10_14\"",
+      "\"realtime\".\"messages_2026_10_15\"",
+      "\"realtime\".\"messages_2026_10_16\"",
+      "\"realtime\".\"messages_2026_10_17\"",
+      "\"realtime\".\"messages_2026_10_18\"",
+      "\"realtime\".\"messages_2026_10_19\"",
+      "\"realtime\".\"schema_migrations\"",
+      "\"realtime\".\"subscription\"",
+      "\"storage\".\"buckets\"",
+      "\"storage\".\"buckets_analytics\"",
+      "\"storage\".\"buckets_vectors\"",
+      "\"storage\".\"iceberg_namespaces\"",
+      "\"storage\".\"iceberg_tables\"",
+      "\"storage\".\"migrations\"",
+      "\"storage\".\"objects\"",
+      "\"storage\".\"s3_multipart_uploads\"",
+      "\"storage\".\"s3_multipart_uploads_parts\"",
+      "\"storage\".\"vector_indexes\"",
+      "\"supabase_functions\".\"hooks\"",
+      "\"supabase_functions\".\"migrations\"",
+      "\"supabase_migrations\".\"schema_migrations\"",
+      "\"vault\".\"secrets\""
+    ],
+    "extension_recreated_empty_tables": [],
+    "logical_tables": 69,
+    "partition_attachments": 6,
+    "partitioned_parents": [
+      "\"realtime\".\"messages\""
+    ],
+    "physical_tables": 68,
+    "table_data_entries": 68,
+    "template_extensions_to_verify": [
+      "plpgsql"
+    ]
+  },
+  "artifact_sha256": {
+    "retained_postgres_before_006.dump": "7df177a07d74617057d1f518e92588fa19de3452c3f1a64c9e26f84b62ac259e",
+    "roles_without_passwords.sql": "882a23b88288987a5fdddcc6082fff2bccf8cfd63023692b8b743f6066b6eee3",
+    "source_snapshot_manifest.json": "df786c0e63034692d8416244e4eab5c887dd9cd06b3747026ac0dc254ed7d67f"
+  },
+  "destination": {
+    "completed": false,
+    "container": "sq-restore-internal-5255c24a",
+    "database": "queue_restore_verify",
+    "image": "public.ecr.aws/supabase/postgres:17.11.0.004",
+    "image_id": "sha256:6058a6759ab9268cff8ee70641d61f1bd75953316281b76427cf5a6b4db2eafc",
+    "network_mode": "none",
+    "project": "sq-restore-internal-5255c24a",
+    "published_ports": [],
+    "sandbox_id": "b163050d385f6efbc3184ae4932fef66f123f40396a8d40a31636b6686b11b98",
+    "socket": "/tmp",
+    "stopped_volume_retained": true,
+    "system_identifier": "7697274089557344283",
+    "volume": "sq-restore-internal-5255c24a-data"
+  },
+  "docker": {
+    "client": "29.8.2",
+    "engine": "29.8.2",
+    "platform": "Docker Desktop",
+    "previous_container": "sq-restore-006-13f0a34b",
+    "previous_container_stopped": true,
+    "previous_network_internal": true,
+    "previous_running_evidence": {
+      "5432/tcp": []
+    },
+    "requested_bindings": {
+      "5432/tcp": [
+        {
+          "HostIp": "127.0.0.1",
+          "HostPort": "57322"
+        }
+      ]
+    },
+    "solution": "new network-none container, direct Unix socket; no host publication",
+    "stopped_bindings": {}
+  },
+  "extension_template_verified": true,
+  "failure": "Restored semantic schema differs: schemas",
+  "internal_server": {
+    "client_address": null,
+    "data_directory": "/var/lib/postgresql/data",
+    "database": "postgres",
+    "listen_addresses": "",
+    "server_address": null,
+    "system_identifier": "7697274089557344283",
+    "user": "supabase_admin",
+    "version": "17.11"
+  },
+  "locale_verified": true,
+  "migration_006_applied": false,
+  "pg_restore_exit": 0,
+  "phase": "stopped-at-schema-acl-comparison",
+  "privilege_omission_diagnosis": {
+    "archive_schema_acl_entries": {
+      "graphql": false,
+      "graphql_public": false
+    },
+    "generated_schema_usage_grants": {
+      "graphql": false,
+      "graphql_public": false
+    },
+    "source_initial_privileges": {
+      "graphql": {
+        "extension_member": false,
+        "initial_matches_current": true,
+        "initial_privilege_records": 1,
+        "initial_privilege_types": [
+          "e"
+        ]
+      },
+      "graphql_public": {
+        "extension_member": false,
+        "initial_matches_current": true,
+        "initial_privilege_records": 1,
+        "initial_privilege_types": [
+          "e"
+        ]
+      }
+    }
+  },
+  "psql_restore_exit": 0,
+  "readonly_integrity_diagnosis": {
+    "partition_catalog_match": true,
+    "queue_state_match": true,
+    "roles_match": true,
+    "row_counts_match": true,
+    "schema_sections_match": {
+      "columns": true,
+      "constraints": true,
+      "defaults": true,
+      "extensions": true,
+      "functions": true,
+      "indexes": true,
+      "partitions": true,
+      "policies": true,
+      "publication": true,
+      "publication_options": true,
+      "relations": true,
+      "schemas": false,
+      "sequences": true,
+      "triggers": true,
+      "types": true
+    },
+    "sequences_match": true,
+    "tables_compared": 69
+  },
+  "recoverability_verified": false,
+  "restore_sql_sha256": "d628040424a70a5fe80407bd6c4902042a82b2b7d11681562fb98adf8d1c623f",
+  "result": "FAIL",
+  "retained_preserved": true,
+  "reviewed_client_warning": {
+    "count": 8,
+    "message": "libpq rejected /dev/null as a non-regular password file",
+    "resolution": "explicit nonexistent procfs password-file path; Unix socket authentication",
+    "role_privileges_match": true,
+    "sql_errors": 0
+  },
+  "role_diagnostic_attempt_retained": "C:\\Users\\Hp\\school-queue-management-system\\supabase\\tests\\results\\retained_backup_internal_role_warning.json",
+  "role_import_diagnosis": {
+    "destination_databases": [
+      "postgres",
+      "template0",
+      "template1"
+    ],
+    "diagnostic_headers": [],
+    "role_metadata_matches_source": true
+  },
+  "role_import_exit": 0,
+  "roles_verified": true,
+  "schema_difference_sections": {
+    "schemas": 0
+  },
+  "schema_metadata_differences": {
+    "graphql": {
+      "expected": {
+        "acl": [
+          {
+            "grantable": false,
+            "grantee": "anon",
+            "grantor": "supabase_admin",
+            "privilege": "USAGE"
+          },
+          {
+            "grantable": false,
+            "grantee": "authenticated",
+            "grantor": "supabase_admin",
+            "privilege": "USAGE"
+          },
+          {
+            "grantable": true,
+            "grantee": "postgres",
+            "grantor": "supabase_admin",
+            "privilege": "USAGE"
+          },
+          {
+            "grantable": false,
+            "grantee": "service_role",
+            "grantor": "supabase_admin",
+            "privilege": "USAGE"
+          },
+          {
+            "grantable": false,
+            "grantee": "supabase_admin",
+            "grantor": "supabase_admin",
+            "privilege": "CREATE"
+          },
+          {
+            "grantable": false,
+            "grantee": "supabase_admin",
+            "grantor": "supabase_admin",
+            "privilege": "USAGE"
+          }
+        ],
+        "owner": "supabase_admin"
+      },
+      "restored": {
+        "acl": [
+          {
+            "grantable": false,
+            "grantee": "supabase_admin",
+            "grantor": "supabase_admin",
+            "privilege": "CREATE"
+          },
+          {
+            "grantable": false,
+            "grantee": "supabase_admin",
+            "grantor": "supabase_admin",
+            "privilege": "USAGE"
+          }
+        ],
+        "owner": "supabase_admin"
+      }
+    },
+    "graphql_public": {
+      "expected": {
+        "acl": [
+          {
+            "grantable": false,
+            "grantee": "anon",
+            "grantor": "supabase_admin",
+            "privilege": "USAGE"
+          },
+          {
+            "grantable": false,
+            "grantee": "authenticated",
+            "grantor": "supabase_admin",
+            "privilege": "USAGE"
+          },
+          {
+            "grantable": true,
+            "grantee": "postgres",
+            "grantor": "supabase_admin",
+            "privilege": "USAGE"
+          },
+          {
+            "grantable": false,
+            "grantee": "service_role",
+            "grantor": "supabase_admin",
+            "privilege": "USAGE"
+          },
+          {
+            "grantable": false,
+            "grantee": "supabase_admin",
+            "grantor": "supabase_admin",
+            "privilege": "CREATE"
+          },
+          {
+            "grantable": false,
+            "grantee": "supabase_admin",
+            "grantor": "supabase_admin",
+            "privilege": "USAGE"
+          }
+        ],
+        "owner": "supabase_admin"
+      },
+      "restored": {
+        "acl": [
+          {
+            "grantable": false,
+            "grantee": "supabase_admin",
+            "grantor": "supabase_admin",
+            "privilege": "CREATE"
+          },
+          {
+            "grantable": false,
+            "grantee": "supabase_admin",
+            "grantor": "supabase_admin",
+            "privilege": "USAGE"
+          }
+        ],
+        "owner": "supabase_admin"
+      }
+    }
+  },
+  "source_after": {
+    "identity": {
+      "api": "http://127.0.0.1:54321",
+      "database_endpoint": "127.0.0.1:54322",
+      "docker": [
+        {
+          "bindings": [
+            {
+              "HostIp": "0.0.0.0",
+              "HostPort": "54322"
+            },
+            {
+              "HostIp": "::",
+              "HostPort": "54322"
+            }
+          ],
+          "container": "supabase_db_school-queue-local",
+          "image": "public.ecr.aws/supabase/postgres:17.11.0.004",
+          "networks": [
+            "supabase_network_school-queue-local"
+          ],
+          "volumes": [
+            "supabase_db_school-queue-local"
+          ]
+        },
+        {
+          "bindings": [
+            {
+              "HostIp": "0.0.0.0",
+              "HostPort": "54321"
+            },
+            {
+              "HostIp": "::",
+              "HostPort": "54321"
+            }
+          ],
+          "container": "supabase_kong_school-queue-local",
+          "image": "public.ecr.aws/supabase/kong:2.8.1",
+          "networks": [
+            "supabase_network_school-queue-local"
+          ],
+          "volumes": []
+        }
+      ],
+      "migration_sha256": {
+        "20261016000100_queue_tables.sql": "274141dbab99dbaad959f2343633ee0bd440b240a29b5664ca304e283934d7d7",
+        "20261016000200_queue_operations.sql": "65c943d4fea282c07e06bab6b759882f7fcec678ddf960869dd60a52db911883",
+        "20261016000300_queue_administration.sql": "7a4ad627112f0bc3109417bec237b13000e1c06002d536f7c9feab5261eb4883",
+        "20261016000400_queue_seed_security.sql": "95bd4918550dddae84672c148c6a616c9d12928b78097a82815a26a35146746e",
+        "20261016000500_queue_read_context.sql": "793a68b375d69044dc4900749867576b5c45a6b4173725191ffbaeb66a2dd31a",
+        "20261016000600_fixed_counter_routing.sql": "9d854ab795e3ef3098fa1d3a05cb6541242d0c8e503a8ebee1acfe9df418137c"
+      },
+      "project": "school-queue-local",
+      "server": {
+        "database": "postgres",
+        "port": 5432,
+        "user": "postgres",
+        "version": "17.11"
+      }
+    },
+    "memberships": 25,
+    "roles": 31,
+    "rows": 819,
+    "schema_sections": [
+      "columns",
+      "constraints",
+      "defaults",
+      "extensions",
+      "functions",
+      "indexes",
+      "partitions",
+      "policies",
+      "publication",
+      "publication_options",
+      "relations",
+      "schemas",
+      "sequences",
+      "triggers",
+      "types"
+    ],
+    "sequences": 3,
+    "state": {
+      "active": 0,
+      "assignments": [
+        {
+          "counter": 1,
+          "eligible": 1,
+          "total": 1
+        },
+        {
+          "counter": 2,
+          "eligible": 1,
+          "total": 1
+        },
+        {
+          "counter": 3,
+          "eligible": 0,
+          "total": 0
+        },
+        {
+          "counter": 4,
+          "eligible": 0,
+          "total": 0
+        },
+        {
+          "counter": 5,
+          "eligible": 1,
+          "total": 2
+        }
+      ],
+      "counts": {
+        "accounts": 39,
+        "audits": 31,
+        "counters": 5,
+        "days": 7,
+        "events": 57,
+        "requests": 69,
+        "services": 5,
+        "tickets": 20
+      },
+      "current_day_closed": true,
+      "open_days": 0,
+      "private_usage": false,
+      "publication": [
+        "queue_display.counter_state",
+        "queue_display.service_state"
+      ],
+      "rls_count": 15,
+      "routes": {
+        "1": [
+          "SOA",
+          "TP"
+        ],
+        "2": [
+          "SOA",
+          "TP"
+        ],
+        "3": [],
+        "4": [],
+        "5": []
+      },
+      "versions": [
+        "20261016000100",
+        "20261016000200",
+        "20261016000300",
+        "20261016000400",
+        "20261016000500"
+      ]
+    },
+    "system_identifier": "7696959712798593061",
+    "tables": 69
+  },
+  "source_before": {
+    "identity": {
+      "api": "http://127.0.0.1:54321",
+      "database_endpoint": "127.0.0.1:54322",
+      "docker": [
+        {
+          "bindings": [
+            {
+              "HostIp": "0.0.0.0",
+              "HostPort": "54322"
+            },
+            {
+              "HostIp": "::",
+              "HostPort": "54322"
+            }
+          ],
+          "container": "supabase_db_school-queue-local",
+          "image": "public.ecr.aws/supabase/postgres:17.11.0.004",
+          "networks": [
+            "supabase_network_school-queue-local"
+          ],
+          "volumes": [
+            "supabase_db_school-queue-local"
+          ]
+        },
+        {
+          "bindings": [
+            {
+              "HostIp": "0.0.0.0",
+              "HostPort": "54321"
+            },
+            {
+              "HostIp": "::",
+              "HostPort": "54321"
+            }
+          ],
+          "container": "supabase_kong_school-queue-local",
+          "image": "public.ecr.aws/supabase/kong:2.8.1",
+          "networks": [
+            "supabase_network_school-queue-local"
+          ],
+          "volumes": []
+        }
+      ],
+      "migration_sha256": {
+        "20261016000100_queue_tables.sql": "274141dbab99dbaad959f2343633ee0bd440b240a29b5664ca304e283934d7d7",
+        "20261016000200_queue_operations.sql": "65c943d4fea282c07e06bab6b759882f7fcec678ddf960869dd60a52db911883",
+        "20261016000300_queue_administration.sql": "7a4ad627112f0bc3109417bec237b13000e1c06002d536f7c9feab5261eb4883",
+        "20261016000400_queue_seed_security.sql": "95bd4918550dddae84672c148c6a616c9d12928b78097a82815a26a35146746e",
+        "20261016000500_queue_read_context.sql": "793a68b375d69044dc4900749867576b5c45a6b4173725191ffbaeb66a2dd31a",
+        "20261016000600_fixed_counter_routing.sql": "9d854ab795e3ef3098fa1d3a05cb6541242d0c8e503a8ebee1acfe9df418137c"
+      },
+      "project": "school-queue-local",
+      "server": {
+        "database": "postgres",
+        "port": 5432,
+        "user": "postgres",
+        "version": "17.11"
+      }
+    },
+    "memberships": 25,
+    "roles": 31,
+    "rows": 819,
+    "schema_sections": [
+      "columns",
+      "constraints",
+      "defaults",
+      "extensions",
+      "functions",
+      "indexes",
+      "partitions",
+      "policies",
+      "publication",
+      "publication_options",
+      "relations",
+      "schemas",
+      "sequences",
+      "triggers",
+      "types"
+    ],
+    "sequences": 3,
+    "state": {
+      "active": 0,
+      "assignments": [
+        {
+          "counter": 1,
+          "eligible": 1,
+          "total": 1
+        },
+        {
+          "counter": 2,
+          "eligible": 1,
+          "total": 1
+        },
+        {
+          "counter": 3,
+          "eligible": 0,
+          "total": 0
+        },
+        {
+          "counter": 4,
+          "eligible": 0,
+          "total": 0
+        },
+        {
+          "counter": 5,
+          "eligible": 1,
+          "total": 2
+        }
+      ],
+      "counts": {
+        "accounts": 39,
+        "audits": 31,
+        "counters": 5,
+        "days": 7,
+        "events": 57,
+        "requests": 69,
+        "services": 5,
+        "tickets": 20
+      },
+      "current_day_closed": true,
+      "open_days": 0,
+      "private_usage": false,
+      "publication": [
+        "queue_display.counter_state",
+        "queue_display.service_state"
+      ],
+      "rls_count": 15,
+      "routes": {
+        "1": [
+          "SOA",
+          "TP"
+        ],
+        "2": [
+          "SOA",
+          "TP"
+        ],
+        "3": [],
+        "4": [],
+        "5": []
+      },
+      "versions": [
+        "20261016000100",
+        "20261016000200",
+        "20261016000300",
+        "20261016000400",
+        "20261016000500"
+      ]
+    },
+    "system_identifier": "7696959712798593061",
+    "tables": 69
+  },
+  "tests": {
+    "backup_automation": {
+      "failed": 0,
+      "passed": 26,
+      "skipped": 0
+    },
+    "certification": "BLOCKED_BY_SCHEMA_ACL_MISMATCH",
+    "diff_whitespace": "PASS",
+    "internal_restore_unit": {
+      "failed": 0,
+      "passed": 10,
+      "skipped": 0
+    },
+    "semantic_schema_sections": {
+      "failed": 1,
+      "passed": 14,
+      "skipped": 0
+    },
+    "source_and_restored_tables": {
+      "matched": 69,
+      "mismatched": 0
+    },
+    "syntax": "PASS"
+  }
+}

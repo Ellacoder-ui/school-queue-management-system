@@ -1,0 +1,14 @@
+{
+  "result": "READ_ONLY_EXPLICIT_STDOUT_RECONSTRUCTION_CONFIRMED",
+  "checked_at": "2026-10-18T05:22:02.621836+00:00",
+  "source_attempt": "93426091",
+  "source_evidence_sha256": "d88a82e21d383b4177b8c49ed275ad922f648622bb653ef7c7fe34ca0684bf0b",
+  "original_command_category": "pg_restore_requires_explicit_database_or_output",
+  "original_exit": 1,
+  "explicit_stdout_exit": 0,
+  "reconstructed_sql_bytes": 619456,
+  "reconstructed_sql_sha256": "2306b3be011a82930494c1157c75bd3c0ffa3f32ba0f3af45072945973af2bc8",
+  "database_contact_or_restore": false,
+  "source_dump_repeated": false,
+  "original_failure_unchanged": true
+}

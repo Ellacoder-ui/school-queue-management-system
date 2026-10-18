@@ -1,0 +1,62 @@
+{
+  "run": "ac079a5b",
+  "target": "127.0.0.1:54321 / 127.0.0.1:54322",
+  "checks": [
+    {
+      "name": "Catalog: RLS, grants and publication exclude private data",
+      "result": "PASS"
+    },
+    {
+      "name": "Administrator configures only the isolated spare counter",
+      "result": "PASS"
+    },
+    {
+      "name": "Anonymous RPCs cannot read private information or mutate queues",
+      "result": "PASS"
+    },
+    {
+      "name": "Students receive only their own tickets and permitted history",
+      "result": "PASS"
+    },
+    {
+      "name": "Cross-student and foreign staff ticket history is denied",
+      "result": "PASS"
+    },
+    {
+      "name": "Student promotion and every administrator RPC are denied",
+      "result": "PASS"
+    },
+    {
+      "name": "User-editable role metadata does not elevate the student session",
+      "result": "FAIL",
+      "reason": "Unexpected end of JSON input"
+    }
+  ],
+  "realtime": [],
+  "limitations": [
+    "Current business day is closed; successful issue_ticket is not exercised.",
+    "Negative Realtime observations are bounded; private publication/grants are also inspected.",
+    "Public sanitized feeds remain public after account disable/revocation by design."
+  ],
+  "fixture_business_date": "2026-10-17",
+  "passed": 6,
+  "failed": 1,
+  "existing_fixture_rows_preserved": true,
+  "endpoints": [
+    "POST /auth/v1/admin/users",
+    "POST /auth/v1/token",
+    "POST /rest/v1/rpc/admin_configuration",
+    "POST /rest/v1/rpc/call_next",
+    "POST /rest/v1/rpc/configure_counter",
+    "POST /rest/v1/rpc/configure_service",
+    "POST /rest/v1/rpc/finish_ticket",
+    "POST /rest/v1/rpc/issue_ticket",
+    "POST /rest/v1/rpc/manage_day",
+    "POST /rest/v1/rpc/my_ticket_events",
+    "POST /rest/v1/rpc/my_tickets",
+    "POST /rest/v1/rpc/set_account",
+    "POST /rest/v1/rpc/staff_queue",
+    "PUT /auth/v1/user"
+  ],
+  "new_fixture_records_retained": true
+}

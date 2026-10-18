@@ -1,0 +1,39 @@
+{
+  "run_id": "4120e526",
+  "checked_at": "2026-10-17T19:38:17.168724+00:00",
+  "result": "PASS_PINNED_SOURCE_REVIEW",
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/Logflare/logflare/v1.53.0/mix.lock",
+      "sha256": "b2a50ae5206741ebd8a614daec8e21fa623930102cc410a3b2fe8d31341a20bc",
+      "reviewed_fact": "Pins Oban 2.20.3."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Logflare/logflare/v1.53.0/lib/logflare/backends/adaptor/postgres_adaptor/repo/migrations.ex",
+      "sha256": "a0333870b93f0b7328d3a6068a11dfede73da5cebe24e60907863027847c7f7e",
+      "reviewed_fact": "PostgreSQL log backend creates event storage and a timestamp index."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Logflare/logflare/v1.53.0/lib/logflare/backends/adaptor/postgres_adaptor/pipeline.ex",
+      "sha256": "5dae23fe2af8992ab6d3f2ba0fae3fb52f10b209fb47eaae0b1f6bdacd3eeb72",
+      "reviewed_fact": "Backend pipeline forwards batches for PostgreSQL event insertion."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/Logflare/logflare/v1.53.0/priv/repo/migrations/20260831120000_add_oban_tables_to_configured_schema.exs",
+      "sha256": "aa8f9e5f2d9632ec2311de381774829e6e4e650a1eeebb39db71972ff3aa776c",
+      "reviewed_fact": "Uses Oban migrations in the configured schema."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/oban-bg/oban/v2.20.3/lib/oban/peers/database.ex",
+      "sha256": "8b8e76b77af3d0f63d735e1c4a0af24cd0af839f78d035a20922d261ec7bfc34",
+      "reviewed_fact": "Database peer performs expiring lease election, renews peers and removes expired/self entries."
+    },
+    {
+      "url": "https://raw.githubusercontent.com/oban-bg/oban/v2.20.3/lib/oban/migrations/postgres/v12.ex",
+      "sha256": "ca8df84e7456b8c1d72b985f2530f1ac63f2f308e72c95a88408b0affd6a624a",
+      "reviewed_fact": "Oban job schema migration; live catalog is authoritative for existing objects."
+    }
+  ],
+  "runtime_attribution_limit": "Version-matching source informs classification; no exact writer/consumer attribution or running binary source attestation is claimed.",
+  "raw_source_or_private_records_saved": false
+}

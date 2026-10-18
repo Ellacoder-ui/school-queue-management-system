@@ -1,0 +1,21 @@
+{
+  "result": "PASS",
+  "project": "school-queue-local",
+  "database": "127.0.0.1:54322/postgres",
+  "api": "http://127.0.0.1:54321",
+  "six_migrations_and_file_hashes_verified": true,
+  "provisioning_trigger_verified": true,
+  "logical_tables": 69,
+  "recovery_artifacts_verified": true,
+  "recovery_bundle_sha256": "a6b4d717c905b313abc99a62225daf8336684a6a13cf19a608e326a9eee0a5d9",
+  "auth_nonsecret_settings": {
+    "GOTRUE_DISABLE_SIGNUP": "false",
+    "GOTRUE_SITE_URL": "http://127.0.0.1:3000",
+    "GOTRUE_MAILER_AUTOCONFIRM": "true",
+    "GOTRUE_URI_ALLOW_LIST": "https://127.0.0.1:3000",
+    "GOTRUE_MFA_TOTP_VERIFY_ENABLED": "false",
+    "GOTRUE_EXTERNAL_EMAIL_ENABLED": "true",
+    "GOTRUE_MFA_TOTP_ENROLL_ENABLED": "false"
+  },
+  "source_application_auth_writes": false
+}

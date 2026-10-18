@@ -1,0 +1,27 @@
+{
+  "run": "0ed27f8d",
+  "source_writes": false,
+  "checks": [
+    {
+      "name": "Actual anonymous snapshot matches all five fixed destinations and authoritative day context",
+      "result": "PASS"
+    },
+    {
+      "name": "Both actual postgres_changes listeners require readiness and a fresh snapshot",
+      "result": "PASS"
+    },
+    {
+      "name": "Forced actual socket closure invalidates state and reconnect performs fresh reads",
+      "result": "PASS"
+    },
+    {
+      "name": "Public controller cleanup removes all owned subscriptions",
+      "result": "PASS"
+    }
+  ],
+  "screenshots": [],
+  "synthetic_screenshots": [],
+  "result": "FAIL",
+  "passed": 4,
+  "failed": 0
+}

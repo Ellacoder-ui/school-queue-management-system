@@ -1,0 +1,42 @@
+{
+  "result": "PASS",
+  "project": "school-queue-local",
+  "database": "127.0.0.1:54322/postgres",
+  "api": "http://127.0.0.1:54321",
+  "six_migrations_and_file_hashes_verified": true,
+  "provisioning_trigger_verified": true,
+  "logical_tables": 70,
+  "recovery_artifacts_verified": true,
+  "recovery_bundle_sha256": "a6b4d717c905b313abc99a62225daf8336684a6a13cf19a608e326a9eee0a5d9",
+  "auth_nonsecret_settings": {
+    "GOTRUE_DISABLE_SIGNUP": "false",
+    "GOTRUE_SITE_URL": "http://127.0.0.1:3000",
+    "GOTRUE_MAILER_AUTOCONFIRM": "true",
+    "GOTRUE_URI_ALLOW_LIST": "https://127.0.0.1:3000",
+    "GOTRUE_MFA_TOTP_VERIFY_ENABLED": "false",
+    "GOTRUE_EXTERNAL_EMAIL_ENABLED": "true",
+    "GOTRUE_MFA_TOTP_ENROLL_ENABLED": "false"
+  },
+  "google_provider_enabled": false,
+  "recovery_baseline_classification": {
+    "result": "PASS",
+    "original_tables_exact_except_scoped_subscription": true,
+    "empty_partition_additions": [
+      "\"realtime\".\"messages_2026_10_20\""
+    ],
+    "logical_tables": 70,
+    "subscription_rows_before": 0,
+    "subscription_rows_after": 2,
+    "subscription_sequence_before": {
+      "is_called": true,
+      "last_value": 28
+    },
+    "subscription_sequence_after": {
+      "is_called": true,
+      "last_value": 118
+    },
+    "all_other_rows_objects_roles_privileges_exact": true,
+    "unexpected_changes": []
+  },
+  "source_application_auth_writes": false
+}

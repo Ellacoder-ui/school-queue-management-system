@@ -1,0 +1,139 @@
+{
+  "run": "64fcacbb",
+  "target": "http://127.0.0.1:56321 / 127.0.0.1:56322",
+  "checks": [
+    {
+      "name": "Existing fixture baseline is captured without active operational work",
+      "result": "PASS"
+    },
+    {
+      "name": "Successful student HTTP ticket issuance",
+      "result": "SKIP",
+      "reason": "Existing current business day is preserved; its closed state cannot be changed for testing."
+    },
+    {
+      "name": "Issued ticket numbering and service assignment",
+      "result": "SKIP",
+      "reason": "Existing current business day is preserved; its closed state cannot be changed for testing."
+    },
+    {
+      "name": "HTTP issuance duplicate-request idempotency",
+      "result": "SKIP",
+      "reason": "Existing current business day is preserved; its closed state cannot be changed for testing."
+    },
+    {
+      "name": "HTTP issuance rejects a third ticket after two served tickets",
+      "result": "SKIP",
+      "reason": "Existing current business day is preserved; its closed state cannot be changed for testing."
+    },
+    {
+      "name": "Closed current-day failure is explicit and does not consume its request key",
+      "result": "PASS"
+    },
+    {
+      "name": "ADMIN can rename and disable an unused service through HTTP",
+      "result": "PASS"
+    },
+    {
+      "name": "ADMIN restores original service business values through HTTP",
+      "result": "PASS"
+    },
+    {
+      "name": "Disabled CASHIER loses protected access with its existing Auth session",
+      "result": "PASS"
+    },
+    {
+      "name": "Public Realtime listener is ready before test mutations",
+      "result": "PASS"
+    },
+    {
+      "name": "Interrupted in-flight HTTP call can be retried safely with the same key",
+      "result": "PASS"
+    },
+    {
+      "name": "Committed HTTP call with discarded response replays without another action",
+      "result": "PASS"
+    },
+    {
+      "name": "Busy cashier disablement and demotion are rejected without losing service authority",
+      "result": "PASS"
+    },
+    {
+      "name": "Concurrent service completion and cashier demotion preserve ticket correctness",
+      "result": "PASS"
+    },
+    {
+      "name": "Failed cashier action rolls back state and leaves no replay record",
+      "result": "PASS"
+    },
+    {
+      "name": "Serving a historical ticket uses its issuance-day quota rather than completion date",
+      "result": "PASS"
+    },
+    {
+      "name": "Second served ticket for the same historical issuance day is allowed over HTTP",
+      "result": "PASS"
+    },
+    {
+      "name": "Third service completion is rejected atomically for its issuance day",
+      "result": "PASS"
+    },
+    {
+      "name": "Actual clock rollover while issuance waits on a lock",
+      "result": "SKIP",
+      "reason": "Database clock is not injectable; changing host time or reopening current-day fixtures is prohibited. Historical quota behavior is tested separately."
+    },
+    {
+      "name": "Realtime reconnect restores the listener and snapshot after an offline mutation",
+      "result": "PASS"
+    },
+    {
+      "name": "Updates after reconnect arrive and all captured public payloads remain sanitized",
+      "result": "PASS"
+    },
+    {
+      "name": "Only new fixture days close and spare counter business values are restored",
+      "result": "PASS"
+    },
+    {
+      "name": "Existing concurrency/API fixtures and restored configuration are preserved",
+      "result": "PASS"
+    }
+  ],
+  "initial_state": {
+    "day": {
+      "closed": true
+    },
+    "today": "2026-10-16",
+    "active": 0,
+    "tickets": 14,
+    "accounts": 21
+  },
+  "fixture_dates": [
+    "2026-10-14",
+    "2026-10-15"
+  ],
+  "interrupted_request_committed_before_retry": true,
+  "role_race_demotion_initially_blocked": false,
+  "reconnect_socket_count": 2,
+  "public_events_checked": 50,
+  "existing_fixtures_preserved": true,
+  "passed": 18,
+  "failed": 0,
+  "skipped": 5,
+  "endpoints": [
+    "GET /auth/v1/user",
+    "GET /rest/v1/counter_state",
+    "POST /auth/v1/admin/users",
+    "POST /auth/v1/token",
+    "POST /rest/v1/rpc/call_next",
+    "POST /rest/v1/rpc/configure_counter",
+    "POST /rest/v1/rpc/configure_service",
+    "POST /rest/v1/rpc/finish_ticket",
+    "POST /rest/v1/rpc/issue_ticket",
+    "POST /rest/v1/rpc/manage_day",
+    "POST /rest/v1/rpc/set_account",
+    "POST /rest/v1/rpc/staff_queue"
+  ],
+  "new_fixtures_retained": true
+}

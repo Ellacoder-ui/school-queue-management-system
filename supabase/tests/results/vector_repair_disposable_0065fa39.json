@@ -1,0 +1,38 @@
+{
+  "run_id": "0065fa39",
+  "started_at": "2026-10-17T16:20:41.880Z",
+  "result": "FAIL_STOPPED",
+  "checks": [
+    {
+      "name": "DPAPI capture and private decrypt/read-back",
+      "result": "PASS"
+    },
+    {
+      "name": "original logging canary survives encrypted round-trip",
+      "result": "PASS"
+    },
+    {
+      "name": "wrong target approval rejected before service operations",
+      "result": "PASS"
+    },
+    {
+      "name": "changed source rejected before service operations",
+      "result": "PASS"
+    },
+    {
+      "name": "original remains unchanged after negative gates",
+      "result": "PASS"
+    }
+  ],
+  "retained_mutation_executed": false,
+  "network_id": "b269f19363ff8a0646903d7eabdc036c10132b811feeb6b08a62252bff9e76c8",
+  "volume": "sq-vpr-0065fa39-socket",
+  "failure": "VPR_CREATED_DEFINITION",
+  "containers": [
+    "917f07069277d58845b5151b1d6399f52d21e6b4cfa8c86448f8478247f0171a",
+    "f65651809a3309a3892d7d26d5a31416815a42e663ff8efd8a21cfff20da8033",
+    "20118153c31d3c45eba720b3d8b91675a0445cd0c5e64193d6301b32b46f5142",
+    "d519ce82348cf3674cbb1d3697b5d0fa65eca11b85385115378e91d525778a3a"
+  ],
+  "completed_at": "2026-10-17T16:20:58.706Z"
+}

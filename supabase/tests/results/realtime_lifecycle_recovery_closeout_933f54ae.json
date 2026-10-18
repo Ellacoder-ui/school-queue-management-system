@@ -1,0 +1,22 @@
+{
+  "result": "READ_ONLY_INVESTIGATION_CLOSED_STRICT_FAILURE_RETAINED",
+  "closed_at": "2026-10-18T06:11:33.222095+00:00",
+  "report_and_review_code_sha256": {
+    "supabase/REALTIME_PARTITION_LIFECYCLE_AND_RECOVERY_DIAGNOSIS.md": "65f03fd8dbebbf518e15661af92b1abd54dadf5f533bb22a8e15a79db6b1bfb3",
+    "supabase/tests/review_realtime_partition_sources.py": "77c441551708bb2a9471a75ad99975ffe67a057215103eee8f3574a2ecefab27",
+    "supabase/tests/realtime_lifecycle_review.py": "9d70a7e45f33f43abc67c85ee3a5047986a79cdf6a8d5b1e29c3a6306852e911",
+    "supabase/tests/test_realtime_lifecycle_review.py": "04a50c8ebaf35ce048457125ca098f72e713ebb14d3f267114dc691acb07564b",
+    "supabase/tests/inspect_realtime_lifecycle_recovery.py": "db9efa7daec1392434edb93ae41b802afc7b6a3b8250dc671ac3034cfc9e1edf"
+  },
+  "evidence_sha256": {
+    "realtime_lifecycle_recovery_diagnosis_a982ed79.json": "57111c843c5f3b98a42c3e46be18fbd46a4d15bb7a879fe7662d52547297865a",
+    "realtime_lifecycle_pinned_source_9aab6f3b.json": "b01cfdca8d72c133246b6670b646041fe04f29fbbbad1a3c47222507e518fb7b",
+    "realtime_drop_log_review_326fb8c2.json": "697a940bdaf4c75b75020a108f843f1969d816c230f2618f0a24341350474d3a"
+  },
+  "offline_methods_passed": 63,
+  "live_pruning_preservation_result": "FAIL_UNCHANGED",
+  "new_backup_or_restore_executed": false,
+  "recoverability_certified": false,
+  "retained_execution_authorized": false,
+  "syntax_report_links_and_whitespace": "PASS"
+}

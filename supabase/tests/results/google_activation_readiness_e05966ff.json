@@ -1,0 +1,112 @@
+{
+  "activation_executed": false,
+  "after_failure": {
+    "active_tickets": 0,
+    "api": "http://127.0.0.1:54321",
+    "config_sha256": "a929af299d0c49ec0a0632cf1a84a8227bdbdf250e1f23a2d3be53e3a2b003a8",
+    "database": "127.0.0.1:54322/postgres",
+    "fresh_and_historical_artifacts_intact": true,
+    "google_enabled": false,
+    "logical_tables": 70,
+    "migration_count": 6,
+    "mode": "READ_ONLY_PREFLIGHT",
+    "preservation": {
+      "all_other_rows_objects_roles_privileges_exact": true,
+      "empty_partition_additions": [],
+      "logical_tables": 70,
+      "original_tables_exact_except_scoped_subscription": true,
+      "result": "PASS",
+      "subscription_rows_after": 0,
+      "subscription_rows_before": 2,
+      "subscription_sequence_after": {
+        "is_called": true,
+        "last_value": 320
+      },
+      "subscription_sequence_before": {
+        "is_called": true,
+        "last_value": 298
+      },
+      "unexpected_changes": []
+    },
+    "project": "school-queue-local",
+    "recovery_bundle_sha256": "50164d4afb5083a83044f5ee3df3d13b1b2002ba29ee03143e460c181b915a52",
+    "recovery_run": "6e3beebe",
+    "result": "PASS",
+    "retained_service_restart": false,
+    "source_writes": false,
+    "system_identifier": "7696959712798593061"
+  },
+  "before": {
+    "active_tickets": 0,
+    "api": "http://127.0.0.1:54321",
+    "config_sha256": "a929af299d0c49ec0a0632cf1a84a8227bdbdf250e1f23a2d3be53e3a2b003a8",
+    "database": "127.0.0.1:54322/postgres",
+    "fresh_and_historical_artifacts_intact": true,
+    "google_enabled": false,
+    "logical_tables": 70,
+    "migration_count": 6,
+    "mode": "READ_ONLY_PREFLIGHT",
+    "preservation": {
+      "all_other_rows_objects_roles_privileges_exact": true,
+      "empty_partition_additions": [],
+      "logical_tables": 70,
+      "original_tables_exact_except_scoped_subscription": true,
+      "result": "PASS",
+      "subscription_rows_after": 0,
+      "subscription_rows_before": 2,
+      "subscription_sequence_after": {
+        "is_called": true,
+        "last_value": 320
+      },
+      "subscription_sequence_before": {
+        "is_called": true,
+        "last_value": 298
+      },
+      "unexpected_changes": []
+    },
+    "project": "school-queue-local",
+    "recovery_bundle_sha256": "50164d4afb5083a83044f5ee3df3d13b1b2002ba29ee03143e460c181b915a52",
+    "recovery_run": "6e3beebe",
+    "result": "PASS",
+    "retained_service_restart": false,
+    "source_writes": false,
+    "system_identifier": "7696959712798593061"
+  },
+  "docker_unchanged_after_failure": true,
+  "failure": {
+    "Code": "LGA_POWERSHELL_CHECK_STOPPED",
+    "Result": "FAIL"
+  },
+  "historical_inputs_count": 135,
+  "offline_tests": {
+    "failed": 0,
+    "passed": 36,
+    "skipped": 0
+  },
+  "phase": "prepare-protected-proposal",
+  "real_login_executed": false,
+  "result": "FAIL",
+  "retained_services_restarted": false,
+  "run_id": "e05966ff",
+  "started_at": "2026-10-17T14:27:22.103802+00:00",
+  "tested_input_hashes": {
+    ".env": "1beae2f9500ff35142c6126be7b961fe1f2dc80a2565c5ebab7db6012a8bea7d",
+    ".env.development.local": "1824df45c114262ba77baf9295551d2fee7c45246e7e9b51691d081adf3adaf7",
+    ".gitignore": "396489469efc033592270a38a9b8f110d48e49875c483231709353608606f77e",
+    "node_modules\\@supabase\\cli-windows-x64\\bin\\supabase.exe": "aed2aedd9e367549307d038b770e505b288225958e2e81bfe5db53fa6a01c148",
+    "node_modules\\supabase\\dist\\supabase.js": "21d25b4bfb1870db0aaf0963c028b10d0b0b431485f119abd704c1396c7991e6",
+    "package-lock.json": "bac89e936bed2e44e6cf11c130754e06a4414193cb5186ae56d96959640ee2bd",
+    "package.json": "77fd702d9d20638f55f93f1572b50944a1d6bd0728efad215e67755d823adbbb",
+    "scripts\\LocalGoogleActivation.ps1": "d42f518a8dde6c0da63e1681c5589892706d21787a915ea9d8b61e9f7e99d7d8",
+    "scripts\\LocalGoogleCredential.psm1": "75e4b8e15495dbeabfa2c14cbbdb2ecdf521d041f899104548ba7551384b4a9e",
+    "scripts\\Start-LocalGoogleAuth.ps1": "4050f0c21538070c062888f8792434caa2fd1ad1cc44fd87eab1284f1a8f488d",
+    "supabase\\migrations\\20261016000100_queue_tables.sql": "274141dbab99dbaad959f2343633ee0bd440b240a29b5664ca304e283934d7d7",
+    "supabase\\migrations\\20261016000200_queue_operations.sql": "65c943d4fea282c07e06bab6b759882f7fcec678ddf960869dd60a52db911883",
+    "supabase\\migrations\\20261016000300_queue_administration.sql": "7a4ad627112f0bc3109417bec237b13000e1c06002d536f7c9feab5261eb4883",
+    "supabase\\migrations\\20261016000400_queue_seed_security.sql": "95bd4918550dddae84672c148c6a616c9d12928b78097a82815a26a35146746e",
+    "supabase\\migrations\\20261016000500_queue_read_context.sql": "793a68b375d69044dc4900749867576b5c45a6b4173725191ffbaeb66a2dd31a",
+    "supabase\\migrations\\20261016000600_fixed_counter_routing.sql": "9d854ab795e3ef3098fa1d3a05cb6541242d0c8e503a8ebee1acfe9df418137c",
+    "supabase\\tests\\google_activation_workflow.py": "17bbcd07d8128eecb90c1f2ac0386075825cba0ba6459f28d2e01acf930afe52",
+    "supabase\\tests\\google_credential_preflight.py": "43463d43a9b8a9ab56e168952a865cbd47aba6cc7e5a18c29d1a58f3e2c5032b"
+  }
+}

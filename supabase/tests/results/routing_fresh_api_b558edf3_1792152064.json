@@ -1,0 +1,11 @@
+{
+  "project": "sq-routing-fresh-b558edf3",
+  "suite": "api",
+  "passed": 27,
+  "failed": 0,
+  "skipped": 0,
+  "exit_code": 0,
+  "source_result": "api_realtime_dc37ad1c.json",
+  "original_wrapper_counts": {"passed": 0, "failed": 0, "skipped": 0},
+  "summary_parser_correction": "The first wrapper required a skipped-count segment absent from this suite's summary. Corrected from the detailed 27-PASS result; no test was rerun."
+}

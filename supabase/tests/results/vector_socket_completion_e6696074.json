@@ -1,0 +1,25 @@
+{
+  "result": "PASS",
+  "inactive_disposable_containers": 10,
+  "container_status_counts": {
+    "exited": 9,
+    "created": 1
+  },
+  "disposable_socket_volumes": [
+    "sq-vector-socket-a702b21f-socket",
+    "sq-vector-socket-a752818f-socket",
+    "sq-vector-socket-e6696074-socket"
+  ],
+  "offline_python_methods": 10,
+  "offline_node_methods": 6,
+  "live_completed_run": "e6696074",
+  "retained_mutation_executed": false,
+  "file_sha256": {
+    "supabase/tests/validate_vector_socket.py": "1653f44e72379a9a1c1d33c11ce5d7f53cfe1af563195f5a646bf9637bd77933",
+    "supabase/tests/test_vector_socket.py": "e8754ba6345192c7a0d736ae33732f4c202fe68e91490b7162896c6093b1bab5",
+    "supabase/tests/vector_socket_fixture.mjs": "4041d3aadbc1504f6a6f0661bc7a66e845796d666fcdacf9323ac74d9b0b0a97",
+    "supabase/tests/vector_socket_fixture.test.mjs": "4efa3f2201ae268f7e8ded0bef8c1603ac44a847d5e11ad5ea917c3fe14293b4",
+    "supabase/SUPABASE_VECTOR_REPAIR_READINESS_REPORT.md": "21efbb7d80bca43fd3daf4ae8a40446db2ea25446422c312e39f88684048e094",
+    "supabase/tests/results/vector_socket_cli_source_review.json": "c9f6fcc11fe03dcbae68dfabf6b0e0e24c912c911f060b7fd7dfac8e89792699"
+  }
+}

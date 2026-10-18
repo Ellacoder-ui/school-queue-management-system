@@ -1,0 +1,125 @@
+{
+  "run": "ae068c42",
+  "target": "127.0.0.1:54321 / 127.0.0.1:54322",
+  "checks": [
+    {
+      "name": "New migration, RLS, schema and publication preflight",
+      "result": "PASS"
+    },
+    {
+      "name": "Anonymous self-context denied",
+      "result": "PASS"
+    },
+    {
+      "name": "STUDENT receives exact own context",
+      "result": "PASS"
+    },
+    {
+      "name": "Other student context contains no owner identifiers or private history",
+      "result": "PASS"
+    },
+    {
+      "name": "Caller cannot supply another account identifier",
+      "result": "PASS"
+    },
+    {
+      "name": "User-editable ADMIN metadata has no authority",
+      "result": "PASS"
+    },
+    {
+      "name": "CASHIER receives only own assigned counter and current enabled service codes",
+      "result": "PASS"
+    },
+    {
+      "name": "Unassigned CASHIER receives an empty counter list",
+      "result": "PASS"
+    },
+    {
+      "name": "ADMIN receives role without cashier override or account directory",
+      "result": "PASS"
+    },
+    {
+      "name": "Revoked CASHIER existing session immediately sees STUDENT and no counters",
+      "result": "PASS"
+    },
+    {
+      "name": "Revoked ADMIN existing session immediately loses admin access",
+      "result": "PASS"
+    },
+    {
+      "name": "Disabled STUDENT existing session gets masked context and protected reads denied",
+      "result": "PASS"
+    },
+    {
+      "name": "Disabled CASHIER existing session gets masked context and protected reads denied",
+      "result": "PASS"
+    },
+    {
+      "name": "Disabled ADMIN existing session gets masked context and protected reads denied",
+      "result": "PASS"
+    },
+    {
+      "name": "Anonymous public context exact catalog, timezone and current closed/missing day",
+      "result": "PASS"
+    },
+    {
+      "name": "All authenticated roles and disabled sessions receive the same sanitized public context",
+      "result": "PASS"
+    },
+    {
+      "name": "Public RPC rejects caller clock/date overrides",
+      "result": "PASS"
+    },
+    {
+      "name": "Private clock helper and private schema stay inaccessible over REST",
+      "result": "PASS"
+    },
+    {
+      "name": "Public OpenAPI exposes only intended display operations, no private helper or identity fields",
+      "result": "PASS"
+    },
+    {
+      "name": "Read RPCs produce no application, display or Auth row changes",
+      "result": "PASS"
+    },
+    {
+      "name": "New open fixture day projects open internally but cannot override current HTTP date",
+      "result": "PASS"
+    },
+    {
+      "name": "Internal projection switches exactly at Manila midnight without reopening existing days",
+      "result": "PASS"
+    },
+    {
+      "name": "Closing only the new fixture day changes its projection to closed and preserves HTTP current day",
+      "result": "PASS"
+    },
+    {
+      "name": "All pre-existing private, display and Auth fixtures remain unchanged",
+      "result": "PASS"
+    }
+  ],
+  "actual_current_day_state": "CLOSED_OR_ABSENT",
+  "fixture_day_retained_closed": true,
+  "existing_fixtures_preserved": true,
+  "endpoints": [
+    "GET /auth/v1/user [queue_api]",
+    "GET /rest/v1/ [queue_display]",
+    "GET /rest/v1/accounts [queue_private]",
+    "POST /auth/v1/admin/users [queue_api]",
+    "POST /auth/v1/token [queue_api]",
+    "POST /rest/v1/rpc/admin_configuration [queue_api]",
+    "POST /rest/v1/rpc/my_context [queue_api]",
+    "POST /rest/v1/rpc/my_tickets [queue_api]",
+    "POST /rest/v1/rpc/public_context_at [queue_display]",
+    "POST /rest/v1/rpc/public_queue_context [queue_display]",
+    "POST /rest/v1/rpc/set_account [queue_api]",
+    "POST /rest/v1/rpc/staff_queue [queue_api]"
+  ],
+  "counts": {
+    "passed": 24,
+    "failed": 0,
+    "skipped": 0,
+    "completed": true
+  }
+}

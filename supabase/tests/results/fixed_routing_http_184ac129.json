@@ -1,0 +1,120 @@
+{
+  "run": "184ac129",
+  "project": "sq-routing-upgrade-b558edf3",
+  "target": "http://127.0.0.1:55321",
+  "checks": [
+    {
+      "name": "Canonical matrix and public/private boundary",
+      "result": "PASS"
+    },
+    {
+      "name": "Historical multi-service configuration replay preserves its exact receipt",
+      "result": "PASS"
+    },
+    {
+      "name": "Historical cross-service call receipt replays without calling again",
+      "result": "PASS"
+    },
+    {
+      "name": "ADMIN opens a new current business day through HTTP",
+      "result": "PASS"
+    },
+    {
+      "name": "ADMIN closes/opens its fixed counter and assigns eligible cashiers",
+      "result": "PASS"
+    },
+    {
+      "name": "Invalid ADMIN service arrays reject atomically",
+      "result": "PASS"
+    },
+    {
+      "name": "Student/cashier cannot administer; ADMIN cannot call",
+      "result": "PASS"
+    },
+    {
+      "name": "Cashier foreign-service and unassigned-counter calls reject",
+      "result": "PASS"
+    },
+    {
+      "name": "Both anonymous public Realtime tables acknowledge readiness",
+      "result": "PASS"
+    },
+    {
+      "name": "Positive HTTP issuance has correct current-day service and numbering",
+      "result": "PASS"
+    },
+    {
+      "name": "Eight same-key HTTP issuance retries allocate exactly one ticket/event",
+      "result": "PASS"
+    },
+    {
+      "name": "One active ticket applies across services; next owner receives TP-002",
+      "result": "PASS"
+    },
+    {
+      "name": "Actual call appears only at fixed TP Counter 1",
+      "result": "PASS"
+    },
+    {
+      "name": "Eight concurrent skip retries preserve number and emit once",
+      "result": "PASS"
+    },
+    {
+      "name": "Skip moves to tail; eventual service counts exactly once",
+      "result": "PASS"
+    },
+    {
+      "name": "HTTP second service succeeds and third issuance reaches served quota",
+      "result": "PASS"
+    },
+    {
+      "name": "Competing assigned cashiers produce one call and one busy rejection",
+      "result": "PASS"
+    },
+    {
+      "name": "Aborted HTTP issuance reconciles with its original request UUID",
+      "result": "PASS"
+    },
+    {
+      "name": "Disabled CASHIER existing session loses protected authority",
+      "result": "PASS"
+    },
+    {
+      "name": "Revoked CASHIER existing session uses current STUDENT authority",
+      "result": "PASS"
+    },
+    {
+      "name": "Realtime reconnect acknowledges both tables and refreshes snapshot",
+      "result": "PASS"
+    },
+    {
+      "name": "Closing only the newly opened current day clears totals and stays private",
+      "result": "PASS"
+    },
+    {
+      "name": "Synthetic pre-cutover history remains unchanged",
+      "result": "PASS"
+    }
+  ],
+  "interrupted_committed_before_retry": true,
+  "public_events_checked": 170,
+  "passed": 23,
+  "failed": 0,
+  "skipped": 0,
+  "endpoints": [
+    "GET /auth/v1/user",
+    "GET /rest/v1/accounts",
+    "GET /rest/v1/counter_state",
+    "POST /auth/v1/admin/users",
+    "POST /auth/v1/token",
+    "POST /rest/v1/rpc/call_next",
+    "POST /rest/v1/rpc/configure_counter",
+    "POST /rest/v1/rpc/finish_ticket",
+    "POST /rest/v1/rpc/issue_ticket",
+    "POST /rest/v1/rpc/manage_day",
+    "POST /rest/v1/rpc/my_context",
+    "POST /rest/v1/rpc/public_queue_context",
+    "POST /rest/v1/rpc/set_account",
+    "POST /rest/v1/rpc/staff_queue"
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "tag": "v2.143.4",
+  "tag_object": {
+    "sha": "fa948248588b55692114c9c3536cd71780d14e4b",
+    "type": "commit",
+    "url": "https://api.github.com/repos/supabase/realtime/git/commits/fa948248588b55692114c9c3536cd71780d14e4b"
+  },
+  "source_files": [
+    {
+      "path": "lib/realtime/tenants.ex",
+      "url": "https://raw.githubusercontent.com/supabase/realtime/v2.143.4/lib/realtime/tenants.ex",
+      "bytes": 18824,
+      "sha256": "01ac0f385efc157d0a8c56b06c8e0fb6720ff5f2eb7f89ebe87b89c414f82079"
+    },
+    {
+      "path": "lib/realtime/tenants/connect.ex",
+      "url": "https://raw.githubusercontent.com/supabase/realtime/v2.143.4/lib/realtime/tenants/connect.ex",
+      "bytes": 23093,
+      "sha256": "bef43baeb9d5fa74812f1cad196b45910c243089dafcba390ef939fdf1e28991"
+    },
+    {
+      "path": "lib/realtime/tenants/janitor/maintenance_task.ex",
+      "url": "https://raw.githubusercontent.com/supabase/realtime/v2.143.4/lib/realtime/tenants/janitor/maintenance_task.ex",
+      "bytes": 636,
+      "sha256": "2453ed6b89a608c152c788dd004ff7d4c13ae8fa603b59bebe06a30d4118d4ca"
+    },
+    {
+      "path": "lib/extensions/postgres_cdc_rls/subscriptions.ex",
+      "url": "https://raw.githubusercontent.com/supabase/realtime/v2.143.4/lib/extensions/postgres_cdc_rls/subscriptions.ex",
+      "bytes": 19202,
+      "sha256": "2c7a68bba78c2ee05d161807018f5cc1d2dae4c82b515bc2830cd7bbeb01d002"
+    },
+    {
+      "path": "lib/extensions/postgres_cdc_rls/subscription_manager.ex",
+      "url": "https://raw.githubusercontent.com/supabase/realtime/v2.143.4/lib/extensions/postgres_cdc_rls/subscription_manager.ex",
+      "bytes": 14171,
+      "sha256": "e7f36072a797b62d9e39f91523a2a6a974b14bd1c736dc522ce49af1e01b38c1"
+    }
+  ],
+  "reviewed_daily_offsets": [
+    -1,
+    0,
+    1,
+    2,
+    3
+  ],
+  "subscription_lifecycle": "insert/on-conflict update; delete on unsubscribe/cleanup; sequence allocation",
+  "provenance_limit": "Source and catalog consistency; no historical DDL audit attribution"
+}

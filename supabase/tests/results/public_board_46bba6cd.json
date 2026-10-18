@@ -1,0 +1,109 @@
+{
+  "run": "46bba6cd",
+  "source_writes": false,
+  "checks": [
+    {
+      "name": "Actual anonymous snapshot matches all five fixed destinations and authoritative day context",
+      "result": "PASS"
+    },
+    {
+      "name": "Both actual postgres_changes listeners require readiness and a fresh snapshot",
+      "result": "PASS"
+    },
+    {
+      "name": "Forced actual socket closure invalidates state and reconnect performs fresh reads",
+      "result": "PASS"
+    },
+    {
+      "name": "Public controller cleanup removes all owned subscriptions",
+      "result": "PASS"
+    },
+    {
+      "name": "Anonymous monitor uses real public state and mounts no login/workspace",
+      "result": "PASS"
+    },
+    {
+      "name": "Actual board responsive at 1920x1080",
+      "result": "PASS"
+    },
+    {
+      "name": "Actual board responsive at 1366x768",
+      "result": "PASS"
+    },
+    {
+      "name": "Actual board responsive at 768x1024",
+      "result": "PASS"
+    },
+    {
+      "name": "Actual board responsive at 390x844",
+      "result": "PASS"
+    },
+    {
+      "name": "Browser offline state removes live/proceed claims and reconnect obtains fresh readiness",
+      "result": "PASS"
+    },
+    {
+      "name": "Root application retains anonymous workspace with the single Google entry",
+      "result": "PASS"
+    },
+    {
+      "name": "Clearly labeled synthetic five-call rendering at 1920x1080",
+      "result": "PASS"
+    },
+    {
+      "name": "Clearly labeled synthetic five-call rendering at 1366x768",
+      "result": "PASS"
+    },
+    {
+      "name": "Clearly labeled synthetic five-call rendering at 390x844",
+      "result": "PASS"
+    },
+    {
+      "name": "No private/operational/hosted request or uncaught runtime error",
+      "result": "FAIL",
+      "reason": "Unexpected network or runtime behavior"
+    }
+  ],
+  "screenshots": [
+    "public_board_46bba6cd_1920x1080.png",
+    "public_board_46bba6cd_1366x768.png",
+    "public_board_46bba6cd_768x1024.png",
+    "public_board_46bba6cd_390x844.png"
+  ],
+  "synthetic_screenshots": [
+    "public_board_46bba6cd_SIMULATED_1920x1080.png",
+    "public_board_46bba6cd_SIMULATED_1366x768.png",
+    "public_board_46bba6cd_SIMULATED_390x844.png"
+  ],
+  "result": "FAIL",
+  "failure": "Unexpected network or runtime behavior",
+  "blocked": [],
+  "runtime_errors": [
+    "Browser interception failure"
+  ],
+  "browser_state": {
+    "connection": "Live public display",
+    "board": true,
+    "path": "/display"
+  },
+  "passed": 14,
+  "failed": 1,
+  "source_preservation": {
+    "result": "PASS",
+    "original_tables_exact_except_scoped_subscription": true,
+    "empty_partition_additions": [],
+    "logical_tables": 70,
+    "subscription_rows_before": 2,
+    "subscription_rows_after": 2,
+    "subscription_sequence_before": {
+      "is_called": true,
+      "last_value": 148
+    },
+    "subscription_sequence_after": {
+      "is_called": true,
+      "last_value": 162
+    },
+    "all_other_rows_objects_roles_privileges_exact": true,
+    "unexpected_changes": []
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "run": "1a8ed6e5",
+  "real_google_login": false,
+  "auth_writes_forwarded": false,
+  "checks": [
+    {
+      "name": "Real Vue product exposes one Google button and no password/role selection",
+      "result": "PASS"
+    },
+    {
+      "name": "Unconfigured provider shows a safe error without OAuth navigation",
+      "result": "PASS"
+    },
+    {
+      "name": "Mocked full PKCE callback verifies ordinary shared dashboard despite ADMIN metadata/email",
+      "result": "FAIL",
+      "reason": "Callback not scrubbed or dashboard missing"
+    }
+  ],
+  "screenshots": [],
+  "isolated_browser_loopback_permission": true,
+  "result": "FAIL",
+  "failure": "Callback not scrubbed or dashboard missing",
+  "blocked": [],
+  "runtime_errors": [],
+  "network_failures": [],
+  "public_response_statuses": [
+    {
+      "path": "/rest/v1/counter_state",
+      "status": 200
+    },
+    {
+      "path": "/rest/v1/rpc/public_queue_context",
+      "status": 200
+    },
+    {
+      "path": "/rest/v1/service_state",
+      "status": 200
+    },
+    {
+      "path": "/rest/v1/service_state",
+      "status": 200
+    },
+    {
+      "path": "/rest/v1/counter_state",
+      "status": 200
+    },
+    {
+      "path": "/rest/v1/rpc/public_queue_context",
+      "status": 200
+    },
+    {
+      "path": "/rest/v1/counter_state",
+      "status": 200
+    },
+    {
+      "path": "/rest/v1/service_state",
+      "status": 200
+    },
+    {
+      "path": "/rest/v1/rpc/public_queue_context",
+      "status": 200
+    },
+    {
+      "path": "/rest/v1/counter_state",
+      "status": 200
+    },
+    {
+      "path": "/rest/v1/service_state",
+      "status": 200
+    },
+    {
+      "path": "/rest/v1/rpc/public_queue_context",
+      "status": 200
+    },
+    {
+      "path": "/rest/v1/counter_state",
+      "status": 200
+    },
+    {
+      "path": "/rest/v1/rpc/public_queue_context",
+      "status": 200
+    },
+    {
+      "path": "/rest/v1/service_state",
+      "status": 200
+    }
+  ],
+  "socket_statuses": [
+    101,
+    101,
+    101,
+    101
+  ],
+  "browser_state": {
+    "path": "/",
+    "connection": "Live public display",
+    "google": false
+  },
+  "passed": 2,
+  "failed": 1,
+  "interception_diagnostics": [],
+  "source_preservation": {
+    "result": "PASS",
+    "original_tables_exact_except_scoped_subscription": true,
+    "empty_partition_additions": [],
+    "logical_tables": 70,
+    "subscription_rows_before": 2,
+    "subscription_rows_after": 6,
+    "subscription_sequence_before": {
+      "is_called": true,
+      "last_value": 186
+    },
+    "subscription_sequence_after": {
+      "is_called": true,
+      "last_value": 190
+    },
+    "all_other_rows_objects_roles_privileges_exact": true,
+    "unexpected_changes": []
+  }
+}

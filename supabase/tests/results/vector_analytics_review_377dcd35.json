@@ -1,0 +1,92 @@
+{
+  "analytics_across_rehearsal": {
+    "additional_equal": true,
+    "catalog_sha256_equal": true,
+    "changed_tables": [
+      {
+        "after": {
+          "count": 1,
+          "sha256": "e758943da4f96c9eedbd4d351bceda7f1eeb7ada6ece4507df4f4d475a4a8dfe"
+        },
+        "before": {
+          "count": 1,
+          "sha256": "804962ff686aa411bd136f2a2ea5389ab5c4b7da21585ea25d25f49452b03e0a"
+        },
+        "identity_sha256": "71a6ed5dc4f7525658daebede22b6423a780ecb990421c388cb51d811d4b6757",
+        "table": "oban_peers"
+      },
+      {
+        "after": {
+          "count": 1010,
+          "sha256": "a2842576215c96a876f3832d95ec2e9edcd58d3203c26ec4b92714e83c28f3f9"
+        },
+        "before": {
+          "count": 1010,
+          "sha256": "bfbfc406efd430cba9454ec479f08f10f7ebd33005233e4a4ebb7e5bd6f25ce5"
+        },
+        "identity_sha256": "c3c61bfbba897f8c80ac1247d211c7533f4859816f4a9b91f146c423d17ceab2",
+        "table": "oban_jobs"
+      }
+    ],
+    "metadata_equal": true,
+    "roles_equal": true,
+    "sequences_equal": false,
+    "slot_progress_equal": true
+  },
+  "analytics_backup_still_required": true,
+  "assessment_after": {
+    "path": "supabase/tests/results/vector_analytics_assessment_13c9dab4.json",
+    "sha256": "7258d1a7226486bb64cefc47725650ba796dbbff8096a4f48f43f2d2c082cec3"
+  },
+  "assessment_before": {
+    "path": "supabase/tests/results/vector_analytics_assessment_ee382dfe.json",
+    "sha256": "f161e8be3a4ed985a70095a62cca890ceed6415ddd297aade2b9fb05160b6ddb"
+  },
+  "disposable_rehearsal": {
+    "path": "supabase/tests/results/vector_persistent_rehearsal_ef8b05d9.json",
+    "sha256": "c46c3825c5f4c6e575932ca9d3110f80fb0943cef230b58540ec8ee61e6cbd32"
+  },
+  "existing_offline": {
+    "failed": 0,
+    "passed": 11
+  },
+  "finished_at": "2026-10-17T19:40:34.482083+00:00",
+  "frozen_input_count": 181,
+  "google_activation_locked": true,
+  "google_credential_contents_accessed": false,
+  "new_backup_or_restore": false,
+  "new_offline": {
+    "failed": 0,
+    "node_passed": 20,
+    "python_passed": 6
+  },
+  "phase": "complete",
+  "result": "PASS_SCOPE_COMPLETE_RETAINED_LOCKED",
+  "retained_mutation": false,
+  "retained_repair_locked": true,
+  "run_id": "377dcd35",
+  "started_at": "2026-10-17T19:37:40.378875+00:00",
+  "synthetic_windows_engine": {
+    "failed": 0,
+    "passed": 24
+  },
+  "tested_code_sha256": {
+    "scripts/Repair-LocalVector.ps1": "12358769a5fba30f3dbefd2d3ddd93eb71ff585071996c2ea7860c28e605146c",
+    "scripts/VectorRepairStorage.ps1": "49fa85f2558d3d75056a64d4da84b08f2900da709413aa5c77451285587e9528",
+    "scripts/vectorRepairCore.mjs": "61d292a3ac151bc9ada04dbd5f165b080b89dd17c1123d71a99a6ebd3115f76f",
+    "scripts/vectorRetainedReview.mjs": "a01f8060438d2221027b2484148bbc45f44380e240581b0074616a08e2f5fd8b",
+    "scripts\\LocalGoogleActivation.ps1": "6d86077b48351ba557286a352783e6d64dedbff69cc98e346eb69cd0e9e4c671",
+    "scripts\\Set-LocalGoogleCredential.ps1": "ddf6956ad452f3b3a2d73e26d4bd19c027a2efcc6ccfa39505d287432230b4ae",
+    "scripts\\Start-LocalGoogleAuth.ps1": "4050f0c21538070c062888f8792434caa2fd1ad1cc44fd87eab1284f1a8f488d",
+    "supabase/tests/inspect_analytics_recovery.py": "3a17198eadb07b4d431d41dee2174e1cf564773934cfc8e588de5368cec41b8d",
+    "supabase/tests/test_analytics_recovery_review.py": "196171f33ca8fe85deae8bf5f9fbed12e3fdaf2d6bb6a70f7e384139aeb50fbf",
+    "supabase\\tests\\google_activation_workflow.py": "ea75e4de11cd5df2105ace7ac4f9af824f1c49350d9dd4dab55631b7101a9370",
+    "tests/security/rehearse_vector_repair.mjs": "95e518d3decbbe376a4c71010fe3d0f09b892a8091acb7d96ab55f9b701314b3",
+    "tests/security/review_retained_vector.mjs": "8bbca75ce5d8ec3fd8f63c3b1154b8a7788ebcc1bca87b02e354d0681eefed79",
+    "tests/security/run_vector_analytics_review.py": "9d8ec59d09fb245dc64a9b564730648cf7cfd68d86bc2ce977c121d9f5961595",
+    "tests/security/run_vector_repair.py": "1752a39a67c2626dc34706d2fe55aa70377d7bf2da41e2823e6a17691df6a3b6",
+    "tests/security/vectorRepair.unit.mjs": "522a93791f02e4ae6b63c798014021fcf52541531cf9e4216efe0b569eb51132",
+    "tests/security/vectorRetainedReview.unit.mjs": "67e14dcdf47dae687f6966f6120058030ebf8cf25166b0339dfd5baa30c87b77",
+    "tests/security/vectorStorageAclProbe.ps1": "0f738f8a446c25627a0650db4e7665c971ac30dae957174c19ec2df0ab14a59f"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "run_id": "0b8da717",
+  "started_at": "2026-10-18T13:38:18.471Z",
+  "result": "FAIL_STOPPED",
+  "checks": [
+    {
+      "name": "separate disposable database ready; no retained volumes or published ports",
+      "result": "PASS"
+    },
+    {
+      "name": "missing synthetic credentials rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "approved DPAPI mechanism private dummy write/read-back",
+      "result": "PASS"
+    },
+    {
+      "name": "production credential bridge remains locked",
+      "result": "PASS"
+    },
+    {
+      "name": "retained Engine factory remains locked",
+      "result": "PASS"
+    }
+  ],
+  "containers": [
+    "8bbe300e82db05fa56663709997ca1886f93d3792186937bcae0473b48b6ae1f",
+    "69b398e9733cbbb9bb438840e3f2e441b0c0b3c05edf74a926accad1bbeabe6d",
+    "5af6849ebe392d6dc664b14e9c34f82358d7d5be956733b60a103511aa600142"
+  ],
+  "retained_operations": false,
+  "real_credentials_read": false,
+  "network_id": "535e2bc98c83c5b298f51b62008eaf87820baa52ff564ffa44842f679943f269",
+  "original_health": {
+    "samples": [
+      {
+        "elapsed_ms": 15,
+        "health": "starting"
+      },
+      {
+        "elapsed_ms": 1042,
+        "health": "starting"
+      },
+      {
+        "elapsed_ms": 2065,
+        "health": "healthy"
+      }
+    ],
+    "http": {
+      "health": 200,
+      "settings": 200,
+      "google": false
+    },
+    "restarts": 0
+  },
+  "failure": "AGO_FIXTURE_MIGRATION_RECEIPTS",
+  "completed_at": "2026-10-18T13:38:31.412Z"
+}

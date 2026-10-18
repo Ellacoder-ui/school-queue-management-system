@@ -1,0 +1,45 @@
+{
+  "run": "3386a8c8",
+  "target": "127.0.0.1:54321 / 127.0.0.1:54322",
+  "checks": [
+    {
+      "name": "Actual frontend service reads both public tables using only its public key",
+      "result": "PASS"
+    },
+    {
+      "name": "Frontend controller waits for both listeners and loads a synchronized snapshot",
+      "result": "PASS"
+    },
+    {
+      "name": "Actual counter and service events trigger fresh frontend snapshots",
+      "result": "PASS"
+    },
+    {
+      "name": "Frontend reconnect replaces stale state with the post-disconnect snapshot",
+      "result": "PASS"
+    },
+    {
+      "name": "Updates still refresh the frontend after reconnect",
+      "result": "PASS"
+    },
+    {
+      "name": "Unmount removes only this display’s two channels",
+      "result": "PASS"
+    },
+    {
+      "name": "Existing application fixtures remain unchanged",
+      "result": "PASS"
+    }
+  ],
+  "websocket_instances": 2,
+  "existing_fixtures_preserved": true,
+  "passed": 7,
+  "failed": 0,
+  "frontend_http_requests": 16,
+  "frontend_endpoints": [
+    "counter_state",
+    "service_state"
+  ],
+  "frontend_public_credentials_only": true,
+  "retained_closed_fixture_day": "2026-10-12"
+}

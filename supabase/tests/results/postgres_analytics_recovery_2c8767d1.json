@@ -1,0 +1,104 @@
+{
+  "artifacts": {},
+  "current_inventory_recovery_prerequisites_satisfied": false,
+  "databases": {},
+  "failure": "DAR_SANITIZED_STOP",
+  "failure_code_locations": [
+    {
+      "file": "dual_database_recovery.py",
+      "function": "run",
+      "line": 583
+    },
+    {
+      "file": "dual_database_recovery.py",
+      "function": "main_source",
+      "line": 300
+    },
+    {
+      "file": "run_google_auth.py",
+      "function": "inspect",
+      "line": 22
+    },
+    {
+      "file": "realtime_preservation.py",
+      "function": "capture_current",
+      "line": 176
+    },
+    {
+      "file": "realtime_preservation.py",
+      "function": "classify",
+      "line": 134
+    }
+  ],
+  "failure_exception_type": "PreservationError",
+  "finished_at": "2026-10-18T05:33:30.241662+00:00",
+  "google_credential_contents_accessed": false,
+  "historical_bundles": {
+    "fresh_70_bundle_sha256": "50164d4afb5083a83044f5ee3df3d13b1b2002ba29ee03143e460c181b915a52",
+    "older": {
+      "five_version": {
+        "artifact_sha256": {
+          "additional_privileges_baseline_v1.json": "057991cb2a02bb6a60d07a7501f54f765c7bdb50e23437eee71b2b6ff476e69f",
+          "database_environment_proposal_v1.json": "8b8785cc42412f1760cda4542dd21f26e6c10e4645d2ad053636da7464af355e",
+          "database_environment_recovery_v1.sql": "2e01815187ec6d2800098af04bc6b5c2a5eb001df6837137db3cdcd4d9420368",
+          "retained_postgres_before_006.dump": "7df177a07d74617057d1f518e92588fa19de3452c3f1a64c9e26f84b62ac259e",
+          "roles_without_passwords.sql": "882a23b88288987a5fdddcc6082fff2bccf8cfd63023692b8b743f6066b6eee3",
+          "schema_privileges_recovery_v1.json": "d07b80bacdabf46e26ba51b4f38552870ca9043713ac3ea5db191f91c48f71fb",
+          "schema_privileges_recovery_v1.sql": "ff293d31a018deca0bef619d610abc6789044bfd6dd530e9840381079ab00161",
+          "source_snapshot_manifest.json": "df786c0e63034692d8416244e4eab5c887dd9cd06b3747026ac0dc254ed7d67f"
+        },
+        "bundle_sha256": "d07b80bacdabf46e26ba51b4f38552870ca9043713ac3ea5db191f91c48f71fb",
+        "pre_cutover_recovery_point_preserved": true,
+        "protected_access": true,
+        "restore_repeated": false,
+        "result": "PASS"
+      },
+      "six_version": {
+        "artifacts": {
+          "database_environment_recovery.sql": {
+            "bytes": 6804,
+            "sha256": "54f08268e0ace6ce2797e4f2250d51c8f5303328e66a5b7397552df58ea6a63b"
+          },
+          "database_environment_source.json": {
+            "bytes": 2440,
+            "sha256": "c68ef99f782b69431d2b2e326a1480fc32e315230e2c5f5e494d136cf50ea2f7"
+          },
+          "retained_postgres_after_006.dump": {
+            "bytes": 530803,
+            "sha256": "a265d14fbd85daf52ffefb26754cd893effb2f01bdbec092328ce78b511de80c"
+          },
+          "roles_without_passwords.sql": {
+            "bytes": 6274,
+            "sha256": "48aeb839a16374f00df55277ca1eab6d666a11eeaf0cd4fc9501918f144e4c06"
+          },
+          "schema_privileges_recovery.sql": {
+            "bytes": 6295,
+            "sha256": "3f2d86fe78ef43ed0b8c3fbeba3bce0583183e368616a2579c7fffb5dac40cec"
+          },
+          "source_snapshot_manifest.json": {
+            "bytes": 869670,
+            "sha256": "9304c08e1dd66b7867ffcf508acee8968e91b45d01babf4ed59bda5263a8e7a1"
+          }
+        },
+        "bundle": {
+          "bytes": 3130,
+          "filename": "recovery_bundle_manifest.json",
+          "sha256": "a6b4d717c905b313abc99a62225daf8336684a6a13cf19a608e326a9eee0a5d9"
+        },
+        "directory": "C:\\Users\\Hp\\school-queue-management-system\\.local-backups\\post006_20261016T163319Z_4c79fb00",
+        "evidence_sha256": "c8040fe21f10507b986ccfc21dfd6f2995bbe493fb0bac2e498b5a107d347244"
+      }
+    }
+  },
+  "offline": {
+    "failed": 0,
+    "passed": 123,
+    "skipped": 0
+  },
+  "phase": "offline-tests",
+  "result": "FAIL_STOPPED",
+  "retained_restart": false,
+  "retained_writes": false,
+  "run_id": "2c8767d1",
+  "started_at": "2026-10-18T05:33:21.183233+00:00"
+}

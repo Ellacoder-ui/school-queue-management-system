@@ -1,0 +1,148 @@
+{
+  "run_id": "a2803fcd",
+  "started_at": "2026-10-18T13:35:03.822Z",
+  "result": "FAIL_STOPPED",
+  "checks": [
+    {
+      "name": "separate disposable database ready; no retained volumes or published ports",
+      "result": "PASS"
+    },
+    {
+      "name": "missing synthetic credentials rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "approved DPAPI mechanism private dummy write/read-back",
+      "result": "PASS"
+    },
+    {
+      "name": "production credential bridge remains locked",
+      "result": "PASS"
+    },
+    {
+      "name": "retained Engine factory remains locked",
+      "result": "PASS"
+    },
+    {
+      "name": "actual cached Auth starts with Google disabled and fixture migration receipts captured",
+      "result": "PASS"
+    },
+    {
+      "name": "encrypted full inspect/create rollback capture and private read-back",
+      "result": "PASS"
+    },
+    {
+      "name": "JWT database email MFA and aliases present unchanged in rollback capture",
+      "result": "PASS"
+    },
+    {
+      "name": "ciphertext overwrite refused",
+      "result": "PASS"
+    },
+    {
+      "name": "wrong capture profile refused",
+      "result": "PASS"
+    },
+    {
+      "name": "tampered dummy ciphertext rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "extra principal refused before decrypt",
+      "result": "PASS"
+    },
+    {
+      "name": "owned dummy ACL restored and validated",
+      "result": "PASS"
+    },
+    {
+      "name": "wrong target approval rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "changed source rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "retained ID cannot enter disposable Engine",
+      "result": "PASS"
+    },
+    {
+      "name": "real Auth replacement healthy; Google enabled with exact eight-field delta",
+      "result": "PASS"
+    },
+    {
+      "name": "Auth migration versions users and witness rows unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "original remains stopped and network detached",
+      "result": "PASS"
+    },
+    {
+      "name": "repeat activation refused",
+      "result": "PASS"
+    },
+    {
+      "name": "actual replacement startup failure retained without automatic retry",
+      "result": "PASS"
+    },
+    {
+      "name": "rollback without separate approval refused",
+      "result": "PASS"
+    }
+  ],
+  "containers": [
+    "690357ce16d221f2638dc548db378c621140e66badb2441675e74dbc49851abc",
+    "6fea40872542c44870bb05355c1c091b07c1e225f67eef8989e3aed8525499bf",
+    "177d65f49b175e421b69bc653eb25aa383dd4b405d1a477b61863cd88b9d087d",
+    "e4dec396419a726b6bd5cc5f61fcefeb985c4b82ecf0d22356a6e1af4f927a4b",
+    "d4190e5b20675833e2da6136eb148ac3e67108a8471a6526a13a7516daae60ad",
+    "115f1198882b9099f02846d1d7f626450c2842ebda278f2deb90ae970e83b67d"
+  ],
+  "retained_operations": false,
+  "real_credentials_read": false,
+  "network_id": "68db66c43ef51ba205b0278203d9954a896b475bdbd99be8a21cbd5129a327ac",
+  "original_health": {
+    "samples": [
+      {
+        "elapsed_ms": 13,
+        "health": "starting"
+      },
+      {
+        "elapsed_ms": 1034,
+        "health": "starting"
+      },
+      {
+        "elapsed_ms": 2062,
+        "health": "healthy"
+      }
+    ],
+    "http": {
+      "health": 200,
+      "settings": 200,
+      "google": false
+    },
+    "restarts": 0
+  },
+  "replacement_health": {
+    "samples": [
+      {
+        "elapsed_ms": 13,
+        "health": "starting"
+      },
+      {
+        "elapsed_ms": 1030,
+        "health": "healthy"
+      }
+    ],
+    "http": {
+      "health": 200,
+      "settings": 200,
+      "google": true
+    },
+    "restarts": 0
+  },
+  "failure": "AGO_BOUND_NETWORK_ID",
+  "completed_at": "2026-10-18T13:35:37.148Z"
+}

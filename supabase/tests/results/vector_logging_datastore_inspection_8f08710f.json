@@ -1,0 +1,34 @@
+{
+  "result": "READ_ONLY_INSPECTION",
+  "settings": {
+    "DB_HOSTNAME": "supabase_db_school-queue-local",
+    "DB_PORT": "5432",
+    "DB_DATABASE": "_supabase",
+    "DB_SCHEMA": "_analytics",
+    "LOGFLARE_SINGLE_TENANT": "true",
+    "LOGFLARE_SUPABASE_MODE": "true",
+    "LOGFLARE_FEATURE_FLAG_OVERRIDE": "'multibackend=true'"
+  },
+  "backend_destinations": {
+    "POSTGRES_BACKEND_URL": {
+      "host": "supabase_db_school-queue-local",
+      "port": 5432,
+      "database": "_supabase",
+      "credentials_omitted": true
+    }
+  },
+  "database_catalog": {
+    "schemas": [
+      {
+        "schema": "public",
+        "relations": 0
+      },
+      {
+        "schema": "_analytics",
+        "relations": 39
+      }
+    ],
+    "database": "_supabase",
+    "system_identifier": "7696959712798593061"
+  }
+}

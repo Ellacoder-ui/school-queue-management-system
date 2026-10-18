@@ -1,0 +1,185 @@
+{
+  "mode": "READ_ONLY_DIAGNOSIS",
+  "result": "FAIL_HEALTH_GATE",
+  "checks": [
+    {
+      "check": "candidate-parser",
+      "result": "PASS"
+    },
+    {
+      "check": "service-inventory",
+      "result": "FAIL",
+      "code": "LGA_SERVICE_HEALTH",
+      "type": "RuntimeError"
+    }
+  ],
+  "activation_executed": false,
+  "service_repair_requested": false,
+  "captured_at": "2026-10-17T14:35:04.440184+00:00",
+  "service_health": [
+    {
+      "name": "supabase_studio_school-queue-local",
+      "image": "public.ecr.aws/supabase/studio:2026.10.12-sha-3699278",
+      "image_id": "sha256:948770ec467f00e6ae34c35018ef7cb23d7b30eb806b42c2cc0d7bcfdcf8a7a8",
+      "running": true,
+      "restarting": false,
+      "health": "healthy",
+      "restart_count": 0,
+      "started_at": "2026-10-15T18:15:13.467005917Z"
+    },
+    {
+      "name": "supabase_pg_meta_school-queue-local",
+      "image": "public.ecr.aws/supabase/postgres-meta:v0.100.0",
+      "image_id": "sha256:145325b7e39f8ef4931d6e8cfd3f6f4d655de09d72a2ccc96d9513542c2202bd",
+      "running": true,
+      "restarting": false,
+      "health": "healthy",
+      "restart_count": 0,
+      "started_at": "2026-10-15T18:15:12.772180088Z"
+    },
+    {
+      "name": "supabase_edge_runtime_school-queue-local",
+      "image": "public.ecr.aws/supabase/edge-runtime:v1.77.4",
+      "image_id": "sha256:ad45164b7548bf5820ed7be714789c17ac2865edce79a09cfb4c3756c3d365a8",
+      "running": true,
+      "restarting": false,
+      "health": "not-configured",
+      "restart_count": 0,
+      "started_at": "2026-10-15T18:15:11.823778567Z"
+    },
+    {
+      "name": "supabase_storage_school-queue-local",
+      "image": "public.ecr.aws/supabase/storage-api:v1.82.1",
+      "image_id": "sha256:ec2ad41411eac8fc2b769b4bb00d1af32ae37eca3745c15bdb329db27d218934",
+      "running": true,
+      "restarting": false,
+      "health": "healthy",
+      "restart_count": 0,
+      "started_at": "2026-10-15T18:15:10.098951161Z"
+    },
+    {
+      "name": "supabase_rest_school-queue-local",
+      "image": "public.ecr.aws/supabase/postgrest:v16.4",
+      "image_id": "sha256:d155c6718ed9a9f990d159a2ab7c0a3f16944dbb6d0a0344557421042acfe0df",
+      "running": true,
+      "restarting": false,
+      "health": "not-configured",
+      "restart_count": 0,
+      "started_at": "2026-10-15T18:15:08.86125363Z"
+    },
+    {
+      "name": "supabase_realtime_school-queue-local",
+      "image": "public.ecr.aws/supabase/realtime:v2.143.4",
+      "image_id": "sha256:35e99d3f1cbba5aa5585e8ac3cf70ecc54909ee4aee0626effed93c60fb41439",
+      "running": true,
+      "restarting": false,
+      "health": "healthy",
+      "restart_count": 0,
+      "started_at": "2026-10-15T18:15:07.910836032Z"
+    },
+    {
+      "name": "supabase_inbucket_school-queue-local",
+      "image": "public.ecr.aws/supabase/mailpit:v1.31.3",
+      "image_id": "sha256:ed9b00c609e77e99c79b93f1178255ebc271868920f2c69a8d166bd5634ed10d",
+      "running": true,
+      "restarting": false,
+      "health": "healthy",
+      "restart_count": 0,
+      "started_at": "2026-10-15T18:15:06.793561838Z"
+    },
+    {
+      "name": "supabase_auth_school-queue-local",
+      "image": "public.ecr.aws/supabase/gotrue:v2.197.0",
+      "image_id": "sha256:1736a63078f5922b198c4cbe50f80ab9a2d3b54fe8b7b6cfb2e9dc5dbbc12c6b",
+      "running": true,
+      "restarting": false,
+      "health": "healthy",
+      "restart_count": 0,
+      "started_at": "2026-10-15T18:15:05.795367307Z"
+    },
+    {
+      "name": "supabase_kong_school-queue-local",
+      "image": "public.ecr.aws/supabase/kong:2.8.1",
+      "image_id": "sha256:1b53405d8680a09d6f44494b7990bf7da2ea43f84a258c59717d4539abf09f6d",
+      "running": true,
+      "restarting": false,
+      "health": "healthy",
+      "restart_count": 0,
+      "started_at": "2026-10-15T18:15:05.111994842Z"
+    },
+    {
+      "name": "supabase_vector_school-queue-local",
+      "image": "public.ecr.aws/supabase/vector:0.58.0-alpine",
+      "image_id": "sha256:5dcf67db0ee378caa87f3395cb9484ebe3e97bb0334d119f2ac33116e00c5773",
+      "running": true,
+      "restarting": true,
+      "health": "unhealthy",
+      "restart_count": 1530,
+      "started_at": "2026-10-17T14:34:36.407310724Z"
+    },
+    {
+      "name": "supabase_analytics_school-queue-local",
+      "image": "public.ecr.aws/supabase/logflare:1.53.0",
+      "image_id": "sha256:9d9c8f8c462650b5a99789e1adc6906df85cfb15e2515a8a3b44953893434470",
+      "running": true,
+      "restarting": false,
+      "health": "healthy",
+      "restart_count": 0,
+      "started_at": "2026-10-15T18:15:03.728595382Z"
+    },
+    {
+      "name": "supabase_db_school-queue-local",
+      "image": "public.ecr.aws/supabase/postgres:17.11.0.004",
+      "image_id": "sha256:6058a6759ab9268cff8ee70641d61f1bd75953316281b76427cf5a6b4db2eafc",
+      "running": true,
+      "restarting": false,
+      "health": "healthy",
+      "restart_count": 0,
+      "started_at": "2026-10-15T18:14:43.17209085Z"
+    }
+  ],
+  "source_preservation": {
+    "result": "PASS",
+    "mode": "READ_ONLY_PREFLIGHT",
+    "project": "school-queue-local",
+    "api": "http://127.0.0.1:54321",
+    "database": "127.0.0.1:54322/postgres",
+    "system_identifier": "7696959712798593061",
+    "migration_count": 6,
+    "logical_tables": 70,
+    "google_enabled": false,
+    "active_tickets": 0,
+    "config_sha256": "a929af299d0c49ec0a0632cf1a84a8227bdbdf250e1f23a2d3be53e3a2b003a8",
+    "recovery_run": "6e3beebe",
+    "recovery_bundle_sha256": "50164d4afb5083a83044f5ee3df3d13b1b2002ba29ee03143e460c181b915a52",
+    "fresh_and_historical_artifacts_intact": true,
+    "preservation": {
+      "result": "PASS",
+      "original_tables_exact_except_scoped_subscription": true,
+      "empty_partition_additions": [],
+      "logical_tables": 70,
+      "subscription_rows_before": 2,
+      "subscription_rows_after": 0,
+      "subscription_sequence_before": {
+        "is_called": true,
+        "last_value": 298
+      },
+      "subscription_sequence_after": {
+        "is_called": true,
+        "last_value": 320
+      },
+      "all_other_rows_objects_roles_privileges_exact": true,
+      "unexpected_changes": []
+    },
+    "retained_service_restart": false,
+    "source_writes": false
+  },
+  "four_core_containers_unchanged": true,
+  "backups": {
+    "files": 50,
+    "sha256": "9ae20f6cf67e0c894217892abf1fe48e56ad6e6858215a8da23614455d77ac81"
+  },
+  "all_backup_files_unchanged": true,
+  "credential_ciphertext_unchanged": true,
+  "all_historical_inputs_unchanged": true
+}

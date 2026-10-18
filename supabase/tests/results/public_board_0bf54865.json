@@ -1,0 +1,116 @@
+{
+  "run": "0bf54865",
+  "source_writes": false,
+  "checks": [
+    {
+      "name": "Actual anonymous snapshot matches all five fixed destinations and authoritative day context",
+      "result": "PASS"
+    },
+    {
+      "name": "Both actual postgres_changes listeners require readiness and a fresh snapshot",
+      "result": "PASS"
+    },
+    {
+      "name": "Forced actual socket closure invalidates state and reconnect performs fresh reads",
+      "result": "PASS"
+    },
+    {
+      "name": "Public controller cleanup removes all owned subscriptions",
+      "result": "PASS"
+    },
+    {
+      "name": "Browser/setup acceptance gate",
+      "result": "FAIL",
+      "reason": "Actual monitor did not become live"
+    }
+  ],
+  "screenshots": [],
+  "synthetic_screenshots": [],
+  "result": "FAIL",
+  "failure": "Actual monitor did not become live",
+  "blocked": [
+    {
+      "path": "/rest/v1/counter_state",
+      "method": "OPTIONS",
+      "reason": "Unexpected browser endpoint or credentials"
+    },
+    {
+      "path": "/rest/v1/service_state",
+      "method": "OPTIONS",
+      "reason": "Unexpected browser endpoint or credentials"
+    },
+    {
+      "path": "/rest/v1/rpc/public_queue_context",
+      "method": "OPTIONS",
+      "reason": "Unexpected browser endpoint or credentials"
+    },
+    {
+      "path": "/rest/v1/counter_state",
+      "method": "OPTIONS",
+      "reason": "Unexpected browser endpoint or credentials"
+    },
+    {
+      "path": "/rest/v1/service_state",
+      "method": "OPTIONS",
+      "reason": "Unexpected browser endpoint or credentials"
+    },
+    {
+      "path": "/rest/v1/rpc/public_queue_context",
+      "method": "OPTIONS",
+      "reason": "Unexpected browser endpoint or credentials"
+    },
+    {
+      "path": "/rest/v1/counter_state",
+      "method": "OPTIONS",
+      "reason": "Unexpected browser endpoint or credentials"
+    },
+    {
+      "path": "/rest/v1/service_state",
+      "method": "OPTIONS",
+      "reason": "Unexpected browser endpoint or credentials"
+    },
+    {
+      "path": "/rest/v1/counter_state",
+      "method": "OPTIONS",
+      "reason": "Unexpected browser endpoint or credentials"
+    },
+    {
+      "path": "/rest/v1/service_state",
+      "method": "OPTIONS",
+      "reason": "Unexpected browser endpoint or credentials"
+    },
+    {
+      "path": "/rest/v1/counter_state",
+      "method": "OPTIONS",
+      "reason": "Unexpected browser endpoint or credentials"
+    },
+    {
+      "path": "/rest/v1/service_state",
+      "method": "OPTIONS",
+      "reason": "Unexpected browser endpoint or credentials"
+    }
+  ],
+  "runtime_errors": [],
+  "browser_state": {
+    "connection": "Snapshot unavailable",
+    "board": true,
+    "path": "/display"
+  },
+  "passed": 4,
+  "failed": 1,
+  "source_preservation": {
+    "logical_tables": 69,
+    "rows_schema_roles_and_additional_privileges_unchanged": true,
+    "other_sequences_unchanged": true,
+    "realtime_subscription_sequence_before": {
+      "is_called": true,
+      "last_value": 34
+    },
+    "realtime_subscription_sequence_after": {
+      "is_called": true,
+      "last_value": 40
+    },
+    "six_migrations_unchanged": true,
+    "application_auth_writes": false
+  }
+}

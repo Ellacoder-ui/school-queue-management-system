@@ -1,0 +1,108 @@
+{
+  "run": "097cbea5",
+  "target": "127.0.0.1:54321 / 127.0.0.1:54322",
+  "checks": [
+    {
+      "name": "Five migrations and unchanged database security preflight",
+      "result": "PASS"
+    },
+    {
+      "name": "Anonymous public snapshot includes current catalog and authoritative day",
+      "result": "PASS"
+    },
+    {
+      "name": "Incorrect password produces generic sign-in failure without a workspace",
+      "result": "PASS"
+    },
+    {
+      "name": "Real STUDENT login selects only its authorized workspace",
+      "result": "PASS"
+    },
+    {
+      "name": "Real CASHIER login selects only its authorized workspace",
+      "result": "PASS"
+    },
+    {
+      "name": "Real ADMIN login selects only its authorized workspace",
+      "result": "PASS"
+    },
+    {
+      "name": "Disabled account can authenticate but sees only access-disabled state",
+      "result": "PASS"
+    },
+    {
+      "name": "Revoked cashier session revalidates to student after protected-denial signal",
+      "result": "PASS"
+    },
+    {
+      "name": "Actual token refresh rechecks database role without trusting ADMIN metadata",
+      "result": "PASS"
+    },
+    {
+      "name": "Realtime reconnect refreshes the complete public context snapshot",
+      "result": "PASS"
+    },
+    {
+      "name": "Desktop browser anonymous display and sign-in form render without overflow",
+      "result": "PASS"
+    },
+    {
+      "name": "Browser student login/logout and navigation",
+      "result": "PASS"
+    },
+    {
+      "name": "Browser cashier login/logout and navigation",
+      "result": "PASS"
+    },
+    {
+      "name": "Browser admin login/logout and navigation",
+      "result": "PASS"
+    },
+    {
+      "name": "Browser disabled account and sign-out",
+      "result": "PASS"
+    },
+    {
+      "name": "Browser existing cashier session loses role on visibility restoration",
+      "result": "PASS"
+    },
+    {
+      "name": "Browser offline access clearing and online reconciliation",
+      "result": "PASS"
+    },
+    {
+      "name": "Mobile browser at 390px renders accessible login and public queue without overflow",
+      "result": "PASS"
+    },
+    {
+      "name": "Browser credentials remain local and no operational/private requests or runtime exceptions occur",
+      "result": "PASS"
+    },
+    {
+      "name": "Every pre-existing application, display and Auth fixture remains unchanged",
+      "result": "PASS"
+    }
+  ],
+  "browser": {
+    "engine": "Chrome 155 headless",
+    "desktop": "1440x1000",
+    "mobile": "390x844",
+    "local_requests_only": true
+  },
+  "existing_fixtures_preserved": true,
+  "counts": {
+    "passed": 20,
+    "failed": 0,
+    "skipped": 0,
+    "completed": true
+  },
+  "frontend_endpoints": [
+    "/auth/v1/logout",
+    "/auth/v1/token",
+    "/auth/v1/user",
+    "/rest/v1/counter_state",
+    "/rest/v1/rpc/my_context",
+    "/rest/v1/rpc/public_queue_context",
+    "/rest/v1/service_state"
+  ]
+}

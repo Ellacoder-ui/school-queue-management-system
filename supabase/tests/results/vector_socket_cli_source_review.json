@@ -1,0 +1,26 @@
+{
+  "result": "REVIEW_COMPLETE",
+  "cli_version": "2.121.0",
+  "context_host": "npipe:////./pipe/dockerDesktopLinuxEngine",
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/supabase/cli/v2.121.0/apps/cli/src/commands/start/services/vector.service.ts",
+      "sha256": "3f0e428af32fb79686951c065352dccaeacb4637c5ad4bc629d93c762529a728",
+      "bytes": 13292
+    },
+    {
+      "url": "https://raw.githubusercontent.com/supabase/cli/v2.121.0/apps/cli/src/commands/start/services/vector.service.unit.test.ts",
+      "sha256": "d2d25957b808161d7f388383dd5f7366bc6f9a084770e788f938ded338b840df",
+      "bytes": 13118
+    },
+    {
+      "url": "https://raw.githubusercontent.com/supabase/cli/v2.121.0/apps/cli/src/command-internal/hostname.ts",
+      "sha256": "593fc3127e0bb5aa435ff5b85ea75d0b4d4904ff360d271533ae69493f941023",
+      "bytes": 6694
+    }
+  ],
+  "npipe_branch": "http://host.docker.internal:2375; no socket bind",
+  "windows_unix_branch": "Linux source mapped to Windows named-pipe target; not a validated Linux container socket recipe",
+  "manual_repair_survives_unmodified_cli_recreation": false,
+  "retained_cli_start_stop_executed": false
+}

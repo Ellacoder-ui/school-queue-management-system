@@ -1,0 +1,104 @@
+{
+  "run_id": "d4d2edb2",
+  "started_at": "2026-10-18T13:33:20.564Z",
+  "result": "FAIL_STOPPED",
+  "checks": [
+    {
+      "name": "separate disposable database ready; no retained volumes or published ports",
+      "result": "PASS"
+    },
+    {
+      "name": "missing synthetic credentials rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "approved DPAPI mechanism private dummy write/read-back",
+      "result": "PASS"
+    },
+    {
+      "name": "production credential bridge remains locked",
+      "result": "PASS"
+    },
+    {
+      "name": "retained Engine factory remains locked",
+      "result": "PASS"
+    },
+    {
+      "name": "actual cached Auth starts with Google disabled and fixture migration receipts captured",
+      "result": "PASS"
+    },
+    {
+      "name": "encrypted full inspect/create rollback capture and private read-back",
+      "result": "PASS"
+    },
+    {
+      "name": "JWT database email MFA and aliases present unchanged in rollback capture",
+      "result": "PASS"
+    },
+    {
+      "name": "ciphertext overwrite refused",
+      "result": "PASS"
+    },
+    {
+      "name": "wrong capture profile refused",
+      "result": "PASS"
+    },
+    {
+      "name": "tampered dummy ciphertext rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "extra principal refused before decrypt",
+      "result": "PASS"
+    },
+    {
+      "name": "owned dummy ACL restored and validated",
+      "result": "PASS"
+    },
+    {
+      "name": "wrong target approval rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "changed source rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "retained ID cannot enter disposable Engine",
+      "result": "PASS"
+    }
+  ],
+  "containers": [
+    "cf09c170e211074c9ad5d33638c2498de875f0ee981e8158d05aaeab2e6f491e",
+    "35e17b1f9d5eb953ae80e7f33a0da78d4f968b3b6eb5e6a884f5fdaebea88565",
+    "4acaac1a74785f73f9479d99017a4981d19c26146e5940aa2556a671a5c30c86",
+    "fcb095e81cec3270fbb1087b30e2b375d7a8f4dff16af392216dc8a9a3be18a7"
+  ],
+  "retained_operations": false,
+  "real_credentials_read": false,
+  "network_id": "98cb0aabbbbcbef9390dc6b9b52e2e9f1648c89b615297b946af8ee3180414da",
+  "original_health": {
+    "samples": [
+      {
+        "elapsed_ms": 9,
+        "health": "starting"
+      },
+      {
+        "elapsed_ms": 1019,
+        "health": "starting"
+      },
+      {
+        "elapsed_ms": 2044,
+        "health": "healthy"
+      }
+    ],
+    "http": {
+      "health": 200,
+      "settings": 200,
+      "google": false
+    },
+    "restarts": 0
+  },
+  "failure": "AGO_BOUND_NETWORK_ID",
+  "completed_at": "2026-10-18T13:33:42.939Z"
+}

@@ -1,0 +1,144 @@
+{
+  "result": "FAIL",
+  "phase": "stopped-during-read-only-fix-verification",
+  "identity": {
+    "project": "school-queue-local",
+    "api": "http://127.0.0.1:54321",
+    "database_endpoint": "127.0.0.1:54322",
+    "server": {
+      "port": 5432,
+      "user": "postgres",
+      "version": "17.11",
+      "database": "postgres"
+    },
+    "docker": [
+      {
+        "container": "supabase_db_school-queue-local",
+        "image": "public.ecr.aws/supabase/postgres:17.11.0.004",
+        "networks": [
+          "supabase_network_school-queue-local"
+        ],
+        "volumes": [
+          "supabase_db_school-queue-local"
+        ],
+        "bindings": [
+          {
+            "HostIp": "0.0.0.0",
+            "HostPort": "54322"
+          },
+          {
+            "HostIp": "::",
+            "HostPort": "54322"
+          }
+        ]
+      },
+      {
+        "container": "supabase_kong_school-queue-local",
+        "image": "public.ecr.aws/supabase/kong:2.8.1",
+        "networks": [
+          "supabase_network_school-queue-local"
+        ],
+        "volumes": [],
+        "bindings": [
+          {
+            "HostIp": "0.0.0.0",
+            "HostPort": "54321"
+          },
+          {
+            "HostIp": "::",
+            "HostPort": "54321"
+          }
+        ]
+      }
+    ],
+    "migration_sha256": {
+      "20261016000100_queue_tables.sql": "274141dbab99dbaad959f2343633ee0bd440b240a29b5664ca304e283934d7d7",
+      "20261016000200_queue_operations.sql": "65c943d4fea282c07e06bab6b759882f7fcec678ddf960869dd60a52db911883",
+      "20261016000300_queue_administration.sql": "7a4ad627112f0bc3109417bec237b13000e1c06002d536f7c9feab5261eb4883",
+      "20261016000400_queue_seed_security.sql": "95bd4918550dddae84672c148c6a616c9d12928b78097a82815a26a35146746e",
+      "20261016000500_queue_read_context.sql": "793a68b375d69044dc4900749867576b5c45a6b4173725191ffbaeb66a2dd31a",
+      "20261016000600_fixed_counter_routing.sql": "9d854ab795e3ef3098fa1d3a05cb6541242d0c8e503a8ebee1acfe9df418137c"
+    }
+  },
+  "sqlstate": "42725",
+  "catalog_expression_sqlstates": [
+    "42725"
+  ],
+  "source_preserved": true,
+  "final_state": {
+    "active": 0,
+    "counts": {
+      "days": 7,
+      "audits": 31,
+      "events": 57,
+      "tickets": 20,
+      "accounts": 39,
+      "counters": 5,
+      "requests": 69,
+      "services": 5
+    },
+    "routes": {
+      "1": [
+        "SOA",
+        "TP"
+      ],
+      "2": [
+        "SOA",
+        "TP"
+      ],
+      "3": [],
+      "4": [],
+      "5": []
+    },
+    "versions": [
+      "20261016000100",
+      "20261016000200",
+      "20261016000300",
+      "20261016000400",
+      "20261016000500"
+    ],
+    "open_days": 0,
+    "rls_count": 15,
+    "assignments": [
+      {
+        "total": 1,
+        "counter": 1,
+        "eligible": 1
+      },
+      {
+        "total": 1,
+        "counter": 2,
+        "eligible": 1
+      },
+      {
+        "total": 0,
+        "counter": 3,
+        "eligible": 0
+      },
+      {
+        "total": 0,
+        "counter": 4,
+        "eligible": 0
+      },
+      {
+        "total": 2,
+        "counter": 5,
+        "eligible": 1
+      }
+    ],
+    "publication": [
+      "queue_display.counter_state",
+      "queue_display.service_state"
+    ],
+    "private_usage": false,
+    "current_day_closed": true
+  },
+  "migration_006_applied": false,
+  "backup_created": false,
+  "restore_attempted": false,
+  "offline_tests": {
+    "passed": 7,
+    "failed": 0,
+    "skipped": 0
+  }
+}

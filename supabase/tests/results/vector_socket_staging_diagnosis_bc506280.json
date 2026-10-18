@@ -1,0 +1,6 @@
+{
+  "owned_probe_status": "never-started",
+  "copy_exit_code": 1,
+  "category": "read-only-root-filesystem",
+  "retained_mutation": false
+}

@@ -1,0 +1,201 @@
+{
+  "run_id": "ef8b05d9",
+  "started_at": "2026-10-17T19:38:35.449Z",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "DPAPI capture and private decrypt/read-back",
+      "result": "PASS"
+    },
+    {
+      "name": "original logging canary survives encrypted round-trip",
+      "result": "PASS"
+    },
+    {
+      "name": "existing rollback ciphertext cannot be overwritten",
+      "result": "PASS"
+    },
+    {
+      "name": "wrong target approval rejected before service operations",
+      "result": "PASS"
+    },
+    {
+      "name": "changed source rejected before service operations",
+      "result": "PASS"
+    },
+    {
+      "name": "original remains unchanged after negative gates",
+      "result": "PASS"
+    },
+    {
+      "name": "replacement exact delta, healthy Unix transport and synthetic logging",
+      "result": "PASS"
+    },
+    {
+      "name": "original retained stopped, labeled and network-detached",
+      "result": "PASS"
+    },
+    {
+      "name": "repeat repair invocation refused",
+      "result": "PASS"
+    },
+    {
+      "name": "later CLI identity requires a fresh plan and approval",
+      "result": "PASS"
+    },
+    {
+      "name": "same reconciler restores Unix transport after simulated CLI recreation",
+      "result": "PASS"
+    },
+    {
+      "name": "injected failure retains both original and unstarted replacement",
+      "result": "PASS"
+    },
+    {
+      "name": "rollback without separate approval refused",
+      "result": "PASS"
+    },
+    {
+      "name": "rollback restores exact original ID, definition, aliases and failing transport",
+      "result": "PASS"
+    },
+    {
+      "name": "repeat rollback refused",
+      "result": "PASS"
+    },
+    {
+      "name": "interrupted preparation remains unarmed",
+      "result": "PASS"
+    },
+    {
+      "name": "interrupted slot cannot be silently reused",
+      "result": "PASS"
+    },
+    {
+      "name": "tampered DPAPI ciphertext rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "extra file principal rejected before decrypt",
+      "result": "PASS"
+    },
+    {
+      "name": "only owned dummy ACL restored and revalidated",
+      "result": "PASS"
+    },
+    {
+      "name": "unrelated disposable witness ID/config/start/restart unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "retained repair entry point remains locked",
+      "result": "PASS"
+    },
+    {
+      "name": "retained rollback entry point remains locked",
+      "result": "PASS"
+    },
+    {
+      "name": "ciphertext/state/public evidence contain no plaintext logging canary",
+      "result": "PASS"
+    }
+  ],
+  "retained_mutation_executed": false,
+  "network_id": "152c82070511365ab8fdc6ecb00f5139d3e556a3b80905fa97fb88425df23610",
+  "volume": "sq-vpr-ef8b05d9-socket",
+  "first_health": {
+    "samples": [
+      {
+        "elapsed_ms": 10,
+        "health": "starting"
+      },
+      {
+        "elapsed_ms": 2032,
+        "health": "starting"
+      },
+      {
+        "elapsed_ms": 4050,
+        "health": "starting"
+      },
+      {
+        "elapsed_ms": 6061,
+        "health": "starting"
+      },
+      {
+        "elapsed_ms": 8075,
+        "health": "starting"
+      },
+      {
+        "elapsed_ms": 10090,
+        "health": "healthy"
+      },
+      {
+        "elapsed_ms": 12107,
+        "health": "healthy"
+      },
+      {
+        "elapsed_ms": 14118,
+        "health": "healthy"
+      },
+      {
+        "elapsed_ms": 16141,
+        "health": "healthy"
+      }
+    ],
+    "synthetic_messages": 4,
+    "restart_count": 0
+  },
+  "later_health": {
+    "samples": [
+      {
+        "elapsed_ms": 7,
+        "health": "starting"
+      },
+      {
+        "elapsed_ms": 2021,
+        "health": "starting"
+      },
+      {
+        "elapsed_ms": 4035,
+        "health": "starting"
+      },
+      {
+        "elapsed_ms": 6056,
+        "health": "starting"
+      },
+      {
+        "elapsed_ms": 8071,
+        "health": "starting"
+      },
+      {
+        "elapsed_ms": 10090,
+        "health": "healthy"
+      },
+      {
+        "elapsed_ms": 12109,
+        "health": "healthy"
+      },
+      {
+        "elapsed_ms": 14129,
+        "health": "healthy"
+      },
+      {
+        "elapsed_ms": 16145,
+        "health": "healthy"
+      }
+    ],
+    "synthetic_messages": 4,
+    "restart_count": 0
+  },
+  "containers": [
+    "5d470a44af84541a20dd27d16704521001ca06d83d22226330627b29febf8129",
+    "b8bb39874519189e055ddccf4962b84d650ca02dde0eabcd383aa7544299f0af",
+    "ee52c7c71cbd8111a6d1941296aac390c03dd3d0d5c2f1e0231a76225b45d922",
+    "4ca89e90265da58815824f1c81ff17efbde9aa6070ab6357b99e5e3bc3369595",
+    "d5f5b99d1f6f4dd3fa291dc010e194f7c6186020e6d4f2d68258768198f51236",
+    "56dabf22c350c42ba2aa34fe850b40a61e4144bd13bfe8289fa22fe07fb6dfd0",
+    "e1e7fd477e3f32121f8545203c55430067b324ef7625cb4b1d8d54d673f402fc",
+    "1c3ce32c28e6e3940ecbc39e43142dd75318cfd36cd810de648405e45e1a5b41"
+  ],
+  "completed_at": "2026-10-17T19:40:00.398Z"
+}

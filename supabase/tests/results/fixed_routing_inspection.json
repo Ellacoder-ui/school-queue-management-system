@@ -1,0 +1,294 @@
+{
+  "target": "127.0.0.1:54322",
+  "counters": [
+    {
+      "label": "Counter 1",
+      "number": 1,
+      "is_open": true,
+      "service_codes": [
+        "SOA",
+        "TP"
+      ],
+      "cashier_assignments": 1,
+      "ineligible_assignment_roles": [],
+      "eligible_cashier_assignments": 1
+    },
+    {
+      "label": "Counter 2",
+      "number": 2,
+      "is_open": true,
+      "service_codes": [
+        "SOA",
+        "TP"
+      ],
+      "cashier_assignments": 1,
+      "ineligible_assignment_roles": [],
+      "eligible_cashier_assignments": 1
+    },
+    {
+      "label": "Counter 3",
+      "number": 3,
+      "is_open": false,
+      "service_codes": [],
+      "cashier_assignments": 0,
+      "ineligible_assignment_roles": [],
+      "eligible_cashier_assignments": 0
+    },
+    {
+      "label": "Counter 4",
+      "number": 4,
+      "is_open": false,
+      "service_codes": [],
+      "cashier_assignments": 0,
+      "ineligible_assignment_roles": [],
+      "eligible_cashier_assignments": 0
+    },
+    {
+      "label": "Counter 5",
+      "number": 5,
+      "is_open": false,
+      "service_codes": [],
+      "cashier_assignments": 2,
+      "ineligible_assignment_roles": [
+        {
+          "role": "STUDENT",
+          "count": 1,
+          "enabled": true
+        }
+      ],
+      "eligible_cashier_assignments": 1
+    }
+  ],
+  "services": [
+    {
+      "code": "ADJ",
+      "name": "Adjustment Clerk",
+      "enabled": true,
+      "counters": []
+    },
+    {
+      "code": "PNEP",
+      "name": "Promissory Notes and Exam Permits",
+      "enabled": true,
+      "counters": []
+    },
+    {
+      "code": "REF",
+      "name": "Refund Process",
+      "enabled": true,
+      "counters": []
+    },
+    {
+      "code": "SOA",
+      "name": "Statement of Account",
+      "enabled": true,
+      "counters": [
+        1,
+        2
+      ]
+    },
+    {
+      "code": "TP",
+      "name": "Tuition Payment",
+      "enabled": true,
+      "counters": [
+        1,
+        2
+      ]
+    }
+  ],
+  "read_only": "on",
+  "migrations": [
+    "20261016000100",
+    "20261016000200",
+    "20261016000300",
+    "20261016000400",
+    "20261016000500"
+  ],
+  "queue_days": [
+    {
+      "date": "2026-10-12",
+      "closed": true
+    },
+    {
+      "date": "2026-10-13",
+      "closed": true
+    },
+    {
+      "date": "2026-10-14",
+      "closed": true
+    },
+    {
+      "date": "2026-10-15",
+      "closed": true
+    },
+    {
+      "date": "2026-10-16",
+      "closed": true
+    },
+    {
+      "date": "2026-10-17",
+      "closed": true
+    },
+    {
+      "date": "2091-01-01",
+      "closed": true
+    }
+  ],
+  "rls_tables": 15,
+  "row_counts": {
+    "events": 57,
+    "tickets": 20,
+    "accounts": 39,
+    "requests": 69,
+    "admin_audits": 31
+  },
+  "local_today": "2026-10-16",
+  "publication": [
+    "queue_display.counter_state",
+    "queue_display.service_state"
+  ],
+  "inspected_at": "2026-10-16T10:09:40.443997+00:00",
+  "postgres_version": "17.11",
+  "historical_routing": [
+    {
+      "count": 1,
+      "event": "CALLED",
+      "counter": 1,
+      "service": "SOA"
+    },
+    {
+      "count": 1,
+      "event": "FORFEITED",
+      "counter": 1,
+      "service": "SOA"
+    },
+    {
+      "count": 4,
+      "event": "CALLED",
+      "counter": 1,
+      "service": "TP"
+    },
+    {
+      "count": 3,
+      "event": "SERVED",
+      "counter": 1,
+      "service": "TP"
+    },
+    {
+      "count": 1,
+      "event": "SKIPPED",
+      "counter": 1,
+      "service": "TP"
+    },
+    {
+      "count": 1,
+      "event": "CALLED",
+      "counter": 2,
+      "service": "TP"
+    },
+    {
+      "count": 1,
+      "event": "SERVED",
+      "counter": 2,
+      "service": "TP"
+    },
+    {
+      "count": 3,
+      "event": "CALLED",
+      "counter": 3,
+      "service": "REF"
+    },
+    {
+      "count": 1,
+      "event": "FORFEITED",
+      "counter": 3,
+      "service": "REF"
+    },
+    {
+      "count": 1,
+      "event": "SERVED",
+      "counter": 3,
+      "service": "REF"
+    },
+    {
+      "count": 1,
+      "event": "SKIPPED",
+      "counter": 3,
+      "service": "REF"
+    },
+    {
+      "count": 5,
+      "event": "CALLED",
+      "counter": 4,
+      "service": "ADJ"
+    },
+    {
+      "count": 1,
+      "event": "FORFEITED",
+      "counter": 4,
+      "service": "ADJ"
+    },
+    {
+      "count": 3,
+      "event": "SERVED",
+      "counter": 4,
+      "service": "ADJ"
+    },
+    {
+      "count": 1,
+      "event": "SKIPPED",
+      "counter": 4,
+      "service": "ADJ"
+    }
+  ],
+  "private_schema_anon": false,
+  "ticket_status_counts": {
+    "SERVED": 10,
+    "FORFEITED": 10
+  },
+  "counter_service_triggers": [],
+  "counter_service_constraints": [
+    {
+      "name": "counter_services_counter_id_fkey",
+      "definition": "FOREIGN KEY (counter_id) REFERENCES queue_private.counters(id)"
+    },
+    {
+      "name": "counter_services_pkey",
+      "definition": "PRIMARY KEY (counter_id, service_id)"
+    },
+    {
+      "name": "counter_services_service_id_fkey",
+      "definition": "FOREIGN KEY (service_id) REFERENCES queue_private.services(id)"
+    }
+  ],
+  "private_schema_authenticated": false,
+  "migration_files": {
+    "20261016000100_queue_tables.sql": "274141dbab99dbaad959f2343633ee0bd440b240a29b5664ca304e283934d7d7",
+    "20261016000200_queue_operations.sql": "65c943d4fea282c07e06bab6b759882f7fcec678ddf960869dd60a52db911883",
+    "20261016000300_queue_administration.sql": "7a4ad627112f0bc3109417bec237b13000e1c06002d536f7c9feab5261eb4883",
+    "20261016000400_queue_seed_security.sql": "95bd4918550dddae84672c148c6a616c9d12928b78097a82815a26a35146746e",
+    "20261016000500_queue_read_context.sql": "793a68b375d69044dc4900749867576b5c45a6b4173725191ffbaeb66a2dd31a"
+  },
+  "function_bodies_match_migrations": {
+    "queue_private.lock_actor": true,
+    "queue_private.replay": true,
+    "queue_private.refresh_display": true,
+    "queue_private.provision_account": true,
+    "queue_api.issue_ticket": true,
+    "queue_api.call_next": true,
+    "queue_api.finish_ticket": true,
+    "queue_api.my_tickets": true,
+    "queue_api.my_ticket_events": true,
+    "queue_private.bootstrap_admin": true,
+    "queue_api.manage_day": true,
+    "queue_api.set_account": true,
+    "queue_api.configure_counter": true,
+    "queue_api.configure_service": true,
+    "queue_api.staff_queue": true,
+    "queue_api.admin_configuration": true,
+    "queue_private.public_context_at": true,
+    "queue_display.public_queue_context": true,
+    "queue_api.my_context": true
+  }
+}

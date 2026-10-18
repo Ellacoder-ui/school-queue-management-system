@@ -1,0 +1,30 @@
+{
+  "checked_at": "2026-10-18T05:36:12.706564+00:00",
+  "result": "IN_PROGRESS_READ_ONLY_STOP_DIAGNOSIS",
+  "source_dump_or_restore_repeated": false,
+  "current_classifier": "FAIL",
+  "classifier_evidence": {
+    "result": "FAIL",
+    "unexpected_changes": [
+      "catalog [changed]",
+      "rows.\"realtime\".\"messages_2026_10_14\" [missing]",
+      "schema.columns.realtime.messages_2026_10_14:binary_payload [missing]",
+      "schema.columns.realtime.messages_2026_10_14:event [missing]",
+      "schema.columns.realtime.messages_2026_10_14:extension [missing]",
+      "schema.columns.realtime.messages_2026_10_14:id [missing]",
+      "schema.columns.realtime.messages_2026_10_14:inserted_at [missing]",
+      "schema.columns.realtime.messages_2026_10_14:payload [missing]",
+      "schema.columns.realtime.messages_2026_10_14:private [missing]",
+      "schema.columns.realtime.messages_2026_10_14:skip_broadcast [missing]",
+      "schema.columns.realtime.messages_2026_10_14:topic [missing]",
+      "schema.columns.realtime.messages_2026_10_14:updated_at [missing]",
+      "schema.constraints.realtime.messages_2026_10_14:messages_2026_10_14_pkey [missing]",
+      "schema.constraints.realtime.messages_2026_10_14:messages_payload_exclusive [missing]",
+      "schema.indexes.realtime.messages_2026_10_14_inserted_at_topic_idx [missing]",
+      "schema.indexes.realtime.messages_2026_10_14_pkey [missing]",
+      "schema.partitions.realtime.messages_2026_10_14 [missing]",
+      "schema.publication.supabase_realtime_messages_publication:realtime.messages_2026_10_14 [missing]",
+      "schema.relations.realtime.messages_2026_10_14 [missing]"
+    ]
+  }
+}

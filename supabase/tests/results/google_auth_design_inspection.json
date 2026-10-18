@@ -1,0 +1,178 @@
+{
+  "task": "Google Auth inspection and design only",
+  "checked_at_utc": "2026-10-16T17:05:32.923412+00:00",
+  "source_writes": false,
+  "auth_sessions_created": false,
+  "google_configured": false,
+  "hosted_supabase_contacted": false,
+  "result": "PASS",
+  "identity": {
+    "project": "school-queue-local",
+    "api": "http://127.0.0.1:54321",
+    "database_endpoint": "127.0.0.1:54322",
+    "server": {
+      "port": 5432,
+      "user": "postgres",
+      "version": "17.11",
+      "database": "postgres"
+    },
+    "docker": [
+      {
+        "container": "supabase_db_school-queue-local",
+        "image": "public.ecr.aws/supabase/postgres:17.11.0.004",
+        "networks": [
+          "supabase_network_school-queue-local"
+        ],
+        "volumes": [
+          "supabase_db_school-queue-local"
+        ],
+        "bindings": [
+          {
+            "HostIp": "0.0.0.0",
+            "HostPort": "54322"
+          },
+          {
+            "HostIp": "::",
+            "HostPort": "54322"
+          }
+        ]
+      },
+      {
+        "container": "supabase_kong_school-queue-local",
+        "image": "public.ecr.aws/supabase/kong:2.8.1",
+        "networks": [
+          "supabase_network_school-queue-local"
+        ],
+        "volumes": [],
+        "bindings": [
+          {
+            "HostIp": "0.0.0.0",
+            "HostPort": "54321"
+          },
+          {
+            "HostIp": "::",
+            "HostPort": "54321"
+          }
+        ]
+      }
+    ],
+    "migration_sha256": {
+      "20261016000100_queue_tables.sql": "274141dbab99dbaad959f2343633ee0bd440b240a29b5664ca304e283934d7d7",
+      "20261016000200_queue_operations.sql": "65c943d4fea282c07e06bab6b759882f7fcec678ddf960869dd60a52db911883",
+      "20261016000300_queue_administration.sql": "7a4ad627112f0bc3109417bec237b13000e1c06002d536f7c9feab5261eb4883",
+      "20261016000400_queue_seed_security.sql": "95bd4918550dddae84672c148c6a616c9d12928b78097a82815a26a35146746e",
+      "20261016000500_queue_read_context.sql": "793a68b375d69044dc4900749867576b5c45a6b4173725191ffbaeb66a2dd31a",
+      "20261016000600_fixed_counter_routing.sql": "9d854ab795e3ef3098fa1d3a05cb6541242d0c8e503a8ebee1acfe9df418137c"
+    }
+  },
+  "system_identifier": "7696959712798593061",
+  "state": {
+    "active": 0,
+    "counts": {
+      "days": 7,
+      "audits": 32,
+      "events": 57,
+      "tickets": 20,
+      "accounts": 39,
+      "counters": 5,
+      "requests": 69,
+      "services": 5
+    },
+    "routes": {
+      "1": [
+        "TP"
+      ],
+      "2": [
+        "SOA"
+      ],
+      "3": [
+        "PNEP"
+      ],
+      "4": [
+        "REF"
+      ],
+      "5": [
+        "ADJ"
+      ]
+    },
+    "versions": [
+      "20261016000100",
+      "20261016000200",
+      "20261016000300",
+      "20261016000400",
+      "20261016000500",
+      "20261016000600"
+    ],
+    "open_days": 0,
+    "rls_count": 15,
+    "assignments": [
+      {
+        "total": 1,
+        "counter": 1,
+        "eligible": 1
+      },
+      {
+        "total": 1,
+        "counter": 2,
+        "eligible": 1
+      },
+      {
+        "total": 0,
+        "counter": 3,
+        "eligible": 0
+      },
+      {
+        "total": 0,
+        "counter": 4,
+        "eligible": 0
+      },
+      {
+        "total": 2,
+        "counter": 5,
+        "eligible": 1
+      }
+    ],
+    "publication": [
+      "queue_display.counter_state",
+      "queue_display.service_state"
+    ],
+    "private_usage": false,
+    "current_day_closed": true
+  },
+  "auth_aggregates": {
+    "users": 39,
+    "admin_accounts": 6,
+    "bootstrap_audits": 0,
+    "missing_accounts": 0,
+    "identity_providers": {
+      "email": 26
+    },
+    "provisioning_trigger": "CREATE TRIGGER queue_account_created AFTER INSERT ON auth.users FOR EACH ROW EXECUTE FUNCTION queue_private.provision_account()"
+  },
+  "auth_nonsecret_settings": {
+    "GOTRUE_JWT_EXP": "3600",
+    "GOTRUE_DISABLE_SIGNUP": "false",
+    "GOTRUE_SITE_URL": "http://127.0.0.1:3000",
+    "GOTRUE_MAILER_AUTOCONFIRM": "true",
+    "GOTRUE_URI_ALLOW_LIST": "https://127.0.0.1:3000",
+    "GOTRUE_SECURITY_MANUAL_LINKING_ENABLED": "false",
+    "API_EXTERNAL_URL": "http://127.0.0.1:54321/auth/v1",
+    "GOTRUE_MFA_TOTP_VERIFY_ENABLED": "false",
+    "GOTRUE_EXTERNAL_EMAIL_ENABLED": "true",
+    "GOTRUE_EXTERNAL_ANONYMOUS_USERS_ENABLED": "false",
+    "GOTRUE_MFA_TOTP_ENROLL_ENABLED": "false"
+  },
+  "table_inventory_count": 69,
+  "source_matches_six_migration_postvalidation": true,
+  "read_only_before_after_equal": true,
+  "comparison_sections": [
+    "rows",
+    "catalog",
+    "schema",
+    "roles",
+    "sequences",
+    "state",
+    "additional_privileges"
+  ],
+  "migration_files_unchanged": true
+}

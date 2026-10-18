@@ -1,0 +1,898 @@
+{
+  "phase": "stopped-before-apply",
+  "result": "FAIL",
+  "identity": {
+    "project": "school-queue-local",
+    "api": "http://127.0.0.1:54321",
+    "database_endpoint": "127.0.0.1:54322",
+    "server": {
+      "port": 5432,
+      "user": "postgres",
+      "version": "17.11",
+      "database": "postgres"
+    },
+    "docker": [
+      {
+        "container": "supabase_db_school-queue-local",
+        "image": "public.ecr.aws/supabase/postgres:17.11.0.004",
+        "networks": [
+          "supabase_network_school-queue-local"
+        ],
+        "volumes": [
+          "supabase_db_school-queue-local"
+        ],
+        "bindings": [
+          {
+            "HostIp": "0.0.0.0",
+            "HostPort": "54322"
+          },
+          {
+            "HostIp": "::",
+            "HostPort": "54322"
+          }
+        ]
+      },
+      {
+        "container": "supabase_kong_school-queue-local",
+        "image": "public.ecr.aws/supabase/kong:2.8.1",
+        "networks": [
+          "supabase_network_school-queue-local"
+        ],
+        "volumes": [],
+        "bindings": [
+          {
+            "HostIp": "0.0.0.0",
+            "HostPort": "54321"
+          },
+          {
+            "HostIp": "::",
+            "HostPort": "54321"
+          }
+        ]
+      }
+    ],
+    "migration_sha256": {
+      "20261016000100_queue_tables.sql": "274141dbab99dbaad959f2343633ee0bd440b240a29b5664ca304e283934d7d7",
+      "20261016000200_queue_operations.sql": "65c943d4fea282c07e06bab6b759882f7fcec678ddf960869dd60a52db911883",
+      "20261016000300_queue_administration.sql": "7a4ad627112f0bc3109417bec237b13000e1c06002d536f7c9feab5261eb4883",
+      "20261016000400_queue_seed_security.sql": "95bd4918550dddae84672c148c6a616c9d12928b78097a82815a26a35146746e",
+      "20261016000500_queue_read_context.sql": "793a68b375d69044dc4900749867576b5c45a6b4173725191ffbaeb66a2dd31a",
+      "20261016000600_fixed_counter_routing.sql": "9d854ab795e3ef3098fa1d3a05cb6541242d0c8e503a8ebee1acfe9df418137c"
+    }
+  },
+  "preflight": {
+    "active": 0,
+    "counts": {
+      "days": 7,
+      "audits": 31,
+      "events": 57,
+      "tickets": 20,
+      "accounts": 39,
+      "counters": 5,
+      "requests": 69,
+      "services": 5
+    },
+    "routes": {
+      "1": [
+        "SOA",
+        "TP"
+      ],
+      "2": [
+        "SOA",
+        "TP"
+      ],
+      "3": [],
+      "4": [],
+      "5": []
+    },
+    "versions": [
+      "20261016000100",
+      "20261016000200",
+      "20261016000300",
+      "20261016000400",
+      "20261016000500"
+    ],
+    "open_days": 0,
+    "rls_count": 15,
+    "assignments": [
+      {
+        "total": 1,
+        "counter": 1,
+        "eligible": 1
+      },
+      {
+        "total": 1,
+        "counter": 2,
+        "eligible": 1
+      },
+      {
+        "total": 0,
+        "counter": 3,
+        "eligible": 0
+      },
+      {
+        "total": 0,
+        "counter": 4,
+        "eligible": 0
+      },
+      {
+        "total": 2,
+        "counter": 5,
+        "eligible": 1
+      }
+    ],
+    "publication": [
+      "queue_display.counter_state",
+      "queue_display.service_state"
+    ],
+    "private_usage": false,
+    "current_day_closed": true
+  },
+  "baseline_rows": {
+    "auth.users": [
+      "06b0d513bd1903ccb95cf057bde9febf",
+      "07772d31f98213e014fd79f42b3f1c31",
+      "0d9a3b6a362bc44f9c5fa436395eb8f4",
+      "11b2e2f9cd0583fe59d668348927ffc1",
+      "13bd78b05d2f54969cd35e8c8b4d49fe",
+      "159789d9d2f2d33e4d6cc2b9066162ac",
+      "30e696c237510d7d2d3c625d206e6d83",
+      "383448041749c2448c99b11defe24d6e",
+      "3a6c36279a4ec20ab71a7be91c1accca",
+      "4333abe8e532a4c6b4cbff88193772de",
+      "43f8ec31794d2e133538f4c1f0feb875",
+      "55d2d8316b60e5e051db45ab004a3b69",
+      "5714cd27b29c73c4827001f71fd2fc36",
+      "58f3cf620c25f0fee10aa3a0110bcecb",
+      "64f34792f5c49bb63112b901d8f45852",
+      "66bb87e76bc67fe80ce4cf2c03b66fe0",
+      "6985092b113be3db5c69aaa0a661ecf7",
+      "7635c9a19866275b6ef14cd7fcde0525",
+      "78758954a665abc0fc8b214f6ea748ac",
+      "7cb88d5a995c0073b0447add3b3d2c27",
+      "7d3aa749e88c7caededb96a69572953f",
+      "7f3a836b182a7b9a831bcb5e41ee0168",
+      "8cf7cbc29ffa049c6527d68793e051d7",
+      "969e34d1f91ec1ce93be06668f01c366",
+      "a404aa37cbfc56f8c15725d1639177d1",
+      "b1396b87f32d532a8e4bf1081a3eb66a",
+      "b4847b4f5fe5046a7b33e7fe63fa66a6",
+      "b82fb220c7b6db6f8cdd26d570954769",
+      "b89a68a8c36dcb69bee633db44fec85e",
+      "bda900e20ade7771b07b29da23e78490",
+      "c1bc3d9963c9c393efc626bfb4379e63",
+      "cc9c52e360910202916c5a8cd712be14",
+      "d78acd276289a5271aa274b3a9ca34b7",
+      "d9953e054346391e99b83a5921c9ca24",
+      "e1ea2314f9db263c6497befb102ef4f4",
+      "e7ce5fe2dad66ae08b46c2ee359acc54",
+      "f35c28af731a2e74390ba224a82c7b24",
+      "f40dd376af97bdb5e3324ae6d43d946a",
+      "fe76904a1ac3cbfbe730de5e58013d83"
+    ],
+    "auth.identities": [
+      "0202be2cbdf5780087be8eec31a90e69",
+      "1f1d2930b57063474964c7230c95e34e",
+      "28316b112560afbea1352800ca976181",
+      "3f32f36734a34cf3cb0d9447e9024f4e",
+      "41f6e52d58870952aeb2b526813a9433",
+      "4bcd09a0f606178dbe4e904efde65207",
+      "4c24aa75134590d87c3847566e4c30db",
+      "542a395af808969a51703a2d5be757cb",
+      "57ead7ddff7ab82ae94045464f95768f",
+      "662b9a474adfd5991bad093ea730bb47",
+      "715dcc027a6786b2047f33d89fed9375",
+      "7225938bd3710fd38f6068c0e263ee1b",
+      "77b2b3be186f81265207b2535f69df47",
+      "824839ddd7bf251c0cc767c32dae18b9",
+      "a8b0395efd3be5b642a399d60ff8b9be",
+      "b4ce895f68a60a5421c2da22c243072b",
+      "b86f2c003e69e7bc036eca96b7819f3f",
+      "c6b24ebaf92d4e4cc4cca3bf7f3f748b",
+      "c869b99685624bd29f7dc34e93db8db0",
+      "c99b40a641fd9c22c6798c301caa045b",
+      "cc135ecad9b1768463573b316edcba24",
+      "e6bcc22786cc058549ac9e82390541a3",
+      "e9a3b26c80a54d1f78cc0a4ebd91d87b",
+      "f593d5c963d5cb9e9b29212e18b2a2b1",
+      "f7d709c94c8eb8bc5abbab11ebe7af7d",
+      "f8deb9b5b09d39176cc478f9f764b93c"
+    ],
+    "queue_private.tickets": [
+      "169d03b3903d66467ea14ada46962c84",
+      "1e7befa32652c44caa87f7f41c4ba270",
+      "2dea9f9716df83c80e45102578878ac8",
+      "2e74283295449cc92502a749ddb3a1e7",
+      "32970d848c748d56ee9c4ba3e719f1ec",
+      "373a835a862e66d0f917c596635c2ede",
+      "62b47d99a9ba3eab9c98f1af0bf97f87",
+      "72803d67e8ad882a65cc09f495f4f6eb",
+      "859e3b95db1d7c95e282e50da1f33f1b",
+      "943956f8eb2a67117fc5446caea3ba5e",
+      "9ed6411169af174c177550ec9fd15a55",
+      "a1ba762b255c84170023bcb8ba874d26",
+      "a4b8c3db0522084a8f61cbb0c05a5995",
+      "aae040695144104bfbbe94caf7a5eaa4",
+      "ad8a0eecca583c98156289807001bc51",
+      "b1177f7d8ab94e34f33a949d39fbf4a1",
+      "b889a6a507ef63d25b575e816b891dc9",
+      "ba165816d0c195359f7515aab1cad572",
+      "d0759ed40bb7ff00abaa365acefede42",
+      "e17427c37a1630e6dd3a3d5ca23b87f5"
+    ],
+    "queue_private.accounts": [
+      "01e2f95de98a7d68b092c0eabab96fe2",
+      "027e8a35a01a3d0f463aa8c0980e9213",
+      "077cc98035b34d6cd9b58997f1b34e56",
+      "15d0365c542e0267eb7dec1156471ef5",
+      "23be9bab006d0e62c8b1681e570bc0c8",
+      "2542eb897dc11bb4d4a4996424dd64a2",
+      "2be0fd28237f25c770d4ceac72ee5f85",
+      "33bf0df1931a4baee2ed7ef4dbed2a4d",
+      "34eb953d48b158139821606b1337a3c4",
+      "37ef11cd6dcb0ca76038701c6d31dbf0",
+      "3910491ddacb92073d7464846d05d876",
+      "418945ed82e5c4a0c079f72d3fdfab06",
+      "4449d0a9f9b9859ce11d15145ee5f8a0",
+      "495ec3f2ca00b39b72da23cdcc0b757e",
+      "508f034090e7f49191c52c810848d4d0",
+      "541aefbb5aba689354a8ced7780e47df",
+      "56c64f25d297894bee73ed56dfe5ab59",
+      "5eb4eb3f2ec36c2285f08ccbf4f9cf8c",
+      "61a70d4b76178e273630d70b96ad5aa3",
+      "6a7b988418c1c3fd99fb0572443a7878",
+      "711d90588331a0a4597cb2ff9044279e",
+      "784a30bf322c0c3839cb3ead0a885e0f",
+      "80b7f38e97497fc40e978f78a5dd7ae7",
+      "9638c7be332ccba8c9ebceeb8f279a38",
+      "b3bf95e431e28440ae87652e157de907",
+      "b6d3fef7e96166bfe644f6b7f9ae1084",
+      "b8ddca297c97c76e94591e805a7e978f",
+      "b97f989c688769a676b5d6a134852e3c",
+      "cb08087ad35635abc6416e4c72af4741",
+      "d1f9de2bab5ecb93e61f864cbed47441",
+      "d2fa742ff1c569801e2abc50119c4e57",
+      "d47925481b580deb25ac09ae3a9497c3",
+      "d750299eedca101497d9357cf5350bc8",
+      "d767f00a0b0c784a3ec11f8ff6772e7f",
+      "d86dcce95d275df5ba72b9789defec69",
+      "d8e509bdb1774204c086397ec380ae81",
+      "d91440340dbea22a7bf4216085026e0a",
+      "f574ee12f8689c3a7e6d74e6b33d57f0",
+      "f983cf04ba7db1f8a233d766844baaac"
+    ],
+    "queue_private.counters": [
+      "3bccab773ef359444573e2113d774403",
+      "6a85e5fcee7655c817168d57e8ed0c9c",
+      "9574a23decbf84f4484d0e8f7658dbda",
+      "cb99ee639030bc64e5010afef8612345",
+      "fa7320e34272712c86db4a7ec102566d"
+    ],
+    "queue_private.services": [
+      "3b5783200f78434925a6d11c8c8c2f24",
+      "5172460bd8a2f97980c4556df126941d",
+      "5d40c940e88fce31cb24dc68d184d664",
+      "b1be18cc442cf3d5ccde0a6daf6905f5",
+      "e5e85b7276df68070a73c1f9d81b4e3c"
+    ],
+    "queue_private.settings": [
+      "3fef269d28c22628dcdb11ce2c6d3109"
+    ],
+    "queue_private.queue_days": [
+      "057c15c603094e424d4d629ffd7bb6c7",
+      "1347240e1789b2ef456a7b731ddc65ca",
+      "237ce99a0fad1f8812a9bd1df9c56b3b",
+      "3d2fbe96fc13dcff8273c544097376e6",
+      "7c533def535ed77019f1a386d0a2360d",
+      "c0401c3a8bddd27a4fd8867a14607874",
+      "cb7999d34013bbf4c15e158b4e26a8e9"
+    ],
+    "queue_display.counter_state": [
+      "0071720fb786268362f81ceee73a8de5",
+      "9e3ba7302e36a3223f6bd5798574d500",
+      "bdc9ecc9f609a868014f03fc703805c8",
+      "d0b15f0172b02b3eee5e579ee804a335",
+      "e25adfb26670fc022fa9e21326821d0f"
+    ],
+    "queue_display.service_state": [],
+    "queue_private.ticket_events": [
+      "0180c64b42a98e2b343590c5d8544936",
+      "01946e5de3fec76da837c98d2859e755",
+      "01c293169f3948f3f7d5919eac4feaf3",
+      "06a3194a85ddf346dafea1c3ab7cc9bb",
+      "0bb42672e06de011a7897fed0c45ce9b",
+      "0c41845f05a4c9cec98ca5a4674529d5",
+      "13388aab31110828ee7ea938d3eeb1f5",
+      "145ce4c16e0744d9e6ef632bf126ed03",
+      "1892ca51a617a3d60bf4349661f0e4cc",
+      "1ccdda419606a89e9f2bca7e24f0cdce",
+      "1d736b56d04b8db24b80b83ea2ae673a",
+      "20310e7a289d7a0220cd5a0de9ad9fb2",
+      "226efc1fea00e7b25328660531b4d4b3",
+      "24c36b9ebf8cc55b00b44b259a719b67",
+      "24d1c2ce601f7e4269d3873e72d48c2b",
+      "261c5d0a1cfda8242d84b1a5295ab4e0",
+      "29e1f3eb86c924a378c5d1e370ce23a8",
+      "2acd5ee2b290a01d280caf269b2af062",
+      "2d679cd46c24e61fc728111152c05016",
+      "317a0783753d57af29847cae73e519ff",
+      "33050b1d7c13c28c3767fc1bd64715ad",
+      "46e676b852cfde20e3c1a3e60cf249a4",
+      "494f9506b2d8cfd6ce0f31cd0f9fba0d",
+      "50ed3de8db2a61fe6d45bb3bbd45bad6",
+      "52ce437435888de9a086f8f1a4291a50",
+      "5530a5e2e11099409a39ecd02e9bd1fd",
+      "5612263195802f3adbc0f73d2ed87c3e",
+      "5bda8612521befcf0255232a26b72ebe",
+      "5d57a02ac15b2315868e7683ba940ad5",
+      "60d14c4036709dff23d2e0a83ec0fa7a",
+      "7230e2fca59ed9fc160e95715d235c46",
+      "723adc2efca9b8e52dbf25d65b7e260b",
+      "74a1c24d3341367225e2c2baf4cb0be7",
+      "7971a57bbca47e688b59e469403dd6f2",
+      "8297b84db76cf56308fb6f71d267ce7d",
+      "846727b877e17e8abe5029a06558907a",
+      "87351cc40e54c9b5400b8517b9dc19c0",
+      "8843e94ebc8e1b0dcb780645ddf96c6e",
+      "8a0ae6c71d18b56ed09b5e642b951a44",
+      "8ba10746646e2a1b31a21a36e5adc761",
+      "90cfe3ebad005f0257bea974527941b7",
+      "a076f246a465529d3698b5013da22718",
+      "a8af134d98f8a7aca150778764880ce2",
+      "aaaf8b471851dc04b3af5c4c1cc4aa5a",
+      "b722a577990df22ad5cd0c5c6e2bf4aa",
+      "bb8d98357a898e7947d2bc53cd34aee2",
+      "bd4443223bbccfe6b2ce6f0a9b044c09",
+      "c48b2012233b425ff93a291d25b292c9",
+      "cac17b9defe140ba4708b2e066dee0a1",
+      "cef1c7ecd806bf8ad7277c1b76c42271",
+      "e25114c78664a3c16cd82d9b5876a835",
+      "e2d20a3bf5e69c61dcb6e5590b20bb36",
+      "eca9d4dced95825903157622ff307912",
+      "ed926d6145148ee621fd79fc3db7e41a",
+      "f5f55bebf29e57ed45e14c439e91a625",
+      "f826e59ebb77ba12f85d4831619692c2",
+      "fe8f5b75868f23c21e499c03f1f9526a"
+    ],
+    "queue_private.counter_services": [
+      "69dd4568b14bbda307234a657f1acf26",
+      "93ffb0aac80f2171bfe2887c89e6345a",
+      "bd8c4edee0d702f0ef6eb1e36f75df0e",
+      "cfd55d697be51530e75fb597c6ffc4a6"
+    ],
+    "queue_private.student_profiles": [
+      "7a8f6c588d84c0a6a116e7a54d9ece11",
+      "b731f5e4b23d91f36c7ac11b997852c9"
+    ],
+    "queue_private.service_day_state": [
+      "249ac35bb164ad857ea22228ad81d303",
+      "3e75e75301e987d846cb6f543c75a30c",
+      "a7a44b32f7db735d2de0f5ae3d2febb6",
+      "ef3a7a8b95c4d3236bebe6e30aa2a15d",
+      "f56cfaf363c4406e4a0200e23fec3f97"
+    ],
+    "queue_private.admin_audit_events": [
+      "016c3c0574da10e0216a3a6ac471e527",
+      "169e72ad03bdefff647d7d4b1d25c36a",
+      "1cc45461033f9d388d2800d8d904965a",
+      "1f37978210f9acd19108f112d7e5b7ef",
+      "22b052aa3e7fde50860d32c4fabfa138",
+      "2e2317fa6c24a3abcd7ed6e322c46228",
+      "32c60de5c36c5d02df487af770d10088",
+      "3d6e972fbe47a6b12604cbd28e35d13a",
+      "476f82f2f2bae72e9ba51f6087ea14f7",
+      "48124cb26bdbd3d9f51c479e5cb06b81",
+      "4b58064846a8e1890c085258a2d5b5f5",
+      "54fa5967ce12191ad1ed5a6a33651da1",
+      "6b887ac1b70e6650a0d4b4fed21d7439",
+      "6bd78c5cd21ab37b0bf6fc618d62c391",
+      "7c697222237d161f4d8d1eea8f324de6",
+      "8189b442244fe1fa3605720f4b68739a",
+      "831dc165efdfe5d211fc4765458ea6f6",
+      "84f83f6396f4860dd6744a49151782cb",
+      "926da174af83d5889fd37ef8ac5c10f5",
+      "9683702ff8e70efd8a48217b21be5eb7",
+      "968d955a290b1534a209edee65fda324",
+      "9c21027a0f733c29e745992995637838",
+      "a0ed81ce0cdbc0620312f8c73403b8cc",
+      "b2da4858dae4b09728e26f2456ff9685",
+      "b942f4dcbdfb05efdb2f07aaf406a669",
+      "be047a98f198bfb4bf52bf764a15cdb7",
+      "c586468c00604e7a937164527e5c64a6",
+      "c7a5c42d142beff17526c582971924f4",
+      "dd39dda86eec69312be0facf04059fda",
+      "f1ae83e677419dbbf1dd220b1e7c4dfc",
+      "fc22fefd0da56a93add86828f2ce1961"
+    ],
+    "queue_private.operation_requests": [
+      "00bab1018659f2fed500e7bf57acd2bc",
+      "093baf508e36751cc822bbcf3e7cbbb6",
+      "0a113c612de21f2f78e43797533773c8",
+      "0cab6abe0168a980b59a138d17b13352",
+      "0d91e88f3bce072d1738c0344d1a46e0",
+      "0e6d920a216eaa931109ad0513b4c540",
+      "153100d11f0f2b9344557e9733f1b407",
+      "1a58bae38e655f6cf570373a8b1d2317",
+      "1c92c4d0831ca7df88371e66d64032ec",
+      "1e3014200d02f2f34235b7d4831820f0",
+      "1f0478f4b12d3bc1b75a25fa6e860708",
+      "223ac498725f7fe5edf71edd387bdcc9",
+      "2df64c06076e7db2a6bb877ee9dae7d1",
+      "2e0cd20ca00e42eab3a7eb9105c93927",
+      "31e69d4f62d6dcee62f08bb0226607b3",
+      "36dc6447e1c16ecd76e8335089d045ef",
+      "3e9c5f8a9890e620c2cb5364428a59dc",
+      "4050892969f36a383f71566fbcd835c8",
+      "40930df1ec703f40977690bf9b13255f",
+      "431cecd425947e8a155b3de7681561b0",
+      "43f8c41a1873913110903309ab5c4fe6",
+      "461ab0610770aae17c86f1caff6059a7",
+      "4850e09f35d8f9592cc03386367b999a",
+      "4c87ed7d3fa37bd238080992462218f9",
+      "4cb234a5dbe3b575fe8ffd67f7d61331",
+      "56e0266441e7ae72178525c73d42338d",
+      "57b7a52d3ec81f33f183526ba12edc73",
+      "58275dc9a35c4324c2bf897533be8317",
+      "5a89415fb601d6470bcb36a381a679d7",
+      "62b8bdbfb0e3580353a0b039e1f2c8d3",
+      "6900605b94c82924275a31472f346309",
+      "6a2daaff882516122269d096c22e1d67",
+      "6fa50102deb0d85bbd0bb67c61fbebda",
+      "7095359deea99243d70084d805a37ce3",
+      "72d76871ee9ed6d50a6c094d4de4dd85",
+      "76e74f3774d602b8a442e1c58e558740",
+      "8e3aa3f5b2869fd26563c04b2f837a43",
+      "90e879d60d7df6be43e02b32563bedea",
+      "933029d37f5b88d33b61fd025931d745",
+      "941e0e014e370e2e1d2625ae903e6120",
+      "970190e2a9d0b2a2044c4ec4e06f814f",
+      "97e2e2db326ac3934dd597a0ba8cee50",
+      "99bd5b4488ac9bcbe518a4ab63b41570",
+      "9d28a0920feae451dadb0f370bf72155",
+      "a6d9241456cb52400805f59a1542801d",
+      "aaaee03048ecd144dd37b0fd6d4975de",
+      "aee0d9090550eb3021fbea81931b1182",
+      "b02f5554c24197fa07ea8297c9daab73",
+      "b1d506826d640b50630614adb2c4fc93",
+      "b45ce2669570ad56611a5a3186b777fe",
+      "b7ca3f19e82b8aee4d5fb8c53bf81978",
+      "ba3b5a2b72e0f6c584094ad2264ff844",
+      "bb9bfd7a639f88043f80276f06ec524b",
+      "be6f8862395c0bb60fde33576eb23a51",
+      "c2a030a7ec317beb5150cda43ea57bcf",
+      "c2c0e94cb2d1be1c405dc33fc6692c94",
+      "c5fb4ab875593750e17a122d31ebfd8b",
+      "cd60f3e7fbb71eec44da19198bf0a19e",
+      "cec05e00a080adee54837e0c7dae0b43",
+      "ceda714b629942dba3d311cb83b830b3",
+      "d279a2848f9069959aa792f218c72550",
+      "d2d8ea44a8038606f18e952d0d33f120",
+      "d4ac0267748add5923d26eed16a2c14b",
+      "e1fa7ce4fcd39b600b4810ac93d518d2",
+      "ea63d8397290cf2ae5434b30c1ea2875",
+      "fa6b0861ef8d3f6dc3a63d9b6795e578",
+      "fa931d6d51ceb18426183aa820686870",
+      "fbf896d1bab3b7379489b5d225cfa2f5",
+      "ff27a60fd09547f33cb1ec1871eaa92c"
+    ],
+    "queue_private.staff_counter_assignments": [
+      "4315c45c62cef26f2dcea1650978c62e",
+      "4a772edfe55b9587591e5ae5d10eaecf",
+      "8e0aa6f277bcd1e09b9b13e6dd2250a9",
+      "f452e4edeb6492a022360976d368fc9d"
+    ]
+  },
+  "baseline_security": {
+    "tables": {
+      "queue_private.tickets": {
+        "acl": "{postgres=arwdDxtm/postgres}",
+        "rls": true,
+        "owner": "postgres",
+        "force_rls": false
+      },
+      "queue_private.accounts": {
+        "acl": "{postgres=arwdDxtm/postgres}",
+        "rls": true,
+        "owner": "postgres",
+        "force_rls": false
+      },
+      "queue_private.counters": {
+        "acl": "{postgres=arwdDxtm/postgres}",
+        "rls": true,
+        "owner": "postgres",
+        "force_rls": false
+      },
+      "queue_private.services": {
+        "acl": "{postgres=arwdDxtm/postgres}",
+        "rls": true,
+        "owner": "postgres",
+        "force_rls": false
+      },
+      "queue_private.settings": {
+        "acl": "{postgres=arwdDxtm/postgres}",
+        "rls": true,
+        "owner": "postgres",
+        "force_rls": false
+      },
+      "queue_private.queue_days": {
+        "acl": "{postgres=arwdDxtm/postgres}",
+        "rls": true,
+        "owner": "postgres",
+        "force_rls": false
+      },
+      "queue_display.counter_state": {
+        "acl": "{postgres=arwdDxtm/postgres,anon=r/postgres,authenticated=r/postgres}",
+        "rls": true,
+        "owner": "postgres",
+        "force_rls": false
+      },
+      "queue_display.service_state": {
+        "acl": "{postgres=arwdDxtm/postgres,anon=r/postgres,authenticated=r/postgres}",
+        "rls": true,
+        "owner": "postgres",
+        "force_rls": false
+      },
+      "queue_private.ticket_events": {
+        "acl": "{postgres=arwdDxtm/postgres}",
+        "rls": true,
+        "owner": "postgres",
+        "force_rls": false
+      },
+      "queue_private.counter_services": {
+        "acl": "{postgres=arwdDxtm/postgres}",
+        "rls": true,
+        "owner": "postgres",
+        "force_rls": false
+      },
+      "queue_private.student_profiles": {
+        "acl": "{postgres=arwdDxtm/postgres}",
+        "rls": true,
+        "owner": "postgres",
+        "force_rls": false
+      },
+      "queue_private.service_day_state": {
+        "acl": "{postgres=arwdDxtm/postgres}",
+        "rls": true,
+        "owner": "postgres",
+        "force_rls": false
+      },
+      "queue_private.admin_audit_events": {
+        "acl": "{postgres=arwdDxtm/postgres}",
+        "rls": true,
+        "owner": "postgres",
+        "force_rls": false
+      },
+      "queue_private.operation_requests": {
+        "acl": "{postgres=arwdDxtm/postgres}",
+        "rls": true,
+        "owner": "postgres",
+        "force_rls": false
+      },
+      "queue_private.staff_counter_assignments": {
+        "acl": "{postgres=arwdDxtm/postgres}",
+        "rls": true,
+        "owner": "postgres",
+        "force_rls": false
+      }
+    },
+    "schemas": {
+      "queue_api": {
+        "acl": "{postgres=UC/postgres,authenticated=U/postgres}",
+        "owner": "postgres"
+      },
+      "queue_display": {
+        "acl": "{postgres=UC/postgres,anon=U/postgres,authenticated=U/postgres}",
+        "owner": "postgres"
+      },
+      "queue_private": {
+        "acl": "{postgres=UC/postgres}",
+        "owner": "postgres"
+      }
+    },
+    "defaults": [],
+    "policies": [
+      {
+        "cmd": "SELECT",
+        "qual": "true",
+        "roles": [
+          "anon",
+          "authenticated"
+        ],
+        "tablename": "counter_state",
+        "permissive": "PERMISSIVE",
+        "policyname": "public_counter_read",
+        "schemaname": "queue_display",
+        "with_check": null
+      },
+      {
+        "cmd": "SELECT",
+        "qual": "true",
+        "roles": [
+          "anon",
+          "authenticated"
+        ],
+        "tablename": "service_state",
+        "permissive": "PERMISSIVE",
+        "policyname": "public_service_read",
+        "schemaname": "queue_display",
+        "with_check": null
+      }
+    ],
+    "functions": {
+      "queue_api.call_next": {
+        "acl": "{postgres=X/postgres,authenticated=X/postgres}",
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definer": true,
+        "arguments": "p_counter uuid, p_service text, p_request_key uuid",
+        "body_hash": "455a138296cbdf325abdaacc5eea8f07"
+      },
+      "queue_api.manage_day": {
+        "acl": "{postgres=X/postgres,authenticated=X/postgres}",
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definer": true,
+        "arguments": "p_action text, p_date date, p_request_key uuid",
+        "body_hash": "0cf54c4c1328b110f6ef548df3fa1c5e"
+      },
+      "queue_api.my_context": {
+        "acl": "{postgres=X/postgres,authenticated=X/postgres}",
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definer": true,
+        "arguments": "",
+        "body_hash": "bc9c0721b385281dac961bb702f76638"
+      },
+      "queue_api.my_tickets": {
+        "acl": "{postgres=X/postgres,authenticated=X/postgres}",
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definer": true,
+        "arguments": "",
+        "body_hash": "1c2aea0bac8bad63829c030805141d5b"
+      },
+      "queue_private.replay": {
+        "acl": "{postgres=X/postgres}",
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definer": false,
+        "arguments": "p_actor uuid, p_key uuid, p_op text, p_args jsonb",
+        "body_hash": "ad0ca02d7a60857c4f38a0655ab47fc0"
+      },
+      "queue_api.set_account": {
+        "acl": "{postgres=X/postgres,authenticated=X/postgres}",
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definer": true,
+        "arguments": "p_user uuid, p_role text, p_enabled boolean, p_request_key uuid",
+        "body_hash": "f7eec84c87b272c6088e409f32ae0547"
+      },
+      "queue_api.staff_queue": {
+        "acl": "{postgres=X/postgres,authenticated=X/postgres}",
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definer": true,
+        "arguments": "",
+        "body_hash": "2bce39d1dbf697748e05240ba5a22eb9"
+      },
+      "queue_api.issue_ticket": {
+        "acl": "{postgres=X/postgres,authenticated=X/postgres}",
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definer": true,
+        "arguments": "p_service text, p_request_key uuid",
+        "body_hash": "91e0a92562fe02ffc6d16c0680886251"
+      },
+      "queue_api.finish_ticket": {
+        "acl": "{postgres=X/postgres,authenticated=X/postgres}",
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definer": true,
+        "arguments": "p_ticket uuid, p_action text, p_request_key uuid",
+        "body_hash": "9bf0f89a660d804e358c13a618b6939e"
+      },
+      "queue_private.lock_actor": {
+        "acl": "{postgres=X/postgres}",
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definer": true,
+        "arguments": "",
+        "body_hash": "edc455273c81ff6aeb8d9cca20416719"
+      },
+      "queue_api.my_ticket_events": {
+        "acl": "{postgres=X/postgres,authenticated=X/postgres}",
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definer": true,
+        "arguments": "p_ticket uuid",
+        "body_hash": "4bd03596566ea3068932dd88996a199d"
+      },
+      "queue_api.configure_counter": {
+        "acl": "{postgres=X/postgres,authenticated=X/postgres}",
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definer": true,
+        "arguments": "p_counter uuid, p_open boolean, p_services text[], p_cashiers uuid[], p_request_key uuid",
+        "body_hash": "2feec8db4cf135ea2d6587d79ed958af"
+      },
+      "queue_api.configure_service": {
+        "acl": "{postgres=X/postgres,authenticated=X/postgres}",
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definer": true,
+        "arguments": "p_code text, p_name text, p_enabled boolean, p_request_key uuid",
+        "body_hash": "65eeb5c0d9f77663a8c32b210d808eab"
+      },
+      "queue_api.admin_configuration": {
+        "acl": "{postgres=X/postgres,authenticated=X/postgres}",
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definer": true,
+        "arguments": "",
+        "body_hash": "601725813e259acd7c91241bb83b6e7d"
+      },
+      "queue_private.bootstrap_admin": {
+        "acl": "{postgres=X/postgres}",
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definer": true,
+        "arguments": "p_user uuid",
+        "body_hash": "aba380e8e936cd997064cc52ea33d39f"
+      },
+      "queue_private.refresh_display": {
+        "acl": "{postgres=X/postgres}",
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definer": false,
+        "arguments": "",
+        "body_hash": "a16aa0cb0606d618773540e373740cdb"
+      },
+      "queue_private.provision_account": {
+        "acl": "{postgres=X/postgres}",
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definer": true,
+        "arguments": "",
+        "body_hash": "77f862276ebfb9904f4bb6373f1123a5"
+      },
+      "queue_private.public_context_at": {
+        "acl": "{postgres=X/postgres}",
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definer": false,
+        "arguments": "p_instant timestamp with time zone",
+        "body_hash": "2a9b221278fc0c2a5b3d1181b5f337ca"
+      },
+      "queue_display.public_queue_context": {
+        "acl": "{postgres=X/postgres,anon=X/postgres,authenticated=X/postgres}",
+        "owner": "postgres",
+        "config": [
+          "search_path=\"\""
+        ],
+        "definer": true,
+        "arguments": "",
+        "body_hash": "ea30cd47b54ae3916465228c120df20f"
+      }
+    }
+  },
+  "pending": [
+    "20261016000600"
+  ],
+  "preflight_passed": true,
+  "migration_applied": false,
+  "backup_failure": {
+    "table_count": 69,
+    "json_constructor_arguments": 138,
+    "read_only_reproduction_exit": 3,
+    "sqlstates": [
+      "54023"
+    ],
+    "archive_files": [],
+    "source_rows_and_security_unchanged": true,
+    "recoverability_verified": false
+  },
+  "final_state": {
+    "active": 0,
+    "counts": {
+      "days": 7,
+      "audits": 31,
+      "events": 57,
+      "tickets": 20,
+      "accounts": 39,
+      "counters": 5,
+      "requests": 69,
+      "services": 5
+    },
+    "routes": {
+      "1": [
+        "SOA",
+        "TP"
+      ],
+      "2": [
+        "SOA",
+        "TP"
+      ],
+      "3": [],
+      "4": [],
+      "5": []
+    },
+    "versions": [
+      "20261016000100",
+      "20261016000200",
+      "20261016000300",
+      "20261016000400",
+      "20261016000500"
+    ],
+    "open_days": 0,
+    "rls_count": 15,
+    "assignments": [
+      {
+        "total": 1,
+        "counter": 1,
+        "eligible": 1
+      },
+      {
+        "total": 1,
+        "counter": 2,
+        "eligible": 1
+      },
+      {
+        "total": 0,
+        "counter": 3,
+        "eligible": 0
+      },
+      {
+        "total": 0,
+        "counter": 4,
+        "eligible": 0
+      },
+      {
+        "total": 2,
+        "counter": 5,
+        "eligible": 1
+      }
+    ],
+    "publication": [
+      "queue_display.counter_state",
+      "queue_display.service_state"
+    ],
+    "private_usage": false,
+    "current_day_closed": true
+  }
+}

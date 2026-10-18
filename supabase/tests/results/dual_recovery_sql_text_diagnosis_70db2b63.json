@@ -1,0 +1,16 @@
+{
+  "result": "READ_ONLY_STDOUT_TEXT_TRANSLATION_PROVEN",
+  "checked_at": "2026-10-18T05:31:25.922915+00:00",
+  "failed_run": "8fa0e0c7",
+  "failed_evidence_sha256": "fea35fefd265a3973386e9e22558a38c1b450f3c3fe835d48b28739c76beaa0d",
+  "source_function_definition_hashes_match_snapshot": true,
+  "multiline_application_bodies": 23,
+  "exact_source_body_in_raw_stdout": 0,
+  "crt_expanded_source_body_in_raw_stdout": 23,
+  "exact_source_body_after_text_decoding": 23,
+  "raw_restore_sql_sha256": "301885b5a2052bcb441a8568ccf227c0a2deec2ef05e8bb2cf5d68e9f0226bd3",
+  "decoded_restore_sql_sha256": "fc6701b45efd75f8b67fb0243dfd990b73776fadffa690f7a39b32bd74096ae5",
+  "archived_binary_or_source_data_changed": false,
+  "new_dump_restore_or_service_operation": false,
+  "original_failure_still_failed": true
+}

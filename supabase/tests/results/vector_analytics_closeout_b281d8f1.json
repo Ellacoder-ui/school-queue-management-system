@@ -1,0 +1,47 @@
+{
+  "run_id": "b281d8f1",
+  "completed_at": "2026-10-18T04:32:11.129918+00:00",
+  "result": "REVIEW_COMPLETE_FINAL_READINESS_BLOCKED",
+  "final_strict_70_table_prerequisite": "FAIL_UNCHANGED",
+  "independent_existing_realtime_classifier": "PASS_71_TABLES",
+  "report_sha256": "7eb46e5f1fad4ebf7c500eda77b9942a60aefa30fc9a33cd083e8ec033302670",
+  "evidence_sha256": {
+    "vector_analytics_review_377dcd35.json": "b6fb3073d57dd07735ddfb442393713dfa8d07f21da7183d509ac79b971ab642",
+    "vector_daemon_readonly_probe_7646b570.json": "af72284359bdd8b6d9c6f58d771192ddb1a8bbd118317afe67cffd2f8b6f31dd",
+    "vector_analytics_assessment_3839691a.json": "ac501fcc16e5fd59717f135c4e37d0b7503b051fc5d7ecf14fb90c23ff4b44ee",
+    "vector_analytics_stopped_diagnosis_f9a8d09f.json": "786906f53b4683ab18009974aed0a0f41a5335b23da766ef4c1f98e7bd8ef85c",
+    "vector_analytics_source_review_4120e526.json": "96f6aafd0d5e924768ab0d37023014643f0cda79e56ab704bcf957406ba3ecac"
+  },
+  "current_new_code_sha256": {
+    "scripts/vectorRetainedReview.mjs": "a01f8060438d2221027b2484148bbc45f44380e240581b0074616a08e2f5fd8b",
+    "tests/security/review_retained_vector.mjs": "8bbca75ce5d8ec3fd8f63c3b1154b8a7788ebcc1bca87b02e354d0681eefed79",
+    "tests/security/vectorRetainedReview.unit.mjs": "67e14dcdf47dae687f6966f6120058030ebf8cf25166b0339dfd5baa30c87b77",
+    "supabase/tests/inspect_analytics_recovery.py": "f3a674af12f3a4f52bfcd11a455b510938270fef18a3da2dad2920e6547a0cf1",
+    "supabase/tests/test_analytics_recovery_review.py": "59a47c1271af5bcc7d6b67d90b90527a54140967d14dee1a954d8f168e75fe55",
+    "supabase/tests/probe_vector_daemon_readonly.py": "9914504b31b4806929c6325e9adadb6dcd9beb7c419d4a587146de1a0c10c872",
+    "tests/security/run_vector_analytics_review.py": "c87c06ba954ade949bb30ef049f84cde4cf2c72750e7ac763615b4831bb99609",
+    "supabase/tests/diagnose_analytics_review_stop.py": "3183de2e35b8e94914e1ee1a5ab00bbc7109a3a77150e957dd81cd3ead8c782a"
+  },
+  "verification": {
+    "passing_offline_methods": 38,
+    "passing_synthetic_windows_engine_checks": 24,
+    "failed_methods": 0,
+    "failed_later_strict_prerequisite": 1,
+    "fixed_two_get_socket_probe": "PASS",
+    "python_syntax": "PASS_5_FILES",
+    "new_file_whitespace": "PASS",
+    "unchanged_rehearsal_core_and_google_helper_hashes": true
+  },
+  "late_review_changes_to_new_files_only": [
+    "supabase/tests/inspect_analytics_recovery.py",
+    "supabase/tests/test_analytics_recovery_review.py",
+    "tests/security/run_vector_analytics_review.py"
+  ],
+  "late_changes_validation": "Twenty Node and seven Python methods passed before the stopped run; stronger project discovery passed read-only in f9a8d09f. Existing eleven core and twenty-four synthetic cases were not rerun after stop.",
+  "retained_repair_locked": true,
+  "google_activation_locked": true,
+  "new_retained_backup_or_restore": false,
+  "retained_service_mutation": false,
+  "google_credential_contents_accessed": false,
+  "next_task": "Separately approved _supabase recovery bundle plus actual isolated restore and current 71-table postgres recovery/preflight inventory review"
+}

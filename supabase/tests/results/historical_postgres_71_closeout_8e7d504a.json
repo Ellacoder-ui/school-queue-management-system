@@ -1,0 +1,15 @@
+{
+  "result": "PASS_HISTORICAL_ONLY_LIVE_PRUNING_FAIL_RETAINED",
+  "closed_at": "2026-10-18T06:23:32.185804+00:00",
+  "verification_run": "8543cd32",
+  "evidence_sha256": "9247624d3091f3a36a4c4f7085c77f74ff89b9b514a7027d4148966e5910bf01",
+  "report_code_sha256": {
+    "supabase/HISTORICAL_POSTGRES_71_TABLE_RESTORE_REPORT.md": "08a4d8d2e15ecc5221277dae3f46b153cbf0f7ce57344af655a7b6f2d3eddb90",
+    "supabase/tests/restore_historical_postgres_71.py": "c252eda2b956c807a0ca01de40c08620df63d798e45c38717264f2fc790cd62d",
+    "supabase/tests/test_historical_postgres_71.py": "24def3f50322b5bb116262c22b992a3eca830fd9f705e60a89fb72bb7b8b0247"
+  },
+  "syntax_links_whitespace_evidence_consistency": "PASS",
+  "current_inventory_recovery_prerequisites_satisfied": false,
+  "analytics_recovery_authorized": false,
+  "retained_execution_authorized": false
+}

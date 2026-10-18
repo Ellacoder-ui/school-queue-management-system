@@ -1,0 +1,53 @@
+{
+  "matrix": {
+    "1": "TP",
+    "2": "SOA",
+    "3": "PNEP",
+    "4": "REF",
+    "5": "ADJ"
+  },
+  "migrations": [
+    "20261016000100",
+    "20261016000200",
+    "20261016000300",
+    "20261016000400",
+    "20261016000500",
+    "20261016000600"
+  ],
+  "rls_tables": 15,
+  "publication": [
+    "queue_display.counter_state",
+    "queue_display.service_state"
+  ],
+  "active_tickets": 0,
+  "quota_violations": 0,
+  "duplicate_numbers": 0,
+  "project": "sq-routing-fresh-b558edf3",
+  "function_bodies_match": {
+    "queue_private.lock_actor": true,
+    "queue_private.replay": true,
+    "queue_private.refresh_display": true,
+    "queue_private.provision_account": true,
+    "queue_api.issue_ticket": true,
+    "queue_api.call_next": true,
+    "queue_api.finish_ticket": true,
+    "queue_api.my_tickets": true,
+    "queue_api.my_ticket_events": true,
+    "queue_private.bootstrap_admin": true,
+    "queue_api.manage_day": true,
+    "queue_api.set_account": true,
+    "queue_api.configure_counter": true,
+    "queue_api.configure_service": true,
+    "queue_api.staff_queue": true,
+    "queue_api.admin_configuration": true,
+    "queue_private.public_context_at": true,
+    "queue_display.public_queue_context": true,
+    "queue_api.my_context": true,
+    "queue_private.fixed_service_code": true,
+    "queue_private.assert_fixed_routing": true,
+    "queue_private.lock_fixed_routing_statement": true,
+    "queue_private.check_fixed_routing_trigger": true
+  },
+  "commit_time_rejection_rolled_back": true,
+  "isolated_private_key_bundle_scan": "PASS"
+}

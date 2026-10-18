@@ -1,0 +1,176 @@
+{
+  "run": "ac079a5b",
+  "target": "127.0.0.1:54321 / 127.0.0.1:54322",
+  "checks": [
+    {
+      "name": "Catalog: RLS, grants and publication exclude private data",
+      "result": "PASS"
+    },
+    {
+      "name": "Administrator configures only the isolated spare counter",
+      "result": "PASS"
+    },
+    {
+      "name": "Anonymous RPCs cannot read private information or mutate queues",
+      "result": "PASS"
+    },
+    {
+      "name": "Students receive only their own tickets and permitted history",
+      "result": "PASS"
+    },
+    {
+      "name": "Cross-student and foreign staff ticket history is denied",
+      "result": "PASS"
+    },
+    {
+      "name": "Student promotion and every administrator RPC are denied",
+      "result": "PASS"
+    },
+    {
+      "name": "User-editable role metadata does not elevate the student session",
+      "result": "PASS"
+    },
+    {
+      "name": "Cashiers cannot invoke administrator operations",
+      "result": "PASS"
+    },
+    {
+      "name": "Cashiers cannot call an unassigned counter",
+      "result": "PASS"
+    },
+    {
+      "name": "Administrator has explicit configuration reads but no cashier or student issuance authority",
+      "result": "PASS"
+    },
+    {
+      "name": "Closed current day blocks issuance without reopening preserved fixtures",
+      "result": "PASS"
+    },
+    {
+      "name": "Private schema GET/POST/PATCH and public-schema fallbacks cannot bypass RPCs",
+      "result": "PASS"
+    },
+    {
+      "name": "Public display writes are forbidden to every application role",
+      "result": "PASS"
+    },
+    {
+      "name": "Exposed API schema contains functions and no private tables or profile fields",
+      "result": "PASS"
+    },
+    {
+      "name": "Anonymous public REST endpoints contain only sanitized fields",
+      "result": "PASS"
+    },
+    {
+      "name": "Public Realtime counter and service subscriptions are acknowledged",
+      "result": "PASS"
+    },
+    {
+      "name": "Private Realtime subscription attempts cannot establish a data path",
+      "result": "PASS"
+    },
+    {
+      "name": "Assigned cashier call updates public ticket number and counter safely",
+      "result": "FAIL",
+      "reason": "Test harness exception; raw diagnostics suppressed"
+    }
+  ],
+  "realtime": [
+    {
+      "who": "anonymous",
+      "schema": "queue_display",
+      "table": "counter_state",
+      "status": "SUBSCRIBED"
+    },
+    {
+      "who": "anonymous",
+      "schema": "queue_display",
+      "table": "service_state",
+      "status": "SUBSCRIBED"
+    },
+    {
+      "who": "disabled",
+      "schema": "queue_display",
+      "table": "counter_state",
+      "status": "SUBSCRIBED"
+    },
+    {
+      "who": "anonymous",
+      "schema": "queue_private",
+      "table": "tickets",
+      "status": "SUBSCRIBED"
+    },
+    {
+      "who": "studentA",
+      "schema": "queue_private",
+      "table": "tickets",
+      "status": "SUBSCRIBED"
+    },
+    {
+      "who": "cashier",
+      "schema": "queue_private",
+      "table": "tickets",
+      "status": "SUBSCRIBED"
+    },
+    {
+      "who": "admin",
+      "schema": "queue_private",
+      "table": "tickets",
+      "status": "SUBSCRIBED"
+    },
+    {
+      "who": "disabled",
+      "schema": "queue_private",
+      "table": "tickets",
+      "status": "SUBSCRIBED"
+    },
+    {
+      "who": "revokedCashier",
+      "schema": "queue_private",
+      "table": "tickets",
+      "status": "SUBSCRIBED"
+    },
+    {
+      "who": "revokedAdmin",
+      "schema": "queue_private",
+      "table": "tickets",
+      "status": "SUBSCRIBED"
+    }
+  ],
+  "limitations": [
+    "Current business day is closed; successful issue_ticket is not exercised.",
+    "Negative Realtime observations are bounded; private publication/grants are also inspected.",
+    "Public sanitized feeds remain public after account disable/revocation by design."
+  ],
+  "fixture_business_date": "2026-10-17",
+  "passed": 17,
+  "failed": 1,
+  "existing_fixture_rows_preserved": true,
+  "endpoints": [
+    "GET /rest/v1/",
+    "GET /rest/v1/accounts",
+    "GET /rest/v1/counter_state",
+    "GET /rest/v1/service_state",
+    "GET /rest/v1/tickets",
+    "PATCH /rest/v1/accounts",
+    "PATCH /rest/v1/counter_state",
+    "POST /auth/v1/admin/generate_link",
+    "POST /auth/v1/verify",
+    "POST /rest/v1/accounts",
+    "POST /rest/v1/rpc/admin_configuration",
+    "POST /rest/v1/rpc/bootstrap_admin",
+    "POST /rest/v1/rpc/call_next",
+    "POST /rest/v1/rpc/configure_counter",
+    "POST /rest/v1/rpc/configure_service",
+    "POST /rest/v1/rpc/finish_ticket",
+    "POST /rest/v1/rpc/issue_ticket",
+    "POST /rest/v1/rpc/manage_day",
+    "POST /rest/v1/rpc/my_ticket_events",
+    "POST /rest/v1/rpc/my_tickets",
+    "POST /rest/v1/rpc/set_account",
+    "POST /rest/v1/rpc/staff_queue",
+    "PUT /auth/v1/user"
+  ],
+  "new_fixture_records_retained": true
+}

@@ -1,0 +1,93 @@
+{
+  "run": "f1df006d",
+  "real_google_login": false,
+  "auth_writes_forwarded": false,
+  "checks": [
+    {
+      "name": "Real Vue product exposes one Google button and no password/role selection",
+      "result": "PASS"
+    },
+    {
+      "name": "Unconfigured provider shows a safe error without OAuth navigation",
+      "result": "PASS"
+    },
+    {
+      "name": "Mocked full PKCE callback verifies ordinary shared dashboard despite ADMIN metadata/email",
+      "result": "PASS"
+    },
+    {
+      "name": "Reload restores the session only through mocked getUser/current-context checks",
+      "result": "PASS"
+    },
+    {
+      "name": "Authoritative cashier/admin context overrides metadata with existing session",
+      "result": "PASS"
+    },
+    {
+      "name": "Revoked role and disabled account immediately clear prior workspace on revalidation",
+      "result": "PASS"
+    },
+    {
+      "name": "Mock logout and Google account switching cannot retain previous context",
+      "result": "PASS"
+    },
+    {
+      "name": "Repeated callback reconciles without a second exchange",
+      "result": "PASS"
+    },
+    {
+      "name": "Mock Google cancellation is scrubbed and grants no workspace",
+      "result": "PASS"
+    },
+    {
+      "name": "Mock expired code gives generic reconciliation without automatic re-exchange",
+      "result": "PASS"
+    },
+    {
+      "name": "SDK missing verifier fails locally before any token HTTP request",
+      "result": "PASS"
+    },
+    {
+      "name": "Callback/login desktop and mobile render without overflow or private canaries",
+      "result": "PASS"
+    },
+    {
+      "name": "Development password form is isolated at /dev/login",
+      "result": "PASS"
+    },
+    {
+      "name": "Anonymous /display remains available without Auth controls after callback errors",
+      "result": "PASS"
+    },
+    {
+      "name": "No unexpected network path, real Auth write, runtime error or Google/hosted contact",
+      "result": "PASS"
+    }
+  ],
+  "screenshots": [
+    "google_oauth_frontend_f1df006d_1440.png",
+    "google_oauth_frontend_f1df006d_390.png"
+  ],
+  "isolated_browser_loopback_permission": true,
+  "result": "PASS",
+  "passed": 15,
+  "failed": 0,
+  "source_preservation": {
+    "result": "PASS",
+    "original_tables_exact_except_scoped_subscription": true,
+    "empty_partition_additions": [],
+    "logical_tables": 70,
+    "subscription_rows_before": 2,
+    "subscription_rows_after": 26,
+    "subscription_sequence_before": {
+      "is_called": true,
+      "last_value": 120
+    },
+    "subscription_sequence_after": {
+      "is_called": true,
+      "last_value": 148
+    },
+    "all_other_rows_objects_roles_privileges_exact": true,
+    "unexpected_changes": []
+  }
+}

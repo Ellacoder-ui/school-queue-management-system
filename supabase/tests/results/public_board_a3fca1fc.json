@@ -1,0 +1,65 @@
+{
+  "run": "a3fca1fc",
+  "source_writes": false,
+  "checks": [
+    {
+      "name": "Actual anonymous snapshot matches all five fixed destinations and authoritative day context",
+      "result": "PASS"
+    },
+    {
+      "name": "Both actual postgres_changes listeners require readiness and a fresh snapshot",
+      "result": "PASS"
+    },
+    {
+      "name": "Forced actual socket closure invalidates state and reconnect performs fresh reads",
+      "result": "PASS"
+    },
+    {
+      "name": "Public controller cleanup removes all owned subscriptions",
+      "result": "PASS"
+    },
+    {
+      "name": "Anonymous monitor uses real public state and mounts no login/workspace",
+      "result": "PASS"
+    },
+    {
+      "name": "Actual board responsive at 1920x1080",
+      "result": "PASS"
+    },
+    {
+      "name": "Actual board responsive at 1366x768",
+      "result": "FAIL",
+      "reason": "Monitor requires vertical scrolling"
+    }
+  ],
+  "screenshots": [
+    "public_board_a3fca1fc_1920x1080.png"
+  ],
+  "synthetic_screenshots": [],
+  "result": "FAIL",
+  "failure": "Monitor requires vertical scrolling",
+  "blocked": [],
+  "runtime_errors": [],
+  "browser_state": {
+    "connection": "Live public display",
+    "board": true,
+    "path": "/display"
+  },
+  "passed": 6,
+  "failed": 1,
+  "source_preservation": {
+    "logical_tables": 69,
+    "rows_schema_roles_and_additional_privileges_unchanged": true,
+    "other_sequences_unchanged": true,
+    "realtime_subscription_sequence_before": {
+      "is_called": true,
+      "last_value": 40
+    },
+    "realtime_subscription_sequence_after": {
+      "is_called": true,
+      "last_value": 46
+    },
+    "six_migrations_unchanged": true,
+    "application_auth_writes": false
+  }
+}

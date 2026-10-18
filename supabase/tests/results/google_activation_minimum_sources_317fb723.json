@@ -1,0 +1,61 @@
+{
+  "result": "READ_ONLY_PINNED_AUTH_CLI_SOURCE_REVIEW",
+  "checked_at": "2026-10-18T06:30:45.366730+00:00",
+  "sources": [
+    {
+      "repo": "auth",
+      "version": "v2.197.0",
+      "path": "cmd/root_cmd.go",
+      "url": "https://github.com/supabase/auth/blob/v2.197.0/cmd/root_cmd.go",
+      "bytes": 1913,
+      "sha256": "f34168215f44a044e3c838694a7282faa508cd5c0596bd533a437a972bf9eeaf"
+    },
+    {
+      "repo": "auth",
+      "version": "v2.197.0",
+      "path": "cmd/serve_cmd.go",
+      "url": "https://github.com/supabase/auth/blob/v2.197.0/cmd/serve_cmd.go",
+      "bytes": 5870,
+      "sha256": "86a19a36523bb568c9853eeedf01ac34a9bb3d9ce80b9599d38defe325526ff7"
+    },
+    {
+      "repo": "auth",
+      "version": "v2.197.0",
+      "path": "internal/api/api.go",
+      "url": "https://github.com/supabase/auth/blob/v2.197.0/internal/api/api.go",
+      "bytes": 16615,
+      "sha256": "806ea39c37b8ea189cffc9361073c792f80993b5849f3d50a8ea9a25f3ef92fc"
+    },
+    {
+      "repo": "cli",
+      "version": "v2.121.0",
+      "path": "apps/cli/src/commands/start/start.handler.ts",
+      "url": "https://github.com/supabase/cli/blob/v2.121.0/apps/cli/src/commands/start/start.handler.ts",
+      "bytes": 81215,
+      "sha256": "447861b3a34159a5750ea99e4653f5c7a86c811f7170b2def263c8dd1cfc6695"
+    },
+    {
+      "repo": "cli",
+      "version": "v2.121.0",
+      "path": "apps/cli/src/commands/start/services/gotrue.service.ts",
+      "url": "https://github.com/supabase/cli/blob/v2.121.0/apps/cli/src/commands/start/services/gotrue.service.ts",
+      "bytes": 27945,
+      "sha256": "12b363cc3c16fe1a3ce252bd536a6879321ba6da717b9af1d0d95a0d58b99bad"
+    }
+  ],
+  "findings": {
+    "auth_reload_requires_config_dir": true,
+    "observed_auth_config_dir_enabled": false,
+    "root_command_runs_auth_migrations_then_serve": true,
+    "local_settings_route_is_get_only": true,
+    "cli_running_database_short_circuits_start": true,
+    "cli_auth_only_restart_command_found": false,
+    "google_env_configuration_supported": true,
+    "current_stack_mutated": false
+  },
+  "official_docs": [
+    "https://supabase.com/docs/guides/self-hosting/self-hosted-oauth",
+    "https://supabase.com/docs/guides/local-development/cli/config",
+    "https://supabase.com/docs/guides/auth/social-login/auth-google"
+  ]
+}

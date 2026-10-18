@@ -1,0 +1,806 @@
+{
+  "identity": {
+    "project": "school-queue-local",
+    "api": "http://127.0.0.1:54321",
+    "database_endpoint": "127.0.0.1:54322",
+    "server": {
+      "port": 5432,
+      "user": "postgres",
+      "version": "17.11",
+      "database": "postgres"
+    },
+    "docker": [
+      {
+        "container": "supabase_db_school-queue-local",
+        "image": "public.ecr.aws/supabase/postgres:17.11.0.004",
+        "networks": [
+          "supabase_network_school-queue-local"
+        ],
+        "volumes": [
+          "supabase_db_school-queue-local"
+        ],
+        "bindings": [
+          {
+            "HostIp": "0.0.0.0",
+            "HostPort": "54322"
+          },
+          {
+            "HostIp": "::",
+            "HostPort": "54322"
+          }
+        ]
+      },
+      {
+        "container": "supabase_kong_school-queue-local",
+        "image": "public.ecr.aws/supabase/kong:2.8.1",
+        "networks": [
+          "supabase_network_school-queue-local"
+        ],
+        "volumes": [],
+        "bindings": [
+          {
+            "HostIp": "0.0.0.0",
+            "HostPort": "54321"
+          },
+          {
+            "HostIp": "::",
+            "HostPort": "54321"
+          }
+        ]
+      }
+    ],
+    "migration_sha256": {
+      "20261016000100_queue_tables.sql": "274141dbab99dbaad959f2343633ee0bd440b240a29b5664ca304e283934d7d7",
+      "20261016000200_queue_operations.sql": "65c943d4fea282c07e06bab6b759882f7fcec678ddf960869dd60a52db911883",
+      "20261016000300_queue_administration.sql": "7a4ad627112f0bc3109417bec237b13000e1c06002d536f7c9feab5261eb4883",
+      "20261016000400_queue_seed_security.sql": "95bd4918550dddae84672c148c6a616c9d12928b78097a82815a26a35146746e",
+      "20261016000500_queue_read_context.sql": "793a68b375d69044dc4900749867576b5c45a6b4173725191ffbaeb66a2dd31a",
+      "20261016000600_fixed_counter_routing.sql": "9d854ab795e3ef3098fa1d3a05cb6541242d0c8e503a8ebee1acfe9df418137c"
+    }
+  },
+  "system_identifier": "7696959712798593061",
+  "state": {
+    "active": 0,
+    "counts": {
+      "days": 7,
+      "audits": 32,
+      "events": 57,
+      "tickets": 20,
+      "accounts": 39,
+      "counters": 5,
+      "requests": 69,
+      "services": 5
+    },
+    "routes": {
+      "1": [
+        "TP"
+      ],
+      "2": [
+        "SOA"
+      ],
+      "3": [
+        "PNEP"
+      ],
+      "4": [
+        "REF"
+      ],
+      "5": [
+        "ADJ"
+      ]
+    },
+    "versions": [
+      "20261016000100",
+      "20261016000200",
+      "20261016000300",
+      "20261016000400",
+      "20261016000500",
+      "20261016000600"
+    ],
+    "open_days": 0,
+    "rls_count": 15,
+    "assignments": [
+      {
+        "total": 1,
+        "counter": 1,
+        "eligible": 1
+      },
+      {
+        "total": 1,
+        "counter": 2,
+        "eligible": 1
+      },
+      {
+        "total": 0,
+        "counter": 3,
+        "eligible": 0
+      },
+      {
+        "total": 0,
+        "counter": 4,
+        "eligible": 0
+      },
+      {
+        "total": 2,
+        "counter": 5,
+        "eligible": 1
+      }
+    ],
+    "publication": [
+      "queue_display.counter_state",
+      "queue_display.service_state"
+    ],
+    "private_usage": false,
+    "current_day_closed": true
+  },
+  "logical_tables": 70,
+  "original_changed_tables": [
+    "\"realtime\".\"subscription\""
+  ],
+  "new_tables": {
+    "\"realtime\".\"messages_2026_10_20\"": {
+      "rows": [],
+      "count": 0
+    }
+  },
+  "schema_differences": {
+    "relations": {
+      "added": {
+        "realtime.messages_2026_10_20": {
+          "acl": [
+            {
+              "grantee": "dashboard_user",
+              "grantor": "supabase_realtime_admin",
+              "grantable": false,
+              "privilege": "DELETE"
+            },
+            {
+              "grantee": "dashboard_user",
+              "grantor": "supabase_realtime_admin",
+              "grantable": false,
+              "privilege": "INSERT"
+            },
+            {
+              "grantee": "dashboard_user",
+              "grantor": "supabase_realtime_admin",
+              "grantable": false,
+              "privilege": "MAINTAIN"
+            },
+            {
+              "grantee": "dashboard_user",
+              "grantor": "supabase_realtime_admin",
+              "grantable": false,
+              "privilege": "REFERENCES"
+            },
+            {
+              "grantee": "dashboard_user",
+              "grantor": "supabase_realtime_admin",
+              "grantable": false,
+              "privilege": "SELECT"
+            },
+            {
+              "grantee": "dashboard_user",
+              "grantor": "supabase_realtime_admin",
+              "grantable": false,
+              "privilege": "TRIGGER"
+            },
+            {
+              "grantee": "dashboard_user",
+              "grantor": "supabase_realtime_admin",
+              "grantable": false,
+              "privilege": "TRUNCATE"
+            },
+            {
+              "grantee": "dashboard_user",
+              "grantor": "supabase_realtime_admin",
+              "grantable": false,
+              "privilege": "UPDATE"
+            },
+            {
+              "grantee": "postgres",
+              "grantor": "supabase_realtime_admin",
+              "grantable": false,
+              "privilege": "DELETE"
+            },
+            {
+              "grantee": "postgres",
+              "grantor": "supabase_realtime_admin",
+              "grantable": true,
+              "privilege": "INSERT"
+            },
+            {
+              "grantee": "postgres",
+              "grantor": "supabase_realtime_admin",
+              "grantable": false,
+              "privilege": "MAINTAIN"
+            },
+            {
+              "grantee": "postgres",
+              "grantor": "supabase_realtime_admin",
+              "grantable": false,
+              "privilege": "REFERENCES"
+            },
+            {
+              "grantee": "postgres",
+              "grantor": "supabase_realtime_admin",
+              "grantable": true,
+              "privilege": "SELECT"
+            },
+            {
+              "grantee": "postgres",
+              "grantor": "supabase_realtime_admin",
+              "grantable": false,
+              "privilege": "TRIGGER"
+            },
+            {
+              "grantee": "postgres",
+              "grantor": "supabase_realtime_admin",
+              "grantable": false,
+              "privilege": "TRUNCATE"
+            },
+            {
+              "grantee": "postgres",
+              "grantor": "supabase_realtime_admin",
+              "grantable": false,
+              "privilege": "UPDATE"
+            },
+            {
+              "grantee": "supabase_realtime_admin",
+              "grantor": "supabase_realtime_admin",
+              "grantable": false,
+              "privilege": "DELETE"
+            },
+            {
+              "grantee": "supabase_realtime_admin",
+              "grantor": "supabase_realtime_admin",
+              "grantable": false,
+              "privilege": "INSERT"
+            },
+            {
+              "grantee": "supabase_realtime_admin",
+              "grantor": "supabase_realtime_admin",
+              "grantable": false,
+              "privilege": "MAINTAIN"
+            },
+            {
+              "grantee": "supabase_realtime_admin",
+              "grantor": "supabase_realtime_admin",
+              "grantable": false,
+              "privilege": "REFERENCES"
+            },
+            {
+              "grantee": "supabase_realtime_admin",
+              "grantor": "supabase_realtime_admin",
+              "grantable": false,
+              "privilege": "SELECT"
+            },
+            {
+              "grantee": "supabase_realtime_admin",
+              "grantor": "supabase_realtime_admin",
+              "grantable": false,
+              "privilege": "TRIGGER"
+            },
+            {
+              "grantee": "supabase_realtime_admin",
+              "grantor": "supabase_realtime_admin",
+              "grantable": false,
+              "privilege": "TRUNCATE"
+            },
+            {
+              "grantee": "supabase_realtime_admin",
+              "grantor": "supabase_realtime_admin",
+              "grantable": false,
+              "privilege": "UPDATE"
+            }
+          ],
+          "rls": false,
+          "kind": "r",
+          "view": null,
+          "owner": "supabase_realtime_admin",
+          "options": null,
+          "force_rls": false,
+          "persistence": "p",
+          "replica_identity": "d"
+        }
+      },
+      "removed": [],
+      "changed": {}
+    },
+    "constraints": {
+      "added": {
+        "realtime.messages_2026_10_20:messages_2026_10_20_pkey": {
+          "deferred": false,
+          "validated": true,
+          "deferrable": false,
+          "definition": "PRIMARY KEY (id, inserted_at)"
+        },
+        "realtime.messages_2026_10_20:messages_payload_exclusive": {
+          "deferred": false,
+          "validated": true,
+          "deferrable": false,
+          "definition": "CHECK (payload IS NULL OR binary_payload IS NULL)"
+        }
+      },
+      "removed": [],
+      "changed": {}
+    },
+    "indexes": {
+      "added": {
+        "realtime.messages_2026_10_20_pkey": {
+          "ready": true,
+          "valid": true,
+          "definition": "CREATE UNIQUE INDEX messages_2026_10_20_pkey ON realtime.messages_2026_10_20 USING btree (id, inserted_at)"
+        },
+        "realtime.messages_2026_10_20_inserted_at_topic_idx": {
+          "ready": true,
+          "valid": true,
+          "definition": "CREATE INDEX messages_2026_10_20_inserted_at_topic_idx ON realtime.messages_2026_10_20 USING btree (inserted_at DESC, topic) WHERE ((extension = 'broadcast'::text) AND (private IS TRUE))"
+        }
+      },
+      "removed": [],
+      "changed": {}
+    },
+    "columns": {
+      "added": {
+        "realtime.messages_2026_10_20:id": {
+          "type": "uuid",
+          "default": "gen_random_uuid()",
+          "identity": "",
+          "not_null": true,
+          "position": 8,
+          "generated": ""
+        },
+        "realtime.messages_2026_10_20:event": {
+          "type": "text",
+          "default": null,
+          "identity": "",
+          "not_null": false,
+          "position": 4,
+          "generated": ""
+        },
+        "realtime.messages_2026_10_20:topic": {
+          "type": "text",
+          "default": null,
+          "identity": "",
+          "not_null": true,
+          "position": 1,
+          "generated": ""
+        },
+        "realtime.messages_2026_10_20:payload": {
+          "type": "jsonb",
+          "default": null,
+          "identity": "",
+          "not_null": false,
+          "position": 3,
+          "generated": ""
+        },
+        "realtime.messages_2026_10_20:private": {
+          "type": "boolean",
+          "default": "false",
+          "identity": "",
+          "not_null": false,
+          "position": 5,
+          "generated": ""
+        },
+        "realtime.messages_2026_10_20:extension": {
+          "type": "text",
+          "default": null,
+          "identity": "",
+          "not_null": true,
+          "position": 2,
+          "generated": ""
+        },
+        "realtime.messages_2026_10_20:updated_at": {
+          "type": "timestamp without time zone",
+          "default": "timezone('utc'::text, clock_timestamp())",
+          "identity": "",
+          "not_null": true,
+          "position": 6,
+          "generated": ""
+        },
+        "realtime.messages_2026_10_20:inserted_at": {
+          "type": "timestamp without time zone",
+          "default": "timezone('utc'::text, clock_timestamp())",
+          "identity": "",
+          "not_null": true,
+          "position": 7,
+          "generated": ""
+        },
+        "realtime.messages_2026_10_20:binary_payload": {
+          "type": "bytea",
+          "default": null,
+          "identity": "",
+          "not_null": false,
+          "position": 9,
+          "generated": ""
+        },
+        "realtime.messages_2026_10_20:skip_broadcast": {
+          "type": "boolean",
+          "default": "false",
+          "identity": "",
+          "not_null": true,
+          "position": 10,
+          "generated": ""
+        }
+      },
+      "removed": [],
+      "changed": {}
+    },
+    "publication": {
+      "added": {
+        "supabase_realtime_messages_publication:realtime.messages_2026_10_20": {
+          "pubname": "supabase_realtime_messages_publication",
+          "attnames": [
+            "topic",
+            "extension",
+            "payload",
+            "event",
+            "private",
+            "updated_at",
+            "inserted_at",
+            "id",
+            "binary_payload",
+            "skip_broadcast"
+          ],
+          "rowfilter": null,
+          "tablename": "messages_2026_10_20",
+          "schemaname": "realtime"
+        }
+      },
+      "removed": [],
+      "changed": {}
+    },
+    "partitions": {
+      "added": {
+        "realtime.messages_2026_10_20": {
+          "key": null,
+          "bound": "FOR VALUES FROM ('2026-10-20 00:00:00') TO ('2026-10-21 00:00:00')",
+          "parents": [
+            {
+              "table": "messages",
+              "schema": "realtime",
+              "sequence": 1
+            }
+          ],
+          "partition": true
+        }
+      },
+      "removed": [],
+      "changed": {}
+    }
+  },
+  "roles_equal": true,
+  "additional_privileges_equal": true,
+  "sequences": {
+    "\"auth\".\"refresh_tokens_id_seq\"": {
+      "is_called": true,
+      "last_value": 48
+    },
+    "\"realtime\".\"subscription_id_seq\"": {
+      "is_called": true,
+      "last_value": 116
+    },
+    "\"supabase_functions\".\"hooks_id_seq\"": {
+      "is_called": false,
+      "last_value": 1
+    }
+  },
+  "realtime_containers": [
+    {
+      "name": "/supabase_realtime_school-queue-local",
+      "image": "public.ecr.aws/supabase/realtime:v2.143.4",
+      "image_id": "sha256:35e99d3f1cbba5aa5585e8ac3cf70ecc54909ee4aee0626effed93c60fb41439"
+    }
+  ],
+  "rt_migrations": [
+    20210706140551,
+    20220329161857,
+    20220410212326,
+    20220506102948,
+    20220527210857,
+    20220815211129,
+    20220815215024,
+    20220818141501,
+    20221018173709,
+    20221102172703,
+    20221223010058,
+    20230110180046,
+    20230810220907,
+    20230810220924,
+    20231024094642,
+    20240306114423,
+    20240418082835,
+    20240625211759,
+    20240704172020,
+    20240902173232,
+    20241106103258,
+    20250424203323,
+    20250613072131,
+    20250711044927,
+    20250811121559,
+    20250926223044,
+    20251204170944,
+    20251218000543,
+    20260209232800,
+    20260304000000,
+    20260422000000,
+    20260709151810,
+    20260805000000
+  ],
+  "partition_access": [
+    {
+      "rls": true,
+      "role": "anon",
+      "table": "messages",
+      "delete": false,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "force_rls": false,
+      "schema_usage": true
+    },
+    {
+      "rls": true,
+      "role": "authenticated",
+      "table": "messages",
+      "delete": false,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "force_rls": false,
+      "schema_usage": true
+    },
+    {
+      "rls": true,
+      "role": "service_role",
+      "table": "messages",
+      "delete": false,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "force_rls": false,
+      "schema_usage": true
+    },
+    {
+      "rls": false,
+      "role": "anon",
+      "table": "messages_2026_10_14",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "force_rls": false,
+      "schema_usage": true
+    },
+    {
+      "rls": false,
+      "role": "authenticated",
+      "table": "messages_2026_10_14",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "force_rls": false,
+      "schema_usage": true
+    },
+    {
+      "rls": false,
+      "role": "service_role",
+      "table": "messages_2026_10_14",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "force_rls": false,
+      "schema_usage": true
+    },
+    {
+      "rls": false,
+      "role": "anon",
+      "table": "messages_2026_10_15",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "force_rls": false,
+      "schema_usage": true
+    },
+    {
+      "rls": false,
+      "role": "authenticated",
+      "table": "messages_2026_10_15",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "force_rls": false,
+      "schema_usage": true
+    },
+    {
+      "rls": false,
+      "role": "service_role",
+      "table": "messages_2026_10_15",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "force_rls": false,
+      "schema_usage": true
+    },
+    {
+      "rls": false,
+      "role": "anon",
+      "table": "messages_2026_10_16",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "force_rls": false,
+      "schema_usage": true
+    },
+    {
+      "rls": false,
+      "role": "authenticated",
+      "table": "messages_2026_10_16",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "force_rls": false,
+      "schema_usage": true
+    },
+    {
+      "rls": false,
+      "role": "service_role",
+      "table": "messages_2026_10_16",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "force_rls": false,
+      "schema_usage": true
+    },
+    {
+      "rls": false,
+      "role": "anon",
+      "table": "messages_2026_10_17",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "force_rls": false,
+      "schema_usage": true
+    },
+    {
+      "rls": false,
+      "role": "authenticated",
+      "table": "messages_2026_10_17",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "force_rls": false,
+      "schema_usage": true
+    },
+    {
+      "rls": false,
+      "role": "service_role",
+      "table": "messages_2026_10_17",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "force_rls": false,
+      "schema_usage": true
+    },
+    {
+      "rls": false,
+      "role": "anon",
+      "table": "messages_2026_10_18",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "force_rls": false,
+      "schema_usage": true
+    },
+    {
+      "rls": false,
+      "role": "authenticated",
+      "table": "messages_2026_10_18",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "force_rls": false,
+      "schema_usage": true
+    },
+    {
+      "rls": false,
+      "role": "service_role",
+      "table": "messages_2026_10_18",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "force_rls": false,
+      "schema_usage": true
+    },
+    {
+      "rls": false,
+      "role": "anon",
+      "table": "messages_2026_10_19",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "force_rls": false,
+      "schema_usage": true
+    },
+    {
+      "rls": false,
+      "role": "authenticated",
+      "table": "messages_2026_10_19",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "force_rls": false,
+      "schema_usage": true
+    },
+    {
+      "rls": false,
+      "role": "service_role",
+      "table": "messages_2026_10_19",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "force_rls": false,
+      "schema_usage": true
+    },
+    {
+      "rls": false,
+      "role": "anon",
+      "table": "messages_2026_10_20",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "force_rls": false,
+      "schema_usage": true
+    },
+    {
+      "rls": false,
+      "role": "authenticated",
+      "table": "messages_2026_10_20",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "force_rls": false,
+      "schema_usage": true
+    },
+    {
+      "rls": false,
+      "role": "service_role",
+      "table": "messages_2026_10_20",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "force_rls": false,
+      "schema_usage": true
+    }
+  ],
+  "subscription_summary": {
+    "count": 2,
+    "entities": [
+      "queue_display.counter_state",
+      "queue_display.service_state"
+    ],
+    "anonymous_public_unfiltered": true
+  },
+  "maintenance_functions": {
+    "subscription_check_filters": "CREATE OR REPLACE FUNCTION realtime.subscription_check_filters()\n RETURNS trigger\n LANGUAGE plpgsql\nAS $function$\ndeclare\n    col_names text[] = coalesce(\n            array_agg(a.attname order by a.attnum),\n            '{}'::text[]\n        )\n        from\n            pg_catalog.pg_attribute a\n        where\n            a.attrelid = new.entity\n            and a.attnum > 0\n            and not a.attisdropped\n            and pg_catalog.has_column_privilege(\n                (new.claims ->> 'role'),\n                a.attrelid,\n                a.attnum,\n                'SELECT'\n            );\n    filter realtime.user_defined_filter;\n    col_type regtype;\n    in_val jsonb;\n    selected_col text;\nbegin\n    for filter in select * from unnest(new.filters) loop\n        if not filter.column_name = any(col_names) then\n            raise exception 'invalid column for filter %', filter.column_name;\n        end if;\n\n        col_type = (\n            select atttypid::regtype\n            from pg_catalog.pg_attribute\n            where attrelid = new.entity\n                  and attname = filter.column_name\n        );\n        if col_type is null then\n            raise exception 'failed to lookup type for column %', filter.column_name;\n        end if;\n\n        if filter.op = 'in'::realtime.equality_op then\n            in_val = realtime.cast(filter.value, (col_type::text || '[]')::regtype);\n            if coalesce(jsonb_array_length(in_val), 0) > 100 then\n                raise exception 'too many values for `in` filter. Maximum 100';\n            end if;\n        elsif filter.op = 'is'::realtime.equality_op then\n            -- `is` requires a keyword RHS rather than a typed literal\n            if filter.value not in ('null', 'true', 'false', 'unknown') then\n                raise exception 'invalid value for is filter: must be null, true, false, or unknown';\n            end if;\n            -- IS NULL works for any type, but IS TRUE/FALSE/UNKNOWN require a boolean\n            -- operand. Reject the non-null keywords on non-boolean columns here so they\n            -- don't abort apply_rls at WAL time.\n            if filter.value <> 'null' and col_type <> 'boolean'::regtype then\n                raise exception 'is % filter requires a boolean column, got %', filter.value, col_type::text;\n            end if;\n        elsif filter.op in ('like'::realtime.equality_op, 'ilike'::realtime.equality_op) then\n            -- like/ilike apply the text pattern operator (~~); reject column types that\n            -- have no such operator instead of failing at WAL time\n            if not exists (\n                select 1 from pg_catalog.pg_operator\n                where oprname = '~~' and oprleft = col_type\n            ) then\n                raise exception 'operator % requires a text-compatible column type, got %', filter.op::text, col_type::text;\n            end if;\n        elsif filter.op in ('match'::realtime.equality_op, 'imatch'::realtime.equality_op) then\n            -- match/imatch apply the regex operators ~ / ~*; reject column types that have\n            -- no such operator (e.g. integer) instead of failing at WAL time, mirroring the\n            -- like/ilike guard above.\n            if not exists (\n                select 1 from pg_catalog.pg_operator\n                where oprname = case when filter.op = 'imatch'::realtime.equality_op then '~*' else '~' end\n                  and oprleft = col_type\n                  and oprright = col_type\n                  and oprresult = 'boolean'::regtype\n            ) then\n                raise exception 'operator % requires a text-compatible column type, got %', filter.op::text, col_type::text;\n            end if;\n            -- validate the regex eagerly so a bad pattern is rejected here, not inside\n            -- apply_rls where it would abort the WAL stream for the entity\n            begin\n                perform '' ~ filter.value;\n            exception when others then\n                raise exception 'invalid regular expression for % filter: %', filter.op::text, sqlerrm;\n            end;\n        else\n            -- eq/neq/lt/lte/gt/gte: value must be coercable to the type\n            perform realtime.cast(filter.value, col_type);\n        end if;\n    end loop;\n\n    if new.selected_columns is not null then\n        for selected_col in select * from unnest(new.selected_columns) loop\n            if not selected_col = any(col_names) then\n                raise exception 'invalid column for select %', selected_col;\n            end if;\n        end loop;\n    end if;\n\n    -- Apply consistent order to filters so the unique constraint can't be tricked by a\n    -- different filter order. negate is part of the sort key.\n    new.filters = coalesce(\n        array_agg(f order by f.column_name, f.op, f.value, f.negate),\n        '{}'\n    ) from unnest(new.filters) f;\n\n    -- Normalize selected_columns order so ARRAY['a','b'] and ARRAY['b','a'] are treated\n    -- as the same subscription group in apply_rls. Preserve an empty array as '{}'\n    -- (\"primary keys only\") so it stays distinct from NULL (\"all columns\"); array_agg\n    -- over an empty set would otherwise collapse '{}' back to NULL.\n    if new.selected_columns is not null then\n        new.selected_columns = coalesce(\n            (\n                select array_agg(c order by c)\n                from unnest(new.selected_columns) c\n            ),\n            '{}'::text[]\n        );\n    end if;\n\n    return new;\nend;\n$function$\n"
+  }
+}

@@ -1,0 +1,613 @@
+{
+  "mode": "READ_ONLY_STARTUP_INSPECTION",
+  "captured_at": "2026-10-17T15:07:25.075073+00:00",
+  "raw_config_or_logs_saved": false,
+  "google_credentials_accessed": false,
+  "mutations_executed": false,
+  "vector": {
+    "container": "supabase_vector_school-queue-local",
+    "id": "b6d521af4f244e0ab8ede06130d31bf067e9483ed1dd920544759b607cc9bc59",
+    "image": "public.ecr.aws/supabase/vector:0.58.0-alpine",
+    "image_id": "sha256:5dcf67db0ee378caa87f3395cb9484ebe3e97bb0334d119f2ac33116e00c5773",
+    "running": true,
+    "restarting": true,
+    "status": "restarting",
+    "exit_code": 0,
+    "oom_killed": false,
+    "restart_count": 1562,
+    "started_at": "2026-10-17T15:06:52.21593998Z",
+    "finished_at": "2026-10-17T15:06:52.908517777Z",
+    "health": "unhealthy"
+  },
+  "docker_transport_environment": {
+    "docker_host_present": true,
+    "docker_host_origins": [
+      "http://host.docker.internal:2375"
+    ],
+    "tls_verify_present": false,
+    "certificate_path_present": false,
+    "api_version_present": false
+  },
+  "command_structure": {
+    "entrypoint": [
+      "sh"
+    ],
+    "argument_count": 2,
+    "shell_token_count": 656,
+    "known_tokens": [
+      "-c",
+      "exec",
+      "vector",
+      "--config"
+    ],
+    "contains_inline_base64": false,
+    "endpoint_origins": [
+      "http://supabase_analytics_school-queue-local:4000"
+    ],
+    "config_paths": [
+      "/etc/vector/vector.yaml"
+    ]
+  },
+  "recent_events": [
+    {
+      "timestamp": "2026-10-17T15:02:50.157542662Z",
+      "category": "other-text-suppressed",
+      "component_category": "docker_logs"
+    },
+    {
+      "timestamp": "2026-10-17T15:02:50.359638802Z",
+      "category": "other-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:02:50.359896350Z",
+      "category": "vector-started"
+    },
+    {
+      "timestamp": "2026-10-17T15:02:50.359916949Z",
+      "category": "component-healthcheck-passed"
+    },
+    {
+      "timestamp": "2026-10-17T15:02:50.359922801Z",
+      "category": "component-healthcheck-passed"
+    },
+    {
+      "timestamp": "2026-10-17T15:02:50.359927380Z",
+      "category": "other-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:02:50.359930426Z",
+      "category": "other-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:02:50.360357706Z",
+      "category": "vector-api-running"
+    },
+    {
+      "timestamp": "2026-10-17T15:02:50.370436553Z",
+      "category": "connection-refused",
+      "component_category": "docker_logs",
+      "endpoint_origins": []
+    },
+    {
+      "timestamp": "2026-10-17T15:02:50.370782718Z",
+      "category": "all-sources-finished"
+    },
+    {
+      "timestamp": "2026-10-17T15:02:50.370823235Z",
+      "category": "all-sources-finished"
+    },
+    {
+      "timestamp": "2026-10-17T15:02:50.370835169Z",
+      "category": "all-sources-finished"
+    },
+    {
+      "timestamp": "2026-10-17T15:02:50.370841115Z",
+      "category": "other-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:02:50.372659229Z",
+      "category": "shutdown"
+    },
+    {
+      "timestamp": "2026-10-17T15:02:50.374785766Z",
+      "category": "vector-stopped"
+    },
+    {
+      "timestamp": "2026-10-17T15:02:50.374829048Z",
+      "category": "other-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:02:50.374833721Z",
+      "category": "shutdown"
+    },
+    {
+      "timestamp": "2026-10-17T15:03:50.739323697Z",
+      "category": "other-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:03:50.741015245Z",
+      "category": "loading-configs"
+    },
+    {
+      "timestamp": "2026-10-17T15:03:50.757108824Z",
+      "category": "unclassified-warning-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:03:50.757989003Z",
+      "category": "capturing-container-logs",
+      "component_category": "docker_logs"
+    },
+    {
+      "timestamp": "2026-10-17T15:03:50.758059179Z",
+      "category": "other-text-suppressed",
+      "component_category": "docker_logs"
+    },
+    {
+      "timestamp": "2026-10-17T15:03:50.932347999Z",
+      "category": "other-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:03:50.933374055Z",
+      "category": "component-healthcheck-passed"
+    },
+    {
+      "timestamp": "2026-10-17T15:03:50.933394025Z",
+      "category": "component-healthcheck-passed"
+    },
+    {
+      "timestamp": "2026-10-17T15:03:50.933398327Z",
+      "category": "vector-started"
+    },
+    {
+      "timestamp": "2026-10-17T15:03:50.933404628Z",
+      "category": "other-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:03:50.933407865Z",
+      "category": "other-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:03:50.933409844Z",
+      "category": "vector-api-running"
+    },
+    {
+      "timestamp": "2026-10-17T15:03:50.940428267Z",
+      "category": "connection-refused",
+      "component_category": "docker_logs",
+      "endpoint_origins": []
+    },
+    {
+      "timestamp": "2026-10-17T15:03:50.940476959Z",
+      "category": "all-sources-finished"
+    },
+    {
+      "timestamp": "2026-10-17T15:03:50.940480611Z",
+      "category": "all-sources-finished"
+    },
+    {
+      "timestamp": "2026-10-17T15:03:50.940483224Z",
+      "category": "all-sources-finished"
+    },
+    {
+      "timestamp": "2026-10-17T15:03:50.940485247Z",
+      "category": "other-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:03:50.942703646Z",
+      "category": "shutdown"
+    },
+    {
+      "timestamp": "2026-10-17T15:03:50.945076687Z",
+      "category": "vector-stopped"
+    },
+    {
+      "timestamp": "2026-10-17T15:03:50.945102383Z",
+      "category": "shutdown"
+    },
+    {
+      "timestamp": "2026-10-17T15:03:50.945106209Z",
+      "category": "other-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:04:51.290426955Z",
+      "category": "other-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:04:51.292072980Z",
+      "category": "loading-configs"
+    },
+    {
+      "timestamp": "2026-10-17T15:04:51.310025586Z",
+      "category": "unclassified-warning-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:04:51.310810167Z",
+      "category": "capturing-container-logs",
+      "component_category": "docker_logs"
+    },
+    {
+      "timestamp": "2026-10-17T15:04:51.310871614Z",
+      "category": "other-text-suppressed",
+      "component_category": "docker_logs"
+    },
+    {
+      "timestamp": "2026-10-17T15:04:51.480877205Z",
+      "category": "other-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:04:51.480911021Z",
+      "category": "component-healthcheck-passed"
+    },
+    {
+      "timestamp": "2026-10-17T15:04:51.480915073Z",
+      "category": "component-healthcheck-passed"
+    },
+    {
+      "timestamp": "2026-10-17T15:04:51.481996674Z",
+      "category": "vector-started"
+    },
+    {
+      "timestamp": "2026-10-17T15:04:51.482040397Z",
+      "category": "other-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:04:51.482044227Z",
+      "category": "other-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:04:51.482046047Z",
+      "category": "vector-api-running"
+    },
+    {
+      "timestamp": "2026-10-17T15:04:51.488492696Z",
+      "category": "connection-refused",
+      "component_category": "docker_logs",
+      "endpoint_origins": []
+    },
+    {
+      "timestamp": "2026-10-17T15:04:51.488532007Z",
+      "category": "all-sources-finished"
+    },
+    {
+      "timestamp": "2026-10-17T15:04:51.488535274Z",
+      "category": "all-sources-finished"
+    },
+    {
+      "timestamp": "2026-10-17T15:04:51.488537956Z",
+      "category": "all-sources-finished"
+    },
+    {
+      "timestamp": "2026-10-17T15:04:51.488539680Z",
+      "category": "other-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:04:51.490688647Z",
+      "category": "shutdown"
+    },
+    {
+      "timestamp": "2026-10-17T15:04:51.491813740Z",
+      "category": "vector-stopped"
+    },
+    {
+      "timestamp": "2026-10-17T15:04:51.491832565Z",
+      "category": "other-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:04:51.491835631Z",
+      "category": "shutdown"
+    },
+    {
+      "timestamp": "2026-10-17T15:05:51.876971521Z",
+      "category": "other-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:05:51.879463317Z",
+      "category": "loading-configs"
+    },
+    {
+      "timestamp": "2026-10-17T15:05:51.897446927Z",
+      "category": "unclassified-warning-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:05:51.898191588Z",
+      "category": "capturing-container-logs",
+      "component_category": "docker_logs"
+    },
+    {
+      "timestamp": "2026-10-17T15:05:51.898231522Z",
+      "category": "other-text-suppressed",
+      "component_category": "docker_logs"
+    },
+    {
+      "timestamp": "2026-10-17T15:05:52.081889040Z",
+      "category": "other-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:05:52.081926861Z",
+      "category": "component-healthcheck-passed"
+    },
+    {
+      "timestamp": "2026-10-17T15:05:52.081933358Z",
+      "category": "component-healthcheck-passed"
+    },
+    {
+      "timestamp": "2026-10-17T15:05:52.082814090Z",
+      "category": "vector-started"
+    },
+    {
+      "timestamp": "2026-10-17T15:05:52.083336117Z",
+      "category": "other-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:05:52.083362041Z",
+      "category": "other-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:05:52.083366471Z",
+      "category": "vector-api-running"
+    },
+    {
+      "timestamp": "2026-10-17T15:05:52.090310862Z",
+      "category": "connection-refused",
+      "component_category": "docker_logs",
+      "endpoint_origins": []
+    },
+    {
+      "timestamp": "2026-10-17T15:05:52.090373242Z",
+      "category": "all-sources-finished"
+    },
+    {
+      "timestamp": "2026-10-17T15:05:52.090376591Z",
+      "category": "all-sources-finished"
+    },
+    {
+      "timestamp": "2026-10-17T15:05:52.090378981Z",
+      "category": "all-sources-finished"
+    },
+    {
+      "timestamp": "2026-10-17T15:05:52.090381390Z",
+      "category": "other-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:05:52.092393741Z",
+      "category": "shutdown"
+    },
+    {
+      "timestamp": "2026-10-17T15:05:52.094125727Z",
+      "category": "vector-stopped"
+    },
+    {
+      "timestamp": "2026-10-17T15:05:52.094157839Z",
+      "category": "other-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:05:52.094161060Z",
+      "category": "shutdown"
+    },
+    {
+      "timestamp": "2026-10-17T15:06:52.505070348Z",
+      "category": "other-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:06:52.508339367Z",
+      "category": "loading-configs"
+    },
+    {
+      "timestamp": "2026-10-17T15:06:52.525193495Z",
+      "category": "unclassified-warning-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:06:52.526676777Z",
+      "category": "capturing-container-logs",
+      "component_category": "docker_logs"
+    },
+    {
+      "timestamp": "2026-10-17T15:06:52.526711991Z",
+      "category": "other-text-suppressed",
+      "component_category": "docker_logs"
+    },
+    {
+      "timestamp": "2026-10-17T15:06:52.887839397Z",
+      "category": "other-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:06:52.888052730Z",
+      "category": "component-healthcheck-passed"
+    },
+    {
+      "timestamp": "2026-10-17T15:06:52.888082811Z",
+      "category": "component-healthcheck-passed"
+    },
+    {
+      "timestamp": "2026-10-17T15:06:52.891555290Z",
+      "category": "vector-started"
+    },
+    {
+      "timestamp": "2026-10-17T15:06:52.891591323Z",
+      "category": "other-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:06:52.891819360Z",
+      "category": "other-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:06:52.891830610Z",
+      "category": "vector-api-running"
+    },
+    {
+      "timestamp": "2026-10-17T15:06:52.899761221Z",
+      "category": "connection-refused",
+      "component_category": "docker_logs",
+      "endpoint_origins": []
+    },
+    {
+      "timestamp": "2026-10-17T15:06:52.899796421Z",
+      "category": "all-sources-finished"
+    },
+    {
+      "timestamp": "2026-10-17T15:06:52.899799952Z",
+      "category": "all-sources-finished"
+    },
+    {
+      "timestamp": "2026-10-17T15:06:52.899802863Z",
+      "category": "all-sources-finished"
+    },
+    {
+      "timestamp": "2026-10-17T15:06:52.899805698Z",
+      "category": "other-text-suppressed"
+    },
+    {
+      "timestamp": "2026-10-17T15:06:52.901943894Z",
+      "category": "shutdown"
+    },
+    {
+      "timestamp": "2026-10-17T15:06:52.902973834Z",
+      "category": "vector-stopped"
+    },
+    {
+      "timestamp": "2026-10-17T15:06:52.903001610Z",
+      "category": "other-text-suppressed"
+    }
+  ],
+  "yaml_parser_available": false,
+  "inline_documents": [],
+  "config_file_inspections": [
+    {
+      "path": "/etc/vector/vector.yaml",
+      "copy_exit_code": 0,
+      "bytes": 7631,
+      "sha256": "ce74949a121530bdc91c43ec327b6e0bf746d2acf76b1548385ece2da3a2e1e8",
+      "mode": "0o644",
+      "uid": 0,
+      "gid": 0,
+      "endpoint_origins": [
+        "http://supabase_analytics_school-queue-local:4000"
+      ],
+      "plain_field_inspection": {
+        "inspection": "restricted-plain-field-summary-not-full-YAML-parse",
+        "auth_and_headers": "not-inspected-values-omitted",
+        "summary": {
+          "sections": [
+            "api",
+            "sources",
+            "sinks"
+          ],
+          "api": {
+            "enabled": true,
+            "address": "0.0.0.0:9001"
+          },
+          "sources": [
+            {
+              "type": "docker_logs",
+              "explicit_docker_host_present": false
+            }
+          ],
+          "sinks": [
+            {
+              "type": "http",
+              "uri_origins": [
+                "http://supabase_analytics_school-queue-local:4000"
+              ]
+            },
+            {
+              "type": "http",
+              "uri_origins": [
+                "http://supabase_analytics_school-queue-local:4000"
+              ]
+            },
+            {
+              "type": "http",
+              "uri_origins": [
+                "http://supabase_analytics_school-queue-local:4000"
+              ]
+            },
+            {
+              "type": "http",
+              "uri_origins": [
+                "http://supabase_analytics_school-queue-local:4000"
+              ]
+            },
+            {
+              "type": "http",
+              "uri_origins": [
+                "http://supabase_analytics_school-queue-local:4000"
+              ]
+            },
+            {
+              "type": "http",
+              "uri_origins": [
+                "http://supabase_analytics_school-queue-local:4000"
+              ]
+            },
+            {
+              "type": "http",
+              "uri_origins": [
+                "http://supabase_analytics_school-queue-local:4000"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "source_final": {
+    "result": "PASS",
+    "mode": "READ_ONLY_PREFLIGHT",
+    "project": "school-queue-local",
+    "api": "http://127.0.0.1:54321",
+    "database": "127.0.0.1:54322/postgres",
+    "system_identifier": "7696959712798593061",
+    "migration_count": 6,
+    "logical_tables": 70,
+    "google_enabled": false,
+    "active_tickets": 0,
+    "config_sha256": "a929af299d0c49ec0a0632cf1a84a8227bdbdf250e1f23a2d3be53e3a2b003a8",
+    "recovery_run": "6e3beebe",
+    "recovery_bundle_sha256": "50164d4afb5083a83044f5ee3df3d13b1b2002ba29ee03143e460c181b915a52",
+    "fresh_and_historical_artifacts_intact": true,
+    "preservation": {
+      "result": "PASS",
+      "original_tables_exact_except_scoped_subscription": true,
+      "empty_partition_additions": [],
+      "logical_tables": 70,
+      "subscription_rows_before": 2,
+      "subscription_rows_after": 2,
+      "subscription_sequence_before": {
+        "is_called": true,
+        "last_value": 298
+      },
+      "subscription_sequence_after": {
+        "is_called": true,
+        "last_value": 324
+      },
+      "all_other_rows_objects_roles_privileges_exact": true,
+      "unexpected_changes": []
+    },
+    "retained_service_restart": false,
+    "source_writes": false
+  },
+  "vector_final": {
+    "container": "supabase_vector_school-queue-local",
+    "id": "b6d521af4f244e0ab8ede06130d31bf067e9483ed1dd920544759b607cc9bc59",
+    "image": "public.ecr.aws/supabase/vector:0.58.0-alpine",
+    "image_id": "sha256:5dcf67db0ee378caa87f3395cb9484ebe3e97bb0334d119f2ac33116e00c5773",
+    "running": true,
+    "restarting": true,
+    "status": "restarting",
+    "exit_code": 0,
+    "oom_killed": false,
+    "restart_count": 1562,
+    "started_at": "2026-10-17T15:06:52.21593998Z",
+    "finished_at": "2026-10-17T15:06:52.908517777Z",
+    "health": "unhealthy"
+  },
+  "credential_metadata_unchanged": true,
+  "resources_unchanged": true,
+  "backups_unchanged": {
+    "files": 50,
+    "sha256": "9ae20f6cf67e0c894217892abf1fe48e56ad6e6858215a8da23614455d77ac81"
+  },
+  "historical_inputs_unchanged": 146,
+  "other_eleven_containers_unchanged": true,
+  "result": "READ_ONLY_INSPECTION_COMPLETE"
+}
