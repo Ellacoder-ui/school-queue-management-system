@@ -1,0 +1,14 @@
+{
+  "run": "d021eb53",
+  "retained_writes": false,
+  "migration007_applied": false,
+  "synthetic_auth_only": true,
+  "checks": [],
+  "result": "FAIL",
+  "failure": "ASF_FIXTURE_STOPPED",
+  "owned_containers_stopped": true,
+  "retained_preservation": true,
+  "passed": 0,
+  "containers": [],
+  "network": null
+}

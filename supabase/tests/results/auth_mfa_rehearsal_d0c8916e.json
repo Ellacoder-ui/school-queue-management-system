@@ -1,0 +1,101 @@
+{
+  "run": "d0c8916e",
+  "result": "PASS",
+  "retained_writes": false,
+  "real_google_or_retained_mfa": false,
+  "checks": [
+    {
+      "name": "new internal no-port cached Auth/database fixture healthy; Google remains enabled",
+      "result": "PASS"
+    },
+    {
+      "name": "actual disabled Auth refuses synthetic enrollment",
+      "result": "PASS"
+    },
+    {
+      "name": "MFA-specific encrypted original/candidate/TOML capture privately verified",
+      "result": "PASS"
+    },
+    {
+      "name": "nonsecret TOML proposal appends only the two TOTP flags",
+      "result": "PASS"
+    },
+    {
+      "name": "retained activation is unconditionally locked",
+      "result": "PASS"
+    },
+    {
+      "name": "wrong plan approval rejected before mutations",
+      "result": "PASS"
+    },
+    {
+      "name": "replacement changes only two MFA flags; Google/JWT/DB/email/aliases preserved",
+      "result": "PASS"
+    },
+    {
+      "name": "repeat apply rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "real installed SDK enrolls a synthetic TOTP factor on actual Auth",
+      "result": "PASS"
+    },
+    {
+      "name": "actual Auth rejects an expired TOTP code",
+      "result": "PASS"
+    },
+    {
+      "name": "actual Auth rejects a wrong TOTP code",
+      "result": "PASS"
+    },
+    {
+      "name": "actual verification upgrades session to AAL2 with server-verified user/factor",
+      "result": "PASS"
+    },
+    {
+      "name": "fixture migrations and witness preserved through normal synthetic Auth writes",
+      "result": "PASS"
+    },
+    {
+      "name": "wrong rollback approval refused",
+      "result": "PASS"
+    },
+    {
+      "name": "fresh executor restores original MFA-disabled definition; Google remains enabled",
+      "result": "PASS"
+    },
+    {
+      "name": "rollback preserves new fixture user/migrations/witness",
+      "result": "PASS"
+    },
+    {
+      "name": "restored disabled verification rejects API use",
+      "result": "PASS"
+    },
+    {
+      "name": "injected exit-42 replacement failure is detected without retry",
+      "result": "PASS"
+    },
+    {
+      "name": "separately bound rollback restores healthy original after failed replacement",
+      "result": "PASS"
+    }
+  ],
+  "synthetic_signup": {
+    "status": 200,
+    "code": null,
+    "session": true
+  },
+  "owned_containers_stopped": true,
+  "retained_preservation": true,
+  "containers": [
+    "f20c718b654ac7427bf21b1935dfa9e6b0d0074d1818ff706d2864db7812ee40",
+    "0cda248ae4e5f8216bf766952c937684f57dc545cb7e9ed2f6914e08f3fc7b6d",
+    "bd2e67ee424c8bd8e8046207326cb32228e22cd4e9d6d424155b8c25046fe033",
+    "6f57c59bf7c554493566d07605c3598f804f1f44e422ccf69fc23d5ffc0084a2",
+    "ac184530591746dc1adcc09c4272d4714da5b7d8581ce58caff0063de3007061",
+    "92430684e1b115bbf8d3a1e001c18772520204d79e71b74e0c6e99e9d05613d1"
+  ],
+  "network": "sq-ago-d0c8916e-network",
+  "passed": 19
+}

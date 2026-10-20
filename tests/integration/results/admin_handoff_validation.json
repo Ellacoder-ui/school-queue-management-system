@@ -1,0 +1,24 @@
+{
+  "observedAt": "2026-10-19T19:10:13.421Z",
+  "frontend": {
+    "passed": 198,
+    "failed": 0,
+    "skipped": 0,
+    "logSha256": "13d58273c5de4bf391a1784bc8fc00e8a40a1bfb928e4026d7e1c61824815e3c"
+  },
+  "interceptionMethods": 15,
+  "build": {
+    "publicOnly": true,
+    "knownLocalPrivateKeyScan": true,
+    "logSha256": "1e54df12d90acf339e789f9c04eb0ce0aec0481a680ae19ff6e29f043ac8e520"
+  },
+  "sourceAssetCanaryScan": {
+    "passed": true,
+    "files": 57
+  },
+  "liveUserConfirmation": {
+    "dashboardOpened": true,
+    "staffLookupPayorHistory": true,
+    "networkCapture": false
+  }
+}

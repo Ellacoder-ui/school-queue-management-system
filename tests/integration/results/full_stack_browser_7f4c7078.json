@@ -1,0 +1,57 @@
+{
+  "run": "7f4c7078",
+  "result": "FAIL",
+  "retained_writes": false,
+  "real_postgresql_rpc": true,
+  "real_auth": false,
+  "real_realtime_delivery": false,
+  "checks": [
+    {
+      "name": "database STUDENT context overrides synthetic ADMIN metadata",
+      "result": "PASS"
+    },
+    {
+      "name": "student confirms and receives a real isolated ticket; duplicate active confirmation is disabled",
+      "result": "PASS"
+    },
+    {
+      "name": "cashier Call Next reaches real PostgreSQL and renders the authorized call",
+      "result": "PASS"
+    },
+    {
+      "name": "Skip moves the same ticket to the tail; Serve does not call another ticket",
+      "result": "FAIL"
+    }
+  ],
+  "screenshots": [
+    "tests/integration/results/full_stack_7f4c7078_student-issued_1440.png",
+    "tests/integration/results/full_stack_7f4c7078_student-issued_768.png",
+    "tests/integration/results/full_stack_7f4c7078_student-issued_390.png",
+    "tests/integration/results/full_stack_7f4c7078_cashier-called_1440.png",
+    "tests/integration/results/full_stack_7f4c7078_cashier-called_768.png",
+    "tests/integration/results/full_stack_7f4c7078_cashier-called_390.png"
+  ],
+  "fixture": {
+    "containers": [
+      "95b6bf59fdce002d136cbc30ead1b61d81dcec8c4f5f3cc20155a275df15c1ab",
+      "44b587ade7e210cb49b591f04bc4004190c4e9e09cb2c8c51af59bde4aa2c1fc"
+    ],
+    "network": "sq-queue-7f4c7078-net",
+    "cluster": "7698036161803841553",
+    "existing_policy_tests": 123
+  },
+  "failure": "Browser evaluation failed; diagnostics suppressed",
+  "owned_containers_stopped": true,
+  "retained_preservation": true,
+  "owned_resources": {
+    "containers": [
+      "95b6bf59fdce002d136cbc30ead1b61d81dcec8c4f5f3cc20155a275df15c1ab",
+      "44b587ade7e210cb49b591f04bc4004190c4e9e09cb2c8c51af59bde4aa2c1fc"
+    ],
+    "network": "sq-queue-7f4c7078-net"
+  },
+  "runtime_errors": [],
+  "blocked": [],
+  "passed": 3,
+  "failed": 1
+}

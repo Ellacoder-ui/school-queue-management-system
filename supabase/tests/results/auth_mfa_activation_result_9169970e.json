@@ -1,0 +1,217 @@
+{
+  "result": "PASS",
+  "runId": "9169970e",
+  "approvedPlanSha256": "0386166bc634aa539c5c02a87ca0e0072935ab8553665b9fa410f70da5be3d35",
+  "expiresAt": "2026-10-19T10:35:24.015Z",
+  "freshCheckPlan": "PASS_PLAN_CHECKED",
+  "oneActivationAttempt": true,
+  "activation": {
+    "downtimeToAcceptanceMs": 15630,
+    "planSha256": "0386166bc634aa539c5c02a87ca0e0072935ab8553665b9fa410f70da5be3d35",
+    "replacementId": "5c57bce94c516ec320f259e94ebaf2d348598b6c26e7e2d979c719a8381992ae",
+    "result": "PASS_ACTIVATED",
+    "rollbackApprovalSha256": "d8645aba24e0af3ad7a3d36b59e655e65215c25d6b51457d39860e427e506ffd"
+  },
+  "independent": {
+    "result": "PASS_INDEPENDENT_READ_ONLY_ACCEPTANCE",
+    "observedAt": "2026-10-19T10:02:49.987861+00:00",
+    "http": {
+      "auth": 200,
+      "settings": 200,
+      "anonymous_api": 200
+    },
+    "google": true,
+    "totpEnroll": true,
+    "totpVerify": true,
+    "sourcePreservation": true,
+    "databaseVolumePreserved": true,
+    "credentialsMetadataPreserved": true,
+    "backupInventory": {
+      "files": 93,
+      "sha256": "27e6ed58b1fe58031c3a953e2c95cd8d362e869735f598c84577673498905e96"
+    },
+    "migrationVersions": [
+      "20261016000100",
+      "20261016000200",
+      "20261016000300",
+      "20261016000400",
+      "20261016000500",
+      "20261016000600"
+    ],
+    "fixedRoutes": {
+      "1": [
+        "TP"
+      ],
+      "2": [
+        "SOA"
+      ],
+      "3": [
+        "PNEP"
+      ],
+      "4": [
+        "REF"
+      ],
+      "5": [
+        "ADJ"
+      ]
+    },
+    "counts": {
+      "\"auth\".\"users\"": 42,
+      "\"auth\".\"identities\"": 29,
+      "\"auth\".\"schema_migrations\"": 82,
+      "\"queue_private\".\"accounts\"": 42,
+      "\"queue_private\".\"tickets\"": 20,
+      "\"queue_private\".\"ticket_events\"": 57,
+      "\"queue_private\".\"admin_audit_events\"": 32,
+      "\"queue_private\".\"staff_counter_assignments\"": 4
+    },
+    "activeWork": 0,
+    "openDays": 0,
+    "accounts": [
+      {
+        "role": "STUDENT",
+        "uuid": "5c96debb-697f-4cad-805f-92b518e28343",
+        "email": "ellasharmaineabeso2004@gmail.com",
+        "binding": "0fa3fe400dbd117642d5cb7eb89bfed7471e6ef447e59bfc8ac8426001e39701",
+        "enabled": true,
+        "factors": 0,
+        "account_id": "5c96debb-697f-4cad-805f-92b518e28343",
+        "assignments": 0,
+        "active_tickets": 0
+      },
+      {
+        "role": "STUDENT",
+        "uuid": "91a77243-319e-470b-a826-4c61bcfe87ae",
+        "email": "bmabing62681@liceo.edu.ph",
+        "binding": "3f45a985e16321d548b1e37f206635d2d1105a4892b67505230655387e7f5321",
+        "enabled": true,
+        "factors": 0,
+        "account_id": "91a77243-319e-470b-a826-4c61bcfe87ae",
+        "assignments": 0,
+        "active_tickets": 0
+      },
+      {
+        "role": "STUDENT",
+        "uuid": "b7d9aee8-c54d-455f-9913-a4c4dea0d097",
+        "email": "eabeso63122@liceo.edu.ph",
+        "binding": "7b236769634b0910b034c035cc1422021f2281be9d6fd77d5c882ffd9ed86bbd",
+        "enabled": true,
+        "factors": 0,
+        "account_id": "b7d9aee8-c54d-455f-9913-a4c4dea0d097",
+        "assignments": 0,
+        "active_tickets": 0
+      }
+    ],
+    "securityMigrationUnapplied": true,
+    "unaffectedServices": [
+      {
+        "name": "/supabase_db_school-queue-local",
+        "id": "16f1de8f80f73115d5792cb395f6680ed2d73135b156d6311a31c96765d540b9",
+        "running": true,
+        "health": "healthy"
+      },
+      {
+        "name": "/supabase_pg_meta_school-queue-local",
+        "id": "23df750f5f64167d0d31604e4a7cb739a1681d228ce01528d2bf441be4f66a96",
+        "running": true,
+        "health": "healthy"
+      },
+      {
+        "name": "/supabase_inbucket_school-queue-local",
+        "id": "2dc2dda3b9419f2dc7a6be3c00c54efed243ebb04ee4007bfb0dfcd29d53cf2e",
+        "running": true,
+        "health": "healthy"
+      },
+      {
+        "name": "/supabase_storage_school-queue-local",
+        "id": "423b0081907815cf52ec9047b6ce142ff5f34a14324f61423d75fb34bc9c40c3",
+        "running": true,
+        "health": "healthy"
+      },
+      {
+        "name": "/supabase_kong_school-queue-local",
+        "id": "6542ef0ddc9fc5d72a5530feb0b961f0ba3c4916adec19bd538ead0d3837ebdd",
+        "running": true,
+        "health": "healthy"
+      },
+      {
+        "name": "/supabase_realtime_school-queue-local",
+        "id": "8ddd82b059ceead9ba41b43dbeef4fa53de0fa22fcfac4bbd806f78b00636327",
+        "running": true,
+        "health": "healthy"
+      },
+      {
+        "name": "/supabase_auth_school-queue-local-e17c030c-activation-original",
+        "id": "9f7742bf04e680d82988376411720e3500c9c0c069b0e57de5b7f3dc3ebb4ef6",
+        "running": false,
+        "health": "unhealthy"
+      },
+      {
+        "name": "/supabase_rest_school-queue-local",
+        "id": "a3ebd0eb21044da487163626e9ce78849d4d551d466138bae4196a5bca3e1172",
+        "running": true,
+        "health": null
+      },
+      {
+        "name": "/supabase_vector_school-queue-local",
+        "id": "b6d521af4f244e0ab8ede06130d31bf067e9483ed1dd920544759b607cc9bc59",
+        "running": true,
+        "health": "unhealthy"
+      },
+      {
+        "name": "/supabase_analytics_school-queue-local",
+        "id": "d39d0db69e75569b40030d43ce1bed2374af6b15554b2ff0fbf11e2ac0dba5f9",
+        "running": true,
+        "health": "healthy"
+      },
+      {
+        "name": "/supabase_studio_school-queue-local",
+        "id": "e3a3eb8f4a6ba04736e5ce030c4898acbc9e7037bc8bb31d6145696478e1af49",
+        "running": true,
+        "health": "healthy"
+      },
+      {
+        "name": "/supabase_edge_runtime_school-queue-local",
+        "id": "fa08af4faf695e70a0b1d965c50c50739353bc8f98da4633089405d99649be33",
+        "running": true,
+        "health": null
+      }
+    ],
+    "projectContainers": 14
+  },
+  "original": {
+    "id": "565adceacab15cd43c7e00d5cee19345bc34f6ab981b35d5dc2ba4f8cdd4f399",
+    "name": "/supabase_auth_school-queue-local-9169970e-activation-mfa-original",
+    "running": false,
+    "exitCode": 0,
+    "networkDetached": true,
+    "definitionPreserved": true
+  },
+  "replacement": {
+    "id": "5c57bce94c516ec320f259e94ebaf2d348598b6c26e7e2d979c719a8381992ae",
+    "name": "/supabase_auth_school-queue-local",
+    "image": "sha256:1736a63078f5922b198c4cbe50f80ab9a2d3b54fe8b7b6cfb2e9dc5dbbc12c6b",
+    "running": true,
+    "health": "healthy",
+    "restarts": 0,
+    "definitionMatchesApproved": true
+  },
+  "exactEnvironmentDelta": [
+    "GOTRUE_MFA_TOTP_VERIFY_ENABLED",
+    "GOTRUE_MFA_TOTP_ENROLL_ENABLED"
+  ],
+  "googleJwtDatabaseEmailAndAliasesPreserved": true,
+  "tomlSha256": "29c2ad10f40a36c61256ac93c25f2c545df73ef30511e46868def5e8b29c98a8",
+  "frozenInputs": {
+    "count": 1052,
+    "unchanged": 1051,
+    "changed": [
+      "supabase/config.toml"
+    ],
+    "missing": []
+  },
+  "realFactorEnrolled": false,
+  "rolePromotion": false,
+  "rollbackPerformed": false,
+  "automaticRetry": false
+}

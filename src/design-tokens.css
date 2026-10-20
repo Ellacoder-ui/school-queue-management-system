@@ -1,0 +1,72 @@
+/* Centralized design tokens for the School Queue Management System.
+   Edit these values to customize the entire application's appearance.
+   All other CSS files reference these tokens via CSS custom properties. */
+
+:root {
+  /* ── Brand colors ── */
+  --cqs-burgundy: #65263d;       /* Primary brand color (header, buttons, links) */
+  --cqs-hover: #4d1b2d;          /* Darker burgundy for hover states */
+  --cqs-gold: #e5bd68;           /* Accent color (badges, highlights, icons) */
+  --cqs-ink: #30292d;            /* Primary text color */
+  --cqs-muted: #716971;          /* Secondary text color */
+  --cqs-line: #e8e4e1;           /* Border/divider color */
+  --cqs-surface: #fffdf9;        /* Card/panel background */
+  --cqs-bg: #ffffff;             /* Page background */
+
+  /* ── Public display (standalone /display page) ── */
+  --board-gold: #ffd065;         /* Gold accent on public display */
+  --board-muted: #dbc5cc;        /* Muted text on public display */
+  --board-bg: #1e0c14;           /* Dark background on public display */
+
+  /* ── Typography ── */
+  --cqs-font-family: Arial, Helvetica, sans-serif;
+  --cqs-font-size-base: 15px;
+  --cqs-line-height-base: 1.6;
+  --cqs-font-heading: Georgia, serif;
+
+  /* ── Spacing ── */
+  --cqs-space-xs: 4px;
+  --cqs-space-sm: 8px;
+  --cqs-space-md: 16px;
+  --cqs-space-lg: 24px;
+  --cqs-space-xl: 32px;
+
+  /* ── Header ── */
+  --cqs-header-height: 90px;
+
+  /* ── Border radius ── */
+  --cqs-radius-sm: 8px;
+  --cqs-radius-md: 11px;
+  --cqs-radius-lg: 14px;
+  --cqs-radius-full: 50%;
+
+  /* ── Shadows ── */
+  --cqs-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --cqs-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  /* ── Breakpoints (reference only — used in media queries) ── */
+  /* mobile: 390px, tablet: 768px, desktop: 1024px, wide: 1280px, full: 1440px */
+}
+
+/* Apply design tokens to the app container */
+.cqs-app, .cqs-dialog {
+  --cqs-burgundy: var(--cqs-burgundy);
+  --cqs-hover: var(--cqs-hover);
+  --cqs-gold: var(--cqs-gold);
+  --cqs-ink: var(--cqs-ink);
+  --cqs-muted: var(--cqs-muted);
+  --cqs-line: var(--cqs-line);
+  color: var(--cqs-ink);
+  font: var(--cqs-font-size-base)/var(--cqs-line-height-base) var(--cqs-font-family);
+}
+
+.queue-board {
+  --gold: var(--board-gold);
+  --muted: var(--board-muted);
+  color: #fff;
+  background: var(--board-bg);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--cqs-font-family);
+}

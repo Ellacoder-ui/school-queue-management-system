@@ -1,0 +1,35 @@
+{
+  "result": "PASS_AUTH_ONLY_GOOGLE_ACTIVATION",
+  "runId": "e17c030c",
+  "userApprovedScope": "one guarded Auth-only recreation with the reviewed Google configuration",
+  "planCheck": {
+    "result": "PASS_PLAN_AND_CURRENT_SOURCE",
+    "runId": "e17c030c",
+    "planSha256": "4ab19e56c523ec9f918439399611d18b87cff78c8e8c65c1715f01d3071245fc",
+    "google": false,
+    "credentialContentsAccessed": false,
+    "retainedServiceChanged": false
+  },
+  "activationStartedUtc": "2026-10-19 02:40:19 UTC",
+  "activation": {
+    "result": "PASS_ACTIVATED",
+    "replacementId": "565adceacab15cd43c7e00d5cee19345bc34f6ab981b35d5dc2ba4f8cdd4f399",
+    "planSha256": "4ab19e56c523ec9f918439399611d18b87cff78c8e8c65c1715f01d3071245fc",
+    "rollbackApprovalSha256": "3c76af12118910bb423ef7c17867c4627421b9a3b27840416c78094601b3d378",
+    "downtimeToAcceptanceMs": 14674
+  },
+  "existingInputPreservation": {
+    "existingInputs": 636,
+    "unchanged": 635,
+    "changed": [
+      "supabase\\config.toml"
+    ],
+    "missing": []
+  },
+  "automaticRetry": false,
+  "automaticRollback": false,
+  "realGoogleLoginPerformed": false,
+  "identityChangePerformed": false,
+  "resultReport": "docs/GOOGLE_SIGN_IN_ACTIVATION_RESULT.md",
+  "verificationEvidence": "supabase/tests/results/auth_only_activation_result_e17c030c.json"
+}

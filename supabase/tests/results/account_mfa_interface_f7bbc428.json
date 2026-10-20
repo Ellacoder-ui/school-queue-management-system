@@ -1,0 +1,27 @@
+{
+  "run": "f7bbc428",
+  "checks": [
+    {
+      "name": "isolated same cached Auth starts with TOTP and Google enabled, no host ports",
+      "result": "PASS"
+    },
+    {
+      "name": "application inventory requires explicit enrollment",
+      "result": "PASS"
+    }
+  ],
+  "retainedWrites": false,
+  "syntheticOnly": true,
+  "actualAuthAndSdk": true,
+  "result": "FAIL",
+  "failure": "Synthetic MFA integration stopped; private diagnostics suppressed",
+  "stopped": true,
+  "retainedPreservation": true,
+  "containers": [
+    "bc9e0dd0564e76ca3b84658bec6fac9ec00e2df046f3e38e225551234e39261c",
+    "72683b2676681eee510d5fd8b48c6c69da706564e3d46916509fa3e5fd6e5236",
+    "bd954bf6754a31a6dc991a0a4995024c57f21d3fdad9c4d1d405abd11d215b11"
+  ],
+  "network": "aaab678fbc4ebdfdc53ffffe60c776ac1ed15d8089ec58f1bf608a75a2935acf",
+  "passed": 2
+}

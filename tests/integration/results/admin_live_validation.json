@@ -1,0 +1,30 @@
+{
+  "captured": 2099,
+  "unchanged": 2089,
+  "missing": [],
+  "changed": [
+    "src/admin.css",
+    "src/components/AccountMfaDialog.vue",
+    "src/components/AdminDashboard.vue",
+    "src/lib/accountMfa.js",
+    "src/workspace.css",
+    "tests/frontend/accountMfa.test.js",
+    "tests/frontend/workspaceViews.test.js",
+    "src/components/AuthWorkspace.vue",
+    "tests/frontend/authWorkspace.test.js",
+    "tests/frontend/googleOAuth.browser.mjs"
+  ],
+  "frontend": {
+    "passed": 208,
+    "failed": 0,
+    "log_sha256": "eaf86bdcc80b8a3976005e1985eb6b912be85c4080c091e5828075d07092e9ac"
+  },
+  "interceptionMethods": 15,
+  "build_sha256": "5195a105c2924f9ec31bdbf98ff3fb6e5598014fd8c9094725c1788581bd07a5",
+  "sourceAssetScan": {
+    "result": "PASS",
+    "files": 58
+  },
+  "whitespace": "PASS",
+  "report_sha256": "4d48399629125c5e98b07fb4f74d1c5e7f095c13db200dc97ebdbdae79678e2a"
+}

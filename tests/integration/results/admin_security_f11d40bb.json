@@ -1,0 +1,107 @@
+{
+  "run": "f11d40bb",
+  "retained_writes": false,
+  "real_mfa_or_google_login": false,
+  "checks": [
+    {
+      "name": "proposed migration changes no role and seeds no approvals",
+      "result": "PASS"
+    },
+    {
+      "name": "ordinary and disabled users cannot self-promote with ADMIN metadata or AAL2",
+      "result": "PASS"
+    },
+    {
+      "name": "unreviewed existing ADMIN is denied even with signed AAL2",
+      "result": "PASS"
+    },
+    {
+      "name": "operator review rejects wrong UUID, .edu.com/email mismatch and wrong identity hash",
+      "result": "PASS"
+    },
+    {
+      "name": "operator helpers and approval tables are unavailable through browser roles",
+      "result": "PASS"
+    },
+    {
+      "name": "approved target still cannot be promoted before verified MFA enrollment",
+      "result": "PASS"
+    },
+    {
+      "name": "promotion checks exact target binding and retains the reviewed target on failure",
+      "result": "PASS"
+    },
+    {
+      "name": "separately reviewed operator promotion changes only its exact synthetic account",
+      "result": "PASS"
+    },
+    {
+      "name": "promotion and review repeats cannot silently overwrite approval or promote again",
+      "result": "PASS"
+    },
+    {
+      "name": "approved ADMIN AAL1 cannot read or execute any sensitive administrative RPC",
+      "result": "PASS"
+    },
+    {
+      "name": "approved ADMIN AAL2 reads the complete five-counter directory without Auth secrets",
+      "result": "PASS"
+    },
+    {
+      "name": "forged AAL2 JWT signature cannot substitute for real authentication",
+      "result": "PASS"
+    },
+    {
+      "name": "CASHIER assignment requires operator approval of that exact target identity",
+      "result": "PASS"
+    },
+    {
+      "name": "all fixed counters retain routing and accept only approved enabled cashiers",
+      "result": "PASS"
+    },
+    {
+      "name": "approved administrator can disable and re-enable an approved existing cashier",
+      "result": "PASS"
+    },
+    {
+      "name": "cashier queue reads require AAL2 and administrator context cannot be injected",
+      "result": "PASS"
+    },
+    {
+      "name": "cashier call/serve/replay enforce AAL2 before the original operation logic",
+      "result": "PASS"
+    },
+    {
+      "name": "removed verified MFA enrollment denies an otherwise approved AAL2 token",
+      "result": "PASS"
+    },
+    {
+      "name": "changed Google identity invalidates approval without changing database role",
+      "result": "PASS"
+    },
+    {
+      "name": "revoked and expired approvals deny AAL2 staff access",
+      "result": "PASS"
+    },
+    {
+      "name": "private core implementations and approval table have no browser bypass",
+      "result": "PASS"
+    }
+  ],
+  "prior_policy_methods": 123,
+  "candidate_sha256": "b22d63d24c991b9ebf0d380d27a716d5ea72e418f5e62e177c96dded4481222c",
+  "result": "PASS",
+  "owned_resources": {
+    "containers": [
+      "2e7b997b649dcd8b5d3e56650897e85b2a3544aeab394d956d878d834db9d428",
+      "9c1d8cfe4adfe825618c379643c7e1f71f6518c6897bddf7acb99bc04b489ca2"
+    ],
+    "network": "sq-queue-f11d40bb-net"
+  },
+  "owned_containers_stopped": true,
+  "retained_rows_functions_exact": true,
+  "retained_services_exact": true,
+  "docker_inventory_exact": true,
+  "passed": 21,
+  "failed": 0
+}

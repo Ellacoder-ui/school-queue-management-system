@@ -1,4 +1,4 @@
-/** Auth-only preparation and DISPOSABLE execution. No retained mutation adapter.
+/** Auth-only preparation and explicit approval-bound execution.
  * Private Docker bodies and DPAPI IPC never enter shell arguments or receipts. */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -55,7 +55,10 @@ export function validateRetained(item){
 export function codeBinding(){return Object.fromEntries(['scripts/authOnlyCore.mjs','scripts/authOnlyEngine.mjs','scripts/authOnlyRetained.mjs','scripts/AuthOnlyStorage.ps1',
   'scripts/AuthOnlyCredentialBridge.ps1','scripts/Start-AuthOnlyGoogle.ps1','scripts/vectorRepairCore.mjs','scripts/LocalGoogleCredential.psm1',
   'tests/security/rehearse_auth_only.mjs','tests/security/authOnlyStorageAclProbe.ps1',
-  'tests/security/capture_auth_original.mjs','tests/security/run_auth_only_rehearsal.py'].map(p=>[p,digest(fs.readFileSync(path.join(root,p),'utf8'))]));}
+  'tests/security/capture_auth_original.mjs','tests/security/run_auth_only_rehearsal.py',
+  'scripts/authOnlyWorkflow.mjs','scripts/authOnlyCli.mjs','scripts/auth_only_guard.py','scripts/LocalGoogleActivation.ps1',
+  ...fs.readdirSync(path.join(root,'supabase/tests')).filter(p=>p.endsWith('.py')).map(p=>'supabase/tests/'+p)
+  ].map(p=>[p,digest(fs.readFileSync(path.join(root,p),'utf8'))]));}
 export async function privateBridge(script, request){return new Promise((resolve,reject)=>{
   need(['AuthOnlyStorage.ps1','AuthOnlyCredentialBridge.ps1'].includes(script),'AGO_BRIDGE');
   const child=spawn('powershell.exe',['-NoProfile','-NonInteractive','-ExecutionPolicy','Bypass','-File',path.join(root,'scripts',script)],
@@ -73,35 +76,36 @@ export async function storage(operation,runId,slot,payload,profile='synthetic'){
   need(['synthetic','retained-capture'].includes(profile),'AGO_PROFILE');
   return privateBridge('AuthOnlyStorage.ps1',{operation,runId,slot,profile,...(payload===undefined?{}:{payload:stable(payload)})});
 }
-export function validateApproval(plan, approval, currentId, sourceHash){
-  need(plan.profile==='disposable-only' && plan.project==='school-queue-local' && /^[0-9a-f]{64}$/.test(approval) && digest(plan)===approval,'AGO_APPROVAL');
+export function validateApproval(plan, approval, currentId, sourceHash, profile='disposable-only'){
+  need(['disposable-only','retained-auth-only'].includes(profile) && plan.profile===profile && plan.project==='school-queue-local' && /^[0-9a-f]{64}$/.test(approval) && digest(plan)===approval,'AGO_APPROVAL');
   need(plan.originalId===currentId && plan.sourceHash===sourceHash,'AGO_TARGET_SOURCE');
   need(stable(plan.code)===stable(codeBinding()),'AGO_CODE_CHANGED');
 }
 export class AuthReconciler{
-  constructor(engine,sourceHash){this.engine=engine;this.sourceHash=sourceHash;}
+  constructor(engine,sourceHash,profile='disposable-only'){need(['disposable-only','retained-auth-only'].includes(profile),'AGO_PROFILE');this.engine=engine;this.sourceHash=sourceHash;this.profile=profile;}
+  store(operation,slot,payload){return storage(operation,this.engine.id,slot,payload,this.profile==='disposable-only'?'synthetic':'retained-capture');}
   directory(){return path.join(root,'.local-auth-only',this.engine.id);}
   writeNew(name,value){need(/^[a-z0-9-]+\.json$/.test(name),'AGO_JOURNAL');fs.writeFileSync(path.join(this.directory(),name),stable(value),{flag:'wx'});}
   async prepare(slot,id,credentials){
     const item=await this.engine.inspect(id);need(item.Name==='/'+this.engine.names.auth,'AGO_CANONICAL');
     const original=toCreate(item,this.engine.names.network), proposed=candidate(original,credentials);
     if(this.engine.bind)await this.engine.bind(slot,id,original,proposed);
-    await storage('initialize',this.engine.id,slot);this.writeNew(slot+'-reserved.json',{originalId:id});
-    const plan={version:1,project:'school-queue-local',profile:'disposable-only',runId:this.engine.id,slot,originalId:id,sourceHash:this.sourceHash,
+    await this.store('initialize',slot);this.writeNew(slot+'-reserved.json',{originalId:id});
+    const plan={version:1,project:'school-queue-local',profile:this.profile,runId:this.engine.id,slot,originalId:id,sourceHash:this.sourceHash,
       originalHash:digest(original),candidateHash:digest(proposed),code:codeBinding()};
-    await storage('seal',this.engine.id,slot,{inspect:item,original,candidate:proposed,plan});
-    const opened=JSON.parse((await storage('open',this.engine.id,slot)).payload);
+    await this.store('seal',slot,{inspect:item,original,candidate:proposed,plan});
+    const opened=JSON.parse((await this.store('open',slot)).payload);
     need(stable(opened.original)===stable(original) && stable(opened.candidate)===stable(proposed),'AGO_READBACK');
     this.writeNew(slot+'-plan.json',plan);return {plan,hash:digest(plan)};
   }
   async load(plan,approval){
-    validateApproval(plan,approval,plan.originalId,this.sourceHash);
-    const x=JSON.parse((await storage('open',this.engine.id,plan.slot)).payload);
+    validateApproval(plan,approval,plan.originalId,this.sourceHash,this.profile);
+    const x=JSON.parse((await this.store('open',plan.slot)).payload);
     need(stable(x.plan)===stable(plan) && digest(x.original)===plan.originalHash && digest(x.candidate)===plan.candidateHash,'AGO_CAPTURE_HASH');
     const e=environment(x.candidate.Env);exactDelta(x.original,x.candidate,{ClientId:e.GOTRUE_EXTERNAL_GOOGLE_CLIENT_ID,ClientSecret:e.GOTRUE_EXTERNAL_GOOGLE_SECRET});return x;
   }
   async apply(plan,approval,sourceHash){
-    validateApproval(plan,approval,plan.originalId,sourceHash);const x=await this.load(plan,approval);
+    validateApproval(plan,approval,plan.originalId,sourceHash,this.profile);const x=await this.load(plan,approval);
     const item=await this.engine.inspect(plan.originalId);
     need(item.Name==='/'+this.engine.names.auth && digest(toCreate(item,this.engine.names.network))===plan.originalHash,'AGO_TARGET_CHANGED');
     this.writeNew(plan.slot+'-attempt.json',{phase:'armed',originalId:item.Id});

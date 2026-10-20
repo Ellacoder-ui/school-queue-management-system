@@ -1,0 +1,47 @@
+{
+  "observedAt": "2026-10-19T19:06:51.857Z",
+  "readOnly": true,
+  "counts": {
+    "accounts": 42,
+    "auth_users": 42,
+    "identities": 29,
+    "recent_auth_users": [
+      {
+        "account": "personal_admin",
+        "created_at": "2026-10-19T03:00:20.968709+00:00",
+        "updated_at": "2026-10-19T19:00:16.578913+00:00",
+        "last_sign_in_at": "2026-10-19T19:00:16.562056+00:00"
+      }
+    ],
+    "recent_identities": [
+      {
+        "account": "personal_admin",
+        "provider": "google",
+        "created_at": "2026-10-19T03:00:20.999418+00:00",
+        "updated_at": "2026-10-19T19:00:16.130318+00:00",
+        "last_sign_in_at": "2026-10-19T03:00:20.999374+00:00"
+      }
+    ],
+    "recent_audit_categories": [
+      {
+        "last": "2026-10-19T19:00:16.559896+00:00",
+        "count": 2,
+        "first": "2026-10-19T19:00:16.149816+00:00",
+        "action": "login"
+      },
+      {
+        "last": "2026-10-19T19:00:08.098327+00:00",
+        "count": 1,
+        "first": "2026-10-19T19:00:08.098327+00:00",
+        "action": "logout"
+      }
+    ]
+  },
+  "health": {
+    "auth": 200,
+    "settings": 200,
+    "api": 200,
+    "google": true
+  },
+  "limitation": "Aggregate fingerprints cannot establish which individual fields changed. No historical comparison is relaxed."
+}

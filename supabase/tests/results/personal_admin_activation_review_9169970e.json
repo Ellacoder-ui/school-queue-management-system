@@ -1,0 +1,122 @@
+{
+  "recordedAt": "2026-10-19T09:38:00.599Z",
+  "activationResult": "FAIL_PREFLIGHT_NOT_EXECUTED",
+  "changedService": null,
+  "automaticRetry": false,
+  "automaticRollback": false,
+  "approvedPlan": {
+    "runId": "0f6aaa88",
+    "planSha256": "08e5e9587e570d07afbec2f66f796e3aa2238f1dd8838759312dee89ac778d4a",
+    "checkPlan": "FAIL",
+    "code": "AMF_READ_ONLY_GUARD_REJECTED",
+    "activationAttemptJournalPresent": false
+  },
+  "replacementPlan": {
+    "runId": "9169970e",
+    "planSha256": "0386166bc634aa539c5c02a87ca0e0072935ab8553665b9fa410f70da5be3d35",
+    "expiresAt": "2026-10-19T10:35:24.015Z",
+    "prepare": "PASS",
+    "checkPlan": "PASS",
+    "approvalReceived": false,
+    "capture": ".local-auth-only/9169970e/mfa-review/payload.dpapi"
+  },
+  "configurationUnchanged": true,
+  "authId": "565adceacab15cd43c7e00d5cee19345bc34f6ab981b35d5dc2ba4f8cdd4f399",
+  "image": "sha256:1736a63078f5922b198c4cbe50f80ab9a2d3b54fe8b7b6cfb2e9dc5dbbc12c6b",
+  "protectedBackups": {
+    "files": 93,
+    "sha256": "27e6ed58b1fe58031c3a953e2c95cd8d362e869735f598c84577673498905e96"
+  },
+  "changedTableFingerprintCounts": {
+    "\"auth\".\"audit_log_entries\"": {
+      "before": 135,
+      "after": 138,
+      "removedRowFingerprints": 0,
+      "addedRowFingerprints": 3
+    },
+    "\"auth\".\"identities\"": {
+      "before": 28,
+      "after": 29,
+      "removedRowFingerprints": 0,
+      "addedRowFingerprints": 1
+    },
+    "\"auth\".\"mfa_amr_claims\"": {
+      "before": 36,
+      "after": 36,
+      "removedRowFingerprints": 1,
+      "addedRowFingerprints": 1
+    },
+    "\"auth\".\"refresh_tokens\"": {
+      "before": 36,
+      "after": 36,
+      "removedRowFingerprints": 1,
+      "addedRowFingerprints": 1
+    },
+    "\"auth\".\"sessions\"": {
+      "before": 36,
+      "after": 36,
+      "removedRowFingerprints": 1,
+      "addedRowFingerprints": 1
+    },
+    "\"auth\".\"users\"": {
+      "before": 41,
+      "after": 42,
+      "removedRowFingerprints": 0,
+      "addedRowFingerprints": 1
+    },
+    "\"queue_private\".\"accounts\"": {
+      "before": 41,
+      "after": 42,
+      "removedRowFingerprints": 0,
+      "addedRowFingerprints": 1
+    },
+    "\"realtime\".\"subscription\"": {
+      "before": 2,
+      "after": 4,
+      "removedRowFingerprints": 2,
+      "addedRowFingerprints": 4
+    }
+  },
+  "sourceVersions": [
+    "20261016000100",
+    "20261016000200",
+    "20261016000300",
+    "20261016000400",
+    "20261016000500",
+    "20261016000600"
+  ],
+  "fixedRoutes": {
+    "1": [
+      "TP"
+    ],
+    "2": [
+      "SOA"
+    ],
+    "3": [
+      "PNEP"
+    ],
+    "4": [
+      "REF"
+    ],
+    "5": [
+      "ADJ"
+    ]
+  },
+  "activeWork": 0,
+  "openDays": 0,
+  "sourceSectionsUnchanged": {
+    "catalog": true,
+    "schema": true,
+    "roles": true,
+    "additional_privileges": true,
+    "routing": true,
+    "ancillary": true
+  },
+  "frozenInputs": {
+    "count": 1042,
+    "changed": [],
+    "missing": []
+  },
+  "targetEvidence": "personal_admin_identity_closeout_0f6aaa88.json",
+  "isolatedEvidence": "tests/integration/results/personal_admin_preparation_16245ca5.json"
+}

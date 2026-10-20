@@ -1,0 +1,253 @@
+{
+  "run": "f91415c2",
+  "source_writes": false,
+  "checks": [
+    {
+      "name": "Actual anonymous snapshot matches all five fixed destinations and authoritative day context",
+      "result": "PASS"
+    },
+    {
+      "name": "Both actual postgres_changes listeners require readiness and a fresh snapshot",
+      "result": "PASS"
+    },
+    {
+      "name": "Forced actual socket closure invalidates state and reconnect performs fresh reads",
+      "result": "PASS"
+    },
+    {
+      "name": "Public controller cleanup removes all owned subscriptions",
+      "result": "PASS"
+    },
+    {
+      "name": "Browser/setup acceptance gate",
+      "result": "FAIL",
+      "reason": "Actual monitor did not become live"
+    }
+  ],
+  "screenshots": [],
+  "synthetic_screenshots": [],
+  "isolated_vite_cache": true,
+  "chrome_version": "Chrome/155.0.8059.40",
+  "cdp_version": "1.3",
+  "result": "FAIL",
+  "failure": "Actual monitor did not become live",
+  "blocked": [],
+  "runtime_errors": [],
+  "browser_state": {
+    "board": false,
+    "path": "/display"
+  },
+  "passed": 4,
+  "failed": 1,
+  "interception": {
+    "requests": [
+      {
+        "ordinal": 1,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 2,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 3,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 4,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 5,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 6,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 7,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 8,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 9,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 10,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 11,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 12,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 13,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 14,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 15,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 16,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 17,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 18,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": {
+          "canceled": true,
+          "category": "net::ERR_ABORTED"
+        },
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 19,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": {
+          "canceled": true,
+          "category": "net::ERR_ABORTED"
+        },
+        "action": "Fetch.continueRequest"
+      }
+    ],
+    "protocol_errors": [],
+    "benign_cancellations": [],
+    "policy_violations": [],
+    "fatal_errors": [
+      {
+        "category": "uncaught-browser-exception"
+      }
+    ],
+    "duplicates": 0,
+    "closed": true,
+    "owned_handlers": 0
+  }
+}

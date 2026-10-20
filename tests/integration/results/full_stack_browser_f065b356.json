@@ -1,0 +1,74 @@
+{
+  "run": "f065b356",
+  "result": "PASS",
+  "retained_writes": false,
+  "real_postgresql_rpc": true,
+  "real_auth": false,
+  "real_realtime_delivery": false,
+  "checks": [
+    {
+      "name": "database STUDENT context overrides synthetic ADMIN metadata",
+      "result": "PASS"
+    },
+    {
+      "name": "student confirms and receives a real isolated ticket; duplicate active confirmation is disabled",
+      "result": "PASS"
+    },
+    {
+      "name": "cashier Call Next reaches real PostgreSQL and renders the authorized call",
+      "result": "PASS"
+    },
+    {
+      "name": "Skip moves the same ticket to the tail; Serve does not call another ticket",
+      "result": "PASS"
+    },
+    {
+      "name": "student history reflects actual served status",
+      "result": "PASS"
+    },
+    {
+      "name": "response loss leaves one ticket and an explicit same-key retry recovers the receipt",
+      "result": "PASS"
+    },
+    {
+      "name": "anonymous monitor renders real sanitized fixture calls without private identities",
+      "result": "PASS"
+    }
+  ],
+  "screenshots": [
+    "tests/integration/results/full_stack_f065b356_student-issued_1440.png",
+    "tests/integration/results/full_stack_f065b356_student-issued_768.png",
+    "tests/integration/results/full_stack_f065b356_student-issued_390.png",
+    "tests/integration/results/full_stack_f065b356_cashier-called_1440.png",
+    "tests/integration/results/full_stack_f065b356_cashier-called_768.png",
+    "tests/integration/results/full_stack_f065b356_cashier-called_390.png",
+    "tests/integration/results/full_stack_f065b356_student-unknown_1440.png",
+    "tests/integration/results/full_stack_f065b356_student-unknown_768.png",
+    "tests/integration/results/full_stack_f065b356_student-unknown_390.png",
+    "tests/integration/results/full_stack_f065b356_public-monitor_1440.png",
+    "tests/integration/results/full_stack_f065b356_public-monitor_768.png",
+    "tests/integration/results/full_stack_f065b356_public-monitor_390.png"
+  ],
+  "fixture": {
+    "containers": [
+      "4b4b392a282f4ebc36b66a89062c7b575150e2f8459498c80f3ea038157520d3",
+      "b25abc99853ba5ed799271dc8f22def24ec05a1d4de9b34689d5abe132baee20"
+    ],
+    "network": "sq-queue-f065b356-net",
+    "cluster": "7698467367347408913",
+    "existing_policy_tests": 123
+  },
+  "owned_containers_stopped": true,
+  "retained_preservation": true,
+  "owned_resources": {
+    "containers": [
+      "4b4b392a282f4ebc36b66a89062c7b575150e2f8459498c80f3ea038157520d3",
+      "b25abc99853ba5ed799271dc8f22def24ec05a1d4de9b34689d5abe132baee20"
+    ],
+    "network": "sq-queue-f065b356-net"
+  },
+  "runtime_errors": [],
+  "blocked": [],
+  "passed": 7,
+  "failed": 0
+}

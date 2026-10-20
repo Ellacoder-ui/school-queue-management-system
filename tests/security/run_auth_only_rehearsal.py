@@ -57,7 +57,7 @@ def main():
     need(not path.exists(), 'AGO_EVIDENCE_EXISTS')
     record = {'run_id': rid, 'result': 'IN_PROGRESS', 'phase': 'read-only-preflight',
               'started_at': datetime.now(timezone.utc).isoformat(), 'retained_mutation': False,
-              'production_google_credential_contents_accessed': False, 'retained_activation_locked': True}
+              'production_google_credential_contents_accessed': False, 'retained_activation_approval_required': True}
     save = lambda: m.backup.write_json(path, record)
     before = None
     baseline_ready = False
@@ -82,10 +82,11 @@ def main():
         record['known_historical_pruning_failure'] = {'unchanged_policy': True, 'not_a_current_inventory_recovery_approval': True,
             'historical_report': 'supabase/HISTORICAL_POSTGRES_71_TABLE_RESTORE_REPORT.md'}
         record['phase'] = 'offline-methods'; save()
-        output = private_process(['node', '--test', 'tests/security/authOnly.unit.mjs']).decode('utf-8', 'replace')
+        output = private_process(['node', '--test', 'tests/security/authOnly.unit.mjs', 'tests/security/authOnlyWorkflow.unit.mjs']).decode('utf-8', 'replace')
         match = re.search(r'(?:# |\u2139 )?pass (\d+)', output)
-        need(match and int(match[1]) == 17, 'AGO_OFFLINE_COUNT')
-        record['offline_methods'] = {'passed': 17, 'failed': 0}
+        need(match and int(match[1]) == 24, 'AGO_OFFLINE_COUNT')
+        private_process(['python', '-B', 'tests/security/test_auth_only_guard.py'])
+        record['offline_methods'] = {'passed': 30, 'failed': 0, 'node': 24, 'python': 6}
         record['phase'] = 'encrypted-read-only-original-capture'; save()
         auth = next(x for x in before if x['Name'] == '/supabase_auth_school-queue-local')
         receipt = json.loads(private_process(['node', 'tests/security/capture_auth_original.mjs'], json.dumps({

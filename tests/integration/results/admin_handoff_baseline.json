@@ -1,0 +1,160 @@
+{
+  "observedAt": "2026-10-19T18:40:09.675Z",
+  "retainedWrites": false,
+  "result": "PASS",
+  "metadata": {
+    "roles": {
+      "ADMIN": 7,
+      "CASHIER": 5,
+      "STUDENT": 30
+    },
+    "routes": [
+      "1:TP",
+      "2:SOA",
+      "3:PNEP",
+      "4:REF",
+      "5:ADJ"
+    ],
+    "pending": 1,
+    "tickets": 20,
+    "version": "17.11",
+    "database": "postgres",
+    "operator": "postgres",
+    "007_absent": true,
+    "assignments": 4,
+    "school_role": "STUDENT",
+    "admin_enabled": true,
+    "personal_role": "ADMIN",
+    "add_staff_absent": true,
+    "application_migrations": 6
+  },
+  "functions": [
+    {
+      "args": "uuid",
+      "name": "admin_google_binding_v10",
+      "owner": "postgres",
+      "result": "text",
+      "schema": "queue_private",
+      "definer": true,
+      "execute": [
+        "postgres"
+      ],
+      "settings": [
+        "search_path=\"\""
+      ],
+      "body_sha256": "2c65f52e399b144d4237ac5ae5ef5ebbf1b3556727389718c11d4bd739b6f72f"
+    },
+    {
+      "args": "",
+      "name": "admin_staff_accounts",
+      "owner": "postgres",
+      "result": "jsonb",
+      "schema": "queue_api",
+      "definer": true,
+      "execute": [
+        "authenticated",
+        "postgres"
+      ],
+      "settings": [
+        "search_path=\"\""
+      ],
+      "body_sha256": "5963291d0589c64dd0a389571734db2064a4959cd2377129ab84a222bd817d4e"
+    },
+    {
+      "args": "uuid",
+      "name": "admin_payor_events",
+      "owner": "postgres",
+      "result": "jsonb",
+      "schema": "queue_api",
+      "definer": true,
+      "execute": [
+        "authenticated",
+        "postgres"
+      ],
+      "settings": [
+        "search_path=\"\""
+      ],
+      "body_sha256": "054f4f0f56cd3333ebbda5f2c081c33722c258c1a78e5c47297ececc8562638e"
+    },
+    {
+      "args": "text",
+      "name": "resolve_staff_google",
+      "owner": "postgres",
+      "result": "jsonb",
+      "schema": "queue_api",
+      "definer": true,
+      "execute": [
+        "authenticated",
+        "postgres"
+      ],
+      "settings": [
+        "search_path=\"\""
+      ],
+      "body_sha256": "5b2c82eb575e19476f1b932180cfa7405aa72b53fdf6e0bdf10392fa9ea5ea0b"
+    },
+    {
+      "args": "text, text, date, text, integer, integer",
+      "name": "admin_payors",
+      "owner": "postgres",
+      "result": "jsonb",
+      "schema": "queue_api",
+      "definer": true,
+      "execute": [
+        "authenticated",
+        "postgres"
+      ],
+      "settings": [
+        "search_path=\"\""
+      ],
+      "body_sha256": "e4869a336228e4ab3e9f337386a0a71b887e10feebbc1bd49f17cb0c54fc684f"
+    }
+  ],
+  "directory": {
+    "rows": 12,
+    "roles": [
+      "ADMIN",
+      "CASHIER"
+    ],
+    "googleVerified": 1
+  },
+  "target": {
+    "email": "bmabing62681@liceo.edu.ph",
+    "identity_sha256": "145c39cbe0fabbf1eb7ace7d7128eaa80a875f7ad72023ebeed9370e9d17ce8c",
+    "id": "91a77243-319e-470b-a826-4c61bcfe87ae",
+    "role": "STUDENT",
+    "enabled": true,
+    "assignments": 0,
+    "active_tickets": 0,
+    "google_verified": true,
+    "pending_requests": [
+      {
+        "id": "897a71f0-55ac-4cf1-a05c-36c7d32c806c",
+        "role": "CASHIER",
+        "bound": false,
+        "status": "PENDING_IDENTITY_REVIEW",
+        "expired": false
+      }
+    ],
+    "verified_factors": 0
+  },
+  "payors": {
+    "firstPage": 20,
+    "more": false,
+    "nextPage": 0,
+    "historyCount": 3,
+    "byStatus": {
+      "WAITING": 0,
+      "CALLED": 0,
+      "SERVED": 10,
+      "FORFEITED": 10
+    }
+  },
+  "studentCashierDenials": 8,
+  "realBrowserJwt": false,
+  "health": {
+    "auth": 200,
+    "settings": 200,
+    "api": 200,
+    "google": true
+  }
+}

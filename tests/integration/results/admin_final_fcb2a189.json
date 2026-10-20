@@ -1,0 +1,66 @@
+{
+  "run": "fcb2a189",
+  "checks": [
+    {
+      "name": "authorized directory includes only real staff; no Auth material",
+      "result": "PASS"
+    },
+    {
+      "name": "STUDENT CASHIER disabled and forged metadata cannot use any new administrative RPC",
+      "result": "PASS"
+    },
+    {
+      "name": "unique confirmed Google resolution rejects missing, mismatched or ambiguous identities",
+      "result": "PASS"
+    },
+    {
+      "name": "AAL1, missing verified factor, self change and altered immutable binding reject",
+      "result": "PASS"
+    },
+    {
+      "name": "atomic CASHIER activation preserves unrelated assignments, exact route and counter-open state",
+      "result": "PASS"
+    },
+    {
+      "name": "same-key lost-result reconciliation replays exactly; changed arguments and revoked actors reject",
+      "result": "PASS"
+    },
+    {
+      "name": "ADMIN activation adds no cashier privilege and subsequent context is database-authoritative",
+      "result": "PASS"
+    },
+    {
+      "name": "counter rejection rolls back role, assignment, audits and receipts without compensation",
+      "result": "PASS"
+    },
+    {
+      "name": "payors use actual ticket owners, bounded pages, filters and authorized SKIPPED history",
+      "result": "PASS"
+    },
+    {
+      "name": "revocation and disabled access clear authoritative staff context",
+      "result": "PASS"
+    },
+    {
+      "name": "proposal adds no private table grants and all five fixed routes remain exact",
+      "result": "PASS"
+    },
+    {
+      "name": "new endpoints preserve proposed 007 operator approval and MFA gates when installed in fixture only",
+      "result": "PASS"
+    }
+  ],
+  "retained_writes": false,
+  "synthetic_auth": true,
+  "prior_sql_methods": 123,
+  "proposal_sha256": "88bb45a5bd55de6161d6f4c5af218eec9eb3a1582ebce975eaf063df54fa958c",
+  "result": "PASS",
+  "stopped": true,
+  "retained_preservation": true,
+  "containers": [
+    "e1f3973efe4527966157a7c4a78a51119be667d46d435cba7c94b00f211fd9aa",
+    "0c28eb5c7c00cbb80956c63956e5f57838854c2ade58d29cd8a32d4a59e4aef8"
+  ],
+  "network": "sq-queue-fcb2a189-net",
+  "passed": 12
+}

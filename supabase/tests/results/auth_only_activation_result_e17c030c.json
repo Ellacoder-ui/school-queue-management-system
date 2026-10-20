@@ -1,0 +1,138 @@
+{
+  "runId": "e17c030c",
+  "verifiedAt": "2026-10-19T02:41:52.765Z",
+  "result": "PASS_ACTIVATED_AND_VERIFIED",
+  "activation": {
+    "downtimeToAcceptanceMs": 14674,
+    "planSha256": "4ab19e56c523ec9f918439399611d18b87cff78c8e8c65c1715f01d3071245fc",
+    "replacementId": "565adceacab15cd43c7e00d5cee19345bc34f6ab981b35d5dc2ba4f8cdd4f399",
+    "result": "PASS_ACTIVATED",
+    "rollbackApprovalSha256": "3c76af12118910bb423ef7c17867c4627421b9a3b27840416c78094601b3d378"
+  },
+  "planSha256": "4ab19e56c523ec9f918439399611d18b87cff78c8e8c65c1715f01d3071245fc",
+  "originalId": "9f7742bf04e680d82988376411720e3500c9c0c069b0e57de5b7f3dc3ebb4ef6",
+  "replacementId": "565adceacab15cd43c7e00d5cee19345bc34f6ab981b35d5dc2ba4f8cdd4f399",
+  "originalName": "supabase_auth_school-queue-local-e17c030c-activation-original",
+  "originalStoppedAndDetached": true,
+  "replacementHealthy": true,
+  "replacementRestartCount": 0,
+  "exactCandidateAndUnrelatedDefinitionPreserved": true,
+  "configSha256": "e4d5c0c91d449e21a72074660abb150057b6c846fa0aa54470a572a4669677e0",
+  "privateCredentialReadThroughApprovedBridge": true,
+  "productionGoogleCredentialFileNotModified": true,
+  "rollbackCapture": ".local-auth-only/e17c030c/activation/payload.dpapi",
+  "originalReviewCapture": ".local-auth-only/e17c030c/review/payload.dpapi",
+  "realGoogleLoginPerformed": false,
+  "queueOperationsPerformed": false,
+  "verification": {
+    "result": "PASS_POSTACTIVATION_READ_ONLY",
+    "auth_health_via_kong": 200,
+    "auth_settings": 200,
+    "google": true,
+    "anonymous_api": 200,
+    "state": {
+      "active": 0,
+      "assignments": [
+        {
+          "counter": 1,
+          "eligible": 1,
+          "total": 1
+        },
+        {
+          "counter": 2,
+          "eligible": 1,
+          "total": 1
+        },
+        {
+          "counter": 3,
+          "eligible": 0,
+          "total": 0
+        },
+        {
+          "counter": 4,
+          "eligible": 0,
+          "total": 0
+        },
+        {
+          "counter": 5,
+          "eligible": 1,
+          "total": 2
+        }
+      ],
+      "counts": {
+        "accounts": 39,
+        "audits": 32,
+        "counters": 5,
+        "days": 7,
+        "events": 57,
+        "requests": 69,
+        "services": 5,
+        "tickets": 20
+      },
+      "current_day_closed": false,
+      "open_days": 0,
+      "private_usage": false,
+      "publication": [
+        "queue_display.counter_state",
+        "queue_display.service_state"
+      ],
+      "rls_count": 15,
+      "routes": {
+        "1": [
+          "TP"
+        ],
+        "2": [
+          "SOA"
+        ],
+        "3": [
+          "PNEP"
+        ],
+        "4": [
+          "REF"
+        ],
+        "5": [
+          "ADJ"
+        ]
+      },
+      "versions": [
+        "20261016000100",
+        "20261016000200",
+        "20261016000300",
+        "20261016000400",
+        "20261016000500",
+        "20261016000600"
+      ]
+    },
+    "auth_counts": {
+      "\"auth\".\"identities\"": 26,
+      "\"auth\".\"schema_migrations\"": 82,
+      "\"auth\".\"users\"": 39
+    },
+    "source_comparison": {
+      "result": "PASS",
+      "original_tables_exact_except_scoped_subscription": true,
+      "empty_partition_additions": [],
+      "logical_tables": 70,
+      "subscription_rows_before": 0,
+      "subscription_rows_after": 0,
+      "subscription_sequence_before": {
+        "is_called": true,
+        "last_value": 641
+      },
+      "subscription_sequence_after": {
+        "is_called": true,
+        "last_value": 641
+      },
+      "all_other_rows_objects_roles_privileges_exact": true,
+      "unexpected_changes": []
+    },
+    "backups": {
+      "files": 93,
+      "sha256": "27e6ed58b1fe58031c3a953e2c95cd8d362e869735f598c84577673498905e96"
+    },
+    "google_credential_file_metadata_unchanged": true,
+    "other_services_unchanged": true,
+    "retained_db_volume_unchanged": true,
+    "exact_resource_delta": "one Auth replacement container; no volume or network change"
+  }
+}

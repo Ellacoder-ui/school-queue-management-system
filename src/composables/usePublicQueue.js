@@ -8,17 +8,21 @@ export function usePublicQueue() {
   const online = () => { void controller.retry() }
   const offline = () => controller.offline()
   const visible = () => { if (document.visibilityState === 'visible') controller.refresh() }
+  let fallback
   onMounted(() => {
     window.addEventListener('online', online)
     window.addEventListener('offline', offline)
     document.addEventListener('visibilitychange', visible)
     controller.start()
+    // No steady HTTP polling while both Realtime listeners are verified ready.
+    fallback = setInterval(() => { if (document.visibilityState === 'visible' && (!state.value.synchronized || state.value.error)) controller.refresh() }, 30000)
     if (!navigator.onLine) controller.offline()
   })
   onUnmounted(() => {
     window.removeEventListener('online', online)
     window.removeEventListener('offline', offline)
     document.removeEventListener('visibilitychange', visible)
+    clearInterval(fallback)
     void controller.stop()
   })
   return { state, retry: () => { void controller.retry() }, refresh: controller.refresh }

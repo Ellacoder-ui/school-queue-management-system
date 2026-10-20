@@ -1,0 +1,134 @@
+{
+  "run_id": "c1fb4e82",
+  "checkpoint": "personal_login",
+  "recorded_at": "2026-10-19T03:09:40.328048+00:00",
+  "result": "PASS_DATABASE_ROLE_AND_APPLICATION_PRESERVATION",
+  "user_reported_personal_dashboard_return": true,
+  "target_accounts": {
+    "personal": [
+      {
+        "enabled": true,
+        "sessions": 1,
+        "auth_role": "authenticated",
+        "user_hash": "f6dceb997dde468c93fe89894ecc98843a1f452fb57f962304f860862b40c416",
+        "is_anonymous": false,
+        "database_role": "STUDENT",
+        "email_confirmed": true,
+        "google_identities": 1
+      }
+    ],
+    "school": []
+  },
+  "new_application_accounts": 1,
+  "auth_table_changes": {
+    "users": {
+      "before": 39,
+      "after": 40
+    },
+    "identities": {
+      "before": 26,
+      "after": 27
+    },
+    "sessions": {
+      "before": 35,
+      "after": 36
+    },
+    "refresh_tokens": {
+      "before": 35,
+      "after": 36
+    },
+    "audit_log_entries": {
+      "before": 104,
+      "after": 109
+    }
+  },
+  "unrelated_auth_rows_exact": true,
+  "existing_application_accounts_roles_exact": true,
+  "queue_public_assignment_tables_exact": 14,
+  "application_auth_security_and_existing_metadata_exact": true,
+  "global_schema_hash_exact": false,
+  "separately_validated_empty_realtime_leaf_additions": [
+    "realtime.messages_2026_10_22"
+  ],
+  "no_schema_policy_or_historical_evidence_changed": true,
+  "migrations_exact": true,
+  "other_service_lifecycles_unchanged_except_existing_vector_loop": true,
+  "google_enabled": true,
+  "auth_health_http": 200,
+  "anonymous_api_http": 200,
+  "browser_getUser_my_context_http_directly_observed": false,
+  "browser_pkce_exchange_count_directly_observed": false,
+  "state": {
+    "active": 0,
+    "counts": {
+      "days": 7,
+      "audits": 32,
+      "events": 57,
+      "tickets": 20,
+      "accounts": 40,
+      "counters": 5,
+      "requests": 69,
+      "services": 5
+    },
+    "routes": {
+      "1": [
+        "TP"
+      ],
+      "2": [
+        "SOA"
+      ],
+      "3": [
+        "PNEP"
+      ],
+      "4": [
+        "REF"
+      ],
+      "5": [
+        "ADJ"
+      ]
+    },
+    "versions": [
+      "20261016000100",
+      "20261016000200",
+      "20261016000300",
+      "20261016000400",
+      "20261016000500",
+      "20261016000600"
+    ],
+    "open_days": 0,
+    "rls_count": 15,
+    "assignments": [
+      {
+        "total": 1,
+        "counter": 1,
+        "eligible": 1
+      },
+      {
+        "total": 1,
+        "counter": 2,
+        "eligible": 1
+      },
+      {
+        "total": 0,
+        "counter": 3,
+        "eligible": 0
+      },
+      {
+        "total": 0,
+        "counter": 4,
+        "eligible": 0
+      },
+      {
+        "total": 2,
+        "counter": 5,
+        "eligible": 1
+      }
+    ],
+    "publication": [
+      "queue_display.counter_state",
+      "queue_display.service_state"
+    ],
+    "private_usage": false,
+    "current_day_closed": false
+  }
+}

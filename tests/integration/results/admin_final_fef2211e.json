@@ -1,0 +1,24 @@
+{
+  "run": "fef2211e",
+  "checks": [
+    {
+      "name": "authorized directory includes only real staff; no Auth material",
+      "result": "FAIL"
+    }
+  ],
+  "retained_writes": false,
+  "synthetic_auth": true,
+  "prior_sql_methods": 123,
+  "proposal_sha256": "516c71ef6585c83b79b54fb50a1ce7bee749b7916950ef9d865044afb9d5afa5",
+  "result": "FAIL",
+  "failure": "AF_RPC_REJECTED",
+  "stage": "synthetic-fixture-seed",
+  "stopped": true,
+  "retained_preservation": true,
+  "containers": [
+    "fbd54b7d07d96f8168e9fed75747906066587197ac4efe6157f457f31cbe6cb6",
+    "93e6baa177bfff90887d3cc90cb664c8103f5f3e35c9fe3de1681c04faf7801e"
+  ],
+  "network": "sq-queue-fef2211e-net",
+  "passed": 0
+}

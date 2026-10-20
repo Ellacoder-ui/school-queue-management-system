@@ -4,14 +4,14 @@ import { createPublicQueueController } from '../../src/lib/publicQueueController
 
 const turn = () => new Promise(resolve => setImmediate(resolve))
 const data = label => ({ counters: [{ counter_id: 'public-counter', ticket_label: label }], services: [] })
-function harness() {
+function harness(options = {}) {
   const requests = [], snapshots = []
   let callbacks, cleaned = 0
   const api = {
     readPublicSnapshot({ signal }) { return new Promise((resolve, reject) => requests.push({ resolve, reject, signal })) },
     subscribePublicDisplay(next) { callbacks = next; return async () => { cleaned += 1 } },
   }
-  const controller = createPublicQueueController(api, { onState: state => snapshots.push(state) })
+  const controller = createPublicQueueController(api, { onState: state => snapshots.push(state), ...options })
   controller.start()
   return { controller, requests, snapshots, get callbacks() { return callbacks }, get cleaned() { return cleaned } }
 }
@@ -36,10 +36,24 @@ test('events during a snapshot discard that response and coalesce a follow-up re
   h.callbacks.onInvalidate(); h.callbacks.onInvalidate()
   h.requests[0].resolve(data('obsolete')); await turn()
   assert.equal(h.controller.getState().hasSnapshot, false)
+  await new Promise(resolve=>setTimeout(resolve,90))
   assert.equal(h.requests.length, 2)
   h.requests[1].resolve(data('latest')); await turn()
   assert.equal(h.controller.getState().counters[0].ticket_label, 'latest')
   await h.controller.stop()
+})
+
+test('notification storms share one deferred read, unchanged values do not invalidate private queues, and stop cancels timers',async()=>{
+  const timers=new Map();let next=0
+  const h=harness({setTimer:(fn,ms)=>{timers.set(++next,{fn,ms});return next},clearTimer:id=>timers.delete(id)})
+  h.requests[0].resolve(data('TP-001'));await turn();const revision=h.controller.getState().queueVersion
+  for(let n=0;n<100;n++)h.callbacks.onInvalidate()
+  assert.equal(h.requests.length,1);assert.equal([...timers.values()].filter(x=>x.ms===75).length,1)
+  const [key,timer]=[...timers].find(([,x])=>x.ms===75);timers.delete(key);timer.fn()
+  h.requests[1].resolve({...data('TP-001'),counters:[{...data('TP-001').counters[0],updated_at:'later'}]});await turn()
+  assert.equal(h.controller.getState().queueVersion,revision)
+  h.controller.refresh();h.requests[2].resolve(data('TP-002'));await turn();assert.equal(h.controller.getState().queueVersion,revision+1)
+  h.callbacks.onInvalidate();await h.controller.stop();assert.equal(timers.size,0)
 })
 
 test('disconnect invalidates in-flight responses even when the transport ignores abort', async () => {

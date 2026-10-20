@@ -19,7 +19,10 @@ function harness(t, initial = null, overrides = {}, options = {}) {
     async signOut() { current = null; callback('SIGNED_OUT', null); return { error: null } },
     ...overrides,
   }
-  const api = { readMyContext({ signal }) { const request = deferred(); requests.push({ ...request, signal }); return request.promise } }
+  const api = { readMyContext({ signal }) { const request = deferred(), row = { ...request, signal, settled: false }
+    row.resolve = value => { row.settled = true; request.resolve(value) }
+    row.reject = error => { row.settled = true; request.reject(error) }
+    requests.push(row); return request.promise } }
   const controller = createAuthController(auth, api, { onState: state => states.push(state), ...options })
   t.after(() => controller.stop())
   controller.start()
@@ -27,7 +30,69 @@ function harness(t, initial = null, overrides = {}, options = {}) {
     event(next, event = 'SIGNED_IN') { current = next; callback(event, next) },
     get unsubscribed() { return unsubscribed } }
 }
-async function ready(h, role = 'STUDENT') { await turn(); h.requests.at(-1).resolve(context(role)); await turn() }
+async function waitForRequest(h) {
+  const end=Date.now()+1500
+  const pending=()=>h.requests.at(-1)&&!h.requests.at(-1).settled&&!h.requests.at(-1).signal.aborted
+  while(!pending()&&Date.now()<end)await turn()
+  assert.ok(pending(),'Expected current context request')
+}
+async function ready(h, role = 'STUDENT') { await waitForRequest(h); h.requests.at(-1).resolve(context(role)); await turn() }
+
+test('duplicate same-session Auth events cannot restart a pending authorization check',async t=>{
+ const h=harness(t,identity('stable-pending'));await waitForRequest(h)
+ const request=h.requests.at(-1),version=h.controller.getState().accountVersion
+ for(const event of ['SIGNED_IN','INITIAL_SESSION','TOKEN_REFRESHED','SIGNED_IN'])h.event(identity('stable-pending'),event)
+ await turn()
+ assert.equal(request.signal.aborted,false);assert.equal(h.requests.length,1);assert.equal(h.controller.getState().accountVersion,version)
+ request.resolve(context('ADMIN'));await turn();assert.equal(h.controller.getState().workspace,'admin')
+})
+
+test('one verification deadline bounds the entire session user and database authorization sequence',async t=>{
+ let clock=Date.now(),next=0;const jobs=new Map(),user=deferred(),managed=identity('bounded')
+ const h=harness(t,managed,{getUser:()=>user.promise},{now:()=>clock,timeoutMs:13000,setTimer:(fn,ms)=>{const id=++next;jobs.set(id,{fn,at:clock+ms});return id},clearTimer:id=>jobs.delete(id)})
+ await turn();clock+=8000;user.resolve({data:{user:managed.user},error:null});await waitForRequest(h)
+ clock+=5001;for(const [id,job]of [...jobs])if(job.at<=clock){jobs.delete(id);job.fn()}
+ await turn();assert.equal(h.controller.getState().status,'error');assert.equal(h.controller.getVerifiedActor(),null)
+})
+
+test('routine access revalidation coalesces without clearing a valid workspace; changed role still rebinds access',async t=>{
+  const h=harness(t,identity('stable'));await ready(h,'ADMIN');const version=h.controller.getState().accountVersion
+  h.controller.revalidate();h.controller.revalidate();await waitForRequest(h)
+  assert.equal(h.controller.getState().status,'ready');assert.equal(h.controller.getState().workspace,'admin');assert.equal(h.controller.getState().accountVersion,version)
+  const count=h.requests.length;h.controller.revalidate();assert.equal(h.requests.length,count)
+  h.requests.at(-1).resolve(context('ADMIN'));await turn();assert.equal(h.controller.getState().accountVersion,version)
+  h.controller.revalidate();await ready(h,'STUDENT');assert.equal(h.controller.getState().workspace,'student');assert.equal(h.controller.getState().accountVersion,version+1)
+})
+
+test('failed background authorization clears protected context; expired sessions cannot use background continuity',async t=>{
+  const h=harness(t,identity());await ready(h,'ADMIN');h.controller.revalidate();await waitForRequest(h)
+  h.requests.at(-1).reject({status:401});await turn();assert.equal(h.controller.getState().status,'expired');assert.equal(h.controller.getVerifiedActor(),null)
+})
+
+test('operation actor is private, verified and immediately unavailable after access invalidation', async t => {
+  const h = harness(t, identity('verified-subject'))
+  assert.equal(h.controller.getVerifiedActor(), null)
+  await ready(h)
+  assert.equal(h.controller.getVerifiedActor(), 'verified-subject')
+  h.controller.refresh()
+  assert.equal(h.controller.getVerifiedActor(), null)
+  assert.ok(!Object.hasOwn(h.controller.getState(), 'actor'))
+})
+test('partial MFA-success event reloads managed session and current role without breaking account continuity',async t=>{
+  const managed=identity('mfa-subject')
+  const h=harness(t,managed,{getSession:async()=>({data:{session:managed},error:null})});await ready(h)
+  const before=h.controller.getMfaScope()
+  h.event({user:managed.user,access_token:'PRIVATE-MFA-TOKEN'},'MFA_CHALLENGE_VERIFIED')
+  assert.equal(h.controller.getState().status,'checking');assert.deepEqual(h.controller.getMfaScope(),before)
+  assert.equal(h.controller.getVerifiedActor(),null);await ready(h,'STUDENT')
+  assert.equal(h.controller.getState().workspace,'student');assert.doesNotMatch(JSON.stringify(h.states),/PRIVATE-MFA-TOKEN/)
+})
+test('MFA event for another account fails closed without adopting it or its role',async t=>{
+  const h=harness(t,identity('first'));await ready(h,'ADMIN')
+  h.event(identity('other'),'MFA_CHALLENGE_VERIFIED');await turn()
+  assert.equal(h.controller.getState().status,'error');assert.equal(h.controller.getMfaScope(),null)
+  assert.equal(h.controller.getState().context,null)
+})
 
 test('anonymous startup permits public navigation only and emits no sensitive session data', async t => {
   const h = harness(t); await turn()
@@ -67,7 +132,7 @@ for (const role of ['STUDENT', 'CASHIER', 'ADMIN']) test(`${role} context exclus
   assert.equal(h.controller.navigate(role === 'ADMIN' ? 'cashier' : 'admin'), false)
 })
 test('disabled account has no role navigation', async t => {
-  const h = harness(t, identity()); await turn()
+  const h = harness(t, identity()); await waitForRequest(h)
   h.requests[0].resolve({ role: null, enabled: false, cashier_counters: [] }); await turn()
   assert.equal(h.controller.getState().status, 'disabled')
   assert.equal(h.controller.navigate('student'), false)

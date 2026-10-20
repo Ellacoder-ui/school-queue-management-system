@@ -1,0 +1,74 @@
+{
+  "run": "7aa2e0a9",
+  "observedAt": "2026-10-19T16:03:01.900Z",
+  "result": "PASS_READ_ONLY_CLOSEOUT",
+  "metadata": {
+    "routes": [
+      "1:TP",
+      "2:SOA",
+      "3:PNEP",
+      "4:REF",
+      "5:ADJ"
+    ],
+    "accounts": 42,
+    "requests": 1,
+    "admin_role": "ADMIN",
+    "school_role": "STUDENT",
+    "publication_tables": [
+      {
+        "table": "counter_state",
+        "schema": "queue_display",
+        "publication": "supabase_realtime"
+      },
+      {
+        "table": "service_state",
+        "schema": "queue_display",
+        "publication": "supabase_realtime"
+      }
+    ],
+    "migration007_absent": true,
+    "private_browser_usage": false,
+    "projection_permissions": [
+      {
+        "rls": true,
+        "table": "counter_state",
+        "anon_select": true,
+        "replica_identity": "d",
+        "authenticated_select": true
+      },
+      {
+        "rls": true,
+        "table": "service_state",
+        "anon_select": true,
+        "replica_identity": "d",
+        "authenticated_select": true
+      }
+    ]
+  },
+  "retainedWrites": false,
+  "changedRowTables": [],
+  "functionsPreserved": true,
+  "privateRequestsAndFactorsPreserved": true,
+  "definitionsPreserved": true,
+  "nonVectorLifecyclesPreserved": true,
+  "newContainers": [
+    "16c2c138b1fd27c36184f55a55bba816adba6a21cd91216c45e75cc9e852094e",
+    "29b3bf4b3e39df785f3a5eef2d7d852112260632a25d49e0167978c7b3cad576",
+    "34b58db360cb4b34fa7bce909f1f6114ec84e7777f2b9e22a0fb0e0587cc7480",
+    "afe6d2b35ca85a2bd2e24e96e5ec6491eb92bcc3451c82eb806202d434d987dd"
+  ],
+  "newNetworks": [
+    "60f4159147ffdcb228ece9dd0ccb755acdc3536bd2e24ec13f88b6f34b655eb3",
+    "6255f31b26ee6a857929d4433d6ea7b25285a65a8729545f16b3fff3ef74050f"
+  ],
+  "existingResourcesPreserved": true,
+  "volumesPreserved": true,
+  "ownedContainersStopped": true,
+  "exactResourceDelta": true,
+  "health": {
+    "auth": 200,
+    "settings": 200,
+    "anonymousApi": 200,
+    "googleEnabled": true
+  }
+}

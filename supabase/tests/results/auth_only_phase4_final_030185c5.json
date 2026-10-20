@@ -1,0 +1,45 @@
+{
+  "result": "PASS_PREPARATION_AND_DISPOSABLE_REHEARSAL_ONLY",
+  "retainedGoogleActivated": false,
+  "retainedServiceMutation": false,
+  "productionGoogleCredentialContentsRead": false,
+  "rehearsal": "supabase/tests/results/auth_only_readiness_030185c5.json",
+  "offlineMethods": 30,
+  "disposableChecks": 37,
+  "frontendTests": 113,
+  "interceptedBrowserGroups": 18,
+  "browserEvidence": "supabase/tests/results/google_oauth_frontend_c928012c.json",
+  "plan": {
+    "result": "PREPARED_NOT_ACTIVATED",
+    "runId": "6fc25b88",
+    "approvedPlanSha256": "7f1df4e0f6958b2e006d223603e2c9001a65769c1ae4bd169da7cadcdc60cb9d",
+    "expiresAt": "2026-10-18T20:00:46.620Z",
+    "affectedContainer": "supabase_auth_school-queue-local",
+    "originalId": "9f7742bf04e680d82988376411720e3500c9c0c069b0e57de5b7f3dc3ebb4ef6",
+    "privateCredentialRead": false,
+    "retainedServiceChanged": false
+  },
+  "readOnlyPlanCheck": {
+    "result": "PASS_PLAN_AND_CURRENT_SOURCE",
+    "runId": "6fc25b88",
+    "planSha256": "7f1df4e0f6958b2e006d223603e2c9001a65769c1ae4bd169da7cadcdc60cb9d",
+    "google": false,
+    "credentialContentsAccessed": false,
+    "retainedServiceChanged": false
+  },
+  "existingInputPreservation": {
+    "baselineFiles": 596,
+    "unchanged": 589,
+    "changed": [
+      "tests\\security\\run_auth_only_rehearsal.py",
+      "tests\\security\\rehearse_auth_only.mjs",
+      "scripts\\authOnlyCore.mjs",
+      "scripts\\AuthOnlyCredentialBridge.ps1",
+      "scripts\\authOnlyRetained.mjs",
+      "scripts\\authOnlyEngine.mjs",
+      "scripts\\Start-AuthOnlyGoogle.ps1"
+    ],
+    "missing": []
+  },
+  "checklistSha256": "2989b94357b202dcf714cc6e4559b6a25918eef02803c5299e4f9820ec7d2489"
+}

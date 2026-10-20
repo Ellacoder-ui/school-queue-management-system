@@ -1,0 +1,47 @@
+{
+  "status": "PREPARATION_ONLY_NOT_AUTHORIZATION",
+  "retained_execution_ready": false,
+  "project": "school-queue-local",
+  "database": "postgres",
+  "source_cluster": "7696959712798593061",
+  "target": {
+    "role": "STUDENT",
+    "email": "eabeso63122@liceo.edu.ph",
+    "enabled": true,
+    "provider": "google",
+    "anonymous": false,
+    "auth_user_id": "b7d9aee8-c54d-455f-9913-a4c4dea0d097",
+    "email_confirmed": true,
+    "google_identity_id": "cbcd69a6-4fd0-46c0-9432-56e70a1c323c",
+    "verified_mfa_factors": 0,
+    "google_identity_count": 1,
+    "application_account_id": "b7d9aee8-c54d-455f-9913-a4c4dea0d097",
+    "identity_email_matches": true,
+    "identity_binding_sha256": "7b236769634b0910b034c035cc1422021f2281be9d6fd77d5c882ffd9ed86bbd",
+    "identity_email_verified": "true",
+    "subject_matches_provider_id": true
+  },
+  "expected_role": "STUDENT",
+  "proposed_role": "ADMIN",
+  "candidate_file": "supabase\\20261019000700_staff_security.PROPOSED.sql",
+  "candidate_sha256": "b22d63d24c991b9ebf0d380d27a716d5ea72e418f5e62e177c96dded4481222c",
+  "required_verified_mfa_factor": true,
+  "operator_review_required": true,
+  "proposed_initial_approval_validity": "1 day; renewal or revocation requires operator review",
+  "future_totp_delta": {
+    "GOTRUE_MFA_TOTP_ENROLL_ENABLED": true,
+    "GOTRUE_MFA_TOTP_VERIFY_ENABLED": true
+  },
+  "blockers": [
+    "TOTP enrollment/verification disabled in current Auth",
+    "No verified target MFA factor",
+    "MFA enroll/challenge and staff approval-denial UI not implemented",
+    "Proposed security migration not approved or applied",
+    "Exact target promotion not approved"
+  ],
+  "future_operator_functions": [
+    "queue_private.review_staff_access(uuid,text,text,text,text,timestamptz)",
+    "queue_private.promote_approved_admin(uuid,text,text,text,text)"
+  ],
+  "proposal_sha256": "0a4a31ffe87a5cfa00d8401bbce64569768b40dda180e13b11a92d2218bf8a18"
+}

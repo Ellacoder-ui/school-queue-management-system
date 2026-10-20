@@ -1,0 +1,192 @@
+{
+  "run": "def0d8f9",
+  "result": "PASS",
+  "retained_writes": false,
+  "checks": [
+    {
+      "name": "actual retained RPC signatures, bodies and execution permissions match migrations",
+      "result": "PASS"
+    },
+    {
+      "name": "fresh isolated PostgreSQL 17 and real PostgREST; existing SQL/policy suites pass",
+      "result": "PASS"
+    },
+    {
+      "name": "closed-day, disabled service and anonymous identities are rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "real SDK issuance returns exact ticket; repeat key replays and changed key parameters reject",
+      "result": "PASS"
+    },
+    {
+      "name": "caller-only history/events; database roles ignore ADMIN metadata",
+      "result": "PASS"
+    },
+    {
+      "name": "Call Next, busy counter, Skip-to-tail and Serve are real separate operations",
+      "result": "PASS"
+    },
+    {
+      "name": "second served ticket succeeds; third same-service issuance is rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "concurrent same-key calls return one immutable empty receipt",
+      "result": "PASS"
+    },
+    {
+      "name": "concurrent issuance and competing calls serialize without duplicate active/called tickets",
+      "result": "PASS"
+    },
+    {
+      "name": "lost successful HTTP outcome is recovered only by explicit same-key reconciliation",
+      "result": "PASS"
+    },
+    {
+      "name": "public projection updates and browser roles cannot access private tables or direct writes",
+      "result": "PASS"
+    }
+  ],
+  "source_contracts": [
+    {
+      "signature": "queue_api.call_next(uuid,text,uuid)",
+      "body_md5": "455a138296cbdf325abdaacc5eea8f07",
+      "arguments": "p_counter uuid, p_service text, p_request_key uuid",
+      "definer": true,
+      "settings": [
+        "search_path=\"\""
+      ],
+      "authenticated": true,
+      "anon": false
+    },
+    {
+      "signature": "queue_api.finish_ticket(uuid,text,uuid)",
+      "body_md5": "9bf0f89a660d804e358c13a618b6939e",
+      "arguments": "p_ticket uuid, p_action text, p_request_key uuid",
+      "definer": true,
+      "settings": [
+        "search_path=\"\""
+      ],
+      "authenticated": true,
+      "anon": false
+    },
+    {
+      "signature": "queue_api.issue_ticket(text,uuid)",
+      "body_md5": "91e0a92562fe02ffc6d16c0680886251",
+      "arguments": "p_service text, p_request_key uuid",
+      "definer": true,
+      "settings": [
+        "search_path=\"\""
+      ],
+      "authenticated": true,
+      "anon": false
+    },
+    {
+      "signature": "queue_api.my_context()",
+      "body_md5": "bc9c0721b385281dac961bb702f76638",
+      "arguments": "",
+      "definer": true,
+      "settings": [
+        "search_path=\"\""
+      ],
+      "authenticated": true,
+      "anon": false
+    },
+    {
+      "signature": "queue_api.my_ticket_events(uuid)",
+      "body_md5": "4bd03596566ea3068932dd88996a199d",
+      "arguments": "p_ticket uuid",
+      "definer": true,
+      "settings": [
+        "search_path=\"\""
+      ],
+      "authenticated": true,
+      "anon": false
+    },
+    {
+      "signature": "queue_api.my_tickets()",
+      "body_md5": "1c2aea0bac8bad63829c030805141d5b",
+      "arguments": "",
+      "definer": true,
+      "settings": [
+        "search_path=\"\""
+      ],
+      "authenticated": true,
+      "anon": false
+    },
+    {
+      "signature": "queue_api.staff_queue()",
+      "body_md5": "2bce39d1dbf697748e05240ba5a22eb9",
+      "arguments": "",
+      "definer": true,
+      "settings": [
+        "search_path=\"\""
+      ],
+      "authenticated": true,
+      "anon": false
+    },
+    {
+      "signature": "queue_display.public_queue_context()",
+      "body_md5": "ea30cd47b54ae3916465228c120df20f",
+      "arguments": "",
+      "definer": true,
+      "settings": [
+        "search_path=\"\""
+      ],
+      "authenticated": true,
+      "anon": true
+    }
+  ],
+  "retained_before_sha256": "8bd8ff6968a0353f10937c7fb01d778bfdd488d6f5a575052c9b1e74cdc28468",
+  "fixture": {
+    "containers": [
+      "3e04535adbfa07ae5234b8b2665affcb287fa6f32ec636858ba4c73747445ad8",
+      "9504e269d502017f166f185e0d4e9b53c91daac029889a7d96e2f7c822b92ba0"
+    ],
+    "network": "sq-queue-def0d8f9-net",
+    "cluster": "7698031226714673169",
+    "migrations": [
+      {
+        "file": "20261016000100_queue_tables.sql",
+        "sha256": "274141dbab99dbaad959f2343633ee0bd440b240a29b5664ca304e283934d7d7"
+      },
+      {
+        "file": "20261016000200_queue_operations.sql",
+        "sha256": "65c943d4fea282c07e06bab6b759882f7fcec678ddf960869dd60a52db911883"
+      },
+      {
+        "file": "20261016000300_queue_administration.sql",
+        "sha256": "7a4ad627112f0bc3109417bec237b13000e1c06002d536f7c9feab5261eb4883"
+      },
+      {
+        "file": "20261016000400_queue_seed_security.sql",
+        "sha256": "95bd4918550dddae84672c148c6a616c9d12928b78097a82815a26a35146746e"
+      },
+      {
+        "file": "20261016000500_queue_read_context.sql",
+        "sha256": "793a68b375d69044dc4900749867576b5c45a6b4173725191ffbaeb66a2dd31a"
+      },
+      {
+        "file": "20261016000600_fixed_counter_routing.sql",
+        "sha256": "9d854ab795e3ef3098fa1d3a05cb6541242d0c8e503a8ebee1acfe9df418137c"
+      }
+    ],
+    "policy_tests_passed": 123,
+    "auth_boundary": "synthetic signed JWTs and minimal Auth identity fixture; no Auth service or Google login"
+  },
+  "owned_resources": {
+    "containers": [
+      "3e04535adbfa07ae5234b8b2665affcb287fa6f32ec636858ba4c73747445ad8",
+      "9504e269d502017f166f185e0d4e9b53c91daac029889a7d96e2f7c822b92ba0"
+    ],
+    "network": "sq-queue-def0d8f9-net",
+    "stage": "synthetic-fixture-seed"
+  },
+  "owned_containers_stopped": true,
+  "retained_rows_and_contracts_unchanged": true,
+  "retained_services_unchanged": true,
+  "docker_inventory_exact": true,
+  "passed": 11,
+  "failed": 0
+}

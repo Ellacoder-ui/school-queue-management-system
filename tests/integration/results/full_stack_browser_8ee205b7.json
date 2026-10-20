@@ -1,0 +1,65 @@
+{
+  "run": "8ee205b7",
+  "result": "FAIL",
+  "retained_writes": false,
+  "real_postgresql_rpc": true,
+  "real_auth": false,
+  "real_realtime_delivery": false,
+  "checks": [
+    {
+      "name": "database STUDENT context overrides synthetic ADMIN metadata",
+      "result": "PASS"
+    },
+    {
+      "name": "student confirms and receives a real isolated ticket; duplicate active confirmation is disabled",
+      "result": "PASS"
+    },
+    {
+      "name": "cashier Call Next reaches real PostgreSQL and renders the authorized call",
+      "result": "PASS"
+    },
+    {
+      "name": "Skip moves the same ticket to the tail; Serve does not call another ticket",
+      "result": "PASS"
+    },
+    {
+      "name": "student history reflects actual served status",
+      "result": "PASS"
+    },
+    {
+      "name": "response loss leaves one ticket and an explicit same-key retry recovers the receipt",
+      "result": "FAIL"
+    }
+  ],
+  "screenshots": [
+    "tests/integration/results/full_stack_8ee205b7_student-issued_1440.png",
+    "tests/integration/results/full_stack_8ee205b7_student-issued_768.png",
+    "tests/integration/results/full_stack_8ee205b7_student-issued_390.png",
+    "tests/integration/results/full_stack_8ee205b7_cashier-called_1440.png",
+    "tests/integration/results/full_stack_8ee205b7_cashier-called_768.png",
+    "tests/integration/results/full_stack_8ee205b7_cashier-called_390.png"
+  ],
+  "fixture": {
+    "containers": [
+      "67f5da133ff4960e8e5a1c6585300283313da90ad1cdca31cbb24b32945182b0",
+      "1a1919e9f445ad6032590f6d90719b1f2a480acc1b3bdf4259ae51d4eca09c72"
+    ],
+    "network": "sq-queue-8ee205b7-net",
+    "cluster": "7698035334761738258",
+    "existing_policy_tests": 123
+  },
+  "failure": "Second permitted issuance not ready",
+  "owned_containers_stopped": true,
+  "retained_preservation": true,
+  "owned_resources": {
+    "containers": [
+      "67f5da133ff4960e8e5a1c6585300283313da90ad1cdca31cbb24b32945182b0",
+      "1a1919e9f445ad6032590f6d90719b1f2a480acc1b3bdf4259ae51d4eca09c72"
+    ],
+    "network": "sq-queue-8ee205b7-net"
+  },
+  "runtime_errors": [],
+  "blocked": [],
+  "passed": 5,
+  "failed": 1
+}

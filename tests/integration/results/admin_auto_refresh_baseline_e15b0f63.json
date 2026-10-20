@@ -1,0 +1,49 @@
+{
+  "run": "e15b0f63",
+  "observedAt": "2026-10-19T15:36:39.083Z",
+  "result": "PASS_READ_ONLY_BASELINE",
+  "metadata": {
+    "routes": [
+      "1:TP",
+      "2:SOA",
+      "3:PNEP",
+      "4:REF",
+      "5:ADJ"
+    ],
+    "accounts": 42,
+    "requests": 1,
+    "admin_role": "ADMIN",
+    "school_role": "STUDENT",
+    "publication_tables": [
+      {
+        "table": "counter_state",
+        "schema": "queue_display",
+        "publication": "supabase_realtime"
+      },
+      {
+        "table": "service_state",
+        "schema": "queue_display",
+        "publication": "supabase_realtime"
+      }
+    ],
+    "migration007_absent": true,
+    "private_browser_usage": false,
+    "projection_permissions": [
+      {
+        "rls": true,
+        "table": "counter_state",
+        "anon_select": true,
+        "replica_identity": "d",
+        "authenticated_select": true
+      },
+      {
+        "rls": true,
+        "table": "service_state",
+        "anon_select": true,
+        "replica_identity": "d",
+        "authenticated_select": true
+      }
+    ]
+  },
+  "retainedWrites": false
+}

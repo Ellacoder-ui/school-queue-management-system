@@ -1,0 +1,67 @@
+{
+  "run": "f96ad8f6",
+  "checks": [
+    {
+      "name": "authorized directory includes only real staff; no Auth material",
+      "result": "PASS"
+    },
+    {
+      "name": "STUDENT CASHIER disabled and forged metadata cannot use any new administrative RPC",
+      "result": "PASS"
+    },
+    {
+      "name": "unique confirmed Google resolution rejects missing, mismatched or ambiguous identities",
+      "result": "PASS"
+    },
+    {
+      "name": "AAL1, missing verified factor, self change and altered immutable binding reject",
+      "result": "PASS"
+    },
+    {
+      "name": "atomic CASHIER activation preserves unrelated assignments, exact route and counter-open state",
+      "result": "PASS"
+    },
+    {
+      "name": "same-key lost-result reconciliation replays exactly; changed arguments and revoked actors reject",
+      "result": "PASS"
+    },
+    {
+      "name": "ADMIN activation adds no cashier privilege and subsequent context is database-authoritative",
+      "result": "PASS"
+    },
+    {
+      "name": "counter rejection rolls back role, assignment, audits and receipts without compensation",
+      "result": "PASS"
+    },
+    {
+      "name": "payors use actual ticket owners, bounded pages, filters and authorized SKIPPED history",
+      "result": "PASS"
+    },
+    {
+      "name": "revocation and disabled access clear authoritative staff context",
+      "result": "PASS"
+    },
+    {
+      "name": "proposal adds no private table grants and all five fixed routes remain exact",
+      "result": "PASS"
+    },
+    {
+      "name": "new endpoints preserve proposed 007 operator approval and MFA gates when installed in fixture only",
+      "result": "PASS"
+    }
+  ],
+  "retained_writes": false,
+  "synthetic_auth": true,
+  "prior_sql_methods": 123,
+  "proposal_sha256": "8fddaa7b24991c0315fc5d6bd500d85aa33d4f31e86edfd6d0f875595138c070",
+  "readonly_source_sha256": "3ed88ab2633a56650e27e931ff07e4684d24df0f67680c2e486725a4d8d423ed",
+  "result": "PASS",
+  "stopped": true,
+  "retained_preservation": true,
+  "containers": [
+    "b8abf39b2a28b2905cf307eda89e1a3a6bda8f3f4d7f7ca81f5a4892ff37972c",
+    "93aca42f2eaa5991beef0a0b7eddf9de312a32a94e18059f187d78015f1a453f"
+  ],
+  "network": "sq-queue-f96ad8f6-net",
+  "passed": 12
+}

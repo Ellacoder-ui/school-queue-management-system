@@ -1,0 +1,36 @@
+{
+  "run": "e71f398d",
+  "checks": [
+    {
+      "name": "literal outer BEGIN + unchanged 007 COMMIT leaves migration installed after bootstrap failure",
+      "result": "PASS"
+    }
+  ],
+  "retainedWrites": false,
+  "syntheticContexts": true,
+  "mode": "nested-demo",
+  "existingSqlMethods": 123,
+  "migrationSha256": "b22d63d24c991b9ebf0d380d27a716d5ea72e418f5e62e177c96dded4481222c",
+  "body": {
+    "sha256": "cdbcfb56a3dda310913fc6e3677fdf6ca36446d317f962ee79ceb5ca6134a5c8",
+    "topLevelStatements": 60
+  },
+  "installedReadCloneSha256": "ec0dd53f0e00f102d575fb82d32d7794cb6924d428835d03e040ef88412f1637",
+  "documentedNestedPattern": {
+    "bootstrapFailureSqlstate": "42501",
+    "coreExists": true,
+    "tableExists": true,
+    "approvalCount": 0,
+    "atomic": false
+  },
+  "result": "PASS_VERIFICATION_NO_GO_RETAINED_APPLICATION",
+  "stopped": true,
+  "retainedPreservation": true,
+  "exactResourceDelta": true,
+  "containers": [
+    "17d74d743e24f81ee6950fb0a86e505fc242464200ea64a1e150ea31737bfada",
+    "b8f56369da4131736da7a615acc37918543172ea0760c38524c0fbebaad5933e"
+  ],
+  "network": "sq-queue-e71f398d-net",
+  "passed": 1
+}

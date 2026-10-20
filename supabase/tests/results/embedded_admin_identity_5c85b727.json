@@ -1,0 +1,114 @@
+{
+  "result": "PASS_READ_ONLY_IDENTITY",
+  "target": {
+    "role": "STUDENT",
+    "email": "eabeso63122@liceo.edu.ph",
+    "enabled": true,
+    "provider": "google",
+    "anonymous": false,
+    "auth_user_id": "b7d9aee8-c54d-455f-9913-a4c4dea0d097",
+    "email_confirmed": true,
+    "google_identity_id": "cbcd69a6-4fd0-46c0-9432-56e70a1c323c",
+    "verified_mfa_factors": 0,
+    "google_identity_count": 1,
+    "application_account_id": "b7d9aee8-c54d-455f-9913-a4c4dea0d097",
+    "identity_email_matches": true,
+    "identity_binding_sha256": "7b236769634b0910b034c035cc1422021f2281be9d6fd77d5c882ffd9ed86bbd",
+    "identity_email_verified": "true",
+    "subject_matches_provider_id": true
+  },
+  "administrator_inventory": {
+    "admin_accounts": 6,
+    "enabled_admin_accounts": 5,
+    "prior_bootstrap_events": 0
+  },
+  "state": {
+    "active": 0,
+    "counts": {
+      "days": 7,
+      "audits": 32,
+      "events": 57,
+      "tickets": 20,
+      "accounts": 41,
+      "counters": 5,
+      "requests": 69,
+      "services": 5
+    },
+    "routes": {
+      "1": [
+        "TP"
+      ],
+      "2": [
+        "SOA"
+      ],
+      "3": [
+        "PNEP"
+      ],
+      "4": [
+        "REF"
+      ],
+      "5": [
+        "ADJ"
+      ]
+    },
+    "versions": [
+      "20261016000100",
+      "20261016000200",
+      "20261016000300",
+      "20261016000400",
+      "20261016000500",
+      "20261016000600"
+    ],
+    "open_days": 0,
+    "rls_count": 15,
+    "assignments": [
+      {
+        "total": 1,
+        "counter": 1,
+        "eligible": 1
+      },
+      {
+        "total": 1,
+        "counter": 2,
+        "eligible": 1
+      },
+      {
+        "total": 0,
+        "counter": 3,
+        "eligible": 0
+      },
+      {
+        "total": 0,
+        "counter": 4,
+        "eligible": 0
+      },
+      {
+        "total": 2,
+        "counter": 5,
+        "eligible": 1
+      }
+    ],
+    "publication": [
+      "queue_display.counter_state",
+      "queue_display.service_state"
+    ],
+    "private_usage": false,
+    "current_day_closed": false
+  },
+  "preservation": {
+    "rows": {
+      "auth.users": "8006a8dc64b78f2bfff99c1496bd668937df25438ff752b5e30de93322e3fed6",
+      "auth.identities": "60b7667227d46c7780964a61c23b7fe3973acf3aea74997db97e1e68c59bcd0d",
+      "queue_private.tickets": "54cb12879da4dbdedb1944a2c1950a306413bf8fb52d995876052e4cadfc2e8b",
+      "queue_private.accounts": "fb98c6f77179be2087f7a668824e5304ca272b504cf645b3a29f9e603bae70ae",
+      "queue_private.ticket_events": "12d2ea5dcdaca1a70a1a36b19bb30099da4c2874b1e17c59d98baf9a59df7935",
+      "queue_private.admin_audit_events": "0f09788a152e32c562c191423ef0b58dc5b04661c6c9e8a09a51e6c7f318a2ff",
+      "queue_private.operation_requests": "01e6ee697817fd4ad2532f87ff76afd0c4a5c1edeb8244db359596c91e029285",
+      "queue_private.staff_counter_assignments": "4f921d6c8c10514aaaa831941582e9af0ef86c70e1450944d4b8a8b93f221f23"
+    },
+    "functions": "f63a64b5c463dcd031b1f4ef4b8b7ddcce8bb10e068b422968b0dbf92fe5b099"
+  },
+  "source_cluster": "7696959712798593061",
+  "google_enabled": true,
+  "retained_mutations": false
+}

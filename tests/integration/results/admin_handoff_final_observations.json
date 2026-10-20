@@ -1,0 +1,15 @@
+{
+  "observedAt": "2026-10-19T19:10:11.949Z",
+  "readOnly": true,
+  "fullSourceMatch": false,
+  "changedTables": [
+    "auth.users",
+    "auth.identities"
+  ],
+  "applicationTablesPreserved": true,
+  "functionsPreserved": true,
+  "requestsFactorsAclMigrationsPreserved": true,
+  "servicesPreserved": true,
+  "manualBrowserConfirmation": "User confirmed dashboard recovery and Staff management, verified-account lookup, Payor management and Ticket history all work. Individual browser HTTP responses were not captured.",
+  "historicalFailurePreserved": "admin_handoff_closeout.json remains FAIL_STOPPED; no baseline or comparator was relaxed."
+}

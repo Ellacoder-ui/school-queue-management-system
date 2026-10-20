@@ -1,0 +1,148 @@
+{
+  "observedAt": "2026-10-19T20:40:28.616270+00:00",
+  "result": "REVIEWED_OLD_FACTOR_ABSENCE_VERIFIED_OWNER_REENROLLED",
+  "readOnly": true,
+  "observerMutationIssued": false,
+  "approvedFactorBindingSha256": "6d4ce8ad136ebfd9fb70e659691764b77cdffbc8fe9b984e02ad3219e8987bf9",
+  "oldFactorIdRecoveredPrivatelyFromMatchingAuditBinding": true,
+  "oldFactorSuffix": "c1fc9a6f",
+  "oldFactorAbsent": true,
+  "oldFactorChallengesAndSessions": 0,
+  "ownerAccount": {
+    "id": "5c96debb-697f-4cad-805f-92b518e28343",
+    "role": "ADMIN",
+    "email": "ellasharmaineabeso2004@gmail.com",
+    "enabled": true,
+    "confirmed": true,
+    "userCount": 42,
+    "userExists": true,
+    "nonanonymous": true,
+    "applicationId": "5c96debb-697f-4cad-805f-92b518e28343",
+    "googleBinding": "0fa3fe400dbd117642d5cb7eb89bfed7471e6ef447e59bfc8ac8426001e39701",
+    "identityCount": 29,
+    "googleIdentities": 1
+  },
+  "inventory": {
+    "inventory": [
+      {
+        "type": "totp",
+        "status": "verified",
+        "suffix": "13242686",
+        "ownerMatches": true,
+        "bindingSha256": "ccd80cdcac83c14fadb01cc4f7523cca0ce8bb2e018d7606d9eb6e45357102b1",
+        "isReviewedOldId": false,
+        "createdAfterPreaction": true
+      }
+    ],
+    "globalCount": 1,
+    "targetCount": 1,
+    "verifiedTotp": 1,
+    "aal2SessionsWithVerifiedFactor": 1
+  },
+  "oldFactorUnenrollAudit": {
+    "count": 1,
+    "categories": [
+      "factor_unenrolled"
+    ],
+    "allUnverified": true,
+    "afterPreaction": true,
+    "allBoundToOwner": true
+  },
+  "newAuthAudit": {
+    "count": 5,
+    "categories": [
+      "challenge_created",
+      "factor_in_progress",
+      "factor_unenrolled",
+      "token_revoked",
+      "verification_attempted"
+    ],
+    "unenrollCount": 1,
+    "allBoundToOwner": true
+  },
+  "existingAuditRowsPreserved": true,
+  "applicationTablesPreservedAgainstPreparedCloseout": true,
+  "migrationsPreserved": true,
+  "securityAndFunctionsPreserved": true,
+  "servicesPreservedAgainstHistoricalBaseline": true,
+  "studentAccountsAndUnappliedProposals": {
+    "007Absent": true,
+    "012Absent": true,
+    "schoolStudent": true,
+    "otherReviewedStudent": true
+  },
+  "health": {
+    "auth": 200,
+    "settings": 200,
+    "googleEnabled": true,
+    "api": 200
+  },
+  "counts": {
+    "days": 7,
+    "audits": 34,
+    "events": 57,
+    "tickets": 20,
+    "accounts": 42,
+    "counters": 5,
+    "requests": 69,
+    "services": 5
+  },
+  "queueAssignments": [
+    {
+      "total": 1,
+      "counter": 1,
+      "eligible": 1
+    },
+    {
+      "total": 1,
+      "counter": 2,
+      "eligible": 1
+    },
+    {
+      "total": 0,
+      "counter": 3,
+      "eligible": 0
+    },
+    {
+      "total": 0,
+      "counter": 4,
+      "eligible": 0
+    },
+    {
+      "total": 2,
+      "counter": 5,
+      "eligible": 1
+    }
+  ],
+  "routes": {
+    "1": [
+      "TP"
+    ],
+    "2": [
+      "SOA"
+    ],
+    "3": [
+      "PNEP"
+    ],
+    "4": [
+      "REF"
+    ],
+    "5": [
+      "ADJ"
+    ]
+  },
+  "expectedZeroFactorPostconditionMet": false,
+  "strictObserverResult": "FAIL_STOPPED_AFTER_OWNER_REENROLLMENT",
+  "limitation": "Strict observer did not persist its final snapshot after the changed factor/challenge state; no complete immediate before/after hash comparison is claimed for other-factor or unrelated Auth/session rows. Application/security hashes use the prepared closeout; pre-action checks separately passed.",
+  "noOtherFactorUnenrollAuditFound": true,
+  "currentAuthFingerprints": {
+    "auth.users": "a1128c2d1fa1dc2a34e39ba66a015c6f",
+    "auth.sessions": "d7f334df1fcb7eba26f02194cb8ffe8c",
+    "auth.identities": "2fa94f1eb9a0ee2975b84ad555e7ca3c",
+    "auth.mfa_amr_claims": "12f487f326db6140904cfed6edfc314a",
+    "auth.refresh_tokens": "fc99c9fabef21959ff9eeeacbdaff047",
+    "auth.schema_migrations": "7def01dcf385b28a0b3a2a5f01825c29"
+  },
+  "plannedCleanupSequenceStopped": true,
+  "furtherEnrollmentOrMutationAttempted": false
+}

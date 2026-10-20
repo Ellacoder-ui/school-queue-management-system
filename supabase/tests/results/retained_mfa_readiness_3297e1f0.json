@@ -1,0 +1,31 @@
+{
+  "run": "3297e1f0",
+  "result": "PASS",
+  "retained_writes": false,
+  "configuration": {
+    "google": true,
+    "totpEnroll": false,
+    "totpVerify": false,
+    "authHealthy": true
+  },
+  "target": {
+    "cluster": "7696959712798593061",
+    "id": "b7d9aee8-c54d-455f-9913-a4c4dea0d097",
+    "account_id": "b7d9aee8-c54d-455f-9913-a4c4dea0d097",
+    "role": "STUDENT",
+    "enabled": true,
+    "email_matches": true,
+    "verified_factors": 0,
+    "factor_count": 0,
+    "google_identities": 1,
+    "binding_sha256": "7b236769634b0910b034c035cc1422021f2281be9d6fd77d5c882ffd9ed86bbd",
+    "staff_proposal_unapplied": true
+  },
+  "http": {
+    "auth": 200,
+    "settings": 200,
+    "api": 200,
+    "google": true
+  },
+  "preservation": true
+}

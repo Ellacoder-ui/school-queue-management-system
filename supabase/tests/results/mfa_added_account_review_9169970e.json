@@ -1,0 +1,80 @@
+{
+  "result": "PASS_TECHNICAL_IDENTITY_AND_PRESERVATION",
+  "observed_at": "2026-10-19T09:52:44.895108+00:00",
+  "plan_id": "9169970e",
+  "activation_performed": false,
+  "user_recognition": "NOT_YET_CONFIRMED",
+  "added_user": {
+    "uuid": "91a77243-319e-470b-a826-4c61bcfe87ae",
+    "email": "bmabing62681@liceo.edu.ph",
+    "audience": "authenticated",
+    "auth_role": "authenticated",
+    "confirmed": true,
+    "created_at": "2026-10-19T09:18:36.304593+00:00",
+    "nonanonymous": true,
+    "last_sign_in_at": "2026-10-19T09:18:36.785739+00:00",
+    "google_app_provider": true
+  },
+  "added_application_account": {
+    "role": "STUDENT",
+    "uuid": "91a77243-319e-470b-a826-4c61bcfe87ae",
+    "enabled": true,
+    "created_at": "2026-10-19T09:18:36.323226+00:00"
+  },
+  "added_google_identity": {
+    "user_id": "91a77243-319e-470b-a826-4c61bcfe87ae",
+    "provider": "google",
+    "created_at": "2026-10-19T09:18:36.336145+00:00",
+    "identity_id": "94e01509-cc44-47f1-bd7b-0aac9ba5623e",
+    "binding_sha256": "3f45a985e16321d548b1e37f206635d2d1105a4892b67505230655387e7f5321",
+    "verified_email": true,
+    "email_matches_user": true,
+    "subject_matches_provider_id": true
+  },
+  "bound_counts": {
+    "assignments": 0,
+    "mfa_factors": 0,
+    "active_tickets": 0,
+    "google_identities": 1
+  },
+  "audit_categories": [
+    {
+      "at": "2026-10-19T09:18:36.349165+00:00",
+      "category": "user_signedup"
+    },
+    {
+      "at": "2026-10-19T09:18:36.784274+00:00",
+      "category": "login"
+    }
+  ],
+  "targets": [
+    {
+      "id": "5c96debb-697f-4cad-805f-92b518e28343",
+      "role": "STUDENT",
+      "email": "ellasharmaineabeso2004@gmail.com",
+      "enabled": true,
+      "factors": 0,
+      "account_id": "5c96debb-697f-4cad-805f-92b518e28343"
+    },
+    {
+      "id": "b7d9aee8-c54d-455f-9913-a4c4dea0d097",
+      "role": "STUDENT",
+      "email": "eabeso63122@liceo.edu.ph",
+      "enabled": true,
+      "factors": 0,
+      "account_id": "b7d9aee8-c54d-455f-9913-a4c4dea0d097"
+    }
+  ],
+  "all_prior_account_rows_preserved": true,
+  "assignments_unchanged": true,
+  "security_metadata_unchanged": true,
+  "no_new_admin_cashier_or_staff_assignment": true,
+  "within_run_preservation": true,
+  "google_enabled": true,
+  "totp_enabled": false,
+  "backups": {
+    "files": 93,
+    "sha256": "27e6ed58b1fe58031c3a953e2c95cd8d362e869735f598c84577673498905e96"
+  },
+  "planExpiresAt": "2026-10-19T10:35:24.015Z"
+}

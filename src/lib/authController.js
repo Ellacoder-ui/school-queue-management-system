@@ -5,13 +5,14 @@ export function createAuthController(auth, api, {
 } = {}) {
   let state = { status: 'initializing', signedIn: false, context: null, workspace: 'public', message: null, accountVersion: 0 }
   let started = false, stopped = false, generation = 0, command = 0, session = null
-  let subscription, active, expiration, blocked = false, autoNavigate = true
+  let subscription, active, expiration, blocked = false, autoNavigate = true, revalidationScheduled = false
   const emit = patch => { if (!stopped) { state = { ...state, ...patch }; onState?.(state) } }
   const clear = (status, message = null) => {
     generation++
     active?.abort()
     clearTimer(expiration)
-    emit({ status, context: null, workspace: 'public', signedIn: !!session, message, accountVersion: state.accountVersion + 1 })
+    revalidationScheduled = false
+    emit({ status, revalidating: false, verificationStep: null, context: null, workspace: 'public', signedIn: !!session, message, accountVersion: state.accountVersion + 1 })
     return generation
   }
   async function bounded(promise, signal) {
@@ -38,7 +39,9 @@ export function createAuthController(auth, api, {
     if (stopped || blocked || expectedGeneration !== generation || !session) return
     const expectedUser = session.user.id
     const abort = new AbortController(); active = abort
+    const deadline = setTimer(() => abort.abort(), timeoutMs)
     try {
+      emit({verificationStep:'session'})
       const current = await bounded(auth.getSession(), abort.signal)
       if (stopped || expectedGeneration !== generation) return
       if (current.error || !current.data.session || current.data.session.user.id !== expectedUser) {
@@ -46,6 +49,7 @@ export function createAuthController(auth, api, {
       }
       session = current.data.session
       if (!Number.isFinite(session.expires_at) || session.expires_at * 1000 <= now()) { expired(); return }
+      emit({verificationStep:'user'})
       const user = await bounded(auth.getUser(), abort.signal)
       if (stopped || expectedGeneration !== generation) return
       if (user.error || user.data.user?.id !== expectedUser) {
@@ -53,19 +57,21 @@ export function createAuthController(auth, api, {
         else throw new Error('Account verification unavailable')
         return
       }
+      emit({verificationStep:'permissions'})
       const context = await bounded(api.readMyContext({ signal: abort.signal }), abort.signal)
       if (stopped || expectedGeneration !== generation || blocked) return
       if (session.expires_at * 1000 <= now()) { expired(); return }
       const workspace = context.role?.toLowerCase() === 'admin' ? 'admin' : context.role?.toLowerCase()
-      emit({ context, status: context.enabled ? 'ready' : 'disabled', message: null,
+      const changed = state.revalidating && JSON.stringify(context) !== JSON.stringify(state.context)
+      emit({ context, revalidating: false, verificationStep:null, accountVersion: state.accountVersion + (changed ? 1 : 0), status: context.enabled ? 'ready' : 'disabled', message: null,
         workspace: context.enabled && autoNavigate ? workspace : 'public' })
       scheduleExpiration()
     } catch (error) {
       if (!stopped && expectedGeneration === generation) {
         if (error?.status === 401 || error?.code === 'PGRST301') expired()
-        else emit({ status: 'error', context: null, workspace: 'public', message: 'Account access could not be verified. Retry or sign out.' })
+        else emit({ status: 'error', revalidating:false, verificationStep:null, context: null, workspace: 'public', message: 'Account access could not be verified. Retry or sign out.' })
       }
-    } finally { if (active === abort) active = null }
+    } finally { clearTimer(deadline); if (active === abort) active = null; if (expectedGeneration === generation) revalidationScheduled = false }
   }
   function receive(next, event) {
     if (stopped) return
@@ -76,17 +82,42 @@ export function createAuthController(auth, api, {
       else clear('anonymous')
       return
     }
+    // The SDK's MFA event can carry token-response data without expires_at.
+    // Reload its managed session; never adopt that partial event as authorization.
+    if (event === 'MFA_CHALLENGE_VERIFIED') {
+      if (blocked) return
+      if (!session || next.user?.id !== session.user.id) {
+        blocked = true; session = null
+        clear('error', 'Your account changed during verification. Sign in again.'); return
+      }
+      refresh(); return
+    }
     if (blocked) return
     if (event === 'INITIAL_SESSION' && state.status === 'signing-in') return
     const changedUser = next.user.id !== session?.user.id
     if (changedUser) { command++; autoNavigate = true }
+    const unchanged = !changedUser && !!next.access_token && next.access_token === session?.access_token
+      && (['SIGNED_IN','INITIAL_SESSION'].includes(event) || event==='TOKEN_REFRESHED'&&state.status==='checking')
     session = next
+    // SDK recovery/focus/cross-tab notifications can repeat the same session.
+    // Do not abort its current verification or reset its deadline on each event.
+    if (unchanged) { if(state.status==='ready')revalidate(); return }
     const epoch = clear('checking') // synchronous clearing, no awaited SDK calls in callback
     defer(() => { void verify(epoch) })
   }
   function refresh() {
     if (stopped || blocked || !session) return
     const epoch = clear('checking')
+    defer(() => { void verify(epoch) })
+  }
+  // Routine focus/reconnect checks preserve a still-valid verified workspace.
+  // Initial login, expiry, account/token changes and protected denials still clear it.
+  function revalidate() {
+    if (stopped || blocked || !session || active || revalidationScheduled) return
+    if (state.status !== 'ready' || session.expires_at * 1000 <= now()) { refresh(); return }
+    revalidationScheduled = true
+    const epoch = ++generation
+    emit({ revalidating: true })
     defer(() => { void verify(epoch) })
   }
   return {
@@ -152,7 +183,19 @@ export function createAuthController(auth, api, {
         if (!stopped && action === command) clear('error', 'Sign-out could not be confirmed. Access is locked. Retry sign-out.')
       }
     },
-    refresh,
+    // Internal operation scope only; never added to render state or derived from claims.
+    getVerifiedActor() {
+      return !stopped && !blocked && state.status === 'ready' && state.context?.enabled
+        && session?.expires_at * 1000 > now() ? session.user.id : null
+    },
+    // Private continuity for account MFA only; never authorizes queue/staff writes.
+    getMfaScope() {
+      return !stopped && !blocked && session?.expires_at * 1000 > now()
+        && ['ready', 'checking'].includes(state.status)
+        && (state.status === 'checking' || state.context?.enabled)
+        ? { actor: session.user.id, version: command } : null
+    },
+    refresh, revalidate,
     offline() { if (!stopped && session) clear('error', 'You are offline. Reconnect to verify account access.') },
     protectedDenied() { refresh() },
     navigate(workspace) {

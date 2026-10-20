@@ -1,0 +1,75 @@
+{
+  "run": "ed29c352",
+  "syntheticOnly": true,
+  "actualAuthAndSdk": true,
+  "retainedWrites": false,
+  "checks": [
+    {
+      "name": "cached isolated Auth is healthy with Google and TOTP enabled",
+      "result": "PASS"
+    },
+    {
+      "name": "real application provisioning creates only synthetic accounts",
+      "result": "PASS"
+    },
+    {
+      "name": "Auth rejects another user factor and preserves every factor",
+      "result": "PASS"
+    },
+    {
+      "name": "existing application sees real unverified inventory at AAL1",
+      "result": "PASS"
+    },
+    {
+      "name": "application rejects an unlisted factor before DELETE",
+      "result": "PASS"
+    },
+    {
+      "name": "cancellation makes no cleanup request",
+      "result": "PASS"
+    }
+  ],
+  "migrations": [
+    {
+      "name": "20261016000100_queue_tables.sql",
+      "sha256": "274141dbab99dbaad959f2343633ee0bd440b240a29b5664ca304e283934d7d7"
+    },
+    {
+      "name": "20261016000200_queue_operations.sql",
+      "sha256": "65c943d4fea282c07e06bab6b759882f7fcec678ddf960869dd60a52db911883"
+    },
+    {
+      "name": "20261016000300_queue_administration.sql",
+      "sha256": "7a4ad627112f0bc3109417bec237b13000e1c06002d536f7c9feab5261eb4883"
+    },
+    {
+      "name": "20261016000400_queue_seed_security.sql",
+      "sha256": "95bd4918550dddae84672c148c6a616c9d12928b78097a82815a26a35146746e"
+    },
+    {
+      "name": "20261016000500_queue_read_context.sql",
+      "sha256": "793a68b375d69044dc4900749867576b5c45a6b4173725191ffbaeb66a2dd31a"
+    },
+    {
+      "name": "20261016000600_fixed_counter_routing.sql",
+      "sha256": "9d854ab795e3ef3098fa1d3a05cb6541242d0c8e503a8ebee1acfe9df418137c"
+    }
+  ],
+  "wrongOwner": {
+    "status": 404,
+    "code": "mfa_factor_not_found"
+  },
+  "result": "FAIL",
+  "failurePhase": "one-supported-cleanup",
+  "failure": "Synthetic cleanup stopped; private diagnostics suppressed",
+  "stopped": true,
+  "retainedPreservation": true,
+  "exactResourceDelta": true,
+  "containers": [
+    "357630d864a41b38a13f6489ca6ea2dc898468ef96ac898abe2b213920dc64a9",
+    "bf350b90c86cbbcaeb7cec73858beb6c3378d60ef7e28304475e6c03be74e6e5",
+    "db1461c83d23900d025953a8fce07f4efb115616fcf56dab1f2e1b330de02c6c"
+  ],
+  "network": "e24ed917423734d814ee91fa9a11390fe4c6baa58bc7784d950b80911628ce3c",
+  "passed": 6
+}

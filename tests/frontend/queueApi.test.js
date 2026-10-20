@@ -16,7 +16,7 @@ test('local client rejects hosted targets, secret keys, and service-role JWTs', 
   assert.equal(validateLocalPublicConfig('http://127.0.0.1:54321', 'sb_publishable_example').publicKey, 'sb_publishable_example')
 })
 
-test('business reads explicitly target queue_api and reject issuance helpers', async () => {
+test('business reads target queue_api; issuance is an explicit validated mutation only', async () => {
   let invoked
   const api = createQueueApi({ schema(schema) { return { rpc(name, params) {
     invoked = { schema, name, params }; return Promise.resolve({ data: [], error: null, status: 200 })
@@ -24,7 +24,9 @@ test('business reads explicitly target queue_api and reject issuance helpers', a
   await api.read('my_tickets')
   assert.equal(invoked.schema, 'queue_api')
   assert.throws(() => api.read('issue_ticket'))
-  assert.throws(() => api.createMutationIntent('issue_ticket', { p_service: 'TP' }))
+  assert.equal(api.createMutationIntent('issue_ticket', { p_service: 'TP' }).operation, 'issue_ticket')
+  assert.throws(() => api.createMutationIntent('issue_ticket', { p_service: 'UNKNOWN' }))
+  assert.throws(() => api.createMutationIntent('issue_ticket', { p_service: 'TP', p_role: 'ADMIN' }))
 })
 
 test('an ambiguous action retry preserves its UUID and immutable original parameters', async () => {
@@ -32,9 +34,9 @@ test('an ambiguous action retry preserves its UUID and immutable original parame
   const api = createQueueApi({ schema(schema) { return { rpc(name, params) {
     calls.push({ schema, name, params }); attempt += 1
     return Promise.resolve(attempt === 1 ? { error: { message: 'AbortError', code: '' }, status: 0 }
-      : { data: { status: 'SERVED' }, error: null, status: 200 })
+      : { data: { counter:'11111111-1111-4111-8111-111111111111',open:false,services:['TP'],cashiers:[] }, error: null, status: 200 })
   } } } })
-  const params = { p_counter: 'counter', p_services: ['TP'] }
+  const params = { p_counter: '11111111-1111-4111-8111-111111111111', p_open:false, p_services: ['TP'], p_cashiers:[] }
   const intent = api.createMutationIntent('configure_counter', params)
   params.p_services.push('SOA')
   await assert.rejects(api.executeMutation(intent), error => error.outcome === 'unknown' && error.requestKey === intent.parameters.p_request_key)
@@ -144,4 +146,13 @@ test('partial subscription setup failure cleans up channels already created', as
   assert.throws(() => api.subscribePublicDisplay({ onReady() {}, onDisconnect() {}, onInvalidate() {} }), /unavailable/)
   await new Promise(resolve => setImmediate(resolve))
   assert.equal(removed, 1)
+})
+test('repeated staff approval/AAL denials do not cause an Auth refresh loop; authentication failures still reconcile',async()=>{
+  let allowed=false,status=403,denied=0
+  const api=createQueueApi({schema(){return{rpc(){return Promise.resolve(allowed?{data:[],status:200}:{error:{code:'42501'},status})}}}})
+  api.onAuthorizationDenied(()=>denied++)
+  await assert.rejects(api.read('staff_queue'));await assert.rejects(api.read('staff_queue'));assert.equal(denied,1)
+  status=401;await assert.rejects(api.read('staff_queue'));assert.equal(denied,2)
+  allowed=true;await api.read('staff_queue');allowed=false;status=403
+  await assert.rejects(api.read('staff_queue'));assert.equal(denied,3)
 })

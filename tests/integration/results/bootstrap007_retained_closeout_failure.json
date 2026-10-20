@@ -1,0 +1,38 @@
+{
+  "result": "FAIL_RETAINED_CLOSEOUT_PRESERVED",
+  "observedAt": "2026-10-20T01:19:57.061863+00:00",
+  "changedTables": [
+    "auth.users",
+    "auth.sessions",
+    "auth.refresh_tokens",
+    "auth.audit_log_entries"
+  ],
+  "securitySame": true,
+  "inventorySame": true,
+  "definitionsSame": true,
+  "serviceDifferences": [
+    {
+      "name": "/supabase_vector_school-queue-local",
+      "definitionSame": true,
+      "identitySame": true,
+      "lifecycleSame": false
+    }
+  ],
+  "newResources": {
+    "containers": [
+      "17d74d743e24f81ee6950fb0a86e505fc242464200ea64a1e150ea31737bfada",
+      "5caef6ed5069f3d66a2f4500d78e6108816004369136ffef807b0926bf907b36",
+      "6cbddbe1a3f33cdbec471d4665e2b589c12519ad534007f8ee1c36ec2cc1f912",
+      "b193066ec8334af71f1d67a67c6f664f6dab852098e382b55bbf54c5eaa873d4",
+      "b54af81df8ddb25143ad0edd2132b50c5b74ec5cacad6c073fbff86f394582ea",
+      "b8f56369da4131736da7a615acc37918543172ea0760c38524c0fbebaad5933e"
+    ],
+    "networks": [
+      "58cae9109a68f70c358c130c43d0d1acbd090c3284c4b63d751c288cc29dd953",
+      "9878559a5178a752a6e7c66f66e79c4acce5621f969b38e94d4774751dded63d",
+      "c2a0fa578c9275d160b133552a893e83a28f27bd3e2ea846313b6939020552fb"
+    ],
+    "volumes": []
+  },
+  "retainedWrites": false
+}

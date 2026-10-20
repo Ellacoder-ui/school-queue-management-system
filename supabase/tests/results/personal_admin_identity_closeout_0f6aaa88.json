@@ -1,0 +1,149 @@
+{
+  "observed_at": "2026-10-19T09:35:12.727692+00:00",
+  "retained_writes": false,
+  "old_plan_source": "FAIL",
+  "source_failure": "AGO_RESOURCE_DELTA",
+  "changed_source_sections": [
+    "rows",
+    "sequences",
+    "state"
+  ],
+  "removed_tables": [],
+  "added_tables": [],
+  "changed_table_fingerprints": [
+    "\"auth\".\"audit_log_entries\"",
+    "\"auth\".\"identities\"",
+    "\"auth\".\"mfa_amr_claims\"",
+    "\"auth\".\"refresh_tokens\"",
+    "\"auth\".\"sessions\"",
+    "\"auth\".\"users\"",
+    "\"queue_private\".\"accounts\"",
+    "\"realtime\".\"subscription\""
+  ],
+  "changed_table_counts": {
+    "\"auth\".\"audit_log_entries\"": {
+      "before": 135,
+      "after": 138
+    },
+    "\"auth\".\"identities\"": {
+      "before": 28,
+      "after": 29
+    },
+    "\"auth\".\"mfa_amr_claims\"": {
+      "before": 36,
+      "after": 36
+    },
+    "\"auth\".\"refresh_tokens\"": {
+      "before": 36,
+      "after": 36
+    },
+    "\"auth\".\"sessions\"": {
+      "before": 36,
+      "after": 36
+    },
+    "\"auth\".\"users\"": {
+      "before": 41,
+      "after": 42
+    },
+    "\"queue_private\".\"accounts\"": {
+      "before": 41,
+      "after": 42
+    },
+    "\"realtime\".\"subscription\"": {
+      "before": 2,
+      "after": 4
+    }
+  },
+  "state_changed_fields": [
+    "counts"
+  ],
+  "changed_sequence_names": [
+    "\"auth\".\"refresh_tokens_id_seq\"",
+    "\"realtime\".\"subscription_id_seq\""
+  ],
+  "all_other_shared_table_fingerprints_equal": true,
+  "migration_versions": [
+    "20261016000100",
+    "20261016000200",
+    "20261016000300",
+    "20261016000400",
+    "20261016000500",
+    "20261016000600"
+  ],
+  "fixed_routes": {
+    "1": [
+      "TP"
+    ],
+    "2": [
+      "SOA"
+    ],
+    "3": [
+      "PNEP"
+    ],
+    "4": [
+      "REF"
+    ],
+    "5": [
+      "ADJ"
+    ]
+  },
+  "active_work": 0,
+  "open_days": 0,
+  "protected_inputs_equal": {
+    "credential": true,
+    "dbVolume": true,
+    "backupTree": true
+  },
+  "docker_resource_inventory_equal": false,
+  "service_definition_changes": [],
+  "non_vector_lifecycle_changes": [],
+  "accounts": [
+    {
+      "role": "STUDENT",
+      "email": "eabeso63122@liceo.edu.ph",
+      "auth_id": "b7d9aee8-c54d-455f-9913-a4c4dea0d097",
+      "binding": "7b236769634b0910b034c035cc1422021f2281be9d6fd77d5c882ffd9ed86bbd",
+      "enabled": true,
+      "account_id": "b7d9aee8-c54d-455f-9913-a4c4dea0d097",
+      "all_tickets": 0,
+      "assignments": 0,
+      "factor_count": 0,
+      "google_count": 1,
+      "not_anonymous": true,
+      "active_tickets": 0,
+      "email_confirmed": true,
+      "verified_factors": 0
+    },
+    {
+      "role": "STUDENT",
+      "email": "ellasharmaineabeso2004@gmail.com",
+      "auth_id": "5c96debb-697f-4cad-805f-92b518e28343",
+      "binding": "0fa3fe400dbd117642d5cb7eb89bfed7471e6ef447e59bfc8ac8426001e39701",
+      "enabled": true,
+      "account_id": "5c96debb-697f-4cad-805f-92b518e28343",
+      "all_tickets": 0,
+      "assignments": 0,
+      "factor_count": 0,
+      "google_count": 1,
+      "not_anonymous": true,
+      "active_tickets": 0,
+      "email_confirmed": true,
+      "verified_factors": 0
+    }
+  ],
+  "security_migration_unapplied": true,
+  "session_aal_column_available": true,
+  "result": "PASS_READ_ONLY_IDENTITY_AND_WITHIN_RUN_PRESERVATION",
+  "google": true,
+  "totp_enroll": false,
+  "totp_verify": false,
+  "http": {
+    "auth": 200,
+    "settings": 200,
+    "anonymous_api": 200
+  },
+  "backups": {
+    "files": 93,
+    "sha256": "27e6ed58b1fe58031c3a953e2c95cd8d362e869735f598c84577673498905e96"
+  }
+}

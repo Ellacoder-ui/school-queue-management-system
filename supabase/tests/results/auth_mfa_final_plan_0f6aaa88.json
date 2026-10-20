@@ -1,0 +1,106 @@
+{
+  "result": "PASS_PREPARED_AND_READ_ONLY_CHECKED",
+  "recordedAt": "2026-10-19T09:15:29.320Z",
+  "runId": "0f6aaa88",
+  "planSha256": "08e5e9587e570d07afbec2f66f796e3aa2238f1dd8838759312dee89ac778d4a",
+  "expiresAt": "2026-10-19T10:13:05.047Z",
+  "approvalReceived": false,
+  "retainedActivation": false,
+  "originalId": "565adceacab15cd43c7e00d5cee19345bc34f6ab981b35d5dc2ba4f8cdd4f399",
+  "image": "sha256:1736a63078f5922b198c4cbe50f80ab9a2d3b54fe8b7b6cfb2e9dc5dbbc12c6b",
+  "imageReference": "public.ecr.aws/supabase/gotrue:v2.197.0",
+  "networkIds": {
+    "supabase_network_school-queue-local": "e1f4c1a26ff768b3ebd984c2e80d570985d0762b775e4edf753570f7dbbf656d"
+  },
+  "configuration": {
+    "google": true,
+    "totpEnroll": false,
+    "totpVerify": false,
+    "configSha256": "e4d5c0c91d449e21a72074660abb150057b6c846fa0aa54470a572a4669677e0",
+    "proposedConfigSha256": "29c2ad10f40a36c61256ac93c25f2c545df73ef30511e46868def5e8b29c98a8"
+  },
+  "capture": {
+    "path": ".local-auth-only/0f6aaa88/mfa-review/payload.dpapi",
+    "privateReadBack": true,
+    "sourceSha256": "0195a8da8fa9dd287d4c9e5f66407ddef8cd92bbc10df6d07ed757cd8130fd8c",
+    "codeBindingSha256": "4959860bd6ba3c6ac7f3b339c401b72c2c49ba4e043281f8122285cfd5d664dd"
+  },
+  "preservation": {
+    "projectContainers": 13,
+    "backups": {
+      "files": 93,
+      "sha256": "27e6ed58b1fe58031c3a953e2c95cd8d362e869735f598c84577673498905e96"
+    },
+    "counts": {
+      "\"auth\".\"identities\"": 28,
+      "\"auth\".\"users\"": 41,
+      "\"queue_private\".\"accounts\"": 41,
+      "\"queue_private\".\"ticket_events\"": 57,
+      "\"queue_private\".\"tickets\"": 20
+    },
+    "versions": [
+      "20261016000100",
+      "20261016000200",
+      "20261016000300",
+      "20261016000400",
+      "20261016000500",
+      "20261016000600"
+    ],
+    "routes": {
+      "1": [
+        "TP"
+      ],
+      "2": [
+        "SOA"
+      ],
+      "3": [
+        "PNEP"
+      ],
+      "4": [
+        "REF"
+      ],
+      "5": [
+        "ADJ"
+      ]
+    },
+    "active": 0,
+    "openDays": 0,
+    "initialInputs": 935,
+    "unchangedInputs": 922,
+    "changedInputs": [
+      "scripts/Start-AuthOnlyMfa.ps1",
+      "scripts/authMfaPlan.mjs",
+      "src/components/StudentDashboard.vue",
+      "tests/frontend/embeddedMonitor.test.js",
+      "tests/security/authMfaFixture.mjs",
+      "tests/security/authMfaPlan.unit.mjs",
+      "tests/security/authOnlyWorkflow.unit.mjs",
+      "tests/security/rehearse_auth_mfa.mjs",
+      "scripts/authOnlyEngine.mjs",
+      "scripts/authOnlyRetained.mjs",
+      "src/components/AuthWorkspace.vue",
+      "tests/frontend/authWorkspace.test.js",
+      "tests/frontend/googleOAuth.browser.mjs"
+    ],
+    "missingInputs": []
+  },
+  "tests": {
+    "frontend": 148,
+    "mfaPlan": 13,
+    "legacyWorkflow": 7,
+    "interception": 15,
+    "mfaGuardPython": 3,
+    "legacyGuardPython": 6,
+    "disposableChecks": 22,
+    "mfaBrowser": 22,
+    "defaultBrowser": 20,
+    "publicDisplay": 15,
+    "productionBuild": "PASS"
+  },
+  "evidence": {
+    "disposable": "auth_mfa_rehearsal_654b8795.json",
+    "mfaBrowser": "google_oauth_frontend_bd271956.json",
+    "defaultBrowser": "google_oauth_frontend_23fa81ca.json",
+    "publicDisplay": "public_board_1b78f406.json"
+  }
+}

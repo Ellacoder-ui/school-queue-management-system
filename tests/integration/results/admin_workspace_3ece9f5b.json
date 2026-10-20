@@ -1,0 +1,62 @@
+{
+  "run": "3ece9f5b",
+  "retained_writes": false,
+  "synthetic_auth_only": true,
+  "checks": [
+    {
+      "name": "proposals seed no staff request, approval or Auth identity",
+      "result": "PASS"
+    },
+    {
+      "name": "ordinary, anonymous, cashier, disabled and unapproved ADMIN cannot read the directory",
+      "result": "PASS"
+    },
+    {
+      "name": "approved ADMIN still needs signed AAL2",
+      "result": "PASS"
+    },
+    {
+      "name": "authorized directory contains real identity bindings and all five exact fixed routes",
+      "result": "PASS"
+    },
+    {
+      "name": "new email request creates neither Auth user nor staff privilege; explicit replay is exact",
+      "result": "PASS"
+    },
+    {
+      "name": "existing email request requires operator UUID/Google binding; API cannot bind or approve it",
+      "result": "PASS"
+    },
+    {
+      "name": "pending/bound request cannot replace operator staff approval; self promotion denied",
+      "result": "PASS"
+    },
+    {
+      "name": "approved existing target can become CASHIER and be assigned only to fixed services",
+      "result": "PASS"
+    },
+    {
+      "name": "ADMIN cannot edit its own authorization; unapproved legacy ADMIN does not defeat last-usable protection",
+      "result": "PASS"
+    },
+    {
+      "name": "reports use real queue history without owner identity; expiration and disabled access deny reads",
+      "result": "PASS"
+    }
+  ],
+  "allowed_retained_auth_activity": "User-controlled enrollment/login for the exact personal UUID only; all application/account roles and unrelated Auth fingerprints remain fenced.",
+  "prior_sql_methods": 123,
+  "proposals": {
+    "20261019000700_staff_security.PROPOSED.sql": "b22d63d24c991b9ebf0d380d27a716d5ea72e418f5e62e177c96dded4481222c",
+    "20261019000800_admin_workspace.PROPOSED.sql": "b2d34376031ab47001bfc2da81ffaa1c9d33847f0862a8c460503d9f06b12af6"
+  },
+  "result": "PASS",
+  "owned_containers_stopped": true,
+  "retained_preservation": true,
+  "passed": 10,
+  "containers": [
+    "9bb8645fcb250c7debf03475e081ece4d57b24d1a58908a67abde99f1a351fc7",
+    "7a53205ba1394251c46cf55e550b989c3675baf2c220f6a2cc74692c6466ca0c"
+  ],
+  "network": "sq-queue-3ece9f5b-net"
+}

@@ -102,6 +102,22 @@ test('cancel/logout invalidates late callback and leaves persistent access gate'
   h.setSession(session);pending.resolve({data:{session},error:null});await task
   assert.equal(h.accepted.length,0);assert.equal(h.controller.shouldGate(),true)
 })
+
+test('checking a cancelled sign-in reaches a generic error instead of waiting forever',async()=>{
+  const h=harness();await h.controller.start();h.controller.cancel();h.setSession(session)
+  await h.controller.reconcile()
+  assert.equal(h.accepted.length,0)
+  assert.equal(h.controller.getState().phase,'error')
+  assert.match(h.controller.getState().message,/No sign-in could be verified/)
+})
+
+test('reconciliation cannot remain checking when its flow marker disappears',async()=>{
+  const h=harness();await h.controller.start();h.setSession(session)
+  h.auth.getUser=async()=>{h.store.removeItem(OAUTH_MARKER);return{data:{user:session.user},error:null}}
+  await h.controller.reconcile()
+  assert.equal(h.accepted.length,0)
+  assert.equal(h.controller.getState().phase,'error')
+})
 test('other-tab marker blocks competing verifier generation and context restoration',async()=>{
   const store=storage(),one=harness({store}),two=harness({store});await one.controller.start();await two.controller.start()
   assert.equal(two.calls,0);assert.equal(two.accepted.length,0);assert.match(two.controller.getState().message,/Another tab/)

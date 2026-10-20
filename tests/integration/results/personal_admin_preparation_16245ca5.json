@@ -1,0 +1,55 @@
+{
+  "run": "16245ca5",
+  "retained_writes": false,
+  "real_mfa_enrollment": false,
+  "synthetic_accounts_only": true,
+  "checks": [
+    {
+      "name": "unchanged generic 007 seeds no approval and promotes neither account",
+      "result": "PASS"
+    },
+    {
+      "name": "school UUID/hash and email-only substitutions cannot approve the personal identity",
+      "result": "PASS"
+    },
+    {
+      "name": "personal and school STUDENT cannot self-promote even with signed AAL2",
+      "result": "PASS"
+    },
+    {
+      "name": "exact personal approval alone cannot replace verified factor enrollment",
+      "result": "PASS"
+    },
+    {
+      "name": "operator promotion helpers and approval storage remain inaccessible to browser roles",
+      "result": "PASS"
+    },
+    {
+      "name": "approved operator changes only the exact synthetic personal account; school stays STUDENT",
+      "result": "PASS"
+    },
+    {
+      "name": "promoted role still requires signed AAL2 for backend ADMIN access",
+      "result": "PASS"
+    },
+    {
+      "name": "existing ADMIN approval and MFA protections remain enforced",
+      "result": "PASS"
+    },
+    {
+      "name": "repeat promotion and revoked approval fail closed",
+      "result": "PASS"
+    }
+  ],
+  "existing_sql_methods": 123,
+  "proposal_sha256": "b22d63d24c991b9ebf0d380d27a716d5ea72e418f5e62e177c96dded4481222c",
+  "result": "PASS",
+  "owned_containers_stopped": true,
+  "retained_preservation": true,
+  "containers": [
+    "4bada5a8d9edc845ab09f34459fc25b7fa500a7774b3470d3852ffc08a557b50",
+    "545e48cf4d26d6f4f1cc71a5c4a71b30214c7b6f558448953f7f0febb37b38a2"
+  ],
+  "network": "sq-queue-16245ca5-net",
+  "passed": 9
+}

@@ -1,0 +1,40 @@
+{
+  "run": "4354c411",
+  "retained_writes": false,
+  "real_mfa_or_google_login": false,
+  "checks": [
+    {
+      "name": "proposed migration changes no role and seeds no approvals",
+      "result": "PASS"
+    },
+    {
+      "name": "ordinary and disabled users cannot self-promote with ADMIN metadata or AAL2",
+      "result": "PASS"
+    },
+    {
+      "name": "unreviewed existing ADMIN is denied even with signed AAL2",
+      "result": "PASS"
+    },
+    {
+      "name": "operator review rejects wrong UUID, .edu.com/email mismatch and wrong identity hash",
+      "result": "FAIL"
+    }
+  ],
+  "prior_policy_methods": 123,
+  "candidate_sha256": "b22d63d24c991b9ebf0d380d27a716d5ea72e418f5e62e177c96dded4481222c",
+  "result": "FAIL",
+  "failure": "Guarded fixture SQL failed at synthetic-fixture-seed: sql-error; raw diagnostics suppressed",
+  "owned_resources": {
+    "containers": [
+      "fffe49c3acf13988be26b1355d08c415d0876cbdc78c9702dbabb680aa14adf3",
+      "a049e38973e6931978784ffcd1091ebc23c8fb0bf30513b3a13873f60599615a"
+    ],
+    "network": "sq-queue-4354c411-net"
+  },
+  "owned_containers_stopped": true,
+  "retained_rows_functions_exact": true,
+  "retained_services_exact": true,
+  "docker_inventory_exact": true,
+  "passed": 3,
+  "failed": 1
+}

@@ -1,0 +1,444 @@
+{
+  "result": "PASS_READ_ONLY_BASELINE",
+  "observedAt": "2026-10-20T01:10:59.124354+00:00",
+  "endpoint": {
+    "host": "127.0.0.1",
+    "port": 54322,
+    "cluster": "7696959712798593061",
+    "database": "postgres",
+    "readOnly": true
+  },
+  "inventory": {
+    "counts": {
+      "ADMIN": 7,
+      "CASHIER": 5,
+      "STUDENT": 30
+    },
+    "007Absent": true,
+    "012Absent": true,
+    "privileged": [
+      {
+        "id": "1abe1490-ec93-42d9-b97c-0de42bcc442e",
+        "role": "CASHIER",
+        "email": "queue-context-ae068c42-unassigned@example.invalid",
+        "enabled": true,
+        "factors": 0,
+        "counters": [],
+        "anonymous": false,
+        "confirmed": true,
+        "authExists": true,
+        "identities": [
+          {
+            "provider": "email",
+            "matchingEmail": true,
+            "verifiedEmail": false
+          }
+        ],
+        "googleCount": 0,
+        "metadataKeys": [
+          "display_name",
+          "email_verified",
+          "role"
+        ],
+        "verifiedTotp": 0,
+        "aal2WithVerifiedTotp": 0
+      },
+      {
+        "id": "3c08ca87-d1d4-47f9-aba4-132016f63a52",
+        "role": "CASHIER",
+        "email": "3c08ca87-d1d4-47f9-aba4-132016f63a52@example.invalid",
+        "enabled": true,
+        "factors": 0,
+        "counters": [
+          1,
+          2
+        ],
+        "anonymous": false,
+        "confirmed": true,
+        "authExists": true,
+        "identities": [],
+        "googleCount": 0,
+        "metadataKeys": [],
+        "verifiedTotp": 0,
+        "aal2WithVerifiedTotp": 0
+      },
+      {
+        "id": "92a2d664-763f-4696-9119-c051743e1ea6",
+        "role": "CASHIER",
+        "email": "queue-context-ae068c42-cashier@example.invalid",
+        "enabled": true,
+        "factors": 0,
+        "counters": [
+          5
+        ],
+        "anonymous": false,
+        "confirmed": true,
+        "authExists": true,
+        "identities": [
+          {
+            "provider": "email",
+            "matchingEmail": true,
+            "verifiedEmail": false
+          }
+        ],
+        "googleCount": 0,
+        "metadataKeys": [
+          "display_name",
+          "email_verified",
+          "role"
+        ],
+        "verifiedTotp": 0,
+        "aal2WithVerifiedTotp": 0
+      },
+      {
+        "id": "97b0561d-e07e-4f19-a13d-c4f5be751d69",
+        "role": "CASHIER",
+        "email": "queue-e2e-ac079a5b-cashier@example.invalid",
+        "enabled": true,
+        "factors": 0,
+        "counters": [],
+        "anonymous": false,
+        "confirmed": true,
+        "authExists": true,
+        "identities": [
+          {
+            "provider": "email",
+            "matchingEmail": true,
+            "verifiedEmail": false
+          }
+        ],
+        "googleCount": 0,
+        "metadataKeys": [
+          "display_name",
+          "email_verified",
+          "role"
+        ],
+        "verifiedTotp": 0,
+        "aal2WithVerifiedTotp": 0
+      },
+      {
+        "id": "df7361b6-26d2-4ccc-8163-41f19e966100",
+        "role": "CASHIER",
+        "email": "queue-gap-1d975e04-cashierb@example.invalid",
+        "enabled": true,
+        "factors": 0,
+        "counters": [],
+        "anonymous": false,
+        "confirmed": true,
+        "authExists": true,
+        "identities": [
+          {
+            "provider": "email",
+            "matchingEmail": true,
+            "verifiedEmail": false
+          }
+        ],
+        "googleCount": 0,
+        "metadataKeys": [
+          "display_name",
+          "email_verified"
+        ],
+        "verifiedTotp": 0,
+        "aal2WithVerifiedTotp": 0
+      },
+      {
+        "id": "0847be2c-fd2b-41f9-adb1-0232b3d0e733",
+        "role": "ADMIN",
+        "email": "queue-context-ae068c42-admin@example.invalid",
+        "enabled": true,
+        "factors": 0,
+        "counters": [],
+        "anonymous": false,
+        "confirmed": true,
+        "authExists": true,
+        "identities": [
+          {
+            "provider": "email",
+            "matchingEmail": true,
+            "verifiedEmail": false
+          }
+        ],
+        "googleCount": 0,
+        "metadataKeys": [
+          "display_name",
+          "email_verified",
+          "role"
+        ],
+        "verifiedTotp": 0,
+        "aal2WithVerifiedTotp": 0
+      },
+      {
+        "id": "2fa10f75-14b5-4603-9d29-7c4694a2c894",
+        "role": "ADMIN",
+        "email": "2fa10f75-14b5-4603-9d29-7c4694a2c894@example.invalid",
+        "enabled": true,
+        "factors": 0,
+        "counters": [],
+        "anonymous": false,
+        "confirmed": true,
+        "authExists": true,
+        "identities": [],
+        "googleCount": 0,
+        "metadataKeys": [],
+        "verifiedTotp": 0,
+        "aal2WithVerifiedTotp": 0
+      },
+      {
+        "id": "5c96debb-697f-4cad-805f-92b518e28343",
+        "role": "ADMIN",
+        "email": "ellasharmaineabeso2004@gmail.com",
+        "enabled": true,
+        "factors": 1,
+        "counters": [],
+        "anonymous": false,
+        "confirmed": true,
+        "authExists": true,
+        "identities": [
+          {
+            "provider": "google",
+            "matchingEmail": true,
+            "verifiedEmail": true
+          }
+        ],
+        "googleCount": 1,
+        "metadataKeys": [
+          "avatar_url",
+          "email",
+          "email_verified",
+          "full_name",
+          "iss",
+          "name",
+          "phone_verified",
+          "picture",
+          "provider_id",
+          "sub"
+        ],
+        "verifiedTotp": 1,
+        "aal2WithVerifiedTotp": 1
+      },
+      {
+        "id": "762ec542-3dae-4df6-af43-81f4bc128600",
+        "role": "ADMIN",
+        "email": "queue-gap-1d975e04-admin@example.invalid",
+        "enabled": true,
+        "factors": 0,
+        "counters": [],
+        "anonymous": false,
+        "confirmed": true,
+        "authExists": true,
+        "identities": [
+          {
+            "provider": "email",
+            "matchingEmail": true,
+            "verifiedEmail": false
+          }
+        ],
+        "googleCount": 0,
+        "metadataKeys": [
+          "display_name",
+          "email_verified"
+        ],
+        "verifiedTotp": 0,
+        "aal2WithVerifiedTotp": 0
+      },
+      {
+        "id": "94b1db21-1dab-43ff-b68e-f8a5f30df60b",
+        "role": "ADMIN",
+        "email": "queue-context-ae068c42-disabled@example.invalid",
+        "enabled": false,
+        "factors": 0,
+        "counters": [],
+        "anonymous": false,
+        "confirmed": true,
+        "authExists": true,
+        "identities": [
+          {
+            "provider": "email",
+            "matchingEmail": true,
+            "verifiedEmail": false
+          }
+        ],
+        "googleCount": 0,
+        "metadataKeys": [
+          "display_name",
+          "email_verified",
+          "role"
+        ],
+        "verifiedTotp": 0,
+        "aal2WithVerifiedTotp": 0
+      },
+      {
+        "id": "b3152062-fb1f-465a-9060-3e673fadac1d",
+        "role": "ADMIN",
+        "email": "queue-ui-097cbea5-admin@example.invalid",
+        "enabled": true,
+        "factors": 0,
+        "counters": [],
+        "anonymous": false,
+        "confirmed": true,
+        "authExists": true,
+        "identities": [
+          {
+            "provider": "email",
+            "matchingEmail": true,
+            "verifiedEmail": false
+          }
+        ],
+        "googleCount": 0,
+        "metadataKeys": [
+          "display_name",
+          "email_verified",
+          "role"
+        ],
+        "verifiedTotp": 0,
+        "aal2WithVerifiedTotp": 0
+      },
+      {
+        "id": "d1e043d5-4758-41f5-a42f-ab7a4ea1a2cf",
+        "role": "ADMIN",
+        "email": "queue-e2e-ac079a5b-admin@example.invalid",
+        "enabled": true,
+        "factors": 0,
+        "counters": [],
+        "anonymous": false,
+        "confirmed": true,
+        "authExists": true,
+        "identities": [
+          {
+            "provider": "email",
+            "matchingEmail": true,
+            "verifiedEmail": false
+          }
+        ],
+        "googleCount": 0,
+        "metadataKeys": [
+          "display_name",
+          "email_verified",
+          "role"
+        ],
+        "verifiedTotp": 0,
+        "aal2WithVerifiedTotp": 0
+      }
+    ],
+    "enabledAdmins": 6,
+    "googleBinding": "0fa3fe400dbd117642d5cb7eb89bfed7471e6ef447e59bfc8ac8426001e39701",
+    "disabledAdmins": 1,
+    "ineligibleAssignments": [
+      {
+        "role": "STUDENT",
+        "counter": 5,
+        "enabled": true,
+        "idPrefix": "791fb5f9"
+      }
+    ]
+  },
+  "activationReleased": false,
+  "installedFunctions": [
+    {
+      "name": "admin_google_binding_v10",
+      "owner": "postgres",
+      "roles": [
+        "postgres"
+      ],
+      "config": [
+        "search_path=\"\""
+      ],
+      "schema": "queue_private",
+      "definer": true,
+      "signature": "p_user uuid",
+      "bodySha256": "2c65f52e399b144d4237ac5ae5ef5ebbf1b3556727389718c11d4bd739b6f72f"
+    },
+    {
+      "name": "admin_payor_events",
+      "owner": "postgres",
+      "roles": [
+        "authenticated",
+        "postgres"
+      ],
+      "config": [
+        "search_path=\"\""
+      ],
+      "schema": "queue_api",
+      "definer": true,
+      "signature": "p_ticket uuid",
+      "bodySha256": "054f4f0f56cd3333ebbda5f2c081c33722c258c1a78e5c47297ececc8562638e"
+    },
+    {
+      "name": "admin_payors",
+      "owner": "postgres",
+      "roles": [
+        "authenticated",
+        "postgres"
+      ],
+      "config": [
+        "search_path=\"\""
+      ],
+      "schema": "queue_api",
+      "definer": true,
+      "signature": "p_search text, p_service text, p_date date, p_status text, p_offset integer, p_limit integer",
+      "bodySha256": "e4869a336228e4ab3e9f337386a0a71b887e10feebbc1bd49f17cb0c54fc684f"
+    },
+    {
+      "name": "admin_staff_accounts",
+      "owner": "postgres",
+      "roles": [
+        "authenticated",
+        "postgres"
+      ],
+      "config": [
+        "search_path=\"\""
+      ],
+      "schema": "queue_api",
+      "definer": true,
+      "signature": "",
+      "bodySha256": "5963291d0589c64dd0a389571734db2064a4959cd2377129ab84a222bd817d4e"
+    },
+    {
+      "name": "admin_staff_directory",
+      "owner": "postgres",
+      "roles": [
+        "authenticated",
+        "postgres"
+      ],
+      "config": [
+        "search_path=\"\""
+      ],
+      "schema": "queue_api",
+      "definer": true,
+      "signature": "",
+      "bodySha256": "e710279c7c0b7586d858a5d5b0ad36eb25425940a0349dc9ace97255db62615e"
+    },
+    {
+      "name": "request_staff_access",
+      "owner": "postgres",
+      "roles": [
+        "authenticated",
+        "postgres"
+      ],
+      "config": [
+        "search_path=\"\""
+      ],
+      "schema": "queue_api",
+      "definer": true,
+      "signature": "p_email text, p_role text",
+      "bodySha256": "78894cc5c2c6077d3c8e2536a88b921ef872b5269d13d240b92a7bb344a6726b"
+    },
+    {
+      "name": "resolve_staff_google",
+      "owner": "postgres",
+      "roles": [
+        "authenticated",
+        "postgres"
+      ],
+      "config": [
+        "search_path=\"\""
+      ],
+      "schema": "queue_api",
+      "definer": true,
+      "signature": "p_email text",
+      "bodySha256": "5b2c82eb575e19476f1b932180cfa7405aa72b53fdf6e0bdf10392fa9ea5ea0b"
+    }
+  ],
+  "sourcePreserved": null,
+  "retainedWrites": false
+}

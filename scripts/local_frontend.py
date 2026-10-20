@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
+from auth_mfa_capability import auth_totp_enabled
 from urllib.parse import urlparse
 
 
@@ -33,6 +34,12 @@ def main():
     if not public_key or public_key.startswith('sb_secret_'):
         raise SystemExit('Local public key unavailable.')
     env.update(VITE_SUPABASE_URL='http://127.0.0.1:54321', VITE_SUPABASE_PUBLISHABLE_KEY=public_key)
+    # Public UX hint only. Auth and database gates remain authoritative.
+    try:
+        env['VITE_AUTH_MFA_TOTP_ENABLED'] = 'true' if auth_totp_enabled(env) else 'false'
+    except Exception:
+        env['VITE_AUTH_MFA_TOTP_ENABLED'] = 'false'
+        print('Authenticator UI unavailable: local Auth capability could not be verified.', flush=True)
     if args.prepare:
         path = root / '.env.development.local'
         if path.exists():

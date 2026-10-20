@@ -1,0 +1,72 @@
+{
+  "run": "f8e99429",
+  "checks": [
+    {
+      "name": "proposed activation refuses without the separately reviewed 007 security installation",
+      "result": "PASS"
+    },
+    {
+      "name": "authorized directory includes only real staff; no Auth material",
+      "result": "PASS"
+    },
+    {
+      "name": "STUDENT CASHIER disabled and forged metadata cannot use any new administrative RPC",
+      "result": "PASS"
+    },
+    {
+      "name": "unique confirmed Google resolution rejects missing, mismatched or ambiguous identities",
+      "result": "PASS"
+    },
+    {
+      "name": "AAL1, missing verified factor, self change and altered immutable binding reject",
+      "result": "PASS"
+    },
+    {
+      "name": "atomic CASHIER activation preserves unrelated assignments, exact route and counter-open state",
+      "result": "PASS"
+    },
+    {
+      "name": "same-key lost-result reconciliation replays exactly; changed arguments and revoked actors reject",
+      "result": "PASS"
+    },
+    {
+      "name": "ADMIN activation adds no cashier privilege and subsequent context is database-authoritative",
+      "result": "PASS"
+    },
+    {
+      "name": "counter rejection rolls back role, assignment, audits and receipts without compensation",
+      "result": "PASS"
+    },
+    {
+      "name": "payors use actual ticket owners, bounded pages, filters and authorized SKIPPED history",
+      "result": "PASS"
+    },
+    {
+      "name": "revocation and disabled access clear authoritative staff context",
+      "result": "PASS"
+    },
+    {
+      "name": "proposal adds no private table grants and all five fixed routes remain exact",
+      "result": "PASS"
+    },
+    {
+      "name": "new endpoints preserve proposed 007 operator approval and MFA gates when installed in fixture only",
+      "result": "PASS"
+    }
+  ],
+  "retained_writes": false,
+  "synthetic_auth": true,
+  "prior_sql_methods": 123,
+  "proposal_sha256": "ea741017c1c757b607b678c8e647547ebda92cc25b78714b917fce3b574a8d93",
+  "readonly_source_sha256": "3ed88ab2633a56650e27e931ff07e4684d24df0f67680c2e486725a4d8d423ed",
+  "migration007_fixture_only": true,
+  "result": "PASS",
+  "stopped": true,
+  "retained_preservation": true,
+  "containers": [
+    "222d70ee86bd2d0652c5f33bfbc6672bbb321dfb4a7f0409aaddd8cec8be2090",
+    "31de867d93fb96d5d377c5a2f0f862575798e276ebf7ca7ad2b99e738cfb6998"
+  ],
+  "network": "sq-queue-f8e99429-net",
+  "passed": 13
+}

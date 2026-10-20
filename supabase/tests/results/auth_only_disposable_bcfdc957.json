@@ -1,0 +1,12 @@
+{
+  "run_id": "bcfdc957",
+  "started_at": "2026-10-18T18:51:26.807Z",
+  "result": "FAIL_STOPPED",
+  "checks": [],
+  "containers": [],
+  "retained_operations": false,
+  "real_credentials_read": false,
+  "network_id": null,
+  "failure": "AGO_ENGINE_STATUS",
+  "completed_at": "2026-10-18T18:51:27.065Z"
+}

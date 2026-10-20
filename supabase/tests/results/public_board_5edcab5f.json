@@ -1,0 +1,1275 @@
+{
+  "run": "5edcab5f",
+  "source_writes": false,
+  "checks": [
+    {
+      "name": "Actual anonymous snapshot matches all five fixed destinations and authoritative day context",
+      "result": "PASS"
+    },
+    {
+      "name": "Both actual postgres_changes listeners require readiness and a fresh snapshot",
+      "result": "PASS"
+    },
+    {
+      "name": "Forced actual socket closure invalidates state and reconnect performs fresh reads",
+      "result": "PASS"
+    },
+    {
+      "name": "Public controller cleanup removes all owned subscriptions",
+      "result": "PASS"
+    },
+    {
+      "name": "Anonymous monitor uses real public state and mounts no login/workspace",
+      "result": "PASS"
+    },
+    {
+      "name": "Actual board responsive at 1920x1080",
+      "result": "PASS"
+    },
+    {
+      "name": "Actual board responsive at 1366x768",
+      "result": "PASS"
+    },
+    {
+      "name": "Actual board responsive at 768x1024",
+      "result": "PASS"
+    },
+    {
+      "name": "Actual board responsive at 390x844",
+      "result": "PASS"
+    },
+    {
+      "name": "Browser offline state removes live/proceed claims and reconnect obtains fresh readiness",
+      "result": "PASS"
+    },
+    {
+      "name": "Root application retains anonymous workspace with the single Google entry",
+      "result": "PASS"
+    },
+    {
+      "name": "Clearly labeled synthetic five-call rendering at 1920x1080",
+      "result": "PASS"
+    },
+    {
+      "name": "Clearly labeled synthetic five-call rendering at 1366x768",
+      "result": "PASS"
+    },
+    {
+      "name": "Clearly labeled synthetic five-call rendering at 390x844",
+      "result": "PASS"
+    },
+    {
+      "name": "No private/operational/hosted request or uncaught runtime error",
+      "result": "PASS"
+    }
+  ],
+  "screenshots": [
+    "public_board_5edcab5f_1920x1080.png",
+    "public_board_5edcab5f_1366x768.png",
+    "public_board_5edcab5f_768x1024.png",
+    "public_board_5edcab5f_390x844.png"
+  ],
+  "synthetic_screenshots": [
+    "public_board_5edcab5f_SIMULATED_1920x1080.png",
+    "public_board_5edcab5f_SIMULATED_1366x768.png",
+    "public_board_5edcab5f_SIMULATED_390x844.png"
+  ],
+  "isolated_vite_cache": true,
+  "chrome_version": "Chrome/155.0.8059.40",
+  "cdp_version": "1.3",
+  "result": "PASS",
+  "passed": 15,
+  "failed": 0,
+  "interception": {
+    "requests": [
+      {
+        "ordinal": 1,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 2,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 3,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 4,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 5,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 6,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 7,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 8,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 9,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 10,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 11,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 12,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 13,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 14,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 15,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 16,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 17,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 18,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 19,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 20,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 21,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 22,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 23,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 24,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 25,
+        "category": "public-preflight",
+        "method": "OPTIONS",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 26,
+        "category": "public-preflight",
+        "method": "OPTIONS",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 27,
+        "category": "public-preflight",
+        "method": "OPTIONS",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 28,
+        "category": "public-projection",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 29,
+        "category": "public-context",
+        "method": "POST",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": {
+          "canceled": true,
+          "category": "net::ERR_ABORTED"
+        },
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 30,
+        "category": "public-projection",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 31,
+        "category": "public-projection",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 32,
+        "category": "public-context",
+        "method": "POST",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 33,
+        "category": "public-projection",
+        "method": "GET",
+        "phase": "Public controller cleanup removes all owned subscriptions",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 34,
+        "category": "public-context",
+        "method": "POST",
+        "phase": "Browser offline state removes live/proceed claims and reconnect obtains fresh readiness",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": {
+          "canceled": true,
+          "category": "net::ERR_ABORTED"
+        },
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 35,
+        "category": "public-projection",
+        "method": "GET",
+        "phase": "Browser offline state removes live/proceed claims and reconnect obtains fresh readiness",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": {
+          "canceled": true,
+          "category": "net::ERR_ABORTED"
+        },
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 36,
+        "category": "public-projection",
+        "method": "GET",
+        "phase": "Browser offline state removes live/proceed claims and reconnect obtains fresh readiness",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": {
+          "canceled": true,
+          "category": "net::ERR_ABORTED"
+        },
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 37,
+        "category": "public-projection",
+        "method": "GET",
+        "phase": "Browser offline state removes live/proceed claims and reconnect obtains fresh readiness",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": {
+          "canceled": true,
+          "category": "net::ERR_ABORTED"
+        },
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 38,
+        "category": "public-projection",
+        "method": "GET",
+        "phase": "Browser offline state removes live/proceed claims and reconnect obtains fresh readiness",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": {
+          "canceled": true,
+          "category": "net::ERR_ABORTED"
+        },
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 39,
+        "category": "public-context",
+        "method": "POST",
+        "phase": "Browser offline state removes live/proceed claims and reconnect obtains fresh readiness",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": {
+          "canceled": true,
+          "category": "net::ERR_ABORTED"
+        },
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 40,
+        "category": "public-projection",
+        "method": "GET",
+        "phase": "Browser offline state removes live/proceed claims and reconnect obtains fresh readiness",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 41,
+        "category": "public-projection",
+        "method": "GET",
+        "phase": "Browser offline state removes live/proceed claims and reconnect obtains fresh readiness",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 42,
+        "category": "public-context",
+        "method": "POST",
+        "phase": "Browser offline state removes live/proceed claims and reconnect obtains fresh readiness",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 43,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 44,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 45,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 46,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 47,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 48,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 49,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 50,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 51,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 52,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 53,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 54,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 55,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 56,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 57,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 58,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 59,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 60,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 61,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 62,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 63,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 64,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 65,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 66,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 67,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 68,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 69,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 70,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 71,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 72,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 73,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 74,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 75,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 76,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 77,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 78,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 79,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 80,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 81,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 82,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 83,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 84,
+        "category": "public-projection",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 85,
+        "category": "public-projection",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 86,
+        "category": "public-context",
+        "method": "POST",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 87,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 88,
+        "category": "public-projection",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "fulfilled",
+        "network_failure": null,
+        "action": "Fetch.fulfillRequest"
+      },
+      {
+        "ordinal": 89,
+        "category": "public-context",
+        "method": "POST",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "fulfilled",
+        "network_failure": null,
+        "action": "Fetch.fulfillRequest"
+      },
+      {
+        "ordinal": 90,
+        "category": "public-projection",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "fulfilled",
+        "network_failure": null,
+        "action": "Fetch.fulfillRequest"
+      },
+      {
+        "ordinal": 91,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 92,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 93,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 94,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 95,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 96,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 97,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 98,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 99,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 100,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 101,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 102,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 103,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 104,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 105,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 106,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 107,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 108,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 109,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 110,
+        "category": "app-resource",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "continued",
+        "network_failure": null,
+        "action": "Fetch.continueRequest"
+      },
+      {
+        "ordinal": 111,
+        "category": "public-projection",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "fulfilled",
+        "network_failure": null,
+        "action": "Fetch.fulfillRequest"
+      },
+      {
+        "ordinal": 112,
+        "category": "public-projection",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "fulfilled",
+        "network_failure": null,
+        "action": "Fetch.fulfillRequest"
+      },
+      {
+        "ordinal": 113,
+        "category": "public-context",
+        "method": "POST",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "fulfilled",
+        "network_failure": null,
+        "action": "Fetch.fulfillRequest"
+      },
+      {
+        "ordinal": 114,
+        "category": "public-projection",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "fulfilled",
+        "network_failure": null,
+        "action": "Fetch.fulfillRequest"
+      },
+      {
+        "ordinal": 115,
+        "category": "public-projection",
+        "method": "GET",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "fulfilled",
+        "network_failure": null,
+        "action": "Fetch.fulfillRequest"
+      },
+      {
+        "ordinal": 116,
+        "category": "public-context",
+        "method": "POST",
+        "phase": "Root application retains anonymous workspace with the single Google entry",
+        "permitted": true,
+        "state": "fulfilled",
+        "network_failure": null,
+        "action": "Fetch.fulfillRequest"
+      }
+    ],
+    "protocol_errors": [],
+    "benign_cancellations": [],
+    "policy_violations": [],
+    "fatal_errors": [],
+    "duplicates": 0,
+    "closed": true,
+    "owned_handlers": 0
+  }
+}

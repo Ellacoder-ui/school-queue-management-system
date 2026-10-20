@@ -1,0 +1,31 @@
+{
+  "run": "0b4120c4",
+  "result": "FAIL",
+  "retained_writes": false,
+  "real_google_or_retained_mfa": false,
+  "checks": [
+    {
+      "name": "new internal no-port cached Auth/database fixture healthy; Google remains enabled",
+      "result": "PASS"
+    },
+    {
+      "name": "actual disabled Auth refuses synthetic enrollment",
+      "result": "PASS"
+    }
+  ],
+  "synthetic_signup": {
+    "status": 200,
+    "code": null,
+    "session": true
+  },
+  "failure": "AMF_PLAN_EXPIRED",
+  "owned_containers_stopped": true,
+  "retained_preservation": true,
+  "containers": [
+    "e716ec14c58052690ca0939ff6fdaaff7242bb167b42c36e0edd74f127727757",
+    "f2a8e7c26fb76ebfd028e62d1d321dcb00e7e416842cd6905be0dc29d90268c9",
+    "54c26675c6a58b83a2fbc7298b666f35f4dcccc53cdd82088326236dc9c62d49"
+  ],
+  "network": "sq-ago-0b4120c4-network",
+  "passed": 2
+}

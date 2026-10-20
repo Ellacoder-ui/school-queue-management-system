@@ -1,0 +1,124 @@
+{
+  "run_id": "c1fb4e82",
+  "checkpoint": "school_account_dashboard_confirmation",
+  "recorded_at": "2026-10-19T03:39:09.197273+00:00",
+  "result": "PASS_SCHOOL_AND_PERSONAL_DATABASE_ROLE_PRESERVATION",
+  "user_reported_school_student_dashboard": true,
+  "browser_getUser_my_context_network_directly_observed": false,
+  "browser_pkce_exchange_count_directly_observed": false,
+  "no_agent_auth_or_queue_write": true,
+  "target_accounts": {
+    "personal": [
+      {
+        "role": "STUDENT",
+        "enabled": true,
+        "sessions": 1,
+        "user_sha256": "f6dceb997dde468c93fe89894ecc98843a1f452fb57f962304f860862b40c416",
+        "confirmed_email": true,
+        "google_identities": 1
+      }
+    ],
+    "school": [
+      {
+        "role": "STUDENT",
+        "enabled": true,
+        "sessions": 0,
+        "user_sha256": "bbf7b246843292ad084e16f48ac751dacf12f7a7f06bb56cf055871e16ea7795",
+        "confirmed_email": true,
+        "google_identities": 1
+      }
+    ]
+  },
+  "auth_table_counts": {
+    "users": 41,
+    "identities": 28,
+    "sessions": 36,
+    "refresh_tokens": 36,
+    "flow_state": 0,
+    "audit_log_entries": 121,
+    "schema_migrations": 82
+  },
+  "application_public_tables_exact": 14,
+  "existing_account_rows_roles_exact": 39,
+  "unrelated_auth_rows_exact": true,
+  "auth_migrations_exact": true,
+  "application_migrations_routes_permissions_exact": true,
+  "cluster_roles_exact": true,
+  "google_enabled": true,
+  "auth_health_http": 200,
+  "anonymous_api_http": 200,
+  "service_ids_and_nonvector_lifecycles_exact": true,
+  "state": {
+    "active": 0,
+    "counts": {
+      "days": 7,
+      "audits": 32,
+      "events": 57,
+      "tickets": 20,
+      "accounts": 41,
+      "counters": 5,
+      "requests": 69,
+      "services": 5
+    },
+    "routes": {
+      "1": [
+        "TP"
+      ],
+      "2": [
+        "SOA"
+      ],
+      "3": [
+        "PNEP"
+      ],
+      "4": [
+        "REF"
+      ],
+      "5": [
+        "ADJ"
+      ]
+    },
+    "versions": [
+      "20261016000100",
+      "20261016000200",
+      "20261016000300",
+      "20261016000400",
+      "20261016000500",
+      "20261016000600"
+    ],
+    "open_days": 0,
+    "rls_count": 15,
+    "assignments": [
+      {
+        "total": 1,
+        "counter": 1,
+        "eligible": 1
+      },
+      {
+        "total": 1,
+        "counter": 2,
+        "eligible": 1
+      },
+      {
+        "total": 0,
+        "counter": 3,
+        "eligible": 0
+      },
+      {
+        "total": 0,
+        "counter": 4,
+        "eligible": 0
+      },
+      {
+        "total": 2,
+        "counter": 5,
+        "eligible": 1
+      }
+    ],
+    "publication": [
+      "queue_display.counter_state",
+      "queue_display.service_state"
+    ],
+    "private_usage": false,
+    "current_day_closed": false
+  }
+}

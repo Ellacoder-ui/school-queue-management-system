@@ -8,7 +8,7 @@ defineEmits(['reconcile','cancel'])
     <p>{{ state.message || 'Preparing secure sign-in…' }}</p>
     <div class="mt-3 flex flex-wrap gap-3">
       <button v-if="state.phase === 'uncertain'" type="button" class="auth-secondary" @click="$emit('reconcile')">Check sign-in outcome</button>
-      <button v-if="['starting','redirecting','exchanging','uncertain','checking','blocked'].includes(state.phase)" type="button" class="auth-secondary" @click="$emit('cancel')">Cancel sign-in</button>
+      <button v-if="['starting','redirecting','exchanging','uncertain','checking','blocked','error'].includes(state.phase)" type="button" class="auth-secondary" @click="$emit('cancel')">Cancel sign-in</button>
       <a href="/display" class="auth-text-link">View public queue</a>
     </div>
   </div>

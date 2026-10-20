@@ -1,0 +1,80 @@
+{
+  "run": "f2e9d840",
+  "checks": [
+    {
+      "name": "isolated same cached Auth starts with TOTP and Google enabled, no host ports",
+      "result": "PASS"
+    },
+    {
+      "name": "application inventory requires explicit enrollment",
+      "result": "PASS"
+    },
+    {
+      "name": "authentic SDK-generated QR passes the application renderer in memory",
+      "result": "PASS"
+    },
+    {
+      "name": "duplicate setup is blocked before another enrollment",
+      "result": "PASS"
+    },
+    {
+      "name": "actual Auth rejects an expired TOTP without claiming AAL2",
+      "result": "PASS"
+    },
+    {
+      "name": "wrong code clears setup material and permits explicit retry",
+      "result": "PASS"
+    },
+    {
+      "name": "supported challenge/verify reaches actual AAL2 with a verified factor",
+      "result": "PASS"
+    },
+    {
+      "name": "reopening rechecks server factors and assurance without a setup key",
+      "result": "PASS"
+    },
+    {
+      "name": "same-user replacement session interrupts rather than verifying an old intent",
+      "result": "PASS"
+    },
+    {
+      "name": "fixture migrations and witness survive synthetic Auth side effects",
+      "result": "PASS"
+    }
+  ],
+  "retainedWrites": false,
+  "syntheticOnly": true,
+  "actualAuthAndSdk": true,
+  "qrFormat": {
+    "returned": true,
+    "sdkPrefix": true,
+    "xmlDeclaration": true,
+    "comment": true,
+    "doctype": false,
+    "svgRoot": false,
+    "normalizedRoot": true,
+    "normalizedEnd": true,
+    "forbiddenMarkup": false,
+    "externalHref": false,
+    "externalUrl": false,
+    "xmlAttributes": [
+      "version"
+    ],
+    "secretShape": true,
+    "apiError": false,
+    "length": 362657,
+    "factorTypeTotp": true,
+    "idShape": true,
+    "rendererAccepts": true
+  },
+  "result": "PASS",
+  "stopped": true,
+  "retainedPreservation": true,
+  "containers": [
+    "0f79b9115abbc796e5ef024850c98f1a88a5e42ee29203e80d40f35136334199",
+    "37ca3a0fc77c8d9c3e54fa383268d815d2da300b89617563bc0f86cc27d496cb",
+    "b018cc391374a0e46c68bc55fff4144acc659f6c8db84151ebb202120b0bde0f"
+  ],
+  "network": "bfecb6cabcd8039789de597b1d58d1bc6a45a5521e123322a756a5a910e6623a",
+  "passed": 10
+}

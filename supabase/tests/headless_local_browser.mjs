@@ -4,12 +4,13 @@ import {existsSync, mkdirSync, readFileSync, writeFileSync} from 'node:fs'
 import {resolve} from 'node:path'
 import {cdpError} from './cdp_errors.mjs'
 const delay = ms => new Promise(r => setTimeout(r, ms))
-export async function startLocalBrowser(run) {
+export async function startLocalBrowser(run, { devtools = false } = {}) {
   const executable = 'C:/Program Files/Google/Chrome/Application/chrome.exe'
   if (!existsSync(executable)) return null
   const profile = resolve('.local-browser', run)
   mkdirSync(profile, {recursive: true})
-  const child = spawn(executable, ['--headless=new', '--incognito', '--remote-debugging-port=0',
+  if(devtools){mkdirSync(resolve(profile,'Default'),{recursive:true});writeFileSync(resolve(profile,'Default','Preferences'),JSON.stringify({devtools:{preferences:{currentDockState:'"right"','current-dock-state':'"right"'}}}),{flag:'wx'})}
+  const child = spawn(executable, [...(devtools?['--auto-open-devtools-for-tabs']:['--headless=new']), '--incognito', '--remote-debugging-port=0',
     '--remote-debugging-address=127.0.0.1', `--user-data-dir=${profile}`, '--no-first-run',
     '--no-default-browser-check', '--disable-background-networking', '--disable-component-update',
     '--disable-sync', '--disable-extensions', '--disable-domain-reliability', '--metrics-recording-only',
@@ -43,6 +44,14 @@ export async function startLocalBrowser(run) {
   })
   return {
     send,
+    async verifyDevtoolsRight() {
+      if(!devtools)throw Error('DevTools mode required')
+      const targets=await(await fetch(`http://127.0.0.1:${port}/json/list`,{redirect:'error'})).json()
+      const target=targets.find(x=>x.url?.startsWith('devtools://')&&x.url.includes('devtools_app'))
+      if(!target)return{present:false,dockedRight:false}
+      const ws=new WebSocket(target.webSocketDebuggerUrl);await new Promise((yes,no)=>{ws.onopen=yes;ws.onerror=no})
+      try{return await new Promise((yes,no)=>{const timer=setTimeout(()=>no(Error('DevTools check timeout')),10000);ws.onmessage=event=>{const r=JSON.parse(event.data);if(r.id===1){clearTimeout(timer);if(r.error||r.result?.exceptionDetails)no(Error('DevTools placement check failed'));else yes(r.result.result.value)}};ws.send(JSON.stringify({id:1,method:'Runtime.evaluate',params:{expression:`({present:true,dockedRight:document.body.classList.contains('right')})`,returnByValue:true}}))})}finally{ws.close()}
+    },
     on(method, fn) {
       handlers.set(method, [...(handlers.get(method) || []), fn])
       return () => {

@@ -1,0 +1,62 @@
+{
+  "run": "eab1b49c",
+  "checks": [
+    {
+      "name": "reviewed full body has exactly two removable outer transaction controls",
+      "result": "PASS"
+    },
+    {
+      "name": "wrong identity binding rolls back every 007 DDL change and approval",
+      "result": "PASS"
+    },
+    {
+      "name": "injected failure after approval rolls back functions table grants roles and approval",
+      "result": "PASS"
+    },
+    {
+      "name": "duplicate approval before COMMIT aborts the entire combined transaction",
+      "result": "PASS"
+    },
+    {
+      "name": "wrong cluster stops before any migration object is created",
+      "result": "PASS"
+    },
+    {
+      "name": "complete 007 and exactly one identity-bound one-day ADMIN approval commit together",
+      "result": "PASS"
+    },
+    {
+      "name": "approved signed AAL2 ADMIN can read all actual installed 011 endpoints",
+      "result": "FAIL"
+    }
+  ],
+  "retainedWrites": false,
+  "syntheticContexts": true,
+  "mode": "atomic",
+  "existingSqlMethods": 123,
+  "migrationSha256": "b22d63d24c991b9ebf0d380d27a716d5ea72e418f5e62e177c96dded4481222c",
+  "body": {
+    "sha256": "cdbcfb56a3dda310913fc6e3677fdf6ca36446d317f962ee79ceb5ca6134a5c8",
+    "topLevelStatements": 60
+  },
+  "installedReadCloneSha256": "ec0dd53f0e00f102d575fb82d32d7794cb6924d428835d03e040ef88412f1637",
+  "bootstrapApproval": {
+    "exactlyOne": true,
+    "role": "ADMIN",
+    "duration": "1 day",
+    "identityBound": true,
+    "operator": "postgres"
+  },
+  "result": "FAIL",
+  "failure": "B007_FIXTURE_STOPPED",
+  "stage": "synthetic-fixture-seed",
+  "stopped": true,
+  "retainedPreservation": true,
+  "exactResourceDelta": true,
+  "containers": [
+    "6cbddbe1a3f33cdbec471d4665e2b589c12519ad534007f8ee1c36ec2cc1f912",
+    "b193066ec8334af71f1d67a67c6f664f6dab852098e382b55bbf54c5eaa873d4"
+  ],
+  "network": "sq-queue-eab1b49c-net",
+  "passed": 6
+}

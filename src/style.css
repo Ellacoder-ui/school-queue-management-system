@@ -37,6 +37,10 @@
 .board-connection { margin-left: auto; color: #f3c686; font-size: 12px; }
 .board-connection.is-live { color: #8ed5ac; }
 .board-refresh { background: #ffffff08; border: 1px solid #ffffff30; color: #f2dce3; font-size: 12px; padding: 7px 12px; cursor: pointer; }
+.board-voice-controls { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.board-voice-btn { background: #ffffff08; border: 1px solid #ffffff30; color: #f2dce3; font-size: 11px; padding: 6px 12px; cursor: pointer; border-radius: 999px; }
+.board-voice-btn.is-active { background: #e5bd6820; border-color: #e5bd68; color: #e5bd68; }
+.board-voice-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 .board-refresh:hover { background: #ffffff16; }
 .board-refresh:disabled { opacity: .65; cursor: wait; }
 .board-context { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px 20px; color: var(--muted); font-size: 12px; margin: 10px 0 18px; }

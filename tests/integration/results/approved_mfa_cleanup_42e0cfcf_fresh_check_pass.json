@@ -1,0 +1,61 @@
+{
+  "run": "42e0cfcf",
+  "result": "FRESH_CHECK_PASS",
+  "observedAt": "2026-10-19T20:32:14.004150+00:00",
+  "readOnly": true,
+  "ownerUuid": "5c96debb-697f-4cad-805f-92b518e28343",
+  "factorSuffix": "c1fc9a6f",
+  "factorBindingSha256": "6d4ce8ad136ebfd9fb70e659691764b77cdffbc8fe9b984e02ad3219e8987bf9",
+  "endpoint": {
+    "host": "127.0.0.1",
+    "port": 54322,
+    "database": "postgres",
+    "cluster": "7696959712798593061",
+    "project": "school-queue-local"
+  },
+  "factor": {
+    "ownerCount": 1,
+    "ownerVerified": 0,
+    "selectedPresent": true,
+    "selectedSessions": 0,
+    "selectedChallenges": 0,
+    "selectedStillExact": true
+  },
+  "account": {
+    "id": "5c96debb-697f-4cad-805f-92b518e28343",
+    "role": "ADMIN",
+    "email": "ellasharmaineabeso2004@gmail.com",
+    "enabled": true,
+    "confirmed": true,
+    "userCount": 42,
+    "userExists": true,
+    "nonanonymous": true,
+    "applicationId": "5c96debb-697f-4cad-805f-92b518e28343",
+    "googleBinding": "0fa3fe400dbd117642d5cb7eb89bfed7471e6ef447e59bfc8ac8426001e39701",
+    "identityCount": 29,
+    "googleIdentities": 1
+  },
+  "health": {
+    "auth": 200,
+    "settings": 200,
+    "googleEnabled": true,
+    "api": 200
+  },
+  "authMutationIssuedByObserver": false,
+  "applicationTablesPreserved": true,
+  "migrationsPreserved": true,
+  "securityPreserved": true,
+  "accountAndGoogleBindingPreserved": true,
+  "unrelatedAuthAndProtectedFieldsPreserved": true,
+  "otherFactorsPreserved": true,
+  "challengesPreserved": true,
+  "resourcesPreserved": true,
+  "servicesPreserved": true,
+  "existingAuditRowsPreserved": true,
+  "newAuditCount": 0,
+  "newAuditCategories": [],
+  "newAuditsBoundToOwner": true,
+  "changedAuthTableFingerprints": [],
+  "preservationPass": true,
+  "allExistingInputsUnchanged": true
+}

@@ -1,0 +1,27 @@
+{
+  "run": "a721621e",
+  "result": "FAIL",
+  "retained_writes": false,
+  "real_google_or_retained_mfa": false,
+  "checks": [
+    {
+      "name": "new internal no-port cached Auth/database fixture healthy; Google remains enabled",
+      "result": "PASS"
+    }
+  ],
+  "synthetic_signup": {
+    "status": 200,
+    "code": null,
+    "session": false
+  },
+  "failure": "AMF_SYNTHETIC_SIGNUP",
+  "owned_containers_stopped": true,
+  "retained_preservation": true,
+  "containers": [
+    "0aacaca731821a97fda2d859affafebf3881b268633f4925772ad32a60ffa452",
+    "55d4d8da1823a7a789f411da02ec9afcafe82b4bd15913fdf202d6d4235a6a38",
+    "0a3d897bc62b2fd9b5976c07b4a3b75a013e3e4ccf3b641e1e20171c426dd60c"
+  ],
+  "network": "sq-ago-a721621e-network",
+  "passed": 1
+}

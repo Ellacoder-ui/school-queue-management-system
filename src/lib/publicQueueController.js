@@ -4,14 +4,17 @@ import { dateInZone, nextDateDelay } from './businessDate.js'
 export function createPublicQueueController(api, { onState, now = () => new Date().toISOString(),
   clock = () => Date.now(), setTimer = setTimeout, clearTimer = clearTimeout } = {}) {
   let state = { counters: [], services: [], hasSnapshot: false, loading: true,
-    refreshing: false, connection: 'connecting', synchronized: false, error: null, lastRefreshed: null, context: null }
+    refreshing: false, connection: 'connecting', synchronized: false, error: null, lastRefreshed: null, context: null, queueVersion: 0 }
   let stopped = false
   let started = false
   let epoch = 0
   let version = 0
   let active = null
   let unsubscribe = null
-  let dateTimer
+  let dateTimer, invalidationTimer, signature
+  const logicalSnapshot = snapshot => JSON.stringify({ context: snapshot.context,
+    counters: snapshot.counters.map(({ updated_at, ...row }) => row).sort((a,b)=>String(a.counter_id).localeCompare(String(b.counter_id))),
+    services: snapshot.services.map(({ updated_at, ...row }) => row).sort((a,b)=>JSON.stringify(a).localeCompare(JSON.stringify(b))) })
   function scheduleDateCheck() {
     clearTimer(dateTimer)
     if (stopped || !state.context) return
@@ -35,7 +38,10 @@ export function createPublicQueueController(api, { onState, now = () => new Date
     try {
       const snapshot = await api.readPublicSnapshot({ signal: request.abort.signal })
       if (stopped || request.epoch !== epoch || request.version !== version) return
-      emit({ ...snapshot, hasSnapshot: true, synchronized: state.connection === 'connected', error: null, lastRefreshed: now() })
+      const nextSignature = logicalSnapshot(snapshot)
+      const queueVersion = state.queueVersion + (nextSignature !== signature ? 1 : 0)
+      signature = nextSignature
+      emit({ ...snapshot, queueVersion, hasSnapshot: true, synchronized: state.connection === 'connected', error: null, lastRefreshed: now() })
       scheduleDateCheck()
     } catch {
       if (!stopped && request.epoch === epoch && request.version === version) {
@@ -44,17 +50,24 @@ export function createPublicQueueController(api, { onState, now = () => new Date
     } finally {
       if (active === request) active = null
       if (!stopped) {
-        if (request.epoch !== epoch || request.version !== version) void drain()
+        if (request.epoch !== epoch || request.version !== version) { if (!invalidationTimer) void drain() }
         else emit({ loading: false, refreshing: false })
       }
     }
   }
   function refresh() {
     if (stopped) return
+    clearTimer(invalidationTimer); invalidationTimer = null
     version += 1
     void drain()
   }
+  function invalidate() {
+    if (stopped) return
+    version += 1
+    if (!invalidationTimer) invalidationTimer = setTimer(() => { invalidationTimer = null; void drain() }, 75)
+  }
   function invalidateConnection(connection) {
+    clearTimer(invalidationTimer); invalidationTimer = null
     epoch += 1
     version += 1
     active?.abort.abort()
@@ -72,7 +85,7 @@ export function createPublicQueueController(api, { onState, now = () => new Date
       unsubscribe = api.subscribePublicDisplay({
         onReady() { if (!stopped) { invalidateConnection('connected'); refresh() } },
         onDisconnect() { if (!stopped) invalidateConnection('disconnected') },
-        onInvalidate: refresh,
+        onInvalidate: invalidate,
       })
       refresh() // First usable snapshot, followed by another after backend readiness.
     } catch {
@@ -91,6 +104,7 @@ export function createPublicQueueController(api, { onState, now = () => new Date
       stopped = true
       epoch += 1
       clearTimer(dateTimer)
+      clearTimer(invalidationTimer)
       active?.abort.abort()
       if (unsubscribe) await unsubscribe()
       unsubscribe = null

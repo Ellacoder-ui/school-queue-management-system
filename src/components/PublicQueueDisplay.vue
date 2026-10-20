@@ -1,13 +1,15 @@
 <script setup>
-import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { boardCounters, boardWaiting, manilaClock } from '../lib/publicBoard.js'
+import { useSpeechAnnouncement } from '../composables/useSpeechAnnouncement.js'
 
-const props = defineProps({ state: { type: Object, required: true } })
+const props = defineProps({ state: { type: Object, required: true }, embedded: Boolean })
 const emit = defineEmits(['retry'])
 const now = ref(Date.now())
 let clockTimer
 onMounted(() => { now.value = Date.now(); clockTimer = setInterval(() => { now.value = Date.now() }, 1000) })
 onUnmounted(() => clearInterval(clockTimer))
+
 const clock = computed(() => manilaClock(now.value))
 const counters = computed(() => boardCounters(props.state))
 const waiting = computed(() => boardWaiting(props.state))
@@ -17,6 +19,16 @@ const invalidProjection = computed(() => props.state.hasSnapshot && (counters.va
   || props.state.counters.some(row => !/^Counter [1-5]$/.test(row.counter_label))))
 const isLive = computed(() => props.state.connection === 'connected' && props.state.synchronized
   && props.state.hasSnapshot && !props.state.error && !invalidProjection.value)
+
+// Web Speech announcement
+const speech = useSpeechAnnouncement(() => counters.value.filter(c => c.row?.ticket_label))
+watch(counters, (newCounters) => {
+  for (const counter of newCounters) {
+    if (counter.row?.ticket_label && isLive.value) {
+      speech.announceTicket(counter.row.ticket_label, counter.number)
+    }
+  }
+}, { deep: true })
 const connectionLabel = computed(() => {
   if (props.state.error || invalidProjection.value) return 'Snapshot unavailable'
   if (props.state.connection === 'disconnected') return 'Disconnected'
@@ -39,9 +51,9 @@ const cardStatus = counter => !props.state.hasSnapshot ? 'Awaiting data' : !coun
 
 <template>
   <div class="public-display-shell">
-    <div class="queue-board" data-testid="public-board">
-      <a class="board-skip" href="#queue-counters">Skip to counter calls</a>
-      <header class="board-header">
+    <div class="queue-board" :class="{ 'queue-board-embedded': embedded }" data-testid="public-board">
+      <a v-if="!embedded" class="board-skip" href="#queue-counters">Skip to counter calls</a>
+      <header v-if="!embedded" class="board-header">
         <div class="board-brand">
           <div class="board-icon" aria-hidden="true">
             <!-- Generic ticket symbol, not an invented university seal. -->
@@ -57,12 +69,17 @@ const cardStatus = counter => !props.state.hasSnapshot ? 'Awaiting data' : !coun
         </div>
       </header>
 
-      <main class="board-main" :aria-busy="state.loading">
+      <component :is="embedded ? 'div' : 'main'" class="board-main" :aria-busy="state.loading">
         <div class="board-intro">
           <div class="board-service-label"><span class="board-dot" :class="{ 'is-live': isLive }" aria-hidden="true"></span>{{ isLive ? 'LIVE SERVICE BOARD' : 'SERVICE BOARD' }}</div>
           <p>Listen for your ticket number and proceed to the assigned counter.</p>
           <span role="status" class="board-connection" :class="{ 'is-live': isLive }">{{ connectionLabel }}</span>
           <button class="board-refresh" type="button" :disabled="state.refreshing" @click="emit('retry')">{{ state.refreshing ? 'Refreshing…' : 'Refresh display' }}</button>
+          <div v-if="speech.supported" class="board-voice-controls" data-testid="voice-controls">
+            <button type="button" class="board-voice-btn" data-testid="voice-enable" :class="{ 'is-active': speech.enabled.value }" @click="speech.enabled.value ? speech.disable() : speech.enable()">{{ speech.enabled.value ? 'Voice on' : 'Enable voice' }}</button>
+            <button type="button" class="board-voice-btn" data-testid="voice-mute" :disabled="!speech.enabled.value" @click="speech.toggleMute()">{{ speech.muted.value ? 'Unmute' : 'Mute' }}</button>
+            <button type="button" class="board-voice-btn" data-testid="voice-replay" :disabled="!speech.enabled.value" @click="speech.replayLast()">Replay</button>
+          </div>
         </div>
 
         <div class="board-context" data-testid="business-context">
@@ -111,7 +128,7 @@ const cardStatus = counter => !props.state.hasSnapshot ? 'Awaiting data' : !coun
         <p v-if="state.hasSnapshot && !state.services.length" class="board-summary-note">No waiting totals have been published.</p>
         <p v-if="!state.context" class="board-summary-note">Business-day status and service catalog are unavailable.</p>
         <p v-else-if="!state.context.services.length" class="board-summary-note">No services are currently enabled.</p>
-      </main>
+      </component>
 
       <footer class="board-footer">
         <p>Keep your ticket visible and prepare the required documents.</p>

@@ -1,0 +1,119 @@
+{
+  "observedAt": "2026-10-19T19:53:11.258Z",
+  "readOnly": true,
+  "metadata": {
+    "called": 0,
+    "events": 57,
+    "routes": [
+      "1:TP",
+      "2:SOA",
+      "3:PNEP",
+      "4:REF",
+      "5:ADJ"
+    ],
+    "tickets": 20,
+    "accounts": 42,
+    "007_absent": true,
+    "012_absent": true,
+    "migrations": 6,
+    "assignments": 4,
+    "school_role": "STUDENT",
+    "personal_role": "ADMIN",
+    "personal_enabled": true,
+    "personal_factors": 1,
+    "published_tables": [
+      "queue_display.counter_state",
+      "queue_display.service_state"
+    ],
+    "projection_calls_match": true,
+    "personal_verified_factors": 0
+  },
+  "health": {
+    "auth": 200,
+    "settings": 200,
+    "api": 200,
+    "google": true,
+    "totpEnabled": true
+  },
+  "publicCounters": [
+    {
+      "counter_label": "Counter 5",
+      "is_open": false,
+      "ticket_label": null,
+      "service_code": null,
+      "business_date": null
+    },
+    {
+      "counter_label": "Counter 1",
+      "is_open": true,
+      "ticket_label": null,
+      "service_code": null,
+      "business_date": null
+    },
+    {
+      "counter_label": "Counter 2",
+      "is_open": true,
+      "ticket_label": null,
+      "service_code": null,
+      "business_date": null
+    },
+    {
+      "counter_label": "Counter 3",
+      "is_open": false,
+      "ticket_label": null,
+      "service_code": null,
+      "business_date": null
+    },
+    {
+      "counter_label": "Counter 4",
+      "is_open": false,
+      "ticket_label": null,
+      "service_code": null,
+      "business_date": null
+    }
+  ],
+  "realMfaPerformed": false,
+  "fullSourcePreserved": true,
+  "changedTables": [],
+  "applicationRowsPreserved": true,
+  "functionsPreserved": true,
+  "securityPreserved": true,
+  "servicesPreserved": true,
+  "volumesPreserved": true,
+  "existingResourcesPreserved": true,
+  "addedResources": {
+    "containers": [
+      "0a3cdf3d3896a16d4360d17e71746d3cfd707143b08ae82a5c9db1bf39ce30c6",
+      "0f79b9115abbc796e5ef024850c98f1a88a5e42ee29203e80d40f35136334199",
+      "12cff20a6b8d01eafa041ebc0e42e5fe7641287efedfe1aff74dc03ad2f2a4c9",
+      "2bc2b1e7503143990e7bf9d868c6db0c5125303a9587876cff521cf8884d7edc",
+      "2c76816bc00f009323061f047a04c5d190902c9cc1ea03e298dc54dcd0de2ce9",
+      "37ca3a0fc77c8d9c3e54fa383268d815d2da300b89617563bc0f86cc27d496cb",
+      "4b4b392a282f4ebc36b66a89062c7b575150e2f8459498c80f3ea038157520d3",
+      "4e75f0b1053f75859ea66f6330ded7b3d8d9a1e9646d716b550bc6c98aa26d33",
+      "72683b2676681eee510d5fd8b48c6c69da706564e3d46916509fa3e5fd6e5236",
+      "73aeffee1f21ba8bd83b9d26249e62c5e6645328566cce21013eaa6de5353673",
+      "8652279f1527200ecb85ba3c7caf12c698a1298bad7b2a0f5030ef160de5c71b",
+      "a9966be1634bf1b7e41919978df48b8a76ca40f74ffdef61de52e8604de2f8f0",
+      "b018cc391374a0e46c68bc55fff4144acc659f6c8db84151ebb202120b0bde0f",
+      "b25abc99853ba5ed799271dc8f22def24ec05a1d4de9b34689d5abe132baee20",
+      "b50932ae8c1c414c51109bf36b592fc4080ea135c8145490b70255c76666ca00",
+      "bc9e0dd0564e76ca3b84658bec6fac9ec00e2df046f3e38e225551234e39261c",
+      "bd954bf6754a31a6dc991a0a4995024c57f21d3fdad9c4d1d405abd11d215b11",
+      "cbcd1790d8bbf8893aba5ca2063330234a10b49f6a1fc217e9f3d5ef3bc86920",
+      "e87de2264cceb5b531d8342bae3765fbc30b895cc2e877c6836c88b16a9aad68",
+      "fc672e2110ef5b702404238b2b0fd82f8e36eb0ec7b72e883d50c89db8fe2ebe"
+    ],
+    "networks": [
+      "49380569bcb184196d333ab309e8020c3773c6446d869f292e1258c8faf9a727",
+      "7c432ad0244ab5f65df17c171295ea1e02350ca178c2dec3c8012c1f57e86ec2",
+      "7df00e3a5ba46dc13ab0cd8ac0d5721b64dd930f47835a53bfc3be54acb9b1b1",
+      "aaab678fbc4ebdfdc53ffffe60c776ac1ed15d8089ec58f1bf608a75a2935acf",
+      "bee75caf7407d1fbeb6c68b8aa7d1a139fc1e93bbbdd57dd57b0de0eeed178dc",
+      "bfecb6cabcd8039789de597b1d58d1bc6a45a5521e123322a756a5a910e6623a",
+      "cf3bcd21938c4854d49b16f89f62eb9c6c9a0e4e8a130d0618afd78cb6c2024e"
+    ]
+  },
+  "exactOwnedResourceDelta": true,
+  "result": "PASS"
+}

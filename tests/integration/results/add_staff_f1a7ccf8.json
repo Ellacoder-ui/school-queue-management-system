@@ -1,0 +1,15 @@
+{
+  "run": "f1a7ccf8",
+  "retained_writes": false,
+  "migration007_applied": false,
+  "synthetic_auth_only": true,
+  "checks": [],
+  "result": "FAIL",
+  "failure": "AGO_FIXTURE_SUBNET_CONFLICT",
+  "stage": "fixture-preparation",
+  "owned_containers_stopped": true,
+  "retained_preservation": true,
+  "passed": 0,
+  "containers": [],
+  "network": null
+}

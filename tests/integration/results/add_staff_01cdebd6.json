@@ -1,0 +1,59 @@
+{
+  "run": "01cdebd6",
+  "retained_writes": false,
+  "migration007_applied": false,
+  "synthetic_auth_only": true,
+  "checks": [
+    {
+      "name": "isolated function bodies match the installed retained contracts; 007 is not installed",
+      "result": "PASS"
+    },
+    {
+      "name": "real SDK ADMIN directory joins existing configuration with registered emails and fixed routing",
+      "result": "PASS"
+    },
+    {
+      "name": "STUDENT CASHIER disabled and anonymous contexts cannot read directory or submit staff requests",
+      "result": "PASS"
+    },
+    {
+      "name": "normalized Add Staff RPC uses exactly two arguments and returns actual pending ID/status",
+      "result": "PASS"
+    },
+    {
+      "name": "duplicate pending email is rejected explicitly without producing a success receipt",
+      "result": "PASS"
+    },
+    {
+      "name": "backend invalid email and unsupported role reject independently of browser validation",
+      "result": "PASS"
+    },
+    {
+      "name": "existing verified-looking email still creates only pending review; no automatic binding or role",
+      "result": "PASS"
+    },
+    {
+      "name": "lost committed staff response stays unknown and never replays a non-idempotent request",
+      "result": "PASS"
+    },
+    {
+      "name": "existing UUID-based account/counter controls work only in fixture and retain server request keys",
+      "result": "PASS"
+    },
+    {
+      "name": "no private request-list endpoint or direct browser table privilege is invented",
+      "result": "PASS"
+    }
+  ],
+  "prior_sql_methods": 123,
+  "synthetic_request_id": "a22689a8-4827-4edf-991b-5460893b0007",
+  "result": "PASS",
+  "owned_containers_stopped": true,
+  "retained_preservation": true,
+  "passed": 10,
+  "containers": [
+    "29b3bf4b3e39df785f3a5eef2d7d852112260632a25d49e0167978c7b3cad576",
+    "34b58db360cb4b34fa7bce909f1f6114ec84e7777f2b9e22a0fb0e0587cc7480"
+  ],
+  "network": "sq-queue-01cdebd6-net"
+}

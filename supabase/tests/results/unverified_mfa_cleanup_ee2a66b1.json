@@ -1,0 +1,26 @@
+{
+  "run": "ee2a66b1",
+  "syntheticOnly": true,
+  "actualAuthAndSdk": true,
+  "retainedWrites": false,
+  "checks": [
+    {
+      "name": "cached isolated Auth is healthy with Google and TOTP enabled",
+      "result": "PASS"
+    }
+  ],
+  "sqlFailure": "already-exists",
+  "result": "FAIL",
+  "failurePhase": "fixture-application-schema",
+  "failure": "Synthetic cleanup stopped; private diagnostics suppressed",
+  "stopped": true,
+  "retainedPreservation": true,
+  "exactResourceDelta": true,
+  "containers": [
+    "6aa2a780470b0ebe75240b68c6c37509dfa35c32d9e6c748a8edc06cee849d0e",
+    "3fcc8324427d5223df441466f1c9bb7781410b43d1f2d4772311713483a50408",
+    "1f1e17b48c0b81b798d63cd942b4a317b2dad7aa50fd35ec52b52a2cd6035819"
+  ],
+  "network": "223da2c95ffa9a4d0b221001c2a8a2b4ed4a33d758194d48268d37b4dd7e5d7c",
+  "passed": 1
+}

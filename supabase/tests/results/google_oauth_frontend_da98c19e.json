@@ -1,0 +1,502 @@
+{
+  "run": "da98c19e",
+  "real_google_login": false,
+  "auth_writes_forwarded": false,
+  "checks": [
+    {
+      "name": "Real Vue product exposes one Google button and no password/role selection",
+      "result": "PASS"
+    },
+    {
+      "name": "Split login matches desktop, tablet and mobile without overflow",
+      "result": "PASS"
+    },
+    {
+      "name": "Unconfigured provider shows a safe error without OAuth navigation",
+      "result": "PASS"
+    },
+    {
+      "name": "Mocked full PKCE callback verifies ordinary shared dashboard despite ADMIN metadata/email",
+      "result": "PASS"
+    },
+    {
+      "name": "MFA setup is explicit, QR/manual key stay private, and cancellation reviews unfinished setup",
+      "result": "FAIL",
+      "reason": "Harness exception; details suppressed"
+    }
+  ],
+  "screenshots": [
+    "video_ui_da98c19e_SIMULATED_login_1440.png",
+    "video_ui_da98c19e_SIMULATED_login_768.png",
+    "video_ui_da98c19e_SIMULATED_login_390.png"
+  ],
+  "isolated_vite_cache": true,
+  "isolated_browser_loopback_permission": true,
+  "mock_callback_observations": [
+    {
+      "root": true,
+      "query_empty": true,
+      "fragment_empty": true,
+      "student": false,
+      "dashboard": false,
+      "admin_absent": true
+    },
+    {
+      "root": false,
+      "query_empty": false,
+      "fragment_empty": true,
+      "student": false,
+      "dashboard": false,
+      "admin_absent": true
+    },
+    {
+      "root": false,
+      "query_empty": true,
+      "fragment_empty": true,
+      "student": false,
+      "dashboard": false,
+      "admin_absent": true
+    },
+    {
+      "root": true,
+      "query_empty": true,
+      "fragment_empty": true,
+      "student": false,
+      "dashboard": false,
+      "admin_absent": true
+    },
+    {
+      "root": true,
+      "query_empty": true,
+      "fragment_empty": true,
+      "student": true,
+      "dashboard": true,
+      "admin_absent": true
+    }
+  ],
+  "simulated_mfa": true,
+  "result": "FAIL",
+  "failure": "Harness error; details suppressed",
+  "blocked": [],
+  "runtime_errors": [],
+  "mfa_fixture": {
+    "calls": 0,
+    "assurance": "aal1",
+    "statuses": []
+  },
+  "mfa_ui": {},
+  "network_failures": [],
+  "public_response_statuses": [
+    {
+      "path": "/rest/v1/counter_state",
+      "status": 200
+    },
+    {
+      "path": "/rest/v1/service_state",
+      "status": 200
+    },
+    {
+      "path": "/rest/v1/rpc/public_queue_context",
+      "status": 200
+    },
+    {
+      "path": "/rest/v1/service_state",
+      "status": 200
+    },
+    {
+      "path": "/rest/v1/rpc/public_queue_context",
+      "status": 200
+    },
+    {
+      "path": "/rest/v1/rpc/public_queue_context",
+      "status": 200
+    },
+    {
+      "path": "/rest/v1/counter_state",
+      "status": 200
+    },
+    {
+      "path": "/rest/v1/service_state",
+      "status": 200
+    },
+    {
+      "path": "/rest/v1/rpc/public_queue_context",
+      "status": 200
+    },
+    {
+      "path": "/rest/v1/rpc/public_queue_context",
+      "status": 200
+    },
+    {
+      "path": "/rest/v1/service_state",
+      "status": 200
+    },
+    {
+      "path": "/rest/v1/counter_state",
+      "status": 200
+    }
+  ],
+  "socket_statuses": [
+    101,
+    101,
+    101,
+    101
+  ],
+  "browser_state": {
+    "path": "/",
+    "google": false
+  },
+  "passed": 4,
+  "failed": 1,
+  "interception_diagnostics": [],
+  "app_resource_statuses": [
+    {
+      "category": "document",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    }
+  ]
+}

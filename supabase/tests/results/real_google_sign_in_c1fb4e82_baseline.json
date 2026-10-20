@@ -1,0 +1,590 @@
+{
+  "run_id": "c1fb4e82",
+  "recorded_at": "2026-10-19T02:53:43.312979+00:00",
+  "result": "BASELINE_READY_AWAITING_USER_LOGIN",
+  "google_enabled": true,
+  "health": {
+    "auth_through_kong": 200,
+    "anonymous_api": 200,
+    "frontend": {
+      "/": 200,
+      "/src/main.js": 200,
+      "/src/components/QueueApplication.vue": 200
+    },
+    "anonymous_my_context_denial": 401
+  },
+  "state": {
+    "active": 0,
+    "counts": {
+      "days": 7,
+      "audits": 32,
+      "events": 57,
+      "tickets": 20,
+      "accounts": 39,
+      "counters": 5,
+      "requests": 69,
+      "services": 5
+    },
+    "routes": {
+      "1": [
+        "TP"
+      ],
+      "2": [
+        "SOA"
+      ],
+      "3": [
+        "PNEP"
+      ],
+      "4": [
+        "REF"
+      ],
+      "5": [
+        "ADJ"
+      ]
+    },
+    "versions": [
+      "20261016000100",
+      "20261016000200",
+      "20261016000300",
+      "20261016000400",
+      "20261016000500",
+      "20261016000600"
+    ],
+    "open_days": 0,
+    "rls_count": 15,
+    "assignments": [
+      {
+        "total": 1,
+        "counter": 1,
+        "eligible": 1
+      },
+      {
+        "total": 1,
+        "counter": 2,
+        "eligible": 1
+      },
+      {
+        "total": 0,
+        "counter": 3,
+        "eligible": 0
+      },
+      {
+        "total": 0,
+        "counter": 4,
+        "eligible": 0
+      },
+      {
+        "total": 2,
+        "counter": 5,
+        "eligible": 1
+      }
+    ],
+    "publication": [
+      "queue_display.counter_state",
+      "queue_display.service_state"
+    ],
+    "private_usage": false,
+    "current_day_closed": false
+  },
+  "application_table_fingerprints": {
+    "queue_display.counter_state": {
+      "count": 5,
+      "sha256": "f65659fcc6d855bdfb7f16e8e363642bc02b55a4c088a68542469be71bd98721"
+    },
+    "queue_display.service_state": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "queue_private.admin_audit_events": {
+      "count": 32,
+      "sha256": "0f09788a152e32c562c191423ef0b58dc5b04661c6c9e8a09a51e6c7f318a2ff"
+    },
+    "queue_private.counter_services": {
+      "count": 5,
+      "sha256": "77096701ca07d44033438edc01cbde408a6f62c589dc80e97018a2381be4816c"
+    },
+    "queue_private.counters": {
+      "count": 5,
+      "sha256": "1ec8950cbf7707c635c39fce3a59bc95478220be9c19e7acd9d37d20b49d1953"
+    },
+    "queue_private.operation_requests": {
+      "count": 69,
+      "sha256": "01e6ee697817fd4ad2532f87ff76afd0c4a5c1edeb8244db359596c91e029285"
+    },
+    "queue_private.queue_days": {
+      "count": 7,
+      "sha256": "8fe448fb52178450fc7f8c61ad8eb2f6cf1370317bae6afeca58e4a7f31c9a80"
+    },
+    "queue_private.service_day_state": {
+      "count": 5,
+      "sha256": "abaf1921ff335abd23fe46a79155252ca5afce52d9b9dbaba0fc88decba39b75"
+    },
+    "queue_private.services": {
+      "count": 5,
+      "sha256": "b24e1dbf3ce8edce15734dbb28dbb574a3586aa9493e394677967264ba7b5a4f"
+    },
+    "queue_private.settings": {
+      "count": 1,
+      "sha256": "5ec1ba82af642285e31516730aa8836a2926429033f6c757444d33adcc1dd18e"
+    },
+    "queue_private.staff_counter_assignments": {
+      "count": 4,
+      "sha256": "4f921d6c8c10514aaaa831941582e9af0ef86c70e1450944d4b8a8b93f221f23"
+    },
+    "queue_private.student_profiles": {
+      "count": 2,
+      "sha256": "31aa5dee31b00050475de0f1b233d547c81a6d42e4eaebe5b41ea1e1b5527a41"
+    },
+    "queue_private.ticket_events": {
+      "count": 57,
+      "sha256": "12d2ea5dcdaca1a70a1a36b19bb30099da4c2874b1e17c59d98baf9a59df7935"
+    },
+    "queue_private.tickets": {
+      "count": 20,
+      "sha256": "54cb12879da4dbdedb1944a2c1950a306413bf8fb52d995876052e4cadfc2e8b"
+    }
+  },
+  "existing_account_fingerprints": {
+    "096c5f17b1a9f5ce82f4f781970a6ba2b92bd16d54b8475e360edea1f1d7fcfb": {
+      "role": "STUDENT",
+      "enabled": true,
+      "row_sha256": "bc5954bb70409ce6c00f51d7bb35acb1b845a5b3550228fc3d7aa580554e958c"
+    },
+    "1042a95484bf26f43cf3983779fd4a66f7087e5270535eb7d71a6d20bebcb7c9": {
+      "role": "STUDENT",
+      "enabled": true,
+      "row_sha256": "67e6e669d14b9af23beca0e1b18f4896eae2bd2cecf123443d4a998ef5936ce5"
+    },
+    "2080a97f02c5b7406bf7b1e0049a473a62de51af0e88d8e5bc4c89f0fae7a44a": {
+      "role": "ADMIN",
+      "enabled": false,
+      "row_sha256": "35d4119bb19e0deed8b7035fb0b763f86f165d5d8f538145e1b5ba7d06247910"
+    },
+    "20db20f686846c68f9b88040130c1a15f5bf6548e1212d473d90f458bad0a98b": {
+      "role": "STUDENT",
+      "enabled": true,
+      "row_sha256": "9c86bc637251fdb06ff7eb515305ca04f09bb74a55963345434c4e798392f11b"
+    },
+    "220a67151840e31c91ff3c4064873c1e2e30f74ad4037cca01a060e891dbef7d": {
+      "role": "STUDENT",
+      "enabled": true,
+      "row_sha256": "82080cf4c996d4d583f749bb8f678b46af58d3d9b372e38a48dfe657d4386ab4"
+    },
+    "2969d32358137522ec893f2099a0ca73059ed6c726e8143d541c275d000d8f15": {
+      "role": "STUDENT",
+      "enabled": true,
+      "row_sha256": "ebd418ac291b780856e559b81ef6722f794fc4ea20dfa4a3b946162daa148bdd"
+    },
+    "3022296f1dea783ccdec1c78812f779b4cfc49352e8ff0ae6c01f6a907d672a7": {
+      "role": "ADMIN",
+      "enabled": true,
+      "row_sha256": "a4dbd0e5aa4ea96991113726f41353a8f614b7baae61de5cf3f34f3000e54613"
+    },
+    "4e66b6553a28172c6d9ec8d582dfe05e4cda5c8d7195120be243d6e2b6a762fb": {
+      "role": "STUDENT",
+      "enabled": true,
+      "row_sha256": "2696fbac2ea5c31d120063bfc75f204f34a13dad4d0c38e4e802f9383a0300a0"
+    },
+    "5bee9dcbc87d2be4c3bcb3fa30d1b9b6ebef4ab721600e5b423bafc174511c16": {
+      "role": "STUDENT",
+      "enabled": true,
+      "row_sha256": "79245f81bc05b7ad1dd5c3e87dd6f72a99615df231473b7dd26aa25c112eda5c"
+    },
+    "6534dcbf4c31c5ba04e14d2e8e48a7239e5b2e331d8cc2d03bff8381cabe6066": {
+      "role": "CASHIER",
+      "enabled": true,
+      "row_sha256": "03289ff35ef1abf582b9e27af58b040365066e21f0507cfe65eadc1c91bd941a"
+    },
+    "6d45d33b67ebeaa41458d28382c166e6690849ecbee251c16c63567e6f5b87dd": {
+      "role": "STUDENT",
+      "enabled": false,
+      "row_sha256": "881c6f9175922f0508163ebd64a1c1615f167a44616e262d202845a7ddf475a2"
+    },
+    "6f7e40c3ef1cb38ac495407cce78ed1e9b794e5045e082a1aeb724401c08bf14": {
+      "role": "STUDENT",
+      "enabled": true,
+      "row_sha256": "a6bf9542e3d2f44454082465517971882611715b8a0eded8758bcf6611371c94"
+    },
+    "781abb2eac1d9a5bd197dd1d9e29af20c143d2143ee41fd76fba5d026e4e2705": {
+      "role": "STUDENT",
+      "enabled": true,
+      "row_sha256": "4f2420528f884def4e13b2537a7cd9a48dc507b09fb2f6181ee2f9e02c2808ef"
+    },
+    "7fb3e098c2a6cdc6bee7cc8e26f4aed515fdcb8962cb4d7816b4adbe6bcf9bff": {
+      "role": "STUDENT",
+      "enabled": true,
+      "row_sha256": "0411ca581c4c4438607c51bdaa0d7a60e542c8e49772ec86392612d5ea5b18bd"
+    },
+    "7fff25550645aa70b527fbfaaf01c9e77948c2c52d947300d3f4247628a556fd": {
+      "role": "CASHIER",
+      "enabled": true,
+      "row_sha256": "900330da9cb177cb654051b758c0a94a3c8e5683357187fa492974ab18545d2a"
+    },
+    "8684e0ef129a065da6de420f6ecca62f02cc5f05ff541af0fd73c1e0464e5680": {
+      "role": "ADMIN",
+      "enabled": true,
+      "row_sha256": "8697b782b6b737f1bad562163f96976c7f7181abaa54a61708642fc0e38192be"
+    },
+    "8798b94c18e5cd5b28eb4f0b1132410d4765881a5c15d964a6821a670182e777": {
+      "role": "STUDENT",
+      "enabled": true,
+      "row_sha256": "57e6a06018804a7a3efbefe5d9c75b660fe77781ea34aced416f983d6af17b8f"
+    },
+    "89df4bd1f7ac3d718973b4f2c7a65483e46e761d3622bd53346c12e13ef755d9": {
+      "role": "STUDENT",
+      "enabled": true,
+      "row_sha256": "7398b5b89a6025dfaa0d16ce7543f2862777a166cffc8d868f9ee92eb12a4cb4"
+    },
+    "8e6ea0501e269d3fa78531db278b0627d631871b1e15958bea43c26b76239491": {
+      "role": "STUDENT",
+      "enabled": true,
+      "row_sha256": "ce5e12964cacaae335b4226e2993e55ad446f17eed9fac44b75bdbe16f3e08c0"
+    },
+    "9335f60f50ba2c74d681c7473671e8c56e23c2847df414e44d9f3a01f07935cf": {
+      "role": "STUDENT",
+      "enabled": true,
+      "row_sha256": "ee34923f059b67fa5eae9a6697aae8d38a1378ad5ba491157cce356fc364e9d8"
+    },
+    "9cab8aba25abc080a141072ed5e1bf2bc0702b3bee200e574f8e84d294aae87e": {
+      "role": "ADMIN",
+      "enabled": true,
+      "row_sha256": "a245ad38281fe40d93b21ea2a8b7a96c18e787d48d969d616789fcc106048ce4"
+    },
+    "a0236aeb5eda49bdd80bdb0093ac50a735b1d8b405b5744310e7b1ba207f8a3c": {
+      "role": "STUDENT",
+      "enabled": true,
+      "row_sha256": "2c927b7c4398942db6da7e7f4a51befa67257788ccc1f4c8ff58705cf81caef0"
+    },
+    "a032468d138881cc49199f83ddb3d76de0d3de6383784ffbe80716f7cae7124b": {
+      "role": "CASHIER",
+      "enabled": true,
+      "row_sha256": "f06e3c23b5295a7910c1f9a2326c155ddbe3be46894f9d33a6584731a91354b2"
+    },
+    "a61f91524a4de86b089c8a18fc1de353a78868e107f4787db24401818cc9b4f1": {
+      "role": "STUDENT",
+      "enabled": true,
+      "row_sha256": "6a9c01501ac277cb498345f305e10150587369045c926f222f62e531f0334dc7"
+    },
+    "a698e30fb4bed607043e23d740862cd66e7bc664652521fce92d627723cd8e97": {
+      "role": "STUDENT",
+      "enabled": true,
+      "row_sha256": "490a68d6809d69e61e46dd7247f7dfe7c91fbe13b317f8958cdd183c17d63429"
+    },
+    "a8eab08169f7ff474616ca69c5ad4dcd8b64d28e9b29f13e95270108b13ebb7c": {
+      "role": "STUDENT",
+      "enabled": true,
+      "row_sha256": "8d6e65f907d8915ad4c0e9167805539a073e092983e992a6ad484f6829c09887"
+    },
+    "aee432b685206edef9e74469e45c9665a5e3c30862badfa8919616182f4886c7": {
+      "role": "STUDENT",
+      "enabled": true,
+      "row_sha256": "9d2350f1b0d92cb82fc444b7d3c117c4b83318a51872bd2cf18c26299716acdb"
+    },
+    "b60ee6dfe40f40349dc07a0cd0956b500c6a373a30959121f44d21268a604384": {
+      "role": "STUDENT",
+      "enabled": true,
+      "row_sha256": "26923be3f96e13eec5c9d305e999cc8bb0918cab2026aa0a5721d7051d168f52"
+    },
+    "baddbfb9f0803bae99e4167682a731cc42e50c22b166786e859db595c5e1825b": {
+      "role": "CASHIER",
+      "enabled": true,
+      "row_sha256": "b7be4532a4f3270a44dee33b9224884ef3b43e28868d76c00cd7aee35581fb79"
+    },
+    "bdf6535ad97ba8f077cb722eb5efcd978bb8483e94e4730477b669fbe73f1e31": {
+      "role": "STUDENT",
+      "enabled": true,
+      "row_sha256": "2bdb2d1beec0c6b260b8ccfc2bb6a55750d22a923c8e592b4ec1b993d5bc9c90"
+    },
+    "c049879a0164ea76777b04b67a9b199eeb5fe8b5a231ed0321f799eca717ebc6": {
+      "role": "STUDENT",
+      "enabled": true,
+      "row_sha256": "1a8bab2cc458dd0d29b5a40e1e051d0e865a36102ddb6f1ab0fb4b752f9d450a"
+    },
+    "d6f75949b42a5588d1522a8e3d7b4ad6f0ad535d22345c1d2fe26da87c39422c": {
+      "role": "STUDENT",
+      "enabled": false,
+      "row_sha256": "dc2e30185d34a516bd0bc75cc7941fd5eb5eb6c87cf5dea78e44522207d32510"
+    },
+    "db896c39ca1cbb9c29736cb5125968cd3c9e9dc7136017b566a6937c4ba3504f": {
+      "role": "CASHIER",
+      "enabled": true,
+      "row_sha256": "574e9cd365699dcd1e3c348fd0e79d3cc5ae7e78c1a3d4aeebfb3851fac883ba"
+    },
+    "e23623f2320d76655639e741266924a3e6a3a2d68441af88ea4bc9674cdd8cd6": {
+      "role": "STUDENT",
+      "enabled": true,
+      "row_sha256": "c021da4863bce21149ca8feaf42004e882d036b91b59889c76e6728767fa332f"
+    },
+    "f09ba4560deec7cf9adb9b05017469e40c2f3dd201767f1d6ed25c3be22189ee": {
+      "role": "STUDENT",
+      "enabled": true,
+      "row_sha256": "c85253fe9d9dfc6e4a619b4f64ec95338ef70ff12076fbbc9a31fdece597f6f6"
+    },
+    "fa364233cd48f57b7a9ff0866adbdf64e48c8838fcdfb9afe05aca6434df35ef": {
+      "role": "STUDENT",
+      "enabled": true,
+      "row_sha256": "c06368a4dcd79f5ffad8cb35c49ad485804fa6bd0848daadfdf02cec00af9d3d"
+    },
+    "fe0e539561438df65385f543a9cc91caae07bd357b68cab0b7bd94845ede77b4": {
+      "role": "ADMIN",
+      "enabled": true,
+      "row_sha256": "b2b13e9329e668c67feebab510984768e9eda1942b280b5b3d59e876a2c63ee8"
+    },
+    "fe807a782eb53cb57d2b139a03e90f9f42321bbfab13ba556242d1b7502e79f0": {
+      "role": "STUDENT",
+      "enabled": true,
+      "row_sha256": "65ad1310cfef9609c3ef6edbd5fc63b3a48fbc7552ec58a43459b0b38034f4f0"
+    },
+    "fe978d971014a2d3aff2d68bb9e36f71b42ec4decaf6c9fcabcde34b62262bab": {
+      "role": "ADMIN",
+      "enabled": true,
+      "row_sha256": "595922dacbdb54adfc331ae27dbb9ab7891722071009351ad43bc2027249a881"
+    }
+  },
+  "auth_table_fingerprints": {
+    "users": {
+      "count": 39,
+      "sha256": "bea764a22b2aeb8618796c7ac9278189070b0c92af81515ab7fa44d972a65ce4"
+    },
+    "identities": {
+      "count": 26,
+      "sha256": "93a6557a64df56a6e462e96dd69c97c7deac606a8f8c72ebe8d243294d0ea71b"
+    },
+    "sessions": {
+      "count": 35,
+      "sha256": "1668aa5b04ab42c48f4962e75246bb883672640fcfc2cc48ea97c48c393ea10a"
+    },
+    "refresh_tokens": {
+      "count": 35,
+      "sha256": "2d509dedd7923ce40d2e020e9bb7fe5dff2f4fe510115df1c015e2a36cb67cfd"
+    },
+    "flow_state": {
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "audit_log_entries": {
+      "count": 104,
+      "sha256": "0dc28997cc36e3138b83f859807bdd91aa3655fcc32fadbe56a123198b78b1f9"
+    },
+    "schema_migrations": {
+      "count": 82,
+      "sha256": "8cdf22f03f7379ee9ddce1b77ca630cd50ddcae9dd3c3cddb70af6e703df0104"
+    }
+  },
+  "target_accounts_before": {
+    "personal": [],
+    "school": []
+  },
+  "security_sha256": "fc0f8da00b9bb248c05e762c211d2453c71e6e59d52e6841f3d19d47fe9bdd48",
+  "cluster_roles_sha256": "fe7e8c517b421f0a3ffd22b4b96205f223facec6a6779b432c1943ef74cd51cd",
+  "migration_receipts_sha256": "888e5b97afd1e4e206cd372c57f3592eadb64fcd1795b5cfd84d763306b01449",
+  "migration_file_hashes": {
+    "20261016000100_queue_tables.sql": "274141dbab99dbaad959f2343633ee0bd440b240a29b5664ca304e283934d7d7",
+    "20261016000200_queue_operations.sql": "65c943d4fea282c07e06bab6b759882f7fcec678ddf960869dd60a52db911883",
+    "20261016000300_queue_administration.sql": "7a4ad627112f0bc3109417bec237b13000e1c06002d536f7c9feab5261eb4883",
+    "20261016000400_queue_seed_security.sql": "95bd4918550dddae84672c148c6a616c9d12928b78097a82815a26a35146746e",
+    "20261016000500_queue_read_context.sql": "793a68b375d69044dc4900749867576b5c45a6b4173725191ffbaeb66a2dd31a",
+    "20261016000600_fixed_counter_routing.sql": "9d854ab795e3ef3098fa1d3a05cb6541242d0c8e503a8ebee1acfe9df418137c"
+  },
+  "services": [
+    {
+      "container": "supabase_db_school-queue-local",
+      "id": "16f1de8f80f73115d5792cb395f6680ed2d73135b156d6311a31c96765d540b9",
+      "image": "public.ecr.aws/supabase/postgres:17.11.0.004",
+      "image_id": "sha256:6058a6759ab9268cff8ee70641d61f1bd75953316281b76427cf5a6b4db2eafc",
+      "running": true,
+      "restarting": false,
+      "status": "running",
+      "exit_code": 0,
+      "oom_killed": false,
+      "restart_count": 0,
+      "started_at": "2026-10-15T18:14:43.17209085Z",
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "healthy"
+    },
+    {
+      "container": "supabase_pg_meta_school-queue-local",
+      "id": "23df750f5f64167d0d31604e4a7cb739a1681d228ce01528d2bf441be4f66a96",
+      "image": "public.ecr.aws/supabase/postgres-meta:v0.100.0",
+      "image_id": "sha256:145325b7e39f8ef4931d6e8cfd3f6f4d655de09d72a2ccc96d9513542c2202bd",
+      "running": true,
+      "restarting": false,
+      "status": "running",
+      "exit_code": 0,
+      "oom_killed": false,
+      "restart_count": 0,
+      "started_at": "2026-10-15T18:15:12.772180088Z",
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "healthy"
+    },
+    {
+      "container": "supabase_inbucket_school-queue-local",
+      "id": "2dc2dda3b9419f2dc7a6be3c00c54efed243ebb04ee4007bfb0dfcd29d53cf2e",
+      "image": "public.ecr.aws/supabase/mailpit:v1.31.3",
+      "image_id": "sha256:ed9b00c609e77e99c79b93f1178255ebc271868920f2c69a8d166bd5634ed10d",
+      "running": true,
+      "restarting": false,
+      "status": "running",
+      "exit_code": 0,
+      "oom_killed": false,
+      "restart_count": 0,
+      "started_at": "2026-10-15T18:15:06.793561838Z",
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "healthy"
+    },
+    {
+      "container": "supabase_storage_school-queue-local",
+      "id": "423b0081907815cf52ec9047b6ce142ff5f34a14324f61423d75fb34bc9c40c3",
+      "image": "public.ecr.aws/supabase/storage-api:v1.82.1",
+      "image_id": "sha256:ec2ad41411eac8fc2b769b4bb00d1af32ae37eca3745c15bdb329db27d218934",
+      "running": true,
+      "restarting": false,
+      "status": "running",
+      "exit_code": 0,
+      "oom_killed": false,
+      "restart_count": 0,
+      "started_at": "2026-10-15T18:15:10.098951161Z",
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "healthy"
+    },
+    {
+      "container": "supabase_auth_school-queue-local",
+      "id": "565adceacab15cd43c7e00d5cee19345bc34f6ab981b35d5dc2ba4f8cdd4f399",
+      "image": "public.ecr.aws/supabase/gotrue:v2.197.0",
+      "image_id": "sha256:1736a63078f5922b198c4cbe50f80ab9a2d3b54fe8b7b6cfb2e9dc5dbbc12c6b",
+      "running": true,
+      "restarting": false,
+      "status": "running",
+      "exit_code": 0,
+      "oom_killed": false,
+      "restart_count": 0,
+      "started_at": "2026-10-19T02:40:34.463612254Z",
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "healthy"
+    },
+    {
+      "container": "supabase_kong_school-queue-local",
+      "id": "6542ef0ddc9fc5d72a5530feb0b961f0ba3c4916adec19bd538ead0d3837ebdd",
+      "image": "public.ecr.aws/supabase/kong:2.8.1",
+      "image_id": "sha256:1b53405d8680a09d6f44494b7990bf7da2ea43f84a258c59717d4539abf09f6d",
+      "running": true,
+      "restarting": false,
+      "status": "running",
+      "exit_code": 0,
+      "oom_killed": false,
+      "restart_count": 0,
+      "started_at": "2026-10-15T18:15:05.111994842Z",
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "healthy"
+    },
+    {
+      "container": "supabase_realtime_school-queue-local",
+      "id": "8ddd82b059ceead9ba41b43dbeef4fa53de0fa22fcfac4bbd806f78b00636327",
+      "image": "public.ecr.aws/supabase/realtime:v2.143.4",
+      "image_id": "sha256:35e99d3f1cbba5aa5585e8ac3cf70ecc54909ee4aee0626effed93c60fb41439",
+      "running": true,
+      "restarting": false,
+      "status": "running",
+      "exit_code": 0,
+      "oom_killed": false,
+      "restart_count": 0,
+      "started_at": "2026-10-15T18:15:07.910836032Z",
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "healthy"
+    },
+    {
+      "container": "supabase_auth_school-queue-local-e17c030c-activation-original",
+      "id": "9f7742bf04e680d82988376411720e3500c9c0c069b0e57de5b7f3dc3ebb4ef6",
+      "image": "public.ecr.aws/supabase/gotrue:v2.197.0",
+      "image_id": "sha256:1736a63078f5922b198c4cbe50f80ab9a2d3b54fe8b7b6cfb2e9dc5dbbc12c6b",
+      "running": false,
+      "restarting": false,
+      "status": "exited",
+      "exit_code": 0,
+      "oom_killed": false,
+      "restart_count": 0,
+      "started_at": "2026-10-15T18:15:05.795367307Z",
+      "finished_at": "2026-10-19T02:40:33.750291035Z",
+      "health": "unhealthy"
+    },
+    {
+      "container": "supabase_rest_school-queue-local",
+      "id": "a3ebd0eb21044da487163626e9ce78849d4d551d466138bae4196a5bca3e1172",
+      "image": "public.ecr.aws/supabase/postgrest:v16.4",
+      "image_id": "sha256:d155c6718ed9a9f990d159a2ab7c0a3f16944dbb6d0a0344557421042acfe0df",
+      "running": true,
+      "restarting": false,
+      "status": "running",
+      "exit_code": 0,
+      "oom_killed": false,
+      "restart_count": 0,
+      "started_at": "2026-10-15T18:15:08.86125363Z",
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "not-configured"
+    },
+    {
+      "container": "supabase_vector_school-queue-local",
+      "id": "b6d521af4f244e0ab8ede06130d31bf067e9483ed1dd920544759b607cc9bc59",
+      "image": "public.ecr.aws/supabase/vector:0.58.0-alpine",
+      "image_id": "sha256:5dcf67db0ee378caa87f3395cb9484ebe3e97bb0334d119f2ac33116e00c5773",
+      "running": true,
+      "restarting": true,
+      "status": "restarting",
+      "exit_code": 0,
+      "oom_killed": false,
+      "restart_count": 2531,
+      "started_at": "2026-10-19T02:53:11.249170241Z",
+      "finished_at": "2026-10-19T02:53:11.679608728Z",
+      "health": "unhealthy"
+    },
+    {
+      "container": "supabase_analytics_school-queue-local",
+      "id": "d39d0db69e75569b40030d43ce1bed2374af6b15554b2ff0fbf11e2ac0dba5f9",
+      "image": "public.ecr.aws/supabase/logflare:1.53.0",
+      "image_id": "sha256:9d9c8f8c462650b5a99789e1adc6906df85cfb15e2515a8a3b44953893434470",
+      "running": true,
+      "restarting": false,
+      "status": "running",
+      "exit_code": 0,
+      "oom_killed": false,
+      "restart_count": 0,
+      "started_at": "2026-10-15T18:15:03.728595382Z",
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "healthy"
+    },
+    {
+      "container": "supabase_studio_school-queue-local",
+      "id": "e3a3eb8f4a6ba04736e5ce030c4898acbc9e7037bc8bb31d6145696478e1af49",
+      "image": "public.ecr.aws/supabase/studio:2026.10.12-sha-3699278",
+      "image_id": "sha256:948770ec467f00e6ae34c35018ef7cb23d7b30eb806b42c2cc0d7bcfdcf8a7a8",
+      "running": true,
+      "restarting": false,
+      "status": "running",
+      "exit_code": 0,
+      "oom_killed": false,
+      "restart_count": 0,
+      "started_at": "2026-10-15T18:15:13.467005917Z",
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "healthy"
+    },
+    {
+      "container": "supabase_edge_runtime_school-queue-local",
+      "id": "fa08af4faf695e70a0b1d965c50c50739353bc8f98da4633089405d99649be33",
+      "image": "public.ecr.aws/supabase/edge-runtime:v1.77.4",
+      "image_id": "sha256:ad45164b7548bf5820ed7be714789c17ac2865edce79a09cfb4c3756c3d365a8",
+      "running": true,
+      "restarting": false,
+      "status": "running",
+      "exit_code": 0,
+      "oom_killed": false,
+      "restart_count": 0,
+      "started_at": "2026-10-15T18:15:11.823778567Z",
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "not-configured"
+    }
+  ],
+  "no_google_credentials_read": true,
+  "no_passwords_codes_or_tokens_recorded": true,
+  "real_login_observed": false,
+  "browser_automation": "unavailable: Node runtime OS error 3"
+}

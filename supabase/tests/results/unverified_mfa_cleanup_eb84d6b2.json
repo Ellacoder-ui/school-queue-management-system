@@ -1,0 +1,150 @@
+{
+  "run": "eb84d6b2",
+  "syntheticOnly": true,
+  "actualAuthAndSdk": true,
+  "retainedWrites": false,
+  "checks": [
+    {
+      "name": "cached isolated Auth is healthy with Google and TOTP enabled",
+      "result": "PASS"
+    },
+    {
+      "name": "real application provisioning creates only synthetic accounts",
+      "result": "PASS"
+    },
+    {
+      "name": "Auth rejects another user factor and preserves every factor",
+      "result": "PASS"
+    },
+    {
+      "name": "existing application sees real unverified inventory at AAL1",
+      "result": "PASS"
+    },
+    {
+      "name": "application rejects an unlisted factor before DELETE",
+      "result": "PASS"
+    },
+    {
+      "name": "cancellation makes no cleanup request",
+      "result": "PASS"
+    },
+    {
+      "name": "one explicit owner DELETE removes exactly the selected unverified factor",
+      "result": "PASS"
+    },
+    {
+      "name": "same-owner sibling and other-user verified factor remain exact",
+      "result": "PASS"
+    },
+    {
+      "name": "only deleted-factor challenges cascade and no automatic enrollment follows",
+      "result": "PASS"
+    },
+    {
+      "name": "Auth users stay active; exact application accounts roles and identities survive",
+      "result": "PASS"
+    },
+    {
+      "name": "repeating an absent factor reports failure without changing another factor",
+      "result": "PASS"
+    },
+    {
+      "name": "lost success response interrupts and does not automatically replay",
+      "result": "PASS"
+    },
+    {
+      "name": "explicit read-only reconciliation observes absence without another DELETE",
+      "result": "PASS"
+    },
+    {
+      "name": "explicit fresh enrollment returns a new QR and secret only in memory",
+      "result": "PASS"
+    },
+    {
+      "name": "expired synthetic TOTP cannot verify the replacement",
+      "result": "PASS"
+    },
+    {
+      "name": "new authenticator verification reaches actual AAL2 and a verified factor",
+      "result": "PASS"
+    },
+    {
+      "name": "cleanup interface refuses a verified factor even at AAL2",
+      "result": "PASS"
+    },
+    {
+      "name": "real Auth refuses verified-factor unenrollment from AAL1",
+      "result": "PASS"
+    },
+    {
+      "name": "AAL1 inventory with a verified factor also blocks cleanup before DELETE",
+      "result": "PASS"
+    },
+    {
+      "name": "all user/account data, role bindings and original Auth migration receipts survive",
+      "result": "PASS"
+    },
+    {
+      "name": "synthetic ADMIN role remains ADMIN after cleanup and AAL2",
+      "result": "PASS"
+    }
+  ],
+  "migrations": [
+    {
+      "name": "20261016000100_queue_tables.sql",
+      "sha256": "274141dbab99dbaad959f2343633ee0bd440b240a29b5664ca304e283934d7d7"
+    },
+    {
+      "name": "20261016000200_queue_operations.sql",
+      "sha256": "65c943d4fea282c07e06bab6b759882f7fcec678ddf960869dd60a52db911883"
+    },
+    {
+      "name": "20261016000300_queue_administration.sql",
+      "sha256": "7a4ad627112f0bc3109417bec237b13000e1c06002d536f7c9feab5261eb4883"
+    },
+    {
+      "name": "20261016000400_queue_seed_security.sql",
+      "sha256": "95bd4918550dddae84672c148c6a616c9d12928b78097a82815a26a35146746e"
+    },
+    {
+      "name": "20261016000500_queue_read_context.sql",
+      "sha256": "793a68b375d69044dc4900749867576b5c45a6b4173725191ffbaeb66a2dd31a"
+    },
+    {
+      "name": "20261016000600_fixed_counter_routing.sql",
+      "sha256": "9d854ab795e3ef3098fa1d3a05cb6541242d0c8e503a8ebee1acfe9df418137c"
+    }
+  ],
+  "wrongOwner": {
+    "status": 404,
+    "code": "mfa_factor_not_found"
+  },
+  "cleanupObservation": {
+    "deleteCalls": 1,
+    "phase": "choose",
+    "aal": "aal1",
+    "selectedAbsent": true,
+    "otherFactorsExact": true,
+    "beforeCount": 3,
+    "afterCount": 2
+  },
+  "repeat": {
+    "status": 404,
+    "code": "mfa_factor_not_found"
+  },
+  "verifiedAtAal1": {
+    "status": 422,
+    "code": "insufficient_aal"
+  },
+  "result": "PASS",
+  "stopped": true,
+  "retainedPreservation": true,
+  "exactResourceDelta": true,
+  "containers": [
+    "0a869774f5df81ce618aaa5601f1ade4a8cf75af656232f892a9e1504c7ab1e5",
+    "58feb76947976a4f50a7dd418e676fe177a979dd115f98e7b0d1e0637032299e",
+    "3b5adc495b9b711951eab59791fb9e76dfa5c809f9460f01775b1359b07f90d1"
+  ],
+  "network": "d03b99c1a46182565c5a9f71c71dcde53ebc71458e8f47719d5e56fa8da43cec",
+  "passed": 21
+}

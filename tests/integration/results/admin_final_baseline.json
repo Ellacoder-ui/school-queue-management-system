@@ -1,0 +1,83 @@
+{
+  "observedAt": "2026-10-19T16:33:46.238Z",
+  "retainedWrites": false,
+  "metadata": {
+    "routes": [
+      "1:TP",
+      "2:SOA",
+      "3:PNEP",
+      "4:REF",
+      "5:ADJ"
+    ],
+    "accounts": 42,
+    "requests": 1,
+    "functions": [
+      {
+        "name": "admin_staff_directory",
+        "settings": [
+          "search_path=\"\""
+        ],
+        "signature": "",
+        "anon_execute": false,
+        "security_definer": true,
+        "authenticated_execute": true,
+        "body_sha256": "e710279c7c0b7586d858a5d5b0ad36eb25425940a0349dc9ace97255db62615e"
+      },
+      {
+        "name": "configure_counter",
+        "settings": [
+          "search_path=\"\""
+        ],
+        "signature": "p_counter uuid, p_open boolean, p_services text[], p_cashiers uuid[], p_request_key uuid",
+        "anon_execute": false,
+        "security_definer": true,
+        "authenticated_execute": true,
+        "body_sha256": "0f2db92e756de59b8b5d5afcf6ec2d8aa6138182f2e8ae67d6b177926c02eb78"
+      },
+      {
+        "name": "my_context",
+        "settings": [
+          "search_path=\"\""
+        ],
+        "signature": "",
+        "anon_execute": false,
+        "security_definer": true,
+        "authenticated_execute": true,
+        "body_sha256": "14b62a269b4af43a16c43e9fed87ea1d9c640e14cc9a4eb53a31ba124eec63ce"
+      },
+      {
+        "name": "set_account",
+        "settings": [
+          "search_path=\"\""
+        ],
+        "signature": "p_user uuid, p_role text, p_enabled boolean, p_request_key uuid",
+        "anon_execute": false,
+        "security_definer": true,
+        "authenticated_execute": true,
+        "body_sha256": "0bba95491e16fc7fdc50d2c4d5750d42f02708dc5d8fafc5c0f8ce127543ea8a"
+      },
+      {
+        "name": "staff_queue",
+        "settings": [
+          "search_path=\"\""
+        ],
+        "signature": "",
+        "anon_execute": false,
+        "security_definer": true,
+        "authenticated_execute": true,
+        "body_sha256": "c13740182c9332838f0a017981077a584e0421928b7af884712fa50abb52a1ce"
+      }
+    ],
+    "007_absent": true,
+    "admin_role": "ADMIN",
+    "school_role": "STUDENT",
+    "proposal_absent": true
+  },
+  "health": {
+    "auth": 200,
+    "settings": 200,
+    "api": 200,
+    "google": true
+  },
+  "result": "PASS"
+}

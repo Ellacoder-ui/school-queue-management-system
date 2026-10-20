@@ -1,0 +1,24 @@
+{
+  "captured": 1881,
+  "unchanged": 1867,
+  "missing": [],
+  "changed": [
+    "tests/integration/adminFinal.integration.mjs",
+    "docs/ADMIN_READONLY_FRONTEND_INTEGRATION_REPORT.md",
+    "tests/frontend/googleOAuth.test.js",
+    "tests/frontend/googleOAuth.browser.mjs",
+    "tests/frontend/authWorkspace.test.js",
+    "tests/frontend/authController.test.js",
+    "src/components/GoogleAuthCallback.vue",
+    "src/components/AdminDashboard.vue",
+    "src/components/AdminAddStaff.vue",
+    "src/components/AuthWorkspace.vue",
+    "src/lib/adminRecords.js",
+    "src/composables/useAdminWorkspace.js",
+    "src/lib/googleOAuth.js",
+    "src/lib/authController.js"
+  ],
+  "proposal_sha256": "ea741017c1c757b607b678c8e647547ebda92cc25b78714b917fce3b574a8d93",
+  "report_sha256": "defbd1e973d537e99587326870c713f8c2371105d9fb44ed1f74df36a11bc8df",
+  "whitespace": "PASS"
+}

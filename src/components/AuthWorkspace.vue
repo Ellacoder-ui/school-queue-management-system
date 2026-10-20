@@ -1,59 +1,78 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, nextTick, ref, watch } from 'vue'
 import GoogleAuthCallback from './GoogleAuthCallback.vue'
 import LocalTestLogin from './LocalTestLogin.vue'
-
-const props = defineProps({ state: { type: Object, required: true }, developmentLogin:Boolean,
-  oauthState:{type:Object,default:() => ({phase:'idle',message:null})} })
-const emit = defineEmits(['login', 'logout', 'refresh', 'navigate', 'google', 'reconcile-oauth', 'cancel-oauth'])
+import StudentDashboard from './StudentDashboard.vue'
+import CashierDashboard from './CashierDashboard.vue'
+import AdminDashboard from './AdminDashboard.vue'
+import QueueOverview from './QueueOverview.vue'
+import WorkspaceDialog from './WorkspaceDialog.vue'
+import QueueOperationNotice from './QueueOperationNotice.vue'
+import AccountMfaDialog from './AccountMfaDialog.vue'
+import { emptyWorkspace } from '../lib/workspaceData.js'
+import { emptyAdmin } from '../lib/adminWorkspace.js'
+const props = defineProps({ state: { type: Object, required: true }, developmentLogin: Boolean,
+  managementState: { type: Object, default: emptyAdmin },
+  adminRecords: {type:Object,default:undefined},
+  mfaMode: { type: Boolean, default: false },
+  actor: { type: String, default: null },
+  mfaState: { type: Object, default: () => ({ phase: 'closed' }) },
+  oauthState: { type: Object, default: () => ({ phase: 'idle', message: null }) },
+  publicState: { type: Object, default: () => ({ counters: [], services: [], hasSnapshot: false, context: null }) },
+  data: { type: Object, default: emptyWorkspace },
+  actionState: { type: Object, default: () => ({ phase: 'idle', message: null }) } })
+const emit = defineEmits(['login', 'logout', 'refresh', 'navigate', 'google', 'reconcile-oauth', 'cancel-oauth', 'refresh-data', 'retry-public', 'queue-action', 'retry-action', 'dismiss-action', 'mfa-open', 'mfa-close', 'mfa-enroll', 'mfa-select', 'mfa-verify', 'mfa-request-discard', 'mfa-cancel-discard', 'mfa-discard', 'refresh-staff', 'management-action', 'reconcile-management','records-tab','records-find','records-clear','records-query','records-events','records-close-history','records-retry'])
 const busy = computed(() => ['initializing', 'signing-in', 'signing-out', 'checking'].includes(props.state.status))
-const roleLabel = computed(() => ({ STUDENT: 'Queue Dashboard', CASHIER: 'Cashier workspace', ADMIN: 'Administrator workspace' })[props.state.context?.role])
 const ready = computed(() => props.state.status === 'ready' && props.state.context?.enabled)
-const oauthBusy = computed(() => ['starting','redirecting','exchanging','checking'].includes(props.oauthState.phase))
+const oauthBusy = computed(() => ['starting', 'redirecting', 'exchanging', 'checking'].includes(props.oauthState.phase))
+const oauthNeedsAction = computed(() => props.state.status==='signing-in' && ['uncertain','blocked','error'].includes(props.oauthState.phase))
+const roleLabel = computed(() => ({ STUDENT: 'Student / payor', CASHIER: 'Cashier', ADMIN: 'Administrator' })[props.state.context?.role])
+const logoutOpen = ref(false), signedOut = ref(false)
+watch(() => props.state.status, (next, previous) => { if (next === 'anonymous' && previous === 'signing-out') signedOut.value = true; if (next === 'ready') signedOut.value = false; if (next !== 'ready') logoutOpen.value = false })
+function logout() { logoutOpen.value = false; emit('logout') }
+function closeMfa() { emit('mfa-close'); void nextTick(() => document.querySelector('[data-testid="account-security"]')?.focus()) }
 </script>
-
 <template>
-  <section id="account-workspace" class="mt-8 rounded-lg border border-slate-200 bg-white p-5 sm:p-7" aria-label="Account workspace" :aria-busy="busy">
-    <div class="flex flex-wrap items-center justify-between gap-3">
-      <div><h2 class="text-lg font-semibold">{{ developmentLogin ? 'Development test sign-in' : 'Your queue workspace' }}</h2><p class="mt-1 text-sm text-slate-500">{{ developmentLogin ? 'For existing local test accounts only.' : 'One sign-in for students, payors and authorized staff.' }}</p></div>
-      <button v-if="state.signedIn" type="button" @click="emit('logout')" :disabled="state.status === 'signing-out'"
-        class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium hover:bg-slate-50 disabled:opacity-50">{{ state.status === 'signing-out' ? 'Signing out…' : 'Sign out' }}</button>
-    </div>
-    <p v-if="state.message" role="alert" class="mt-4 rounded-lg bg-amber-50 p-4 text-sm text-amber-900">{{ state.message }}</p>
-    <GoogleAuthCallback :state="oauthState" @reconcile="emit('reconcile-oauth')" @cancel="emit('cancel-oauth')" />
-    <p v-if="busy" role="status" class="mt-5 text-sm text-slate-500">{{ state.status === 'signing-in' ? 'Signing in…' : state.status === 'signing-out' ? 'Clearing your session…' : 'Verifying account access…' }}</p>
-    <div v-else-if="state.status === 'disabled'" class="mt-5 rounded-lg bg-slate-50 p-5" data-testid="access-disabled">
-      <h3 class="font-semibold">Account access disabled</h3><p class="mt-2 text-sm leading-6 text-slate-600">Contact the institution to review your access. The public queue remains available.</p>
-      <button type="button" @click="emit('refresh')" class="mt-4 text-sm font-medium text-emerald-800 underline">Check access again</button>
-    </div>
-    <template v-else-if="ready">
-      <nav aria-label="Workspace navigation" class="mt-5 flex flex-wrap gap-2">
-        <button type="button" @click="emit('navigate', 'public')" :aria-current="state.workspace === 'public' ? 'page' : undefined" class="rounded-lg border border-slate-300 px-4 py-2 text-sm">Public queue</button>
-        <button type="button" @click="emit('navigate', state.context.role.toLowerCase())" :aria-current="state.workspace !== 'public' ? 'page' : undefined" class="auth-primary">{{ roleLabel }}</button>
-        <button type="button" @click="emit('refresh')" class="px-2 py-2 text-sm text-emerald-800 underline">Refresh access</button>
-      </nav>
-      <article v-if="state.workspace === state.context.role.toLowerCase()" :key="state.accountVersion" class="mt-5 border-t border-slate-100 pt-5" :data-testid="`${state.workspace}-workspace`">
-        <h3 class="text-lg font-semibold">{{ roleLabel }}</h3>
-        <p class="mt-2 text-sm leading-6 text-slate-600">{{ state.context.role === 'STUDENT' ? 'Students and outside payors share this queue dashboard. Ticket requests are not available yet.' : state.context.role === 'CASHIER' ? 'Your assigned counters are shown below. Counter actions will be connected in a later phase.' : 'Your administrator access is verified. Configuration tools will be connected in a later phase.' }}</p>
-        <template v-if="state.context.role === 'CASHIER'">
-          <p v-if="!state.context.cashier_counters.length" class="mt-4 text-sm text-slate-500">No counters are currently assigned to you.</p>
-          <ul v-else class="mt-4 grid gap-3 sm:grid-cols-2">
-            <li v-for="counter in state.context.cashier_counters" :key="counter.counter_id" class="rounded-lg border border-slate-200 p-4">
-              <p class="font-medium">{{ counter.counter_label }}</p><p class="mt-1 text-sm text-slate-500">{{ counter.is_open ? 'Open counter' : 'Closed counter' }}</p>
-              <p class="mt-2 text-sm text-slate-600">{{ counter.service_codes.length ? counter.service_codes.join(' · ') : 'No enabled services assigned' }}</p>
-            </li>
-          </ul>
-        </template>
-        <button type="button" disabled class="mt-5 cursor-not-allowed rounded-lg bg-slate-100 px-4 py-2 text-sm text-slate-500">{{ state.context.role === 'STUDENT' ? 'Ticket issuance not available yet' : state.context.role === 'CASHIER' ? 'Counter actions not available yet' : 'Administration actions not available yet' }}</button>
-      </article>
-      <p v-else class="mt-5 text-sm text-slate-500">You are viewing the public queue. Your authorized workspace is available above.</p>
+  <div id="account-workspace" class="cqs-app" :aria-busy="busy">
+    <a class="cqs-skip" href="#workspace-main">Skip to main content</a>
+    <template v-if="ready">
+      <header class="cqs-header"><a href="/" class="cqs-brand" aria-label="Liceo Cashier Queue home"><span class="cqs-brand-mark" aria-hidden="true">L</span><span><strong>LICEO <span class="cqs-brand-divider">/</span> CASHIER QUEUE</strong><small>University cashier services</small></span></a><div class="cqs-header-actions"><a v-if="state.context.role === 'CASHIER'" class="cqs-link" data-testid="public-display-link" href="/display" target="_blank" rel="noopener">Public display ↗</a><span class="cqs-account"><span class="cqs-avatar" aria-hidden="true">{{ state.context.role.charAt(0) }}</span><span>{{ roleLabel }}<small>Verified account access</small></span></span><button type="button" class="cqs-button cqs-button-outline" data-testid="sign-out" @click="logoutOpen = true">Sign out</button></div></header>
+      <main id="workspace-main" class="cqs-workspace" :key="state.accountVersion">
+        <nav class="cqs-workspace-nav" aria-label="Workspace navigation"><template v-if="state.context.role !== 'STUDENT'"><button type="button" class="cqs-link" @click="emit('navigate', state.context.role.toLowerCase())" :aria-current="state.workspace !== 'public' ? 'page' : undefined">My workspace</button><button type="button" class="cqs-link" @click="emit('navigate', 'public')" :aria-current="state.workspace === 'public' ? 'page' : undefined">Public queue</button><button type="button" class="cqs-link" @click="emit('refresh')">Refresh access</button><button type="button" class="cqs-link" data-testid="account-security" @click="emit('mfa-open')">Account security</button></template><button v-if="props.mfaMode && state.context.role === 'STUDENT'" type="button" class="cqs-link" data-testid="account-security" @click="emit('mfa-open')">Account security</button><a v-if="props.mfaMode" href="/" class="cqs-link" data-testid="back-to-dashboard">← Back to dashboard</a></nav>
+        <p v-if="props.mfaMode && state.context?.enabled" class="cqs-notice" role="status" data-testid="mfa-mode-banner">Secure account security page. This is the intentional MFA enrollment entry point. It does not change your role or grant ADMIN access. Verified account: {{ props.actor || 'verifying…' }}</p>
+<p v-if="data.status === 'restricted' && ['ADMIN', 'CASHIER'].includes(state.context.role)" class="cqs-notice" role="alert">Staff access could not be authorized. Verify your authenticator and contact the institution about current staff approval. Controls remain unavailable while access is denied.</p>
+        <QueueOperationNotice :state="actionState" @retry="emit('retry-action')" @dismiss="emit('dismiss-action')" />
+        <StudentDashboard v-if="state.workspace === 'student' && state.context.role === 'STUDENT'" :public-state="publicState" :data="data" :action-state="actionState" @issue="parameters => emit('queue-action', 'issue_ticket', parameters)" @refresh="emit('refresh-data')" @retry-public="emit('retry-public')" />
+        <CashierDashboard v-else-if="state.workspace === 'cashier' && state.context.role === 'CASHIER'" :context="state.context" :data="data" :action-state="actionState" @action="(...args) => emit('queue-action', ...args)" @refresh="emit('refresh-data')" />
+        <AdminDashboard v-else-if="state.workspace === 'admin' && state.context.role === 'ADMIN'" :public-state="publicState" :data="data" :management="managementState" :records="adminRecords" @records-tab="emit('records-tab',$event)" @records-find="emit('records-find',$event)" @records-clear="emit('records-clear')" @records-query="emit('records-query',$event)" @records-events="emit('records-events',$event)" @records-close-history="emit('records-close-history')" @records-retry="emit('records-retry')" @refresh="emit('refresh-data')"
+          @refresh-staff="emit('refresh-staff')" @management-action="(...args)=>emit('management-action',...args)" @reconcile-management="emit('reconcile-management')" />
+        <QueueOverview v-else :state="publicState" @retry="emit('retry-public')" />
+      </main>
+      <footer class="cqs-footer">Liceo Cashier Queue <span>Five services. One organized campus.</span></footer>
     </template>
-    <button v-else-if="state.signedIn" type="button" @click="emit('refresh')" class="mt-5 rounded-lg border border-slate-300 px-4 py-2 text-sm">Retry access verification</button>
-    <LocalTestLogin v-else-if="developmentLogin" :disabled="busy || oauthBusy" @login="(...args) => emit('login', ...args)" />
-    <div v-else class="google-login-panel">
-      <button type="button" class="auth-primary google-login-button" data-testid="google-login" :disabled="busy || oauthBusy" @click="emit('google')">Continue with Google</button>
-      <p>Use your personal or school Google account. Your access is verified securely after sign-in.</p>
-      <a href="/display" class="auth-text-link">View the public queue without signing in</a>
-    </div>
-  </section>
+    <main v-else-if="busy" id="workspace-main" class="cqs-session" data-testid="auth-pending">
+      <section class="cqs-session-card" aria-labelledby="session-title">
+        <div class="cqs-brand"><span class="cqs-brand-mark" aria-hidden="true">L</span><span><strong>LICEO UNIVERSITY</strong><small>Cashier Queueing System</small></span></div>
+        <h1 id="session-title">{{ oauthNeedsAction ? 'Sign-in needs your attention' : state.status === 'initializing' ? 'Restoring your session' : state.status === 'signing-out' ? 'Signing out' : state.status === 'signing-in' ? 'Completing sign-in' : 'Verifying account access' }}</h1>
+        <p role="status" class="cqs-verifying"><span v-if="!oauthNeedsAction" class="cqs-spinner" aria-hidden="true"></span>{{ oauthNeedsAction ? 'Choose Check sign-in outcome below to verify an existing session. No new Google code will be exchanged.' : state.status === 'signing-out' ? 'Clearing your session…' : ({session:'Checking your saved session…',user:'Confirming your sign-in with Auth…',permissions:'Checking your account permissions…'}[state.verificationStep] || 'Please wait while we verify your access.') }}</p>
+        <GoogleAuthCallback :state="oauthState" @reconcile="emit('reconcile-oauth')" @cancel="emit('cancel-oauth')" />
+      </section>
+    </main>
+    <main v-else id="workspace-main" class="cqs-login">
+      <section class="cqs-login-story" aria-label="University cashier services"><a href="/" class="cqs-brand"><span class="cqs-brand-mark" aria-hidden="true">L</span><span><strong>LICEO UNIVERSITY</strong><small>Cashier Queueing System</small></span></a><div class="cqs-login-message"><p class="cqs-eyebrow">Campus cashier services</p><h1>Less waiting.<br>More learning.</h1><p>Your campus, your time. A simpler way to connect with the university cashier office.</p><div class="cqs-login-features"><div><strong>05</strong><span>Dedicated services</span></div><div><strong>One</strong><span>Secure sign-in</span></div><div><strong>Live</strong><span>Public queue updates</span></div></div></div><p class="cqs-login-footer">University Cashier Office <span>Made for a more organized day.</span></p></section>
+      <section class="cqs-login-form" aria-label="Account workspace"><div class="cqs-login-inner"><p class="cqs-eyebrow">{{ developmentLogin ? 'Local development' : 'Welcome to your campus queue' }}</p><h2>{{ developmentLogin ? 'Development test sign-in' : 'Get in line, not held up.' }}</h2><p class="cqs-login-intro">{{ developmentLogin ? 'For existing local test accounts only.' : 'Sign in with Google to access your student or authorized staff workspace.' }}</p>
+        <p v-if="signedOut" class="cqs-notice cqs-notice-success" role="status">You have signed out of this browser.</p><p v-if="state.message" role="alert" class="cqs-notice">{{ state.message }}</p>
+        <GoogleAuthCallback :state="oauthState" @reconcile="emit('reconcile-oauth')" @cancel="emit('cancel-oauth')" />
+        <div v-if="state.status === 'disabled'" class="cqs-notice" data-testid="access-disabled"><h3>Account access disabled</h3><p>Contact the institution to review your access. The public queue remains available.</p><button type="button" class="cqs-link" @click="emit('refresh')">Check access again</button></div>
+        <button v-else-if="state.signedIn" type="button" class="cqs-button cqs-button-outline" @click="emit('refresh')">Retry access verification</button>
+        <LocalTestLogin v-else-if="developmentLogin" :disabled="busy || oauthBusy" @login="(...args) => emit('login', ...args)" />
+        <div v-else class="cqs-google-entry"><button type="button" class="cqs-google-button" data-testid="google-login" :disabled="busy || oauthBusy" @click="emit('google')"><svg aria-hidden="true" viewBox="0 0 24 24"><path fill="#4285F4" d="M21.6 12.2c0-.7-.1-1.4-.2-2.1H12v4h5.4a4.6 4.6 0 0 1-2 3v2.6h3.3c1.9-1.8 2.9-4.4 2.9-7.5Z"/><path fill="#34A853" d="M12 22c2.7 0 4.9-.9 6.6-2.4l-3.3-2.6a6 6 0 0 1-9-3.1H2.9v2.7A10 10 0 0 0 12 22Z"/><path fill="#FBBC05" d="M6.3 13.9a6 6 0 0 1 0-3.8V7.4H2.9a10 10 0 0 0 0 9.2l3.4-2.7Z"/><path fill="#EA4335" d="M12 6a5.5 5.5 0 0 1 3.9 1.5l2.9-2.9A9.8 9.8 0 0 0 12 2a10 10 0 0 0-9.1 5.4l3.4 2.7A6 6 0 0 1 12 6Z"/></svg>Continue with Google</button><p class="cqs-caption">Use your personal or school Google account. Provider availability is checked when you continue.</p></div>
+        <button v-if="state.signedIn" type="button" class="cqs-link cqs-signout-recovery" :disabled="busy" @click="logoutOpen = true">Sign out</button>
+        <div class="cqs-login-divider"></div><p class="cqs-security-note">Secure sign-in. Institution-controlled access.<br>Your institution manages your workspace and permissions.</p><a class="cqs-link cqs-public-link" href="/display">View the public queue without signing in ↗</a>
+      </div><p class="cqs-login-legal">Cashier Queueing System · Liceo-inspired campus experience</p></section>
+    </main>
+    <WorkspaceDialog v-if="logoutOpen" title="Sign out of your workspace?" @close="logoutOpen = false"><p>Your local session will be cleared. You can still view the public queue.</p><p v-if="['pending', 'unknown'].includes(actionState.phase)" class="cqs-notice">A queue operation is unconfirmed. Signing out will not undo it. Its request key is retained for this account to reconcile later.</p><template #actions><button type="button" class="cqs-button cqs-button-outline" @click="logoutOpen = false">Stay signed in</button><button type="button" class="cqs-button cqs-button-primary" data-testid="confirm-sign-out" @click="logout">Sign out</button></template></WorkspaceDialog>
+    <AccountMfaDialog :state="mfaState" @close="closeMfa" @refresh="emit('mfa-open')" @enroll="emit('mfa-enroll')" @select="id => emit('mfa-select', id)" @verify="code => emit('mfa-verify', code)"
+      @request-discard="id => emit('mfa-request-discard', id)" @cancel-discard="emit('mfa-cancel-discard')" @discard="emit('mfa-discard')" />
+  </div>
 </template>

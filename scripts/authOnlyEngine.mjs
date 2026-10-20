@@ -2,6 +2,17 @@ import http from 'node:http';
 import {root,need,names,label,authImage,pgImage,environment} from './authOnlyCore.mjs';
 import {nodeImage} from './vectorRepairCore.mjs';
 export {nodeImage};
+const authTag='public.ecr.aws/supabase/gotrue:v2.197.0';
+export function fixtureSubnet(runId,networks){
+  names(runId);const subnet=`10.253.${parseInt(runId.slice(0,2),16)}.0/24`;
+  const range=value=>{const [ip,bits]=value.split('/'),parts=ip.split('.').map(Number),prefix=Number(bits);
+    need(parts.length===4 && parts.every(x=>Number.isInteger(x)&&x>=0&&x<=255) && /^\d+$/.test(bits||'') && prefix>=0 && prefix<=32,'AGO_SUBNET_FORMAT');
+    const n=parts.reduce((a,x)=>a*256+x,0),size=2**(32-prefix),start=Math.floor(n/size)*size;return [start,start+size-1];};
+  const wanted=range(subnet);
+  for(const x of networks)for(const c of x.IPAM?.Config||[]){if(!c.Subnet || c.Subnet.includes(':'))continue;
+    const r=range(c.Subnet);need(wanted[1]<r[0] || r[1]<wanted[0],'AGO_FIXTURE_SUBNET_CONFLICT');}
+  return subnet;
+}
 export class AuthOnlyEngine {
   constructor(id) {
     this.id = id; this.names = names(id); this.containers = new Set(); this.networkId = null;
@@ -39,9 +50,9 @@ export class AuthOnlyEngine {
   }
   guardBody(name, body) {
     need(name.startsWith(this.names.prefix) && /^[a-z0-9-]+$/.test(name) && body.Labels?.[label] === this.id, 'AGO_CREATE_IDENTITY');
-    need([authImage, pgImage, nodeImage].includes(body.Image), 'AGO_CREATE_IMAGE');
+    need([authImage, authTag, pgImage, nodeImage].includes(body.Image), 'AGO_CREATE_IMAGE');
     need(Object.keys(body.Labels).length===1 && !Object.hasOwn(body.Labels,'com.supabase.cli.project') && !Object.hasOwn(body.Labels,'com.docker.compose.project'),'AGO_PROJECT_LABELS');
-    if(body.Image===authImage){const env=environment(body.Env);need(/^postgres:\/\/postgres:[0-9a-f]{48}@db:5432\/postgres\?sslmode=disable&search_path=auth$/.test(env.GOTRUE_DB_DATABASE_URL),'AGO_FIXTURE_DATABASE_ONLY');}
+    if([authImage,authTag].includes(body.Image)){const env=environment(body.Env);need(/^postgres:\/\/postgres:[0-9a-f]{48}@db:5432\/postgres\?sslmode=disable&search_path=auth$/.test(env.GOTRUE_DB_DATABASE_URL),'AGO_FIXTURE_DATABASE_ONLY');}
     const h = body.HostConfig;
     need(h && !h.Privileged && !h.AutoRemove && !h.Binds?.length && !h.VolumesFrom?.length && !Object.keys(h.PortBindings || {}).length && !h.PublishAllPorts, 'AGO_CREATE_PRIVILEGES');
     need(!h.CapAdd?.length && !h.Devices?.length && !h.DeviceRequests?.length && !h.ExtraHosts?.length && !h.Links?.length,
@@ -55,6 +66,7 @@ export class AuthOnlyEngine {
   }
   async create(name, body) {
     this.guardBody(name, body);
+    if(body.Image===authTag){const image=await this.#request('GET','/images/'+encodeURIComponent(authTag)+'/json');need(image.Id===authImage,'AGO_CACHED_AUTH_TAG_CHANGED');}
     const x = await this.#request('POST', '/containers/create?name=' + encodeURIComponent(name), body);
     need(/^[0-9a-f]{64}$/.test(x.Id), 'AGO_CREATED_ID'); this.containers.add(x.Id);
     await this.inspect(x.Id); return x.Id;
@@ -72,15 +84,19 @@ export class AuthOnlyEngine {
     // Uniqueness is Engine-enforced for names; never reuse an existing resource.
     const old = await this.#request('GET', '/networks?filters=' + encodeURIComponent(JSON.stringify({ name: [this.names.network] })));
     need(!old.some(x => x.Name === this.names.network), 'AGO_RESOURCE_EXISTS');
-    const network = await this.#request('POST', '/networks/create', { Name: this.names.network, Driver: 'bridge', Internal: true, Labels: { [label]: this.id } });
+    // Historical disposable networks are retained. Use one explicit, checked /24
+    // instead of consuming another default /16 or changing global daemon pools.
+    this.subnet=fixtureSubnet(this.id,await this.#request('GET','/networks'));
+    const network = await this.#request('POST', '/networks/create', { Name: this.names.network, Driver: 'bridge', Internal: true, Labels: { [label]: this.id },
+      IPAM:{Driver:'default',Config:[{Subnet:this.subnet}]} });
     this.networkId = network.Id;
     const observed = await this.#request('GET', `/networks/${this.networkId}`);
-    need(observed.Internal && observed.Labels[label] === this.id && observed.Name === this.names.network, 'AGO_NETWORK_IDENTITY');
+    need(observed.Internal && observed.Labels[label] === this.id && observed.Name === this.names.network && observed.IPAM.Config?.length===1 && observed.IPAM.Config[0].Subnet===this.subnet, 'AGO_NETWORK_IDENTITY');
   }
   async verifyNetwork(){
     const x=await this.#request('GET',`/networks/${this.networkId}`);
     const named=await this.#request('GET','/networks/'+encodeURIComponent(this.names.network));
-    need(x.Id===this.networkId && named.Id===this.networkId && x.Name===this.names.network && x.Internal && x.Labels[label]===this.id,'AGO_NETWORK_IDENTITY');
+    need(x.Id===this.networkId && named.Id===this.networkId && x.Name===this.names.network && x.Internal && x.Labels[label]===this.id && x.IPAM.Config?.length===1 && x.IPAM.Config[0].Subnet===this.subnet,'AGO_NETWORK_IDENTITY');
   }
   async probe(id, kind) {
     const x=await this.inspect(id); let cmd;

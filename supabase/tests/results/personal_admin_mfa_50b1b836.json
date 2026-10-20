@@ -1,0 +1,87 @@
+{
+  "result": "PENDING_REAL_ENROLLMENT_OR_AAL2",
+  "observedAt": "2026-10-19T10:48:43.575610+00:00",
+  "accounts": [
+    {
+      "role": "STUDENT",
+      "email": "eabeso63122@liceo.edu.ph",
+      "auth_id": "b7d9aee8-c54d-455f-9913-a4c4dea0d097",
+      "binding": "7b236769634b0910b034c035cc1422021f2281be9d6fd77d5c882ffd9ed86bbd",
+      "enabled": true,
+      "account_id": "b7d9aee8-c54d-455f-9913-a4c4dea0d097",
+      "all_tickets": 0,
+      "assignments": 0,
+      "factor_count": 0,
+      "google_count": 1,
+      "not_anonymous": true,
+      "active_tickets": 0,
+      "email_confirmed": true,
+      "verified_factors": 0
+    },
+    {
+      "role": "STUDENT",
+      "email": "ellasharmaineabeso2004@gmail.com",
+      "auth_id": "5c96debb-697f-4cad-805f-92b518e28343",
+      "binding": "0fa3fe400dbd117642d5cb7eb89bfed7471e6ef447e59bfc8ac8426001e39701",
+      "enabled": true,
+      "account_id": "5c96debb-697f-4cad-805f-92b518e28343",
+      "all_tickets": 0,
+      "assignments": 0,
+      "factor_count": 1,
+      "google_count": 1,
+      "not_anonymous": true,
+      "active_tickets": 0,
+      "email_confirmed": true,
+      "verified_factors": 0
+    }
+  ],
+  "mfa": {
+    "recent_aal2_sessions": 0,
+    "verified_totp_factors": 0,
+    "latest_factor_challenge": null,
+    "latest_totp_verification": null
+  },
+  "queueRolesSecurityAndMigrationsPreserved": true,
+  "changedAuthTableCounts": {
+    "\"auth\".\"audit_log_entries\"": {
+      "before": 144,
+      "after": 154
+    },
+    "\"auth\".\"identities\"": {
+      "before": 29,
+      "after": 29
+    },
+    "\"auth\".\"mfa_amr_claims\"": {
+      "before": 36,
+      "after": 36
+    },
+    "\"auth\".\"mfa_factors\"": {
+      "before": 0,
+      "after": 1
+    },
+    "\"auth\".\"refresh_tokens\"": {
+      "before": 36,
+      "after": 36
+    },
+    "\"auth\".\"sessions\"": {
+      "before": 36,
+      "after": 36
+    },
+    "\"auth\".\"users\"": {
+      "before": 42,
+      "after": 42
+    }
+  },
+  "changedAuthSequences": [
+    "\"auth\".\"refresh_tokens_id_seq\""
+  ],
+  "servicesPreserved": true,
+  "backups": {
+    "files": 93,
+    "sha256": "27e6ed58b1fe58031c3a953e2c95cd8d362e869735f598c84577673498905e96"
+  },
+  "google": true,
+  "totp": true,
+  "securityMigrationUnapplied": true,
+  "limitation": "Database session/AMR evidence must be paired with the user-confirmed current AAL2 screen. No live browser JWT was read."
+}

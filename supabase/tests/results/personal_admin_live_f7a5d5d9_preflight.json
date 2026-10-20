@@ -1,0 +1,255 @@
+{
+  "result": "PASS_READ_ONLY_PREFLIGHT",
+  "run": "f7a5d5d9",
+  "observedAt": "2026-10-19T10:22:30.707797+00:00",
+  "authId": "5c57bce94c516ec320f259e94ebaf2d348598b6c26e7e2d979c719a8381992ae",
+  "http": {
+    "auth": 200,
+    "settings": 200,
+    "anonymous_api": 200
+  },
+  "google": true,
+  "totp": true,
+  "accounts": [
+    {
+      "role": "STUDENT",
+      "email": "eabeso63122@liceo.edu.ph",
+      "auth_id": "b7d9aee8-c54d-455f-9913-a4c4dea0d097",
+      "binding": "7b236769634b0910b034c035cc1422021f2281be9d6fd77d5c882ffd9ed86bbd",
+      "enabled": true,
+      "account_id": "b7d9aee8-c54d-455f-9913-a4c4dea0d097",
+      "all_tickets": 0,
+      "assignments": 0,
+      "factor_count": 0,
+      "google_count": 1,
+      "not_anonymous": true,
+      "active_tickets": 0,
+      "email_confirmed": true,
+      "verified_factors": 0
+    },
+    {
+      "role": "STUDENT",
+      "email": "ellasharmaineabeso2004@gmail.com",
+      "auth_id": "5c96debb-697f-4cad-805f-92b518e28343",
+      "binding": "0fa3fe400dbd117642d5cb7eb89bfed7471e6ef447e59bfc8ac8426001e39701",
+      "enabled": true,
+      "account_id": "5c96debb-697f-4cad-805f-92b518e28343",
+      "all_tickets": 0,
+      "assignments": 0,
+      "factor_count": 0,
+      "google_count": 1,
+      "not_anonymous": true,
+      "active_tickets": 0,
+      "email_confirmed": true,
+      "verified_factors": 0
+    }
+  ],
+  "existingStaff": [
+    {
+      "id": "0847be2c-fd2b-41f9-adb1-0232b3d0e733",
+      "role": "ADMIN",
+      "enabled": true,
+      "assignments": 0,
+      "verified_factors": 0
+    },
+    {
+      "id": "1abe1490-ec93-42d9-b97c-0de42bcc442e",
+      "role": "CASHIER",
+      "enabled": true,
+      "assignments": 0,
+      "verified_factors": 0
+    },
+    {
+      "id": "2fa10f75-14b5-4603-9d29-7c4694a2c894",
+      "role": "ADMIN",
+      "enabled": true,
+      "assignments": 0,
+      "verified_factors": 0
+    },
+    {
+      "id": "3c08ca87-d1d4-47f9-aba4-132016f63a52",
+      "role": "CASHIER",
+      "enabled": true,
+      "assignments": 2,
+      "verified_factors": 0
+    },
+    {
+      "id": "762ec542-3dae-4df6-af43-81f4bc128600",
+      "role": "ADMIN",
+      "enabled": true,
+      "assignments": 0,
+      "verified_factors": 0
+    },
+    {
+      "id": "92a2d664-763f-4696-9119-c051743e1ea6",
+      "role": "CASHIER",
+      "enabled": true,
+      "assignments": 1,
+      "verified_factors": 0
+    },
+    {
+      "id": "94b1db21-1dab-43ff-b68e-f8a5f30df60b",
+      "role": "ADMIN",
+      "enabled": false,
+      "assignments": 0,
+      "verified_factors": 0
+    },
+    {
+      "id": "97b0561d-e07e-4f19-a13d-c4f5be751d69",
+      "role": "CASHIER",
+      "enabled": true,
+      "assignments": 0,
+      "verified_factors": 0
+    },
+    {
+      "id": "b3152062-fb1f-465a-9060-3e673fadac1d",
+      "role": "ADMIN",
+      "enabled": true,
+      "assignments": 0,
+      "verified_factors": 0
+    },
+    {
+      "id": "d1e043d5-4758-41f5-a42f-ab7a4ea1a2cf",
+      "role": "ADMIN",
+      "enabled": true,
+      "assignments": 0,
+      "verified_factors": 0
+    },
+    {
+      "id": "df7361b6-26d2-4ccc-8163-41f19e966100",
+      "role": "CASHIER",
+      "enabled": true,
+      "assignments": 0,
+      "verified_factors": 0
+    }
+  ],
+  "securityMigrationUnapplied": true,
+  "proposalSha256": "b22d63d24c991b9ebf0d380d27a716d5ea72e418f5e62e177c96dded4481222c",
+  "counts": {
+    "\"_realtime\".\"extensions\"": 1,
+    "\"_realtime\".\"feature_flags\"": 1,
+    "\"_realtime\".\"schema_migrations\"": 33,
+    "\"_realtime\".\"tenants\"": 1,
+    "\"auth\".\"audit_log_entries\"": 144,
+    "\"auth\".\"custom_oauth_providers\"": 0,
+    "\"auth\".\"flow_state\"": 0,
+    "\"auth\".\"identities\"": 29,
+    "\"auth\".\"instances\"": 0,
+    "\"auth\".\"mfa_amr_claims\"": 36,
+    "\"auth\".\"mfa_challenges\"": 0,
+    "\"auth\".\"mfa_factors\"": 0,
+    "\"auth\".\"mfa_recovery_code_sets\"": 0,
+    "\"auth\".\"mfa_recovery_codes\"": 0,
+    "\"auth\".\"oauth_authorizations\"": 0,
+    "\"auth\".\"oauth_client_states\"": 0,
+    "\"auth\".\"oauth_clients\"": 0,
+    "\"auth\".\"oauth_consents\"": 0,
+    "\"auth\".\"one_time_tokens\"": 0,
+    "\"auth\".\"refresh_tokens\"": 36,
+    "\"auth\".\"saml_providers\"": 0,
+    "\"auth\".\"saml_relay_states\"": 0,
+    "\"auth\".\"schema_migrations\"": 82,
+    "\"auth\".\"scim_tokens\"": 0,
+    "\"auth\".\"scim_users\"": 0,
+    "\"auth\".\"sessions\"": 36,
+    "\"auth\".\"sso_domains\"": 0,
+    "\"auth\".\"sso_providers\"": 0,
+    "\"auth\".\"users\"": 42,
+    "\"auth\".\"webauthn_challenges\"": 0,
+    "\"auth\".\"webauthn_credentials\"": 0,
+    "\"queue_display\".\"counter_state\"": 5,
+    "\"queue_display\".\"service_state\"": 0,
+    "\"queue_private\".\"accounts\"": 42,
+    "\"queue_private\".\"admin_audit_events\"": 32,
+    "\"queue_private\".\"counter_services\"": 5,
+    "\"queue_private\".\"counters\"": 5,
+    "\"queue_private\".\"operation_requests\"": 69,
+    "\"queue_private\".\"queue_days\"": 7,
+    "\"queue_private\".\"service_day_state\"": 5,
+    "\"queue_private\".\"services\"": 5,
+    "\"queue_private\".\"settings\"": 1,
+    "\"queue_private\".\"staff_counter_assignments\"": 4,
+    "\"queue_private\".\"student_profiles\"": 2,
+    "\"queue_private\".\"ticket_events\"": 57,
+    "\"queue_private\".\"tickets\"": 20,
+    "\"realtime\".\"messages\"": 0,
+    "\"realtime\".\"messages_2026_10_16\"": 0,
+    "\"realtime\".\"messages_2026_10_17\"": 0,
+    "\"realtime\".\"messages_2026_10_18\"": 0,
+    "\"realtime\".\"messages_2026_10_19\"": 0,
+    "\"realtime\".\"messages_2026_10_20\"": 0,
+    "\"realtime\".\"messages_2026_10_21\"": 0,
+    "\"realtime\".\"messages_2026_10_22\"": 0,
+    "\"realtime\".\"schema_migrations\"": 91,
+    "\"realtime\".\"subscription\"": 6,
+    "\"storage\".\"buckets\"": 0,
+    "\"storage\".\"buckets_analytics\"": 0,
+    "\"storage\".\"buckets_vectors\"": 0,
+    "\"storage\".\"iceberg_namespaces\"": 0,
+    "\"storage\".\"iceberg_tables\"": 0,
+    "\"storage\".\"migrations\"": 75,
+    "\"storage\".\"objects\"": 0,
+    "\"storage\".\"s3_multipart_uploads\"": 0,
+    "\"storage\".\"s3_multipart_uploads_parts\"": 0,
+    "\"storage\".\"vector_indexes\"": 0,
+    "\"supabase_functions\".\"hooks\"": 0,
+    "\"supabase_functions\".\"migrations\"": 2,
+    "\"supabase_migrations\".\"schema_migrations\"": 6,
+    "\"vault\".\"secrets\"": 0
+  },
+  "withinRunPreservation": true,
+  "migrations": [
+    "20261016000100",
+    "20261016000200",
+    "20261016000300",
+    "20261016000400",
+    "20261016000500",
+    "20261016000600"
+  ],
+  "routes": {
+    "1": [
+      "TP"
+    ],
+    "2": [
+      "SOA"
+    ],
+    "3": [
+      "PNEP"
+    ],
+    "4": [
+      "REF"
+    ],
+    "5": [
+      "ADJ"
+    ]
+  },
+  "backups": {
+    "files": 93,
+    "sha256": "27e6ed58b1fe58031c3a953e2c95cd8d362e869735f598c84577673498905e96"
+  },
+  "sessionColumns": [
+    "id",
+    "user_id",
+    "created_at",
+    "updated_at",
+    "factor_id",
+    "aal",
+    "not_after",
+    "refreshed_at",
+    "user_agent",
+    "ip",
+    "tag",
+    "oauth_client_id",
+    "refresh_token_hmac_key",
+    "refresh_token_counter",
+    "scopes"
+  ],
+  "amrColumns": [
+    "session_id",
+    "created_at",
+    "updated_at",
+    "authentication_method",
+    "id"
+  ],
+  "protectedCapture": ".local-auth-only/f7a5d5d9/personal-admin-baseline/payload.dpapi"
+}

@@ -1,0 +1,57 @@
+{
+  "result": "PASS_READ_ONLY_INSTALLED_CONTRACT",
+  "run": "eed60a92",
+  "observedAt": "2026-10-19T13:35:50.909Z",
+  "cluster": "7696959712798593061",
+  "target": {
+    "id": "5c96debb-697f-4cad-805f-92b518e28343",
+    "role": "ADMIN",
+    "email": "ellasharmaineabeso2004@gmail.com",
+    "enabled": true
+  },
+  "schoolRole": "STUDENT",
+  "directoryRows": 42,
+  "rowFields": [
+    "email,enabled,google_identity,id,role,verified_factors"
+  ],
+  "functionBindings": [
+    {
+      "args": "",
+      "name": "admin_staff_directory",
+      "result": "jsonb",
+      "settings": [
+        "search_path=\"\""
+      ],
+      "anon_execute": false,
+      "identity_args": "",
+      "security_definer": true,
+      "authenticated_execute": true,
+      "sourceSha256": "e710279c7c0b7586d858a5d5b0ad36eb25425940a0349dc9ace97255db62615e"
+    },
+    {
+      "args": "p_email text, p_role text",
+      "name": "request_staff_access",
+      "result": "jsonb",
+      "settings": [
+        "search_path=\"\""
+      ],
+      "anon_execute": false,
+      "identity_args": "p_email text, p_role text",
+      "security_definer": true,
+      "authenticated_execute": true,
+      "sourceSha256": "78894cc5c2c6077d3c8e2536a88b921ef872b5269d13d240b92a7bb344a6726b"
+    }
+  ],
+  "privateTableRls": true,
+  "browserTableRead": false,
+  "existingReviewRequests": 0,
+  "migration007Absent": true,
+  "readChecks": {
+    "ADMIN": "PASS",
+    "STUDENT": "42501",
+    "CASHIER": "42501"
+  },
+  "authenticationBoundary": "Trusted operator read-only SQL using current real account UUIDs and authenticated role; no browser JWT or live Google session was read.",
+  "proposalSha256": "4f101ff6918755e7affe33cbf78020f7b784105f87db872fb92fa874bd5cb25a",
+  "retainedWrites": false
+}

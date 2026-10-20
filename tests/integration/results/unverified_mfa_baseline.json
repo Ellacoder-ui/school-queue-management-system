@@ -1,0 +1,167 @@
+{
+  "observedAt": "2026-10-19T20:12:22.561618+00:00",
+  "result": "PASS",
+  "readOnly": true,
+  "endpoint": {
+    "host": "127.0.0.1",
+    "port": 54322,
+    "project": "school-queue-local",
+    "cluster": "7696959712798593061",
+    "version": "17.11",
+    "database": "postgres",
+    "readOnly": true,
+    "serverPort": 5432
+  },
+  "databaseContainer": "16f1de8f80f73115d5792cb395f6680ed2d73135b156d6311a31c96765d540b9",
+  "authContainer": "5c57bce94c516ec320f259e94ebaf2d348598b6c26e7e2d979c719a8381992ae",
+  "network": "supabase_network_school-queue-local",
+  "account": {
+    "id": "5c96debb-697f-4cad-805f-92b518e28343",
+    "role": "ADMIN",
+    "email": "ellasharmaineabeso2004@gmail.com",
+    "binding": "0fa3fe400dbd117642d5cb7eb89bfed7471e6ef447e59bfc8ac8426001e39701",
+    "enabled": true,
+    "confirmed": true,
+    "assignments": 0,
+    "nonanonymous": true,
+    "activeTickets": 0,
+    "applicationId": "5c96debb-697f-4cad-805f-92b518e28343",
+    "googleVerified": true,
+    "googleIdentities": 1
+  },
+  "factors": {
+    "total": 1,
+    "verified": 0,
+    "inventory": [
+      {
+        "type": "totp",
+        "status": "unverified",
+        "suffix": "c1fc9a6f",
+        "createdAt": "2026-10-19T12:28:07.613277+00:00",
+        "updatedAt": "2026-10-19T12:28:07.613277+00:00",
+        "challenges": 0,
+        "ownerMatches": true,
+        "bindingSha256": "6d4ce8ad136ebfd9fb70e659691764b77cdffbc8fe9b984e02ad3219e8987bf9",
+        "associatedSessions": 0
+      }
+    ],
+    "unfinishedTotp": 1
+  },
+  "health": {
+    "auth": 200,
+    "settings": 200,
+    "googleEnabled": true,
+    "api": 200,
+    "totpEnabled": true
+  },
+  "protectionState": {
+    "007Absent": true,
+    "012Absent": true,
+    "schoolStudent": true,
+    "challengeCascade": true
+  },
+  "state": {
+    "active": 0,
+    "counts": {
+      "days": 7,
+      "audits": 34,
+      "events": 57,
+      "tickets": 20,
+      "accounts": 42,
+      "counters": 5,
+      "requests": 69,
+      "services": 5
+    },
+    "routes": {
+      "1": [
+        "TP"
+      ],
+      "2": [
+        "SOA"
+      ],
+      "3": [
+        "PNEP"
+      ],
+      "4": [
+        "REF"
+      ],
+      "5": [
+        "ADJ"
+      ]
+    },
+    "versions": [
+      "20261016000100",
+      "20261016000200",
+      "20261016000300",
+      "20261016000400",
+      "20261016000500",
+      "20261016000600"
+    ],
+    "open_days": 0,
+    "rls_count": 16,
+    "assignments": [
+      {
+        "total": 1,
+        "counter": 1,
+        "eligible": 1
+      },
+      {
+        "total": 1,
+        "counter": 2,
+        "eligible": 1
+      },
+      {
+        "total": 0,
+        "counter": 3,
+        "eligible": 0
+      },
+      {
+        "total": 0,
+        "counter": 4,
+        "eligible": 0
+      },
+      {
+        "total": 2,
+        "counter": 5,
+        "eligible": 1
+      }
+    ],
+    "publication": [
+      "queue_display.counter_state",
+      "queue_display.service_state"
+    ],
+    "private_usage": false,
+    "current_day_closed": false
+  },
+  "tableFingerprints": {
+    "auth.users": "bdadf50ee60602467c8f86db4bf37b46",
+    "auth.sessions": "ce9cf71b6dd7af865f91d1bc760a8971",
+    "auth.identities": "432e5114905b5d7d40b951ae5c448d7d",
+    "auth.mfa_factors": "26421ab932c7793a08144597090cb234",
+    "auth.mfa_amr_claims": "5242e60e8f657829f3ced3cbe5e183f5",
+    "auth.mfa_challenges": "d41d8cd98f00b204e9800998ecf8427e",
+    "auth.refresh_tokens": "4c9ccc57c4ace61ce67b7d4eb6269f4b",
+    "queue_private.tickets": "9b1a058740b28f88726326319b62c4de",
+    "auth.audit_log_entries": "b2b3ecb87fdf88f0b983cc50d3884732",
+    "auth.schema_migrations": "7def01dcf385b28a0b3a2a5f01825c29",
+    "queue_private.accounts": "11083b6abb9cbabbc2d8d7baedc6b22e",
+    "queue_private.counters": "5006866a395bf54216b190152224f411",
+    "queue_private.services": "4299fe0f1ef09daa449f53de040959bf",
+    "queue_private.settings": "928d9412fc3ad06029f1bea94fdfe94b",
+    "queue_private.queue_days": "ce6519fbed09d22375a3fc44d998e1e3",
+    "queue_display.counter_state": "44ebbc0fdc5d961c14ccfdfe13ac4ddf",
+    "queue_display.service_state": "d41d8cd98f00b204e9800998ecf8427e",
+    "queue_private.ticket_events": "f788265669180798356af717c1c4b646",
+    "queue_private.counter_services": "4c4a5939e2e9df73949bdc3eb5b6292b",
+    "queue_private.student_profiles": "c2d70aab34fa2d84bb390367c7aa8d02",
+    "queue_private.service_day_state": "50ea4a0dfdd8199fdd1d5c0ddc5cee70",
+    "queue_private.admin_audit_events": "dcd6b3a60b5a3492939941774d8b03cc",
+    "queue_private.operation_requests": "d2b39a5f59d3e7c082c81594a4a49b72",
+    "queue_private.staff_review_requests": "d73bd460d9a83962431bc7cfbc729607",
+    "supabase_migrations.schema_migrations": "a5cb31f0a166fac63f1655b95aa40f3a",
+    "queue_private.staff_counter_assignments": "0dab60840e47479994e76c95b4525021"
+  },
+  "functionsFingerprint": "63fdd227317fcec34cf43eb945ea556a",
+  "securitySha256": "7dc6dee32dd5cc8d918320f165ca237a9593138585a57221baf5ffe0725178f4",
+  "realFactorOperation": false
+}

@@ -1,0 +1,55 @@
+{
+  "run": "e8d9ce4a",
+  "result": "FAIL_SOURCE_FINGERPRINT_CHANGED",
+  "observedAt": "2026-10-19T14:15:24.763Z",
+  "cluster": "7696959712798593061",
+  "facts": {
+    "routes": [
+      {
+        "counter": 1,
+        "service": "TP"
+      },
+      {
+        "counter": 2,
+        "service": "SOA"
+      },
+      {
+        "counter": 3,
+        "service": "PNEP"
+      },
+      {
+        "counter": 4,
+        "service": "REF"
+      },
+      {
+        "counter": 5,
+        "service": "ADJ"
+      }
+    ],
+    "accounts": 42,
+    "requests": 0,
+    "school_role": "STUDENT",
+    "personal_role": "ADMIN",
+    "application_rls": true,
+    "migration007_absent": true
+  },
+  "sourceRowsAndFunctionsPreserved": false,
+  "changedRowTables": [
+    "auth.users"
+  ],
+  "functionDefinitionsPreserved": true,
+  "staffRequestAndMfaRowsPreserved": true,
+  "serviceDefinitionsPreserved": true,
+  "nonVectorLifecyclesPreserved": true,
+  "allowedNewContainers": [
+    "78bdd0d064dd8da35cf3675cd0c5d35f57dca34abc5a3bf9361c57e2107e10db",
+    "f36b0dda66168ea5b9390626562bf50f177fef7720a6cce86b3c424a981115a5"
+  ],
+  "allowedNewNetwork": "7d6dbbc96a0f1581f213fcf365396b28b7a6019b3783a436bdf8c509b35ecfec",
+  "volumesPreserved": true,
+  "authHealth": 200,
+  "settingsHealth": 200,
+  "anonymousApi": 200,
+  "googleEnabled": true,
+  "retainedWrites": false
+}

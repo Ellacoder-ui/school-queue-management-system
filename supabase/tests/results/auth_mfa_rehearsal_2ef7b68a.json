@@ -1,0 +1,113 @@
+{
+  "run": "2ef7b68a",
+  "result": "PASS",
+  "retained_writes": false,
+  "real_google_or_retained_mfa": false,
+  "checks": [
+    {
+      "name": "new internal no-port cached Auth/database fixture healthy; Google remains enabled",
+      "result": "PASS"
+    },
+    {
+      "name": "actual disabled Auth refuses synthetic enrollment",
+      "result": "PASS"
+    },
+    {
+      "name": "retained factory refuses absent approval",
+      "result": "PASS"
+    },
+    {
+      "name": "wrong workflow approval refused before configuration or container changes",
+      "result": "PASS"
+    },
+    {
+      "name": "MFA-specific encrypted original/candidate/TOML capture privately verified",
+      "result": "PASS"
+    },
+    {
+      "name": "nonsecret TOML proposal appends only the two TOTP flags",
+      "result": "PASS"
+    },
+    {
+      "name": "unreviewed bare activation remains locked",
+      "result": "PASS"
+    },
+    {
+      "name": "wrong plan approval rejected before mutations",
+      "result": "PASS"
+    },
+    {
+      "name": "replacement changes only two MFA flags; Google/JWT/DB/email/aliases preserved",
+      "result": "PASS"
+    },
+    {
+      "name": "repeat apply rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "real installed SDK enrolls a synthetic TOTP factor on actual Auth",
+      "result": "PASS"
+    },
+    {
+      "name": "actual Auth rejects an expired TOTP code",
+      "result": "PASS"
+    },
+    {
+      "name": "actual Auth rejects a wrong TOTP code",
+      "result": "PASS"
+    },
+    {
+      "name": "actual verification upgrades session to AAL2 with server-verified user/factor",
+      "result": "PASS"
+    },
+    {
+      "name": "fixture migrations and witness preserved through normal synthetic Auth writes",
+      "result": "PASS"
+    },
+    {
+      "name": "wrong rollback approval refused",
+      "result": "PASS"
+    },
+    {
+      "name": "repeat rollback refused",
+      "result": "PASS"
+    },
+    {
+      "name": "fresh executor restores original MFA-disabled definition; Google remains enabled",
+      "result": "PASS"
+    },
+    {
+      "name": "rollback preserves new fixture user/migrations/witness",
+      "result": "PASS"
+    },
+    {
+      "name": "restored disabled verification rejects API use",
+      "result": "PASS"
+    },
+    {
+      "name": "injected exit-42 replacement failure is detected without retry",
+      "result": "PASS"
+    },
+    {
+      "name": "separately bound rollback restores healthy original after failed replacement",
+      "result": "PASS"
+    }
+  ],
+  "synthetic_signup": {
+    "status": 200,
+    "code": null,
+    "session": true
+  },
+  "owned_containers_stopped": true,
+  "retained_preservation": true,
+  "containers": [
+    "58eae6302818732c869848baa4cdb6419257e4aa6721dc0b48067d2ab9658c83",
+    "de113176c1ab42c2998e548f663587512aa1e3452b109f089608e4573d62bf0b",
+    "f3f6e3bd02a325b1fde49fd83af2ad530e6a21988b04aeb43191c33d3eccbda0",
+    "b053b7fb9724622842ecffd9b2773a31853d50a2f8426d7427db94ce50412865",
+    "4ad64601996bec9c6132fb581e75e847fe74da2a60d294f8fdac42884c88de54",
+    "a3002ece9666c1af38281c1a78d49d60a5dc1ac9f1f18b5ab712c26e11e4ffc5"
+  ],
+  "network": "sq-ago-2ef7b68a-network",
+  "passed": 22
+}

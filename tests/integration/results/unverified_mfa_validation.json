@@ -1,0 +1,20 @@
+{
+  "result": "PASS",
+  "frozenExistingInputs": 2340,
+  "existingInputsUnchanged": true,
+  "newStoppedContainers": 15,
+  "newInternalNetworksRetained": 5,
+  "syntaxWhitespace": "PASS",
+  "frontendMfaMethods": 26,
+  "finalActualAuthChecks": 21,
+  "fixtureRun": "eb84d6b2",
+  "realFactorOperation": false,
+  "sourceHashes": {
+    "tests/security/inspectUnverifiedMfa.py": "8bef9eac1a4cd188250f12dd07d1d058247738935bc7f05e1bfcd42ca9b3b1a2",
+    "tests/security/unverifiedMfaCleanup.integration.mjs": "bc09a5681bd0693a57bb396bf534e1b248bb29b494ec0e75864e751702b63908",
+    "src/lib/accountMfa.js": "2d4a298d40b7377d0cbf722e54db718a70858f26ee3a3f2a0d9adb122e48e934",
+    "src/lib/mfaRequestPolicy.js": "bc4e054fcc5d2b2812954add908aaba2e688026c50afff919e220ef2098f279d",
+    "src/components/AccountMfaDialog.vue": "d45b0d980f9fadfcc3321ed4ae4da93e8958eee48ca19ced7ce6ed485ce79126",
+    "supabase/config.toml": "4e54b63fa7e06d18e3e35c80c1cf3ff234c3e8d6932a44139cc34516d3fc5898"
+  }
+}

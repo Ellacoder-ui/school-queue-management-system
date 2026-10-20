@@ -1,0 +1,23 @@
+{
+  "result": "READ_ONLY_OBSERVATION_NOT_A_PRESERVATION_PASS",
+  "baseline": "2026-10-20T01:10:59.124354+00:00",
+  "newAudit": [
+    {
+      "action": "token_refreshed",
+      "isPersonal": true
+    },
+    {
+      "action": "token_revoked",
+      "isPersonal": true
+    }
+  ],
+  "authUsers": 42,
+  "identities": 29,
+  "recentAuthUsers": [
+    {
+      "isPersonal": true,
+      "lastSignInAfterBaseline": false
+    }
+  ],
+  "retainedWrites": false
+}

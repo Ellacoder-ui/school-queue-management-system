@@ -123,10 +123,10 @@ export function createGoogleOAuthController(auth, access, {
     emit({phase:'checking',message:'Checking sign-in…'})
     try {
       const marker = read()
-      if (!marker || (!owned(marker) && marker.phase !== 'complete')) throw new Error('Unknown sign-in')
+      if (!marker || marker.phase === 'cancelled' || (!owned(marker) && marker.phase !== 'complete')) throw new Error('Unknown sign-in')
       const result = await bounded(auth.getSession())
       if (result.error || !result.data.session) throw new Error('No session')
-      await accept(result.data.session,version,marker)
+      if (!await accept(result.data.session,version,marker)) throw new Error('Sign-in changed')
     } catch { if (!stopped && version === epoch) fail('No sign-in could be verified. Cancel this attempt and sign in again.') }
   }
   function cancel(message = 'Sign-in cancelled. You can start a new attempt.') {

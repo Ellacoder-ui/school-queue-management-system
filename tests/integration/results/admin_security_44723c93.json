@@ -1,0 +1,21 @@
+{
+  "run": "44723c93",
+  "retained_writes": false,
+  "real_mfa_or_google_login": false,
+  "checks": [],
+  "result": "FAIL",
+  "failure": "Fixture PostgREST readiness failed: missing-port-binding",
+  "owned_resources": {
+    "containers": [
+      "a23090ccd94f4791a3041e1c3193e5b28dc6e6bee8c46876b7b33860b97fe5ce",
+      "f96e1c28e579adf51a8622509bb62db6166a1a51fdd6a43492ff3d9f6a93be0d"
+    ],
+    "network": "sq-queue-44723c93-net"
+  },
+  "owned_containers_stopped": true,
+  "retained_rows_functions_exact": true,
+  "retained_services_exact": true,
+  "docker_inventory_exact": true,
+  "passed": 0,
+  "failed": 0
+}

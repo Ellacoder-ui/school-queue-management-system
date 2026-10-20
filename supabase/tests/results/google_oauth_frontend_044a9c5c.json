@@ -1,0 +1,39 @@
+{
+  "run": "044a9c5c",
+  "real_google_login": false,
+  "auth_writes_forwarded": false,
+  "checks": [],
+  "screenshots": [],
+  "isolated_vite_cache": true,
+  "isolated_browser_loopback_permission": true,
+  "result": "FAIL",
+  "failure": "Product login unavailable",
+  "blocked": [],
+  "runtime_errors": [],
+  "network_failures": [],
+  "public_response_statuses": [],
+  "socket_statuses": [
+    101
+  ],
+  "browser_state": {
+    "path": "/",
+    "google": false
+  },
+  "passed": 0,
+  "failed": 0,
+  "interception_diagnostics": [],
+  "app_resource_statuses": [
+    {
+      "category": "document",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    }
+  ]
+}

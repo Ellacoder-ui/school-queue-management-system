@@ -1,0 +1,22 @@
+{
+  "run": "7998ca96",
+  "result": "FAIL",
+  "retained_writes": false,
+  "real_google_or_retained_mfa": false,
+  "checks": [
+    {
+      "name": "new internal no-port cached Auth/database fixture healthy; Google remains enabled",
+      "result": "PASS"
+    }
+  ],
+  "failure": "AMF_SYNTHETIC_SIGNUP",
+  "owned_containers_stopped": true,
+  "retained_preservation": true,
+  "containers": [
+    "314dcbc6c3a703b932ec1af0bdeb30925b09823bc3d2d96e6eed73fe61000e97",
+    "f1ea1c6c42d93b9f15a7330abc15259eed15cbc55adee762f330c4fb2cffee40",
+    "8ebf0b291f9a5e46b810dfef95ab3cb0dae55104eae2839a3ed0ed45105b7218"
+  ],
+  "network": "sq-ago-7998ca96-network",
+  "passed": 1
+}

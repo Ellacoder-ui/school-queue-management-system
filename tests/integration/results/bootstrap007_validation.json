@@ -1,0 +1,13 @@
+{
+  "result": "PASS_VERIFICATION_WITH_NO_GO_FINDINGS",
+  "frozenInputs": 2359,
+  "allExistingInputsUnchangedBeforeReportEdit": true,
+  "newStoppedContainers": 6,
+  "newRetainedTestNetworks": 3,
+  "exactResourceDelta": true,
+  "syntax": "PASS",
+  "source007Sha256": "b22d63d24c991b9ebf0d380d27a716d5ea72e418f5e62e177c96dded4481222c",
+  "reviewOnlyBundleSha256": "1ab49c37d9a139c2246db84f97fe8d65985d43600c64b34b218def68df6a21b4",
+  "frontendActivationRemainsFalse": true,
+  "strictWholeSourceCloseout": "FAIL_NOT_RECLASSIFIED"
+}

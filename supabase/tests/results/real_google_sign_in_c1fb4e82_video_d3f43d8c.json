@@ -1,0 +1,105 @@
+{
+  "run_id": "c1fb4e82",
+  "checkpoint": "after_user_recording",
+  "recorded_at": "2026-10-19T03:34:29.619722+00:00",
+  "result": "PASS_APPLICATION_AND_ROLE_PRESERVATION",
+  "video_user_controlled_login_and_logout_observed": true,
+  "browser_network_token_exchange_directly_observed": false,
+  "no_agent_auth_or_queue_write": true,
+  "target_accounts": {
+    "personal": [
+      {
+        "role": "STUDENT",
+        "enabled": true,
+        "sessions": 1,
+        "user_sha256": "f6dceb997dde468c93fe89894ecc98843a1f452fb57f962304f860862b40c416",
+        "confirmed_email": true,
+        "google_identities": 1
+      }
+    ],
+    "school": []
+  },
+  "application_public_tables_exact": 14,
+  "existing_account_rows_roles_exact": 39,
+  "unrelated_auth_rows_exact": true,
+  "auth_migrations_exact": true,
+  "application_migrations_routes_permissions_exact": true,
+  "cluster_roles_exact": true,
+  "google_enabled": true,
+  "auth_health_http": 200,
+  "anonymous_api_http": 200,
+  "service_ids_and_nonvector_lifecycles_exact": true,
+  "state": {
+    "active": 0,
+    "counts": {
+      "days": 7,
+      "audits": 32,
+      "events": 57,
+      "tickets": 20,
+      "accounts": 40,
+      "counters": 5,
+      "requests": 69,
+      "services": 5
+    },
+    "routes": {
+      "1": [
+        "TP"
+      ],
+      "2": [
+        "SOA"
+      ],
+      "3": [
+        "PNEP"
+      ],
+      "4": [
+        "REF"
+      ],
+      "5": [
+        "ADJ"
+      ]
+    },
+    "versions": [
+      "20261016000100",
+      "20261016000200",
+      "20261016000300",
+      "20261016000400",
+      "20261016000500",
+      "20261016000600"
+    ],
+    "open_days": 0,
+    "rls_count": 15,
+    "assignments": [
+      {
+        "total": 1,
+        "counter": 1,
+        "eligible": 1
+      },
+      {
+        "total": 1,
+        "counter": 2,
+        "eligible": 1
+      },
+      {
+        "total": 0,
+        "counter": 3,
+        "eligible": 0
+      },
+      {
+        "total": 0,
+        "counter": 4,
+        "eligible": 0
+      },
+      {
+        "total": 2,
+        "counter": 5,
+        "eligible": 1
+      }
+    ],
+    "publication": [
+      "queue_display.counter_state",
+      "queue_display.service_state"
+    ],
+    "private_usage": false,
+    "current_day_closed": false
+  }
+}

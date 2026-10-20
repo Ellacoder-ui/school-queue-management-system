@@ -1,0 +1,116 @@
+{
+  "result": "PASS_FRESH_PLAN_REVIEW",
+  "runId": "e17c030c",
+  "planSha256": "4ab19e56c523ec9f918439399611d18b87cff78c8e8c65c1715f01d3071245fc",
+  "expiresAt": "2026-10-19T03:38:23.546Z",
+  "originalId": "9f7742bf04e680d82988376411720e3500c9c0c069b0e57de5b7f3dc3ebb4ef6",
+  "authImage": "sha256:1736a63078f5922b198c4cbe50f80ab9a2d3b54fe8b7b6cfb2e9dc5dbbc12c6b",
+  "network": "supabase_network_school-queue-local",
+  "networkId": "e1f4c1a26ff768b3ebd984c2e80d570985d0762b775e4edf753570f7dbbf656d",
+  "changedEnvironmentKeys": [
+    "GOTRUE_EXTERNAL_GOOGLE_CLIENT_ID",
+    "GOTRUE_EXTERNAL_GOOGLE_EMAIL_OPTIONAL",
+    "GOTRUE_EXTERNAL_GOOGLE_ENABLED",
+    "GOTRUE_EXTERNAL_GOOGLE_REDIRECT_URI",
+    "GOTRUE_EXTERNAL_GOOGLE_SECRET",
+    "GOTRUE_EXTERNAL_GOOGLE_SKIP_NONCE_CHECK",
+    "GOTRUE_SITE_URL",
+    "GOTRUE_URI_ALLOW_LIST"
+  ],
+  "publicConfiguration": {
+    "GOTRUE_SITE_URL": "http://127.0.0.1:5173",
+    "GOTRUE_URI_ALLOW_LIST": "http://127.0.0.1:5173/auth/callback",
+    "GOTRUE_EXTERNAL_GOOGLE_ENABLED": "true",
+    "GOTRUE_EXTERNAL_GOOGLE_REDIRECT_URI": "http://127.0.0.1:54321/auth/v1/callback",
+    "GOTRUE_EXTERNAL_GOOGLE_SKIP_NONCE_CHECK": "false",
+    "GOTRUE_EXTERNAL_GOOGLE_EMAIL_OPTIONAL": "false"
+  },
+  "credentialContentsRead": false,
+  "credentialMetadataAvailable": true,
+  "protectedOriginalReadback": true,
+  "originalAndProposedTomlVerified": true,
+  "allUnrelatedAuthDefinitionFieldsExact": true,
+  "cachedImageUnchanged": true,
+  "backups": {
+    "files": 93,
+    "sha256": "27e6ed58b1fe58031c3a953e2c95cd8d362e869735f598c84577673498905e96"
+  },
+  "preservation": {
+    "existing_non_realtime_table_rows_exact": 60,
+    "roles_and_functions_exact": true,
+    "state": {
+      "active": 0,
+      "assignments": [
+        {
+          "counter": 1,
+          "eligible": 1,
+          "total": 1
+        },
+        {
+          "counter": 2,
+          "eligible": 1,
+          "total": 1
+        },
+        {
+          "counter": 3,
+          "eligible": 0,
+          "total": 0
+        },
+        {
+          "counter": 4,
+          "eligible": 0,
+          "total": 0
+        },
+        {
+          "counter": 5,
+          "eligible": 1,
+          "total": 2
+        }
+      ],
+      "counts": {
+        "accounts": 39,
+        "audits": 32,
+        "counters": 5,
+        "days": 7,
+        "events": 57,
+        "requests": 69,
+        "services": 5,
+        "tickets": 20
+      },
+      "current_day_closed": false,
+      "open_days": 0,
+      "private_usage": false,
+      "publication": [
+        "queue_display.counter_state",
+        "queue_display.service_state"
+      ],
+      "rls_count": 15,
+      "routes": {
+        "1": [
+          "TP"
+        ],
+        "2": [
+          "SOA"
+        ],
+        "3": [
+          "PNEP"
+        ],
+        "4": [
+          "REF"
+        ],
+        "5": [
+          "ADJ"
+        ]
+      },
+      "versions": [
+        "20261016000100",
+        "20261016000200",
+        "20261016000300",
+        "20261016000400",
+        "20261016000500",
+        "20261016000600"
+      ]
+    },
+    "table_inventory": 70
+  }
+}

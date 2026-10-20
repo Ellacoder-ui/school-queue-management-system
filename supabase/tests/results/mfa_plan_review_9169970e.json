@@ -1,0 +1,26 @@
+{
+  "result": "PASS_REVIEW_ONLY",
+  "recordedAt": "2026-10-19T09:55:32.654231+00:00",
+  "planId": "9169970e",
+  "planSha256": "0386166bc634aa539c5c02a87ca0e0072935ab8553665b9fa410f70da5be3d35",
+  "checkPlan": "PASS_PLAN_CHECKED",
+  "checkObservedAt": "2026-10-19T09:53:25Z",
+  "expiresAt": "2026-10-19T10:35:24.015Z",
+  "addedAccount": {
+    "email": "bmabing62681@liceo.edu.ph",
+    "uuid": "91a77243-319e-470b-a826-4c61bcfe87ae",
+    "role": "STUDENT",
+    "enabled": true,
+    "userConfirmedExpected": true,
+    "confirmation": "Yes, this was an expected account/login"
+  },
+  "noNewAdminCashierOrAssignment": true,
+  "securityMetadataUnchanged": true,
+  "personalFutureAdminRemainsStudent": true,
+  "schoolRemainsStudent": true,
+  "activationApproved": false,
+  "activationPerformed": false,
+  "totpEnabled": false,
+  "technicalReceiptSha256": "d391dabf584c06e9d18136825b6569e0df91acfde4b6da5c1210aabc3b699e7f",
+  "existingInputHashesPreserved": 1049
+}

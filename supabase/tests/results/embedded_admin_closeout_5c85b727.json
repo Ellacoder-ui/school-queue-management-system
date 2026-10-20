@@ -1,0 +1,99 @@
+{
+  "result": "PASS_RETAINED_PRESERVATION_AND_PREPARATION",
+  "recorded_at": "2026-10-19T04:18:19.349924+00:00",
+  "retained_rows_and_function_hashes_exact": true,
+  "retained_state_exact": true,
+  "retained_candidate_table_absent": true,
+  "target_role": "STUDENT",
+  "target_verified_mfa_factors": 0,
+  "source_cluster": "7696959712798593061",
+  "state": {
+    "active": 0,
+    "counts": {
+      "days": 7,
+      "audits": 32,
+      "events": 57,
+      "tickets": 20,
+      "accounts": 41,
+      "counters": 5,
+      "requests": 69,
+      "services": 5
+    },
+    "routes": {
+      "1": [
+        "TP"
+      ],
+      "2": [
+        "SOA"
+      ],
+      "3": [
+        "PNEP"
+      ],
+      "4": [
+        "REF"
+      ],
+      "5": [
+        "ADJ"
+      ]
+    },
+    "versions": [
+      "20261016000100",
+      "20261016000200",
+      "20261016000300",
+      "20261016000400",
+      "20261016000500",
+      "20261016000600"
+    ],
+    "open_days": 0,
+    "rls_count": 15,
+    "assignments": [
+      {
+        "total": 1,
+        "counter": 1,
+        "eligible": 1
+      },
+      {
+        "total": 1,
+        "counter": 2,
+        "eligible": 1
+      },
+      {
+        "total": 0,
+        "counter": 3,
+        "eligible": 0
+      },
+      {
+        "total": 0,
+        "counter": 4,
+        "eligible": 0
+      },
+      {
+        "total": 2,
+        "counter": 5,
+        "eligible": 1
+      }
+    ],
+    "publication": [
+      "queue_display.counter_state",
+      "queue_display.service_state"
+    ],
+    "private_usage": false,
+    "current_day_closed": false
+  },
+  "google_enabled": true,
+  "auth_health_http": 200,
+  "anonymous_api_http": 200,
+  "frozen_input_count": 672,
+  "unchanged_input_count": 667,
+  "changed_inputs": [
+    "src/components/StudentDashboard.vue",
+    "src/workspace.css",
+    "tests/integration/queueFixture.mjs",
+    "src/components/PublicQueueDisplay.vue",
+    "tests/frontend/googleOAuth.browser.mjs"
+  ],
+  "candidate_sha256": "b22d63d24c991b9ebf0d380d27a716d5ea72e418f5e62e177c96dded4481222c",
+  "proposal_sha256": "0a4a31ffe87a5cfa00d8401bbce64569768b40dda180e13b11a92d2218bf8a18",
+  "retained_promotion_executed": false,
+  "retained_migration_applied": false
+}

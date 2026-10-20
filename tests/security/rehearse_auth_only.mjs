@@ -6,6 +6,7 @@ import {spawnSync} from 'node:child_process';
 import {root,need,stable,digest,authImage,pgImage,label,AuthReconciler,storage,privateBridge,environment,compareCreated,cleanEnv} from '../../scripts/authOnlyCore.mjs';
 import {AuthOnlyEngine,nodeImage} from '../../scripts/authOnlyEngine.mjs';
 import {BoundAuthEngine,retainedAuthEngine} from '../../scripts/authOnlyRetained.mjs';
+import {AuthOnlyWorkflow,ConfigFile,bytesHash} from '../../scripts/authOnlyWorkflow.mjs';
 const rid=process.argv[2],engine=new AuthOnlyEngine(rid),sourceHash=digest('isolated-fixture-source');
 let reconciler=new AuthReconciler(new BoundAuthEngine(engine),sourceHash);
 const file=path.join(root,`supabase/tests/results/auth_only_disposable_${rid}.json`);
@@ -86,15 +87,42 @@ try{
   check('wrong target approval rejected',await negative(()=>reconciler.apply({...capture.plan,originalId:witness},capture.hash,sourceHash)));
   check('changed source rejected',await negative(()=>reconciler.apply(capture.plan,capture.hash,digest('changed'))));
   check('retained ID cannot enter disposable Engine',await negative(()=>engine.action('9f7742bf04e680d82988376411720e3500c9c0c069b0e57de5b7f3dc3ebb4ef6','stop')));
-  const replacement=await reconciler.apply(capture.plan,capture.hash,sourceHash);save();
+  const config=new ConfigFile(rid,true),originalConfig=fs.readFileSync(path.join(root,'supabase/config.toml'));
+  fs.writeFileSync(config.file,originalConfig,{flag:'wx'});
+  const baseline={credential:{synthetic:true,runId:rid},databaseState:dbBefore};
+  const workflowGuard=async(x,phase,id)=>{
+    need(stable(await engine.probe(db,'db-state'))===stable(dbBefore),'AGO_FIXTURE_SOURCE_CHANGED');
+    const w=await engine.inspect(witness);need(w.State.StartedAt===witnessBefore.State.StartedAt && stable(w.Config)===stable(witnessBefore.Config),'AGO_FIXTURE_WITNESS_CHANGED');
+    if(phase==='after')await health(id,true);
+    if(phase==='rollback-after')await health(original,false);
+  };
+  const finalWorkflow=new AuthOnlyWorkflow({runId:rid,synthetic:true,engine:new BoundAuthEngine(engine),guard:workflowGuard,config,credentials:async()=>credentials});
+  const finalPlan=await finalWorkflow.prepare(baseline,await engine.inspect(original));
+  check('final review plan captures exact config source code and credential metadata without private credential read');
+  check('wrong external approval rejected before credential access',await negative(()=>finalWorkflow.activate('0'.repeat(64))));
+  const finalResult=await finalWorkflow.activate(finalPlan.hash),replacement=finalResult.replacementId;save();
+  record.final_workflow={planHash:finalPlan.hash,downtime_to_acceptance_ms:finalResult.downtimeToAcceptanceMs};
+  check('final orchestration applies exact nonsecret TOML proposal',bytesHash(config.read())===finalPlan.plan.proposedConfigHash);
   record.replacement_health=await health(replacement,true);
   compareCreated(reopened.candidate,await engine.inspect(replacement),engine.names.network);
   check('real Auth replacement healthy; Google enabled with exact eight-field delta');
   check('Auth migration versions users and witness rows unchanged',stable(await engine.probe(db,'db-state'))===stable(dbBefore));
   const parked=await engine.inspect(original);
   check('original remains stopped and network detached',!parked.State.Running && !Object.keys(parked.NetworkSettings.Networks).length);
-  check('repeat activation refused',await negative(()=>reconciler.apply(capture.plan,capture.hash,sourceHash)));
-  await engine.action(replacement,'stop');await engine.action(replacement,'rename',engine.names.prefix+'success-retained');await engine.action(replacement,'disconnect');
+  check('repeat activation refused',await negative(()=>finalWorkflow.activate(finalPlan.hash)));
+  const resumed=new AuthOnlyWorkflow({runId:rid,synthetic:true,engine:new BoundAuthEngine(engine),guard:workflowGuard,config});
+  check('final rollback needs separate approval',await negative(()=>resumed.rollback(finalPlan.hash,'0'.repeat(64),replacement)));
+  await resumed.rollback(finalPlan.hash,finalResult.rollbackApprovalSha256,replacement);
+  check('final rollback reloads encrypted capture in a fresh executor and restores original Auth and exact TOML',config.read().equals(originalConfig));
+  check('final repeat rollback refused',await negative(()=>resumed.rollback(finalPlan.hash,finalResult.rollbackApprovalSha256,replacement)));
+  for(const mode of ['Activate','Rollback']){
+    const args=['-NoProfile','-NonInteractive','-ExecutionPolicy','Bypass','-File',path.join(root,'scripts/Start-AuthOnlyGoogle.ps1'),'-'+mode,'-RunId',rid,'-ApprovedPlanSha256',finalPlan.hash];
+    if(mode==='Activate')args.push('-ConfirmAuthOnlyRecreation');
+    else args.push('-ReplacementId',replacement,'-ApprovedRollbackSha256',finalResult.rollbackApprovalSha256,'-ConfirmAuthOnlyRollback');
+    const p=spawnSync('powershell.exe',args,{env:cleanEnv(),windowsHide:true,encoding:'utf8'});
+    check('public confirmed '+mode+' refuses synthetic plan before any retained operation',p.status===1 && JSON.parse(p.stdout).failure==='AGO_RETAINED_AUTHORIZATION');
+  }
+  await engine.action(original,'stop');await engine.action(original,'rename',engine.names.prefix+'success-retained');await engine.action(original,'disconnect');
   const failOriginal=await engine.create(engine.names.auth,authBody(true));await engine.action(failOriginal,'start');save();await health(failOriginal,false);
   reconciler=new AuthReconciler(new BoundAuthEngine(engine),sourceHash);
   const failed=await reconciler.prepare('failure',failOriginal,credentials);
@@ -111,8 +139,10 @@ try{
   const after=await engine.inspect(witness);
   check('unrelated fixture witness lifecycle and definition unchanged',after.Id===witnessBefore.Id && after.State.StartedAt===witnessBefore.State.StartedAt && after.RestartCount===witnessBefore.RestartCount && stable(after.Config)===stable(witnessBefore.Config));
   for(const mode of ['Activate','Rollback']){
-    const p=spawnSync('powershell.exe',['-NoProfile','-NonInteractive','-ExecutionPolicy','Bypass','-File',path.join(root,'scripts/Start-AuthOnlyGoogle.ps1'),'-'+mode,'-RunId',rid,'-ApprovedPlanSha256',capture.hash],{env:cleanEnv(),windowsHide:true,encoding:'utf8'});
-    check('retained '+mode+' remains unconditionally locked',p.status===1 && p.stderr.trim()==='AGO_RETAINED_ACTIVATION_LOCKED');
+    const args=['-NoProfile','-NonInteractive','-ExecutionPolicy','Bypass','-File',path.join(root,'scripts/Start-AuthOnlyGoogle.ps1'),'-'+mode,'-RunId',rid,'-ApprovedPlanSha256',capture.hash];
+    if(mode==='Rollback')args.push('-ReplacementId',replacement,'-ApprovedRollbackSha256','0'.repeat(64));
+    const p=spawnSync('powershell.exe',args,{env:cleanEnv(),windowsHide:true,encoding:'utf8'});
+    check('retained '+mode+' refuses missing explicit confirmation',p.status===1 && p.stderr.trim()==='AGO_EXPLICIT_APPROVAL_REQUIRED');
   }
   const scan=dir=>{for(const e of fs.readdirSync(dir,{withFileTypes:true})){const p=path.join(dir,e.name);if(e.isDirectory())scan(p);else{
     const b=fs.readFileSync(p);need(![canaries.ClientSecret,canaries.ClientId,jwt,dbPassword].some(c=>b.includes(Buffer.from(c))),'AGO_DISK_CANARY');}}};

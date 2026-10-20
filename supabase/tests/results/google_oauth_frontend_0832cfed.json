@@ -1,0 +1,602 @@
+{
+  "run": "0832cfed",
+  "real_google_login": false,
+  "auth_writes_forwarded": false,
+  "checks": [
+    {
+      "name": "Actual docked Chrome uses an intercepted ADMIN session without retained identity writes",
+      "result": "PASS"
+    },
+    {
+      "name": "Public Display and Sign Out remain visible at eight widths and in actual right-docked DevTools",
+      "result": "PASS"
+    },
+    {
+      "name": "Docked public display route opens without private workspace or Auth controls",
+      "result": "PASS"
+    }
+  ],
+  "screenshots": [
+    "admin_navigation_0832cfed_AFTER_1440.png",
+    "admin_overview_0832cfed_AFTER_1440.png",
+    "admin_navigation_0832cfed_AFTER_1280.png",
+    "admin_overview_0832cfed_AFTER_1280.png",
+    "admin_navigation_0832cfed_AFTER_1024.png",
+    "admin_overview_0832cfed_AFTER_1024.png",
+    "admin_navigation_0832cfed_AFTER_980.png",
+    "admin_overview_0832cfed_AFTER_980.png",
+    "admin_navigation_0832cfed_AFTER_768.png",
+    "admin_overview_0832cfed_AFTER_768.png",
+    "admin_navigation_0832cfed_AFTER_640.png",
+    "admin_overview_0832cfed_AFTER_640.png",
+    "admin_navigation_0832cfed_AFTER_390.png",
+    "admin_overview_0832cfed_AFTER_390.png",
+    "admin_navigation_0832cfed_AFTER_320.png",
+    "admin_overview_0832cfed_AFTER_320.png",
+    "admin_navigation_0832cfed_ACTUAL_DEVTOOLS_RIGHT.png"
+  ],
+  "isolated_vite_cache": true,
+  "isolated_browser_loopback_permission": true,
+  "admin_responsive": [
+    {
+      "width": 1440,
+      "publicDisplay": true,
+      "signOut": true,
+      "noOverflow": true,
+      "staff": true
+    },
+    {
+      "width": 1280,
+      "publicDisplay": true,
+      "signOut": true,
+      "noOverflow": true,
+      "staff": true
+    },
+    {
+      "width": 1024,
+      "publicDisplay": true,
+      "signOut": true,
+      "noOverflow": true,
+      "staff": true
+    },
+    {
+      "width": 980,
+      "publicDisplay": true,
+      "signOut": true,
+      "noOverflow": true,
+      "staff": true
+    },
+    {
+      "width": 768,
+      "publicDisplay": true,
+      "signOut": true,
+      "noOverflow": true,
+      "staff": true
+    },
+    {
+      "width": 640,
+      "publicDisplay": true,
+      "signOut": true,
+      "noOverflow": true,
+      "staff": true
+    },
+    {
+      "width": 390,
+      "publicDisplay": true,
+      "signOut": true,
+      "noOverflow": true,
+      "staff": true
+    },
+    {
+      "width": 320,
+      "publicDisplay": true,
+      "signOut": true,
+      "noOverflow": true,
+      "staff": true
+    }
+  ],
+  "devtools": {
+    "present": true,
+    "dockedRight": true,
+    "outerWidth": 1554,
+    "innerWidth": 986,
+    "outerHeight": 978,
+    "innerHeight": 884,
+    "noOverflow": true,
+    "sameDashboard": true
+  },
+  "result": "PASS",
+  "passed": 3,
+  "failed": 0,
+  "interception_diagnostics": [],
+  "app_resource_statuses": [
+    {
+      "category": "document",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "document",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "development-resource",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    },
+    {
+      "category": "application-module",
+      "status": 200
+    }
+  ]
+}

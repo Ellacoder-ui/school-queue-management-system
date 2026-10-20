@@ -1,0 +1,77 @@
+{
+  "observedAt": "2026-10-19T19:19:51.401Z",
+  "readOnly": true,
+  "metadata": {
+    "called": 0,
+    "events": 57,
+    "routes": [
+      "1:TP",
+      "2:SOA",
+      "3:PNEP",
+      "4:REF",
+      "5:ADJ"
+    ],
+    "tickets": 20,
+    "accounts": 42,
+    "007_absent": true,
+    "012_absent": true,
+    "migrations": 6,
+    "assignments": 4,
+    "school_role": "STUDENT",
+    "personal_role": "ADMIN",
+    "personal_enabled": true,
+    "personal_factors": 1,
+    "published_tables": [
+      "queue_display.counter_state",
+      "queue_display.service_state"
+    ],
+    "projection_calls_match": true,
+    "personal_verified_factors": 0
+  },
+  "health": {
+    "auth": 200,
+    "settings": 200,
+    "api": 200,
+    "google": true,
+    "totpEnabled": true
+  },
+  "publicCounters": [
+    {
+      "counter_label": "Counter 5",
+      "is_open": false,
+      "ticket_label": null,
+      "service_code": null,
+      "business_date": null
+    },
+    {
+      "counter_label": "Counter 1",
+      "is_open": true,
+      "ticket_label": null,
+      "service_code": null,
+      "business_date": null
+    },
+    {
+      "counter_label": "Counter 2",
+      "is_open": true,
+      "ticket_label": null,
+      "service_code": null,
+      "business_date": null
+    },
+    {
+      "counter_label": "Counter 3",
+      "is_open": false,
+      "ticket_label": null,
+      "service_code": null,
+      "business_date": null
+    },
+    {
+      "counter_label": "Counter 4",
+      "is_open": false,
+      "ticket_label": null,
+      "service_code": null,
+      "business_date": null
+    }
+  ],
+  "realMfaPerformed": false,
+  "result": "PASS"
+}

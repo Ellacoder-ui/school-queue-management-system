@@ -1,0 +1,31 @@
+{
+  "run": "237c5279",
+  "result": "FAIL",
+  "retained_writes": false,
+  "real_google_or_retained_mfa": false,
+  "checks": [
+    {
+      "name": "new internal no-port cached Auth/database fixture healthy; Google remains enabled",
+      "result": "PASS"
+    },
+    {
+      "name": "actual disabled Auth refuses synthetic enrollment",
+      "result": "PASS"
+    }
+  ],
+  "synthetic_signup": {
+    "status": 200,
+    "code": null,
+    "session": true
+  },
+  "failure": "AGO_BRIDGE_REJECTED",
+  "owned_containers_stopped": true,
+  "retained_preservation": true,
+  "containers": [
+    "a4eba3bdf7b9d89228fdd8a6bdd6c6b78cb0f16fbef8d23fe4044f55b4785d11",
+    "cad0afa1d7bbb7ea46ff1ab83b4b1188452f9f3d2e960947ae483e7bc2c6bf20",
+    "10d818f32c9192b63e67ae981a7958aed7f814f24955816cbc8b60244f5c878b"
+  ],
+  "network": "sq-ago-237c5279-network",
+  "passed": 2
+}

@@ -1,10 +1,19 @@
+import { adminMutations, normalizeStaffEmail, validateAdminMutation, validateAdminReceipt, validateStaffDirectory } from '../lib/adminContracts.js'
+import { recordReads, validateRecordArgs, validateRecordRead } from '../lib/adminRecords.js'
 const counterFields = ['counter_id', 'counter_label', 'is_open', 'ticket_label', 'service_code', 'business_date', 'updated_at']
 const serviceFields = ['service_code', 'business_date', 'waiting_count', 'updated_at']
-const readOperations = new Set(['my_context', 'my_tickets', 'my_ticket_events', 'staff_queue', 'admin_configuration'])
-const mutationOperations = new Set(['call_next', 'finish_ticket', 'set_account', 'configure_counter', 'configure_service', 'manage_day'])
+const readOperations = new Set(['my_context', 'my_tickets', 'my_ticket_events', 'staff_queue', 'admin_configuration', 'admin_staff_directory', ...recordReads])
+const mutationOperations = new Set(['issue_ticket', 'call_next', 'finish_ticket', 'set_account', 'configure_counter', 'configure_service', 'manage_day', 'request_staff_access', 'add_verified_staff'])
+const rejectionReasons = new Map([
+  ['Current queue day is not open', 'day_closed'], ['Service unavailable', 'service_unavailable'],
+  ['Active ticket already exists', 'active_ticket'], ['Daily served-ticket limit reached', 'served_quota'],
+  ['Counter closed', 'counter_closed'], ['Counter busy', 'counter_busy'],
+  ['Service not assigned or disabled', 'service_unavailable'], ['Queue day closed', 'day_closed'],
+  ['Pending review request already exists for this email', 'staff_duplicate'], ['Invalid email', 'invalid_email'], ['Invalid role', 'invalid_role'],
+])
 
 export class QueueRequestError extends Error {
-  constructor({ code, status, outcome = 'rejected', requestKey } = {}) {
+  constructor({ code, status, outcome = 'rejected', requestKey, reason = null } = {}) {
     super(outcome === 'unknown'
       ? 'The request outcome is unknown. Refresh state and retry the same action key.'
       : 'The queue request was rejected.')
@@ -13,12 +22,34 @@ export class QueueRequestError extends Error {
     this.status = status || null
     this.outcome = outcome
     this.requestKey = requestKey
+    this.reason = reason
   }
 }
 
 const codes = new Set(['TP', 'SOA', 'PNEP', 'REF', 'ADJ'])
+const isUuid = value => typeof value === 'string' && /^[\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12}$/i.test(value)
 const exact = (value, fields) => value && typeof value === 'object' && !Array.isArray(value)
   && Object.keys(value).length === fields.length && fields.every(field => Object.hasOwn(value, field))
+export function validateOperationParameters(operation, parameters) {
+  if (adminMutations.has(operation)) validateAdminMutation(operation, parameters)
+  if (operation === 'issue_ticket' && (!exact(parameters, ['p_service']) || !codes.has(parameters.p_service))) throw new Error('Invalid service request.')
+  if (operation === 'call_next' && (!exact(parameters, ['p_counter', 'p_service']) || !isUuid(parameters.p_counter) || !codes.has(parameters.p_service))) throw new Error('Invalid counter request.')
+  if (operation === 'finish_ticket' && (!exact(parameters, ['p_ticket', 'p_action']) || !isUuid(parameters.p_ticket) || !['SERVE', 'SKIP'].includes(parameters.p_action))) throw new Error('Invalid ticket action.')
+}
+export function validateOperationResult(operation, result) {
+  if (adminMutations.has(operation)) validateAdminReceipt(operation, result)
+  if (operation === 'issue_ticket') {
+    if (!exact(result, ['ticket_id', 'sequence_number', 'service', 'business_date', 'status']) || !isUuid(result.ticket_id)
+      || !Number.isSafeInteger(result.sequence_number) || result.sequence_number < 1 || !codes.has(result.service)
+      || !/^\d{4}-\d{2}-\d{2}$/.test(result.business_date) || result.status !== 'WAITING') throw new Error('Invalid issuance receipt.')
+  } else if (operation === 'call_next') {
+    if (!(exact(result, ['ticket_id']) && result.ticket_id === null)
+      && !(exact(result, ['ticket_id', 'status']) && isUuid(result.ticket_id) && result.status === 'CALLED')) throw new Error('Invalid call receipt.')
+  } else if (operation === 'finish_ticket') {
+    if (!exact(result, ['ticket_id', 'status']) || !isUuid(result.ticket_id) || !['SERVED', 'WAITING'].includes(result.status)) throw new Error('Invalid finish receipt.')
+  }
+  return freeze(structuredClone(result))
+}
 export function validateMyContext(value) {
   if (!exact(value, ['role', 'enabled', 'cashier_counters']) || typeof value.enabled !== 'boolean'
     || !Array.isArray(value.cashier_counters)) throw new Error('Invalid account context.')
@@ -75,18 +106,37 @@ function snapshotRows(rows, fields, table) {
 
 export function createQueueApi(client, publicClient = client) {
   const authorizationListeners = new Set()
-  async function rpc(operation, parameters, { signal, requestKey } = {}) {
+  const staffPermissionDenied = new Set()
+  async function rpc(operation, parameters, { signal, requestKey, expectedActor } = {}) {
     try {
       let request = client.schema('queue_api').rpc(operation, parameters)
+      // A write with an uncertain outcome must wait for explicit same-key replay.
+      if (mutationOperations.has(operation) && typeof request.retry === 'function') request = request.retry(false)
+      if (expectedActor) {
+        const session = await client.auth.getSession()
+        const token = session.data?.session?.access_token
+        let subject
+        try { subject = JSON.parse(atob(token.split('.')[1].replaceAll('-', '+').replaceAll('_', '/'))).sub } catch {}
+        if (session.error || !isUuid(expectedActor) || subject !== expectedActor || session.data?.session?.user?.id !== expectedActor) {
+          throw new QueueRequestError({ code: '42501', status: 403, reason: 'unauthorized', requestKey })
+        }
+        // Pin this request to the verified actor even if another tab switches accounts.
+        request = request.setHeader('Authorization', `Bearer ${token}`)
+      }
       if (signal) request = request.abortSignal(signal)
       const { data, error, status } = await request
       if (error) {
-        if (operation !== 'my_context' && (error.code === '42501' || status === 401 || status === 403)) {
+        const staffDenial = (['staff_queue','admin_configuration','admin_staff_directory'].includes(operation) || recordReads.has(operation)) && error.code === '42501' && status === 403
+        const repeatedStaffDenial = staffDenial && staffPermissionDenied.has(operation)
+        if (staffDenial) staffPermissionDenied.add(operation)
+        if (operation !== 'my_context' && !repeatedStaffDenial && (error.code === '42501' || status === 401 || status === 403)) {
           for (const listener of authorizationListeners) { try { listener() } catch {} }
         }
         const ambiguous = signal?.aborted || !error.code || !status || status >= 500 || status === 408
-        throw new QueueRequestError({ code: error.code, status, outcome: ambiguous ? 'unknown' : 'rejected', requestKey })
+        throw new QueueRequestError({ code: error.code, status, outcome: ambiguous ? 'unknown' : 'rejected', requestKey,
+          reason: rejectionReasons.get(error.message) || (error.code === '42501' || status === 401 || status === 403 ? 'unauthorized' : null) })
       }
+      staffPermissionDenied.delete(operation)
       return data
     } catch (error) {
       if (error instanceof QueueRequestError) throw error
@@ -101,11 +151,12 @@ export function createQueueApi(client, publicClient = client) {
     },
     read(operation, parameters = {}, options = {}) {
       if (!readOperations.has(operation)) throw new Error('Unsupported queue read operation.')
+      if (recordReads.has(operation)) { validateRecordArgs(operation, parameters); return rpc(operation, parameters, options).then(value=>validateRecordRead(operation,parameters,value)) }
       const result = rpc(operation, parameters, options)
-      return operation === 'my_context' ? result.then(validateMyContext) : result
+      return operation === 'my_context' ? result.then(validateMyContext) : operation === 'admin_staff_directory' ? result.then(validateStaffDirectory) : result
     },
-    async readMyContext({ signal } = {}) {
-      return validateMyContext(await rpc('my_context', {}, { signal }))
+    async readMyContext(options = {}) {
+      return validateMyContext(await rpc('my_context', {}, options))
     },
     async readPublicContext({ signal } = {}) {
       let request = publicClient.schema('queue_display').rpc('public_queue_context')
@@ -115,18 +166,27 @@ export function createQueueApi(client, publicClient = client) {
       return validatePublicContext(data)
     },
     // Preparation is explicit. Execution never generates or changes the key.
-    // issue_ticket is intentionally absent until its HTTP validation is complete.
     createMutationIntent(operation, parameters = {}) {
       if (!mutationOperations.has(operation) || Object.hasOwn(parameters, 'p_request_key')) {
         throw new Error('Unsupported action or caller-supplied request key.')
       }
+      if (operation === 'request_staff_access') parameters = { ...parameters, p_email: normalizeStaffEmail(parameters.p_email) }
+      validateOperationParameters(operation, parameters)
       return freeze({ operation, parameters: { ...structuredClone(parameters), p_request_key: crypto.randomUUID() } })
     },
     executeMutation(intent, options = {}) {
       if (!mutationOperations.has(intent?.operation) || !intent.parameters?.p_request_key) {
         throw new Error('Prepare an action before executing it.')
       }
-      return rpc(intent.operation, intent.parameters, { ...options, requestKey: intent.parameters.p_request_key })
+      const { p_request_key, ...parameters } = intent.parameters
+      validateOperationParameters(intent.operation, parameters)
+      if (!isUuid(p_request_key)) throw new Error('Invalid request key.')
+      // Local intent UUID is a browser journal identifier, not backend idempotency.
+      const wire = intent.operation === 'request_staff_access' ? parameters : intent.parameters
+      return rpc(intent.operation, wire, { ...options, requestKey: p_request_key }).then(result => {
+        try { return validateOperationResult(intent.operation, result) }
+        catch { throw new QueueRequestError({ outcome: 'unknown', requestKey: p_request_key }) }
+      })
     },
     async readPublicSnapshot({ signal } = {}) {
       const controller = new AbortController()

@@ -1,0 +1,232 @@
+{
+  "run_id": "37aa4cb4",
+  "started_at": "2026-10-18T18:44:57.480Z",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "separate disposable database ready; no retained volumes or published ports",
+      "result": "PASS"
+    },
+    {
+      "name": "missing synthetic credentials rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "approved DPAPI mechanism private dummy write/read-back",
+      "result": "PASS"
+    },
+    {
+      "name": "production credential bridge remains locked",
+      "result": "PASS"
+    },
+    {
+      "name": "retained Engine factory remains locked",
+      "result": "PASS"
+    },
+    {
+      "name": "actual cached Auth starts with Google disabled and fixture migration receipts captured",
+      "result": "PASS"
+    },
+    {
+      "name": "encrypted full inspect/create rollback capture and private read-back",
+      "result": "PASS"
+    },
+    {
+      "name": "JWT database email MFA and aliases present unchanged in rollback capture",
+      "result": "PASS"
+    },
+    {
+      "name": "ciphertext overwrite refused",
+      "result": "PASS"
+    },
+    {
+      "name": "wrong capture profile refused",
+      "result": "PASS"
+    },
+    {
+      "name": "tampered dummy ciphertext rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "extra principal refused before decrypt",
+      "result": "PASS"
+    },
+    {
+      "name": "owned dummy ACL restored and validated",
+      "result": "PASS"
+    },
+    {
+      "name": "wrong target approval rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "changed source rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "retained ID cannot enter disposable Engine",
+      "result": "PASS"
+    },
+    {
+      "name": "final review plan captures exact config source code and credential metadata without private credential read",
+      "result": "PASS"
+    },
+    {
+      "name": "wrong external approval rejected before credential access",
+      "result": "PASS"
+    },
+    {
+      "name": "final orchestration applies exact nonsecret TOML proposal",
+      "result": "PASS"
+    },
+    {
+      "name": "real Auth replacement healthy; Google enabled with exact eight-field delta",
+      "result": "PASS"
+    },
+    {
+      "name": "Auth migration versions users and witness rows unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "original remains stopped and network detached",
+      "result": "PASS"
+    },
+    {
+      "name": "repeat activation refused",
+      "result": "PASS"
+    },
+    {
+      "name": "final rollback needs separate approval",
+      "result": "PASS"
+    },
+    {
+      "name": "final rollback reloads encrypted capture in a fresh executor and restores original Auth and exact TOML",
+      "result": "PASS"
+    },
+    {
+      "name": "final repeat rollback refused",
+      "result": "PASS"
+    },
+    {
+      "name": "actual replacement startup failure retained without automatic retry",
+      "result": "PASS"
+    },
+    {
+      "name": "rollback without separate approval refused",
+      "result": "PASS"
+    },
+    {
+      "name": "rollback restores original ID definition aliases JWT and Google disabled",
+      "result": "PASS"
+    },
+    {
+      "name": "repeat rollback refused",
+      "result": "PASS"
+    },
+    {
+      "name": "fixture database unchanged through replacement failure and rollback",
+      "result": "PASS"
+    },
+    {
+      "name": "unrelated fixture witness lifecycle and definition unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "retained Activate refuses missing explicit confirmation",
+      "result": "PASS"
+    },
+    {
+      "name": "retained Rollback refuses missing explicit confirmation",
+      "result": "PASS"
+    },
+    {
+      "name": "ciphertext journals and public receipts contain no plaintext canaries",
+      "result": "PASS"
+    }
+  ],
+  "containers": [
+    "68aa898c95ce551881a74e41f1efb4fc06356335072a9cd691568748fd4fd2a5",
+    "8e89febdd11e72d9ffa61672b61d9d8f4a579a4b63f38f6140428f2dcead1928",
+    "a020d79193727ba8964034f77cbe4c4f7def71d6da09379ad50122d60f7487cc",
+    "fa990eb4b80b49bb28294218ded250a7b355261d017a200b05c0b81304563d83",
+    "e02712559951dab06cc335c1ccdffe58b6389b15a0f843bae2d32a3c678195c2",
+    "cb2811d0a3f9a539e7fa2c31d35be4da093050c799a1637b4534ce5589a6aa71"
+  ],
+  "retained_operations": false,
+  "real_credentials_read": false,
+  "network_id": "1e6d783391e05dae6765c998792b29595eff6a673ef5496d033a63108a5fd7ac",
+  "original_health": {
+    "samples": [
+      {
+        "elapsed_ms": 6,
+        "health": "starting"
+      },
+      {
+        "elapsed_ms": 1025,
+        "health": "starting"
+      },
+      {
+        "elapsed_ms": 2037,
+        "health": "healthy"
+      }
+    ],
+    "http": {
+      "health": 200,
+      "settings": 200,
+      "google": false
+    },
+    "restarts": 0
+  },
+  "fixture_migration_observation": {
+    "count": 75,
+    "versionsHash": "07e395926c7f41d585a9ee3e1a05f267a678545c5d942237c903e15bcc63040f"
+  },
+  "final_workflow": {
+    "planHash": "12184c02f43a829042a2f3786765225b2e0626be220cd148befc2a82411f6cbd",
+    "downtime_to_acceptance_ms": 5162
+  },
+  "replacement_health": {
+    "samples": [
+      {
+        "elapsed_ms": 12,
+        "health": "healthy"
+      }
+    ],
+    "http": {
+      "health": 200,
+      "settings": 200,
+      "google": true
+    },
+    "restarts": 0
+  },
+  "rollback_health": {
+    "samples": [
+      {
+        "elapsed_ms": 7,
+        "health": "starting"
+      },
+      {
+        "elapsed_ms": 1017,
+        "health": "starting"
+      },
+      {
+        "elapsed_ms": 2037,
+        "health": "healthy"
+      }
+    ],
+    "http": {
+      "health": 200,
+      "settings": 200,
+      "google": false
+    },
+    "restarts": 0
+  },
+  "fixture": {
+    "auth_image": "sha256:1736a63078f5922b198c4cbe50f80ab9a2d3b54fe8b7b6cfb2e9dc5dbbc12c6b",
+    "postgres_image": "sha256:6058a6759ab9268cff8ee70641d61f1bd75953316281b76427cf5a6b4db2eafc",
+    "auth_migrations": 75,
+    "users": 0,
+    "retained_connections": false
+  },
+  "completed_at": "2026-10-18T18:46:25.556Z"
+}

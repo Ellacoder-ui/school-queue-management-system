@@ -1,6 +1,6 @@
 #requires -Version 5.1
 <# Private captured pipes only. Reuse the approved credential implementation.
-   Production reads are deliberately unavailable in this rehearsal entry point. #>
+   Production reads require a privately verified, reserved approval plan. #>
 $ErrorActionPreference='Stop'
 try {
     if($PSVersionTable.PSEdition -ne 'Desktop' -or -not [Console]::IsInputRedirected -or -not [Console]::IsOutputRedirected){throw 'IPC'}
@@ -9,7 +9,11 @@ try {
     $raw=$builder.ToString()
     $request=$raw | ConvertFrom-Json
     if($request.runId -cnotmatch '^[0-9a-f]{8}\z' -or $request.operation -cnotin @('create-dummy','read-dummy','read-production')){throw 'LOCKED'}
-    if($request.operation -ceq 'read-production'){throw 'AGO_RETAINED_ACTIVATION_LOCKED'}
+    if($request.operation -ceq 'read-production'){
+        if($request.approvedPlanSha256 -cnotmatch '^[0-9a-f]{64}\z'){throw 'AGO_RETAINED_ACTIVATION_LOCKED'}
+        $permit=& node.exe (Join-Path $PSScriptRoot 'authOnlyCli.mjs') verify-credential $request.runId $request.approvedPlanSha256 2>$null
+        if($LASTEXITCODE -ne 0 -or ($permit | ConvertFrom-Json).credentialReadApproved -ne $true){throw 'AGO_RETAINED_ACTIVATION_LOCKED'}
+    }
     Import-Module (Join-Path $PSScriptRoot 'LocalGoogleCredential.psm1') -Force -DisableNameChecking
     $module=Get-Module LocalGoogleCredential
     $value=& $module {

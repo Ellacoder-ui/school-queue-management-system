@@ -1,0 +1,542 @@
+{
+  "disposable_evidence": "supabase\\tests\\results\\auth_only_disposable_93f01982.json",
+  "disposable_evidence_sha256": "e8006f8f60ce5f9d91fa1273def6abd8fdd5fbd5c1cf38473bdb3941e7868fa8",
+  "finished_at": "2026-10-18T18:55:58.311293+00:00",
+  "health_after": {
+    "anonymous_api": 200,
+    "auth_health": 200,
+    "google": false,
+    "migration_hashes": {
+      "20261016000100_queue_tables.sql": "274141dbab99dbaad959f2343633ee0bd440b240a29b5664ca304e283934d7d7",
+      "20261016000200_queue_operations.sql": "65c943d4fea282c07e06bab6b759882f7fcec678ddf960869dd60a52db911883",
+      "20261016000300_queue_administration.sql": "7a4ad627112f0bc3109417bec237b13000e1c06002d536f7c9feab5261eb4883",
+      "20261016000400_queue_seed_security.sql": "95bd4918550dddae84672c148c6a616c9d12928b78097a82815a26a35146746e",
+      "20261016000500_queue_read_context.sql": "793a68b375d69044dc4900749867576b5c45a6b4173725191ffbaeb66a2dd31a",
+      "20261016000600_fixed_counter_routing.sql": "9d854ab795e3ef3098fa1d3a05cb6541242d0c8e503a8ebee1acfe9df418137c"
+    },
+    "project": "school-queue-local",
+    "settings": 200,
+    "source_cluster": "7696959712798593061"
+  },
+  "health_before": {
+    "anonymous_api": 200,
+    "auth_health": 200,
+    "google": false,
+    "migration_hashes": {
+      "20261016000100_queue_tables.sql": "274141dbab99dbaad959f2343633ee0bd440b240a29b5664ca304e283934d7d7",
+      "20261016000200_queue_operations.sql": "65c943d4fea282c07e06bab6b759882f7fcec678ddf960869dd60a52db911883",
+      "20261016000300_queue_administration.sql": "7a4ad627112f0bc3109417bec237b13000e1c06002d536f7c9feab5261eb4883",
+      "20261016000400_queue_seed_security.sql": "95bd4918550dddae84672c148c6a616c9d12928b78097a82815a26a35146746e",
+      "20261016000500_queue_read_context.sql": "793a68b375d69044dc4900749867576b5c45a6b4173725191ffbaeb66a2dd31a",
+      "20261016000600_fixed_counter_routing.sql": "9d854ab795e3ef3098fa1d3a05cb6541242d0c8e503a8ebee1acfe9df418137c"
+    },
+    "project": "school-queue-local",
+    "settings": 200,
+    "source_cluster": "7696959712798593061"
+  },
+  "known_historical_pruning_failure": {
+    "historical_report": "supabase/HISTORICAL_POSTGRES_71_TABLE_RESTORE_REPORT.md",
+    "not_a_current_inventory_recovery_approval": true,
+    "unchanged_policy": true
+  },
+  "offline_methods": {
+    "failed": 0,
+    "node": 24,
+    "passed": 29,
+    "python": 5
+  },
+  "phase": "complete",
+  "preservation": {
+    "all_added_containers_inactive": true,
+    "all_backups": {
+      "files": 93,
+      "sha256": "27e6ed58b1fe58031c3a953e2c95cd8d362e869735f598c84577673498905e96"
+    },
+    "all_retained_definitions_unchanged": true,
+    "eleven_non_vector_lifecycles_unchanged": true,
+    "exact_added_containers": 6,
+    "exact_added_networks": 1,
+    "frozen_inputs": 328,
+    "google_credential_metadata_only_unchanged": true,
+    "locks_unchanged": true,
+    "no_volume_created_or_deleted": true,
+    "result": "PASS",
+    "source_table_count": 70,
+    "source_within_run_classifier": {
+      "all_other_rows_objects_roles_privileges_exact": true,
+      "empty_partition_additions": [],
+      "logical_tables": 70,
+      "original_tables_exact_except_scoped_subscription": true,
+      "result": "PASS",
+      "subscription_rows_after": 0,
+      "subscription_rows_before": 0,
+      "subscription_sequence_after": {
+        "is_called": true,
+        "last_value": 641
+      },
+      "subscription_sequence_before": {
+        "is_called": true,
+        "last_value": 641
+      },
+      "unexpected_changes": []
+    },
+    "state": {
+      "active": 0,
+      "assignments": [
+        {
+          "counter": 1,
+          "eligible": 1,
+          "total": 1
+        },
+        {
+          "counter": 2,
+          "eligible": 1,
+          "total": 1
+        },
+        {
+          "counter": 3,
+          "eligible": 0,
+          "total": 0
+        },
+        {
+          "counter": 4,
+          "eligible": 0,
+          "total": 0
+        },
+        {
+          "counter": 5,
+          "eligible": 1,
+          "total": 2
+        }
+      ],
+      "counts": {
+        "accounts": 39,
+        "audits": 32,
+        "counters": 5,
+        "days": 7,
+        "events": 57,
+        "requests": 69,
+        "services": 5,
+        "tickets": 20
+      },
+      "current_day_closed": false,
+      "open_days": 0,
+      "private_usage": false,
+      "publication": [
+        "queue_display.counter_state",
+        "queue_display.service_state"
+      ],
+      "rls_count": 15,
+      "routes": {
+        "1": [
+          "TP"
+        ],
+        "2": [
+          "SOA"
+        ],
+        "3": [
+          "PNEP"
+        ],
+        "4": [
+          "REF"
+        ],
+        "5": [
+          "ADJ"
+        ]
+      },
+      "versions": [
+        "20261016000100",
+        "20261016000200",
+        "20261016000300",
+        "20261016000400",
+        "20261016000500",
+        "20261016000600"
+      ]
+    }
+  },
+  "production_google_credential_contents_accessed": false,
+  "protected_retained_original_capture": {
+    "activationAuthorized": false,
+    "captureBytes": 25206,
+    "cipherSha256": "8b7e4f81d5c6e002a4c91dc5d56bf9810e55a48de94cd1a8f32992ccb3a8522b",
+    "definitionHash": "ad3bd7c66657525adae1daf61ae6f716cdfe22cfacda8cc02bfe80fbbb4c43f6",
+    "plaintextEnvAbsent": true,
+    "privateReadback": true,
+    "profile": "retained-capture",
+    "result": "PASS",
+    "runId": "93f01982"
+  },
+  "result": "PASS",
+  "retained_activation_approval_required": true,
+  "retained_after": [
+    {
+      "container": "supabase_analytics_school-queue-local",
+      "exit_code": 0,
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "healthy",
+      "id": "d39d0db69e75569b40030d43ce1bed2374af6b15554b2ff0fbf11e2ac0dba5f9",
+      "image": "public.ecr.aws/supabase/logflare:1.53.0",
+      "image_id": "sha256:9d9c8f8c462650b5a99789e1adc6906df85cfb15e2515a8a3b44953893434470",
+      "oom_killed": false,
+      "restart_count": 0,
+      "restarting": false,
+      "running": true,
+      "started_at": "2026-10-15T18:15:03.728595382Z",
+      "status": "running"
+    },
+    {
+      "container": "supabase_auth_school-queue-local",
+      "exit_code": 0,
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "healthy",
+      "id": "9f7742bf04e680d82988376411720e3500c9c0c069b0e57de5b7f3dc3ebb4ef6",
+      "image": "public.ecr.aws/supabase/gotrue:v2.197.0",
+      "image_id": "sha256:1736a63078f5922b198c4cbe50f80ab9a2d3b54fe8b7b6cfb2e9dc5dbbc12c6b",
+      "oom_killed": false,
+      "restart_count": 0,
+      "restarting": false,
+      "running": true,
+      "started_at": "2026-10-15T18:15:05.795367307Z",
+      "status": "running"
+    },
+    {
+      "container": "supabase_db_school-queue-local",
+      "exit_code": 0,
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "healthy",
+      "id": "16f1de8f80f73115d5792cb395f6680ed2d73135b156d6311a31c96765d540b9",
+      "image": "public.ecr.aws/supabase/postgres:17.11.0.004",
+      "image_id": "sha256:6058a6759ab9268cff8ee70641d61f1bd75953316281b76427cf5a6b4db2eafc",
+      "oom_killed": false,
+      "restart_count": 0,
+      "restarting": false,
+      "running": true,
+      "started_at": "2026-10-15T18:14:43.17209085Z",
+      "status": "running"
+    },
+    {
+      "container": "supabase_edge_runtime_school-queue-local",
+      "exit_code": 0,
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "not-configured",
+      "id": "fa08af4faf695e70a0b1d965c50c50739353bc8f98da4633089405d99649be33",
+      "image": "public.ecr.aws/supabase/edge-runtime:v1.77.4",
+      "image_id": "sha256:ad45164b7548bf5820ed7be714789c17ac2865edce79a09cfb4c3756c3d365a8",
+      "oom_killed": false,
+      "restart_count": 0,
+      "restarting": false,
+      "running": true,
+      "started_at": "2026-10-15T18:15:11.823778567Z",
+      "status": "running"
+    },
+    {
+      "container": "supabase_inbucket_school-queue-local",
+      "exit_code": 0,
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "healthy",
+      "id": "2dc2dda3b9419f2dc7a6be3c00c54efed243ebb04ee4007bfb0dfcd29d53cf2e",
+      "image": "public.ecr.aws/supabase/mailpit:v1.31.3",
+      "image_id": "sha256:ed9b00c609e77e99c79b93f1178255ebc271868920f2c69a8d166bd5634ed10d",
+      "oom_killed": false,
+      "restart_count": 0,
+      "restarting": false,
+      "running": true,
+      "started_at": "2026-10-15T18:15:06.793561838Z",
+      "status": "running"
+    },
+    {
+      "container": "supabase_kong_school-queue-local",
+      "exit_code": 0,
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "healthy",
+      "id": "6542ef0ddc9fc5d72a5530feb0b961f0ba3c4916adec19bd538ead0d3837ebdd",
+      "image": "public.ecr.aws/supabase/kong:2.8.1",
+      "image_id": "sha256:1b53405d8680a09d6f44494b7990bf7da2ea43f84a258c59717d4539abf09f6d",
+      "oom_killed": false,
+      "restart_count": 0,
+      "restarting": false,
+      "running": true,
+      "started_at": "2026-10-15T18:15:05.111994842Z",
+      "status": "running"
+    },
+    {
+      "container": "supabase_pg_meta_school-queue-local",
+      "exit_code": 0,
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "healthy",
+      "id": "23df750f5f64167d0d31604e4a7cb739a1681d228ce01528d2bf441be4f66a96",
+      "image": "public.ecr.aws/supabase/postgres-meta:v0.100.0",
+      "image_id": "sha256:145325b7e39f8ef4931d6e8cfd3f6f4d655de09d72a2ccc96d9513542c2202bd",
+      "oom_killed": false,
+      "restart_count": 0,
+      "restarting": false,
+      "running": true,
+      "started_at": "2026-10-15T18:15:12.772180088Z",
+      "status": "running"
+    },
+    {
+      "container": "supabase_realtime_school-queue-local",
+      "exit_code": 0,
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "healthy",
+      "id": "8ddd82b059ceead9ba41b43dbeef4fa53de0fa22fcfac4bbd806f78b00636327",
+      "image": "public.ecr.aws/supabase/realtime:v2.143.4",
+      "image_id": "sha256:35e99d3f1cbba5aa5585e8ac3cf70ecc54909ee4aee0626effed93c60fb41439",
+      "oom_killed": false,
+      "restart_count": 0,
+      "restarting": false,
+      "running": true,
+      "started_at": "2026-10-15T18:15:07.910836032Z",
+      "status": "running"
+    },
+    {
+      "container": "supabase_rest_school-queue-local",
+      "exit_code": 0,
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "not-configured",
+      "id": "a3ebd0eb21044da487163626e9ce78849d4d551d466138bae4196a5bca3e1172",
+      "image": "public.ecr.aws/supabase/postgrest:v16.4",
+      "image_id": "sha256:d155c6718ed9a9f990d159a2ab7c0a3f16944dbb6d0a0344557421042acfe0df",
+      "oom_killed": false,
+      "restart_count": 0,
+      "restarting": false,
+      "running": true,
+      "started_at": "2026-10-15T18:15:08.86125363Z",
+      "status": "running"
+    },
+    {
+      "container": "supabase_storage_school-queue-local",
+      "exit_code": 0,
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "healthy",
+      "id": "423b0081907815cf52ec9047b6ce142ff5f34a14324f61423d75fb34bc9c40c3",
+      "image": "public.ecr.aws/supabase/storage-api:v1.82.1",
+      "image_id": "sha256:ec2ad41411eac8fc2b769b4bb00d1af32ae37eca3745c15bdb329db27d218934",
+      "oom_killed": false,
+      "restart_count": 0,
+      "restarting": false,
+      "running": true,
+      "started_at": "2026-10-15T18:15:10.098951161Z",
+      "status": "running"
+    },
+    {
+      "container": "supabase_studio_school-queue-local",
+      "exit_code": 0,
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "healthy",
+      "id": "e3a3eb8f4a6ba04736e5ce030c4898acbc9e7037bc8bb31d6145696478e1af49",
+      "image": "public.ecr.aws/supabase/studio:2026.10.12-sha-3699278",
+      "image_id": "sha256:948770ec467f00e6ae34c35018ef7cb23d7b30eb806b42c2cc0d7bcfdcf8a7a8",
+      "oom_killed": false,
+      "restart_count": 0,
+      "restarting": false,
+      "running": true,
+      "started_at": "2026-10-15T18:15:13.467005917Z",
+      "status": "running"
+    },
+    {
+      "container": "supabase_vector_school-queue-local",
+      "exit_code": 0,
+      "finished_at": "2026-10-18T18:55:48.308160051Z",
+      "health": "unhealthy",
+      "id": "b6d521af4f244e0ab8ede06130d31bf067e9483ed1dd920544759b607cc9bc59",
+      "image": "public.ecr.aws/supabase/vector:0.58.0-alpine",
+      "image_id": "sha256:5dcf67db0ee378caa87f3395cb9484ebe3e97bb0334d119f2ac33116e00c5773",
+      "oom_killed": false,
+      "restart_count": 2444,
+      "restarting": true,
+      "running": true,
+      "started_at": "2026-10-18T18:55:47.901325875Z",
+      "status": "restarting"
+    }
+  ],
+  "retained_before": [
+    {
+      "container": "supabase_analytics_school-queue-local",
+      "exit_code": 0,
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "healthy",
+      "id": "d39d0db69e75569b40030d43ce1bed2374af6b15554b2ff0fbf11e2ac0dba5f9",
+      "image": "public.ecr.aws/supabase/logflare:1.53.0",
+      "image_id": "sha256:9d9c8f8c462650b5a99789e1adc6906df85cfb15e2515a8a3b44953893434470",
+      "oom_killed": false,
+      "restart_count": 0,
+      "restarting": false,
+      "running": true,
+      "started_at": "2026-10-15T18:15:03.728595382Z",
+      "status": "running"
+    },
+    {
+      "container": "supabase_auth_school-queue-local",
+      "exit_code": 0,
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "healthy",
+      "id": "9f7742bf04e680d82988376411720e3500c9c0c069b0e57de5b7f3dc3ebb4ef6",
+      "image": "public.ecr.aws/supabase/gotrue:v2.197.0",
+      "image_id": "sha256:1736a63078f5922b198c4cbe50f80ab9a2d3b54fe8b7b6cfb2e9dc5dbbc12c6b",
+      "oom_killed": false,
+      "restart_count": 0,
+      "restarting": false,
+      "running": true,
+      "started_at": "2026-10-15T18:15:05.795367307Z",
+      "status": "running"
+    },
+    {
+      "container": "supabase_db_school-queue-local",
+      "exit_code": 0,
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "healthy",
+      "id": "16f1de8f80f73115d5792cb395f6680ed2d73135b156d6311a31c96765d540b9",
+      "image": "public.ecr.aws/supabase/postgres:17.11.0.004",
+      "image_id": "sha256:6058a6759ab9268cff8ee70641d61f1bd75953316281b76427cf5a6b4db2eafc",
+      "oom_killed": false,
+      "restart_count": 0,
+      "restarting": false,
+      "running": true,
+      "started_at": "2026-10-15T18:14:43.17209085Z",
+      "status": "running"
+    },
+    {
+      "container": "supabase_edge_runtime_school-queue-local",
+      "exit_code": 0,
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "not-configured",
+      "id": "fa08af4faf695e70a0b1d965c50c50739353bc8f98da4633089405d99649be33",
+      "image": "public.ecr.aws/supabase/edge-runtime:v1.77.4",
+      "image_id": "sha256:ad45164b7548bf5820ed7be714789c17ac2865edce79a09cfb4c3756c3d365a8",
+      "oom_killed": false,
+      "restart_count": 0,
+      "restarting": false,
+      "running": true,
+      "started_at": "2026-10-15T18:15:11.823778567Z",
+      "status": "running"
+    },
+    {
+      "container": "supabase_inbucket_school-queue-local",
+      "exit_code": 0,
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "healthy",
+      "id": "2dc2dda3b9419f2dc7a6be3c00c54efed243ebb04ee4007bfb0dfcd29d53cf2e",
+      "image": "public.ecr.aws/supabase/mailpit:v1.31.3",
+      "image_id": "sha256:ed9b00c609e77e99c79b93f1178255ebc271868920f2c69a8d166bd5634ed10d",
+      "oom_killed": false,
+      "restart_count": 0,
+      "restarting": false,
+      "running": true,
+      "started_at": "2026-10-15T18:15:06.793561838Z",
+      "status": "running"
+    },
+    {
+      "container": "supabase_kong_school-queue-local",
+      "exit_code": 0,
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "healthy",
+      "id": "6542ef0ddc9fc5d72a5530feb0b961f0ba3c4916adec19bd538ead0d3837ebdd",
+      "image": "public.ecr.aws/supabase/kong:2.8.1",
+      "image_id": "sha256:1b53405d8680a09d6f44494b7990bf7da2ea43f84a258c59717d4539abf09f6d",
+      "oom_killed": false,
+      "restart_count": 0,
+      "restarting": false,
+      "running": true,
+      "started_at": "2026-10-15T18:15:05.111994842Z",
+      "status": "running"
+    },
+    {
+      "container": "supabase_pg_meta_school-queue-local",
+      "exit_code": 0,
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "healthy",
+      "id": "23df750f5f64167d0d31604e4a7cb739a1681d228ce01528d2bf441be4f66a96",
+      "image": "public.ecr.aws/supabase/postgres-meta:v0.100.0",
+      "image_id": "sha256:145325b7e39f8ef4931d6e8cfd3f6f4d655de09d72a2ccc96d9513542c2202bd",
+      "oom_killed": false,
+      "restart_count": 0,
+      "restarting": false,
+      "running": true,
+      "started_at": "2026-10-15T18:15:12.772180088Z",
+      "status": "running"
+    },
+    {
+      "container": "supabase_realtime_school-queue-local",
+      "exit_code": 0,
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "healthy",
+      "id": "8ddd82b059ceead9ba41b43dbeef4fa53de0fa22fcfac4bbd806f78b00636327",
+      "image": "public.ecr.aws/supabase/realtime:v2.143.4",
+      "image_id": "sha256:35e99d3f1cbba5aa5585e8ac3cf70ecc54909ee4aee0626effed93c60fb41439",
+      "oom_killed": false,
+      "restart_count": 0,
+      "restarting": false,
+      "running": true,
+      "started_at": "2026-10-15T18:15:07.910836032Z",
+      "status": "running"
+    },
+    {
+      "container": "supabase_rest_school-queue-local",
+      "exit_code": 0,
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "not-configured",
+      "id": "a3ebd0eb21044da487163626e9ce78849d4d551d466138bae4196a5bca3e1172",
+      "image": "public.ecr.aws/supabase/postgrest:v16.4",
+      "image_id": "sha256:d155c6718ed9a9f990d159a2ab7c0a3f16944dbb6d0a0344557421042acfe0df",
+      "oom_killed": false,
+      "restart_count": 0,
+      "restarting": false,
+      "running": true,
+      "started_at": "2026-10-15T18:15:08.86125363Z",
+      "status": "running"
+    },
+    {
+      "container": "supabase_storage_school-queue-local",
+      "exit_code": 0,
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "healthy",
+      "id": "423b0081907815cf52ec9047b6ce142ff5f34a14324f61423d75fb34bc9c40c3",
+      "image": "public.ecr.aws/supabase/storage-api:v1.82.1",
+      "image_id": "sha256:ec2ad41411eac8fc2b769b4bb00d1af32ae37eca3745c15bdb329db27d218934",
+      "oom_killed": false,
+      "restart_count": 0,
+      "restarting": false,
+      "running": true,
+      "started_at": "2026-10-15T18:15:10.098951161Z",
+      "status": "running"
+    },
+    {
+      "container": "supabase_studio_school-queue-local",
+      "exit_code": 0,
+      "finished_at": "0001-01-01T00:00:00Z",
+      "health": "healthy",
+      "id": "e3a3eb8f4a6ba04736e5ce030c4898acbc9e7037bc8bb31d6145696478e1af49",
+      "image": "public.ecr.aws/supabase/studio:2026.10.12-sha-3699278",
+      "image_id": "sha256:948770ec467f00e6ae34c35018ef7cb23d7b30eb806b42c2cc0d7bcfdcf8a7a8",
+      "oom_killed": false,
+      "restart_count": 0,
+      "restarting": false,
+      "running": true,
+      "started_at": "2026-10-15T18:15:13.467005917Z",
+      "status": "running"
+    },
+    {
+      "container": "supabase_vector_school-queue-local",
+      "exit_code": 0,
+      "finished_at": "2026-10-18T18:53:47.219446919Z",
+      "health": "unhealthy",
+      "id": "b6d521af4f244e0ab8ede06130d31bf067e9483ed1dd920544759b607cc9bc59",
+      "image": "public.ecr.aws/supabase/vector:0.58.0-alpine",
+      "image_id": "sha256:5dcf67db0ee378caa87f3395cb9484ebe3e97bb0334d119f2ac33116e00c5773",
+      "oom_killed": false,
+      "restart_count": 2442,
+      "restarting": true,
+      "running": true,
+      "started_at": "2026-10-18T18:53:46.853858769Z",
+      "status": "restarting"
+    }
+  ],
+  "retained_mutation": false,
+  "run_id": "93f01982",
+  "started_at": "2026-10-18T18:54:32.369904+00:00",
+  "synthetic_checks": {
+    "failed": 0,
+    "passed": 37
+  }
+}

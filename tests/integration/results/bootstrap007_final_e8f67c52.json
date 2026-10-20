@@ -1,0 +1,97 @@
+{
+  "run": "e8f67c52",
+  "checks": [
+    {
+      "name": "reviewed full body has exactly two removable outer transaction controls",
+      "result": "PASS"
+    },
+    {
+      "name": "wrong identity binding rolls back every 007 DDL change and approval",
+      "result": "PASS"
+    },
+    {
+      "name": "injected failure after approval rolls back functions table grants roles and approval",
+      "result": "PASS"
+    },
+    {
+      "name": "duplicate approval before COMMIT aborts the entire combined transaction",
+      "result": "PASS"
+    },
+    {
+      "name": "wrong cluster stops before any migration object is created",
+      "result": "PASS"
+    },
+    {
+      "name": "complete 007 and exactly one identity-bound one-day ADMIN approval commit together",
+      "result": "PASS"
+    },
+    {
+      "name": "approved signed AAL2 ADMIN can read all actual installed 011 endpoints",
+      "result": "PASS"
+    },
+    {
+      "name": "unapproved ADMIN and approved ADMIN at AAL1 are denied all protected reads",
+      "result": "PASS"
+    },
+    {
+      "name": "unapproved CASHIER and STUDENT cannot use protected staff operations",
+      "result": "PASS"
+    },
+    {
+      "name": "STUDENT context tickets issuance contract and public routes stay unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "all eight wrappers private cores and operator helpers have expected definer owner search path and grants",
+      "result": "PASS"
+    },
+    {
+      "name": "approval expiry revocation identity change and missing factor each fail closed",
+      "result": "PASS"
+    },
+    {
+      "name": "repeat migration and approvals beyond 30 days are refused",
+      "result": "PASS"
+    },
+    {
+      "name": "legacy directory still bypasses 007 at AAL1 without operator approval — blocker reproduced",
+      "result": "PASS"
+    },
+    {
+      "name": "legacy request_staff_access still writes at AAL1 without approval — blocker reproduced only in fixture",
+      "result": "PASS"
+    }
+  ],
+  "retainedWrites": false,
+  "syntheticContexts": true,
+  "mode": "atomic",
+  "existingSqlMethods": 123,
+  "migrationSha256": "b22d63d24c991b9ebf0d380d27a716d5ea72e418f5e62e177c96dded4481222c",
+  "body": {
+    "sha256": "cdbcfb56a3dda310913fc6e3677fdf6ca36446d317f962ee79ceb5ca6134a5c8",
+    "topLevelStatements": 60
+  },
+  "installedReadCloneSha256": "ec0dd53f0e00f102d575fb82d32d7794cb6924d428835d03e040ef88412f1637",
+  "bootstrapApproval": {
+    "exactlyOne": true,
+    "role": "ADMIN",
+    "duration": "1 day",
+    "identityBound": true,
+    "operator": "postgres"
+  },
+  "protectedFunctionsChecked": 22,
+  "blockers": [
+    "Installed admin_staff_directory remains callable by unapproved AAL1 ADMIN",
+    "Installed request_staff_access still writes pending requests for unapproved AAL1 ADMIN"
+  ],
+  "result": "PASS_VERIFICATION_NO_GO_RETAINED_APPLICATION",
+  "stopped": true,
+  "retainedPreservation": true,
+  "exactResourceDelta": true,
+  "containers": [
+    "b54af81df8ddb25143ad0edd2132b50c5b74ec5cacad6c073fbff86f394582ea",
+    "5caef6ed5069f3d66a2f4500d78e6108816004369136ffef807b0926bf907b36"
+  ],
+  "network": "sq-queue-e8f67c52-net",
+  "passed": 15
+}

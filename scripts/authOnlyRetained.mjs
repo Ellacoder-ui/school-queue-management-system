@@ -1,11 +1,11 @@
-/** A plan-bound service adapter shared with rehearsal. Retained factory is locked.
+/** A plan-bound service adapter shared with rehearsal. Retained use needs approval.
  * No arbitrary Docker command, exec, deletion, or stack operation is provided. */
 import http from 'node:http';
-import {need,stable,toCreate,validateRetained,retainedId,network,names} from './authOnlyCore.mjs';
-const retainedExecutionEnabled=false; // Requires separate reviewed approval/code change.
+import {need,stable,toCreate,validateRetained,retainedId,network,names,exactDelta,environment,root} from './authOnlyCore.mjs';
+import {approveReview} from './authOnlyWorkflow.mjs';
 
 export class BoundAuthEngine {
-  constructor(channel){this.channel=channel;this.id=channel.id;this.names=channel.names;this.binding=null;this.pendingEndpoints=new Set();}
+  constructor(channel,restoreDelta=null){this.channel=channel;this.id=channel.id;this.names=channel.names;this.binding=null;this.pendingEndpoints=new Set();this.restoreDelta=restoreDelta;}
   async bind(slot,id,original,candidate){
     need(!this.binding && /^[a-z][a-z0-9-]{0,20}$/.test(slot),'AGO_ALREADY_BOUND');
     await this.channel.verifyNetwork();
@@ -13,6 +13,16 @@ export class BoundAuthEngine {
     need(item.Name==='/'+this.names.auth && stable(toCreate(item,this.names.network))===stable(original),'AGO_BIND_ORIGINAL');
     this.binding={slot,originalId:id,original,candidate,replacementId:null,image:item.Image,
       endpoint:structuredClone(item.NetworkSettings.Networks[this.names.network])};
+  }
+  async restoreBinding(slot,capture,replacementId){
+    need(/^[a-z][a-z0-9-]{0,20}$/.test(slot) && /^[0-9a-f]{64}$/.test(replacementId),'AGO_RESUME_ID');
+    const e=environment(capture.candidate.Env);
+    if(this.restoreDelta)this.restoreDelta(capture.original,capture.candidate);
+    else exactDelta(capture.original,capture.candidate,{ClientId:e.GOTRUE_EXTERNAL_GOOGLE_CLIENT_ID,ClientSecret:e.GOTRUE_EXTERNAL_GOOGLE_SECRET});
+    need(capture.plan.originalId===capture.inspect.Id && capture.plan.runId===this.id,'AGO_RESUME_CAPTURE');
+    this.binding={slot,originalId:capture.inspect.Id,original:capture.original,candidate:capture.candidate,replacementId,image:capture.inspect.Image,
+      endpoint:structuredClone(capture.inspect.NetworkSettings.Networks[this.names.network])};
+    await this.inspect(capture.inspect.Id);await this.inspect(replacementId);
   }
   async inspect(id){
     const b=this.binding;
@@ -56,11 +66,12 @@ export class BoundAuthEngine {
   }
 }
 
-// The channel remains private to the locked retained factory. All mutations pass
+// The channel remains private to the approved retained factory. All mutations pass
 // BoundAuthEngine's full-definition and exact-ID checks and the shared reconciler.
 class RetainedChannel {
-  constructor(item,id){
-    validateRetained(item);names(id);this.id=id;
+  constructor(item,id,validator=validateRetained){
+    validator(item);names(id);this.id=id;
+    this.imageTag=item.Config.Image;this.imageId=item.Image;
     this.names={auth:'supabase_auth_school-queue-local',prefix:`supabase_auth_school-queue-local-${id}-`,network};
     this.ids=new Set([item.Id]);this.networkId=item.NetworkSettings.Networks[network].NetworkID;
     need(/^[0-9a-f]{64}$/.test(this.networkId),'AGO_RETAINED_NETWORK_ID');
@@ -81,7 +92,9 @@ class RetainedChannel {
     const named=await this.#request('GET','/networks/'+encodeURIComponent(network));
     need(x.Id===this.networkId && named.Id===this.networkId && x.Name===network,'AGO_RETAINED_NETWORK_ID');
   }
-  async create(name,body){need(name===this.names.auth,'AGO_PRIVATE_NAME');const x=await this.#request('POST','/containers/create?name='+encodeURIComponent(name),body);
+  async create(name,body){need(name===this.names.auth,'AGO_PRIVATE_NAME');
+    const image=await this.#request('GET','/images/'+encodeURIComponent(this.imageTag)+'/json');need(image.Id===this.imageId,'AGO_CACHED_AUTH_TAG_CHANGED');
+    const x=await this.#request('POST','/containers/create?name='+encodeURIComponent(name),body);
     need(/^[0-9a-f]{64}$/.test(x.Id),'AGO_PRIVATE_CREATED_ID');this.ids.add(x.Id);return x.Id;}
   async action(id,operation,value){
     const item=await this.inspect(id);
@@ -93,9 +106,28 @@ class RetainedChannel {
     else throw Error('AGO_PRIVATE_ACTION');
   }
 }
-export function retainedAuthEngine(item,id){
-  // There is no switch, environment variable, hash, or command that bypasses this.
-  need(retainedExecutionEnabled,'AGO_RETAINED_ACTIVATION_LOCKED');
+export async function retainedMfaEngine(item,id,authorization){
+  const {approveMfaReview}=await import('./authMfaWorkflow.mjs');
+  const {validateMfaRetained,exactMfaDelta}=await import('./authMfaPlan.mjs');
+  need(authorization?.review && authorization.hash,'AMF_REVIEW_APPROVAL');
+  approveMfaReview(authorization.review,authorization.hash,{expiry:!authorization.replacementId});
+  need(!authorization.review.plan.synthetic && authorization.review.plan.runId===id &&
+    stable(authorization.review.inspect)===stable(item),'AMF_RETAINED_AUTHORIZATION');
+  need(process.platform==='win32' && root.toLowerCase()==='c:\\users\\hp\\school-queue-management-system' &&
+    !['DOCKER_HOST','DOCKER_CONTEXT','DOCKER_TLS_VERIFY','DOCKER_CERT_PATH'].some(k=>process.env[k]),'AMF_PLATFORM');
+  const channel=new RetainedChannel(item,id,validateMfaRetained);
+  if(authorization.replacementId){need(/^[0-9a-f]{64}$/.test(authorization.replacementId),'AMF_REPLACEMENT_ID');channel.ids.add(authorization.replacementId);}
+  return new BoundAuthEngine(channel,exactMfaDelta);
+}
+export function retainedAuthEngine(item,id,authorization){
+  need(authorization?.review && authorization.hash,'AGO_RETAINED_ACTIVATION_LOCKED');
+  approveReview(authorization.review,authorization.hash,{expiry:!authorization.replacementId});
+  need(!authorization.review.plan.synthetic && authorization.review.plan.runId===id &&
+    stable(authorization.review.inspect)===stable(item),'AGO_RETAINED_AUTHORIZATION');
+  need(process.platform==='win32' && root.toLowerCase()==='c:\\users\\hp\\school-queue-management-system' &&
+    !['DOCKER_HOST','DOCKER_CONTEXT','DOCKER_TLS_VERIFY','DOCKER_CERT_PATH'].some(k=>process.env[k]),'AGO_PLATFORM');
   need(item.Id===retainedId,'AGO_RETAINED_IDENTITY');
-  return new BoundAuthEngine(new RetainedChannel(item,id));
+  const channel=new RetainedChannel(item,id);
+  if(authorization.replacementId){need(/^[0-9a-f]{64}$/.test(authorization.replacementId),'AGO_RESUME_ID');channel.ids.add(authorization.replacementId);}
+  return new BoundAuthEngine(channel);
 }

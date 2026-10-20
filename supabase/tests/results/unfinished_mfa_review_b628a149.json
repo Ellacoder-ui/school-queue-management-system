@@ -1,0 +1,24 @@
+{
+  "result": "PASS_READ_ONLY_UNFINISHED_FACTOR_REVIEW",
+  "observedAt": "2026-10-19T10:49:23.389904+00:00",
+  "account": {
+    "uuid": "5c96debb-697f-4cad-805f-92b518e28343",
+    "email": "ellasharmaineabeso2004@gmail.com",
+    "binding": "0fa3fe400dbd117642d5cb7eb89bfed7471e6ef447e59bfc8ac8426001e39701",
+    "role": "STUDENT",
+    "enabled": true
+  },
+  "factor": {
+    "id": "41c29861-e329-42df-9207-7bc0a0045d90",
+    "type": "totp",
+    "status": "unverified",
+    "user_id": "5c96debb-697f-4cad-805f-92b518e28343",
+    "created_at": "2026-10-19T10:46:50.505609+00:00"
+  },
+  "verifiedFactors": 0,
+  "userReportedQrNeverScanned": true,
+  "proposedAction": "Explicitly remove only this unverified factor using the owning user supported Auth MFA API, then separately start a new enrollment. No automatic action.",
+  "approval": "REQUIRED_BEFORE_RETAINED_UNENROLL",
+  "retainedWrites": false,
+  "schoolRemainsStudent": true
+}
