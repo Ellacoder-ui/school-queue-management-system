@@ -17,6 +17,10 @@ begin
  perform set_config('request.jwt.claim.sub',(select id::text from fixture where name=p_name),true);
 end;
 $$;
+create function pg_temp.issue_test_ticket(p_service text) returns jsonb language sql as $$
+ select queue_private.issue_ticket_at(p_service,gen_random_uuid(),
+   ((clock_timestamp() at time zone 'Asia/Manila')::date + time '10:00') at time zone 'Asia/Manila');
+$$;
 create function pg_temp.fails(p_sql text,p_message text) returns boolean language plpgsql as $$
 begin
  execute p_sql; return false;
@@ -30,13 +34,13 @@ select lives_ok($q$select queue_api.configure_counter((select id from fixture wh
 select lives_ok($q$select queue_api.manage_day('OPEN',(clock_timestamp() at time zone 'Asia/Manila')::date,gen_random_uuid())$q$,'admin opens day');
 select pg_temp.actor('student');
 select ok(pg_temp.fails($q$select queue_api.set_account((select id from fixture where name='student'),'ADMIN',true,gen_random_uuid())$q$,'Administrator required'),'student cannot escalate');
-create temporary table issued as select queue_api.issue_ticket('TP',gen_random_uuid()) as result;
+create temporary table issued as select pg_temp.issue_test_ticket('TP') as result;
 select is((select result->>'sequence_number' from issued),'1','first TP number is one');
-select ok(pg_temp.fails($q$select queue_api.issue_ticket('SOA',gen_random_uuid())$q$,'Active ticket'),'one active ticket across services');
+select ok(pg_temp.fails($q$select pg_temp.issue_test_ticket('SOA')$q$,'Active ticket'),'one active ticket across services');
 select pg_temp.actor('unassigned');
 select ok(pg_temp.fails($q$select queue_api.call_next((select id from fixture where name='counter'),'TP',gen_random_uuid())$q$,'Assigned cashier'),'unassigned cashier rejected');
 select pg_temp.actor('other');
-select queue_api.issue_ticket('TP',gen_random_uuid());
+select pg_temp.issue_test_ticket('TP');
 select is(queue_api.my_tickets()->0->>'number','2','other student has next number');
 select ok(pg_temp.fails($q$select queue_api.my_ticket_events((select (result->>'ticket_id')::uuid from issued))$q$,'Unauthorized'),'cross-owner history denied');
 select pg_temp.actor('cashier');
@@ -52,13 +56,13 @@ select queue_api.call_next((select id from fixture where name='counter'),'TP',ge
 select queue_api.finish_ticket((select (result->>'ticket_id')::uuid from issued),'SERVE',gen_random_uuid());
 select is((select count(*) from queue_private.tickets where owner_id=(select id from fixture where name='student') and status='SERVED'),1::bigint,'skipped then served counts once');
 select pg_temp.actor('student');
-select queue_api.issue_ticket('TP',gen_random_uuid());
+select pg_temp.issue_test_ticket('TP');
 select pg_temp.actor('cashier');
 select queue_api.call_next((select id from fixture where name='counter'),'TP',gen_random_uuid());
 select queue_api.finish_ticket((select id from queue_private.tickets where status='CALLED'),'SERVE',gen_random_uuid());
 select pg_temp.actor('student');
-select ok(pg_temp.fails($q$select queue_api.issue_ticket('TP',gen_random_uuid())$q$,'Daily served-ticket limit'),'third same-service ticket refused after two served');
-select lives_ok($q$select queue_api.issue_ticket('SOA',gen_random_uuid())$q$,'quota is per service');
+select ok(pg_temp.fails($q$select pg_temp.issue_test_ticket('TP')$q$,'Daily served-ticket limit'),'third same-service ticket refused after two served');
+select lives_ok($q$select pg_temp.issue_test_ticket('SOA')$q$,'quota is per service');
 select pg_temp.actor('admin');
 select queue_api.manage_day('CLOSE',(clock_timestamp() at time zone 'Asia/Manila')::date,gen_random_uuid());
 select is((select count(*) from queue_private.tickets where status in ('WAITING','CALLED')),0::bigint,'closure removes all active tickets for day');
@@ -80,7 +84,7 @@ from fixture f cross join queue_private.settings st cross join queue_private.ser
 join queue_private.queue_days d on d.id=ds.queue_day_id
 where f.name='student' and d.business_date=(clock_timestamp() at time zone 'Asia/Manila')::date-1;
 select pg_temp.actor('student');
-select ok(pg_temp.fails($q$select queue_api.issue_ticket('TP',gen_random_uuid())$q$,'Active ticket'),'prior-day active ticket blocks new-day issuance');
+select ok(pg_temp.fails($q$select pg_temp.issue_test_ticket('TP')$q$,'Active ticket'),'prior-day active ticket blocks new-day issuance');
 select pg_temp.actor('cashier');
 select lives_ok($q$select queue_api.call_next((select id from fixture where name='counter'),'TP',gen_random_uuid())$q$,'prior-day active ticket can be called');
 select lives_ok($q$select queue_api.finish_ticket((select id from queue_private.tickets where status='CALLED'),'SERVE',gen_random_uuid())$q$,'prior-day quota independent of two served today');
@@ -92,9 +96,9 @@ insert into queue_private.service_day_state(queue_day_id,service_id,last_number)
 select d.id,s.id,99 from queue_private.queue_days d cross join queue_private.services s
 where d.business_date=(clock_timestamp() at time zone 'Asia/Manila')::date-1 and s.code='REF';
 select pg_temp.actor('other');
-select is(queue_api.issue_ticket('REF',gen_random_uuid())->>'sequence_number','1','new-day service numbering starts at one despite yesterday allocation');
+select is(pg_temp.issue_test_ticket('REF')->>'sequence_number','1','new-day service numbering starts at one despite yesterday allocation');
 select pg_temp.actor('student');
-select ok(pg_temp.fails($q$select queue_api.issue_ticket('TP',gen_random_uuid())$q$,'Daily served-ticket limit'),'prior-day completion does not change current-day quota');
+select ok(pg_temp.fails($q$select pg_temp.issue_test_ticket('TP')$q$,'Daily served-ticket limit'),'prior-day completion does not change current-day quota');
 
 -- Defensive completion check even if a future trusted import admits an extra ticket.
 update queue_private.settings set last_wait_position=last_wait_position+1;

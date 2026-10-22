@@ -2,7 +2,9 @@ import { onMounted, onUnmounted, shallowRef, watch } from 'vue'
 import { queueApi } from '../lib/queue.js'
 import { createAdminWorkspace, emptyAdmin } from '../lib/adminWorkspace.js'
 import { createRecoveryTask } from '../lib/revalidation.js'
-import { STAFF_ACTIVATION_RELEASED } from '../lib/adminActivation.js'
+import { INELIGIBLE_COUNTER_ASSIGNMENT_REMOVAL_RELEASED, PENDING_STAFF_ASSIGNMENTS_RELEASED, STAFF_ACTIVATION_RELEASED, STAFF_MANAGEMENT_OWNER_ID } from '../lib/adminActivation.js'
+const staffMutations = new Set(['add_verified_staff', 'assign_staff_by_email', 'manage_pending_staff', 'set_account', 'set_staff_access', 'configure_counter', 'remove_ineligible_counter_assignment'])
+const pendingMutations = new Set(['assign_staff_by_email', 'manage_pending_staff'])
 export function useAdminWorkspace(auth, publicState, refreshPublic) {
   const state = shallowRef(emptyAdmin())
   let selectedDate = null
@@ -27,6 +29,16 @@ export function useAdminWorkspace(auth, publicState, refreshPublic) {
   onMounted(() => { window.addEventListener('online', visible); window.addEventListener('focus', visible); window.addEventListener('storage', storage); document.addEventListener('visibilitychange', visible) })
   onUnmounted(() => { recovery.stop(); window.removeEventListener('online', visible); window.removeEventListener('focus', visible); window.removeEventListener('storage', storage); document.removeEventListener('visibilitychange', visible); controller.stop() })
   return { state, refresh,
-    perform: (operation,args) => { if(operation==='add_verified_staff'&&!STAFF_ACTIVATION_RELEASED)return;return controller.perform(operation,args) },
-    retry: () => { if(state.value.operation==='add_verified_staff'&&!STAFF_ACTIVATION_RELEASED)return;return controller.retry() } }
+    perform: (operation,args) => {
+      if(staffMutations.has(operation)&&(!STAFF_ACTIVATION_RELEASED||auth.getVerifiedActor()!==STAFF_MANAGEMENT_OWNER_ID)
+        ||pendingMutations.has(operation)&&!PENDING_STAFF_ASSIGNMENTS_RELEASED
+        ||operation==='remove_ineligible_counter_assignment'&&!INELIGIBLE_COUNTER_ASSIGNMENT_REMOVAL_RELEASED)return
+      return controller.perform(operation,args)
+    },
+    retry: () => {
+      if(staffMutations.has(state.value.operation)&&(!STAFF_ACTIVATION_RELEASED||auth.getVerifiedActor()!==STAFF_MANAGEMENT_OWNER_ID)
+        ||pendingMutations.has(state.value.operation)&&!PENDING_STAFF_ASSIGNMENTS_RELEASED
+        ||state.value.operation==='remove_ineligible_counter_assignment'&&!INELIGIBLE_COUNTER_ASSIGNMENT_REMOVAL_RELEASED)return
+      return controller.retry()
+    } }
 }

@@ -22,7 +22,7 @@ test('loading view contains no fabricated tickets or wait estimates', async () =
 test('authoritative closed day is independent of open counters and catalog names are escaped', async () => {
   const html = await render({ hasSnapshot: true, connection: 'connected', synchronized: true,
     context: { timezone: 'Asia/Manila', business_date: '2026-10-16', queue_day_open: false,
-      services: [{ code: 'TP', name: '<img src=x onerror=alert(1)>' }] },
+      services: [{ code: 'TP', name: '<img src=x onerror=alert(1)>', issuance_status: 'OPEN' }] },
     counters: [{ counter_id: 'counter', counter_label: 'Counter 1', is_open: true, ticket_label: null }] })
   assert.match(html, /Queue day not open/)
   assert.match(html, /Asia\/Manila/)
@@ -46,13 +46,13 @@ test('view always represents all five destinations but renders only supplied tic
   for (let counter = 1; counter <= 5; counter++) assert.match(html, new RegExp(`data-counter="${counter}"`))
   assert.match(html, /COUNTER 05/)
   assert.match(html, /Data unavailable/)
-  assert.match(html, /Live public display/)
+  assert.doesNotMatch(html, /Live public display|Connecting|Synchronizing/)
   assert.doesNotMatch(html, /TP-027|Estimated wait/)
 })
 
 test('disconnected view labels retained data as a stale snapshot', async () => {
   const html = await render({ hasSnapshot: true, connection: 'disconnected' })
-  assert.match(html, /Disconnected/)
+  assert.match(html, /Queue synchronization is interrupted/)
   assert.match(html, /snapshot may be out of date/)
   assert.doesNotMatch(html, /Live public display/)
 })
@@ -61,6 +61,9 @@ test('error and recovery states are accessible and do not claim live status', as
   const html = await render({ hasSnapshot: true, connection: 'connected', error: 'Unable to load the public queue.' })
   assert.match(html, /role="alert"/)
   assert.match(html, /Showing the last successful snapshot/)
-  assert.match(html, /Refresh display/)
-  assert.doesNotMatch(html, /Live public display/)
+  assert.doesNotMatch(html, /Refresh display|board-refresh|Live public display/)
+})
+test('healthy public display stays quiet and no manual refresh control is rendered',async()=>{
+ const html=await render({hasSnapshot:true,connection:'connected',synchronized:true})
+ assert.doesNotMatch(html,/Live public display|Connecting|Synchronizing|Refresh display|board-refresh/)
 })

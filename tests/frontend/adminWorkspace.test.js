@@ -33,6 +33,20 @@ test('administration intent parameters reject email-only role grants and malform
   assert.throws(()=>validateAdminMutation('configure_counter',{p_counter:id(200),p_open:true,p_services:['TP','SOA'],p_cashiers:[]}))
   assert.throws(()=>validateAdminReceipt('set_account',{user:actor,role:'ADMIN',enabled:true,access_token:'CANARY'}))
 })
+test('owner cleanup confirms one ineligible assignment without changing account role',async()=>{
+  const receipt={counter:id(200),user:id(2),role:'STUDENT',enabled:true,removed:true}
+  const writes=[]
+  const h=harness({executeMutation:async intent=>{writes.push(intent);return receipt}})
+  await h.ready()
+  await h.controller.perform('remove_ineligible_counter_assignment',{p_counter:receipt.counter,p_user:receipt.user})
+  assert.equal(h.controller.getState().phase,'success')
+  assert.equal(h.controller.getState().message,'Ineligible counter assignment removed. Account role and history were preserved.')
+  assert.equal(writes.length,1)
+  assert.equal(writes[0].operation,'remove_ineligible_counter_assignment')
+  assert.equal(writes[0].parameters.p_user,receipt.user)
+  assert.equal(h.store.size,0)
+  h.controller.stop()
+})
 test('student and cashier browser context cannot start an administrator read',async()=>{
   let reads=0;const h=harness({read:async()=>{reads++;return adminFixture()}})
   for(const role of ['STUDENT','CASHIER']){h.scope({actor,context:{role,enabled:true}});h.controller.syncAccess(day);await tick();assert.equal(h.controller.getState().data,null)}

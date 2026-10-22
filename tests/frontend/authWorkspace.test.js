@@ -51,11 +51,11 @@ test('student navigation keeps logout only and removes redundant display/access/
   assert.equal((html.match(/class="cqs-service-card"/g)||[]).length,5)
   assert.match(html,/data-testid="student-live-monitor"/)
 })
-test('cashier and administrator retain account security navigation', async () => {
+test('cashier and administrator keep dashboard navigation clear of duplicate access links', async () => {
   for(const role of ['CASHIER','ADMIN']){
     const html = await render({status:'ready',signedIn:true,workspace:role.toLowerCase(),context:{role,enabled:true,cashier_counters:[]}})
-    assert.match(html,/data-testid="account-security"/)
     assert.match(html,/data-testid="sign-out"/)
+    assert.doesNotMatch(html,/data-testid="account-security"|My workspace|Refresh access|Account security/)
   }
 })
 test('mfa-mode path exposes account security for student without auto-opening dialog', async () => {
@@ -72,12 +72,21 @@ test('mfa-mode path preserves five service cards and live monitor for student', 
   assert.equal((html.match(/class="cqs-service-card"/g)||[]).length,5)
   assert.match(html,/data-testid="student-live-monitor"/)
 })
-test('cashier and administrator retain their navigation and access-refresh controls', async () => {
+test('cashier and administrator do not render a redundant secondary navigation row', async () => {
   for(const role of ['CASHIER','ADMIN']){
     const html = await render({status:'ready',signedIn:true,workspace:role.toLowerCase(),context:{role,enabled:true,cashier_counters:[]}})
-    for(const label of ['My workspace','Public queue','Refresh access','Account security'])assert.ok(html.includes(label))
-    assert.equal(html.includes('data-testid="public-display-link"'),role==='CASHIER')
+    assert.doesNotMatch(html,/<nav[^>]*aria-label="Workspace navigation"/)
+    const controls=(html.match(/<(?:a|button)\b[^>]*>[\s\S]*?<\/(?:a|button)>/g)||[]).join(' ')
+    assert.doesNotMatch(controls,/My workspace|Refresh access|Public queue|Public display/)
+    assert.equal(html.includes('data-testid="public-display-link"'),false)
   }
+})
+test('cashier dashboard embeds the live board without a top-level public-display link', async () => {
+  const html = await render({ status: 'ready', signedIn: true, workspace: 'cashier',
+    context: { role: 'CASHIER', enabled: true, cashier_counters: [] } })
+  assert.match(html, /data-testid="cashier-live-monitor"/)
+  assert.match(html, /data-testid="public-board"/)
+  assert.doesNotMatch(html, /data-testid="public-display-link"|Public display ↗/)
 })
 test('callback interruption exposes reconciliation and cancellation without raw diagnostics', async () => {
   const html = await render({}, {oauthState:{phase:'uncertain',message:'Sign-in could not be confirmed.'}})
@@ -110,5 +119,5 @@ test('cashier view escapes labels and shows only supplied assignments', async ()
     cashier_counters: [{ counter_id: 'counter', counter_label: '<script>PRIVATE</script>', is_open: false, service_codes: ['ADJ'] }] } })
   assert.match(html, /&lt;script&gt;/)
   assert.doesNotMatch(html, /<script>PRIVATE/)
-  assert.match(html, /Closed counter/)
+  assert.match(html, /Counter Closed/)
 })

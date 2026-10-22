@@ -3,13 +3,16 @@ import { recordReads, validateRecordArgs, validateRecordRead } from '../lib/admi
 const counterFields = ['counter_id', 'counter_label', 'is_open', 'ticket_label', 'service_code', 'business_date', 'updated_at']
 const serviceFields = ['service_code', 'business_date', 'waiting_count', 'updated_at']
 const readOperations = new Set(['my_context', 'my_tickets', 'my_ticket_events', 'staff_queue', 'admin_configuration', 'admin_staff_directory', ...recordReads])
-const mutationOperations = new Set(['issue_ticket', 'call_next', 'finish_ticket', 'set_account', 'configure_counter', 'configure_service', 'manage_day', 'request_staff_access', 'add_verified_staff'])
+const mutationOperations = new Set(['issue_ticket', 'call_next', 'finish_ticket', 'set_counter_open', 'set_account', 'set_staff_access', 'configure_counter', 'remove_ineligible_counter_assignment', 'configure_service', 'manage_day', 'request_staff_access', 'add_verified_staff', 'assign_staff_by_email', 'manage_pending_staff'])
 const rejectionReasons = new Map([
   ['Current queue day is not open', 'day_closed'], ['Service unavailable', 'service_unavailable'],
   ['Active ticket already exists', 'active_ticket'], ['Daily served-ticket limit reached', 'served_quota'],
-  ['Counter closed', 'counter_closed'], ['Counter busy', 'counter_busy'],
+  ['Counter closed', 'counter_closed'], ['Counter is currently closed.', 'counter_closed'], ['Counter busy', 'counter_busy'],
+  ['Queue cutoff reached for today', 'queue_cutoff'], ['Ticket issuance for this service has ended today.', 'queue_cutoff'],
+  ['Ticket issuance closed after 5:00 PM', 'after_hours'], ['Ticket issuance closes at 5:00 PM', 'after_hours'],
+  ['Counter opening is unavailable after 5:00 PM', 'counter_after_hours'],
   ['Service not assigned or disabled', 'service_unavailable'], ['Queue day closed', 'day_closed'],
-  ['Pending review request already exists for this email', 'staff_duplicate'], ['Invalid email', 'invalid_email'], ['Invalid role', 'invalid_role'],
+  ['Pending review request already exists for this email', 'staff_duplicate'], ['Pending staff assignment already exists for this email', 'staff_duplicate'], ['Invalid email', 'invalid_email'], ['Invalid role', 'invalid_role'],
 ])
 
 export class QueueRequestError extends Error {
@@ -35,6 +38,7 @@ export function validateOperationParameters(operation, parameters) {
   if (operation === 'issue_ticket' && (!exact(parameters, ['p_service']) || !codes.has(parameters.p_service))) throw new Error('Invalid service request.')
   if (operation === 'call_next' && (!exact(parameters, ['p_counter', 'p_service']) || !isUuid(parameters.p_counter) || !codes.has(parameters.p_service))) throw new Error('Invalid counter request.')
   if (operation === 'finish_ticket' && (!exact(parameters, ['p_ticket', 'p_action']) || !isUuid(parameters.p_ticket) || !['SERVE', 'SKIP'].includes(parameters.p_action))) throw new Error('Invalid ticket action.')
+  if (operation === 'set_counter_open' && (!exact(parameters, ['p_counter', 'p_open']) || !isUuid(parameters.p_counter) || typeof parameters.p_open !== 'boolean')) throw new Error('Invalid counter state request.')
 }
 export function validateOperationResult(operation, result) {
   if (adminMutations.has(operation)) validateAdminReceipt(operation, result)
@@ -47,6 +51,8 @@ export function validateOperationResult(operation, result) {
       && !(exact(result, ['ticket_id', 'status']) && isUuid(result.ticket_id) && result.status === 'CALLED')) throw new Error('Invalid call receipt.')
   } else if (operation === 'finish_ticket') {
     if (!exact(result, ['ticket_id', 'status']) || !isUuid(result.ticket_id) || !['SERVED', 'WAITING'].includes(result.status)) throw new Error('Invalid finish receipt.')
+  } else if (operation === 'set_counter_open') {
+    if (!exact(result, ['counter', 'open']) || !isUuid(result.counter) || typeof result.open !== 'boolean') throw new Error('Invalid counter state receipt.')
   }
   return freeze(structuredClone(result))
 }
@@ -76,8 +82,9 @@ export function validatePublicContext(value) {
     || !Array.isArray(value.services)) throw new Error('Invalid public context.')
   const seen = new Set()
   for (const service of value.services) {
-    if (!exact(service, ['code', 'name']) || !codes.has(service.code) || seen.has(service.code)
-      || typeof service.name !== 'string' || !service.name.trim()) throw new Error('Invalid service catalog.')
+    if (!exact(service, ['code', 'name', 'issuance_status']) || !codes.has(service.code) || seen.has(service.code)
+      || typeof service.name !== 'string' || !service.name.trim()
+      || !['OPEN', 'COUNTER_CLOSED', 'QUEUE_CUTOFF', 'AFTER_HOURS', 'SERVICE_UNAVAILABLE'].includes(service.issuance_status)) throw new Error('Invalid service catalog.')
     seen.add(service.code)
   }
   return freeze(structuredClone(value))

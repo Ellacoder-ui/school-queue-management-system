@@ -1,12 +1,11 @@
-// ADMIN-only contracts. Authorization is enforced by the installed RPCs; stronger
-// AAL2/operator gates belong to the separate, unapplied security proposal.
+// Staff mutations are additionally restricted to the identity-bound owner in the database.
 // Pending-intent storage holds only operation arguments/IDs, never Auth material.
 import { validateOperationParameters, QueueRequestError } from '../services/queueApi.js'
 import { validateAdminMutation, validateAdminReceipt, validateInstalledStaff, mutationCanReplay } from './adminContracts.js'
 const uuid = value => typeof value === 'string' && /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(value)
 const date = value => /^\d{4}-\d{2}-\d{2}$/.test(value || '') && !Number.isNaN(Date.parse(value))
 const roles = ['STUDENT', 'CASHIER', 'ADMIN']
-const supported = new Set(['set_account', 'configure_counter', 'request_staff_access', 'add_verified_staff'])
+const supported = new Set(['set_account', 'set_staff_access', 'configure_counter', 'remove_ineligible_counter_assignment', 'request_staff_access', 'add_verified_staff', 'assign_staff_by_email', 'manage_pending_staff'])
 export const emptyAdmin = () => ({ status: 'idle', data: null, actor: null, busy: false, refreshing: false, phase: 'idle', message: null, result: null, operation: null, canRetry: false })
 export function validateAdminWorkspace(value, expectedDate) {
   if (value?.version !== 8 || value.date !== expectedDate || !date(value.date) || !value.configuration
@@ -55,14 +54,14 @@ export function createAdminWorkspace(api, { getAccess, store, withLock, onState 
   const key = actor => `cqs-admin-intent-v1:${actor}`
   const saved = actor => { const text = store.getItem(key(actor)); return text ? parseAdminIntent(text, actor) : null }
   const unknown = intent => {
-    if (!intent || !supported.has(intent.operation)) { emit({ phase:'blocked', result:null, canRetry:false, message:'Saved management action needs trusted operator review.' }); return }
+    if (!intent || !supported.has(intent.operation)) { emit({ phase:'blocked', result:null, canRetry:false, message:'Saved management action cannot be reconciled safely.' }); return }
     emit({ phase: 'unknown', result: null, operation: intent.operation, canRetry: mutationCanReplay(intent.operation),
       message: mutationCanReplay(intent.operation) ? 'A management action is unconfirmed. Explicitly reconcile the same request before another change.'
-        : 'The staff request outcome is unknown. Do not submit it again. This backend cannot replay or look up the request; a trusted operator must review it before further management changes.' })
+        : 'The staff review request outcome is unknown. Do not submit it again until its status is checked.' })
   }
   function pending(actor) {
     try { const record = saved(actor); if (record) unknown(record.intent) }
-    catch { emit({ phase: 'blocked', message: 'Saved management action cannot be verified. Ask the trusted operator to review it.' }) }
+    catch { emit({ phase: 'blocked', message: 'Saved management action cannot be verified. Refresh current state before trying again.' }) }
   }
   async function readAdministration(actor, signal, selectedDate = reportDate, scope = 'all') {
     if (contract === 'installed-directory') {
@@ -108,8 +107,15 @@ export function createAdminWorkspace(api, { getAccess, store, withLock, onState 
   function receiptMatches(intent, value) {
     const p = intent.parameters
     if (intent.operation === 'add_verified_staff') return value.user===p.p_user && value.role===p.p_role && value.enabled===true && value.counter===p.p_counter
+    if (intent.operation === 'assign_staff_by_email') return value.email===p.p_email && value.role===p.p_role && value.counter===p.p_counter
+      && (value.status==='ASSIGNED'&&uuid(value.user)||value.status==='PENDING_FIRST_LOGIN'&&uuid(value.invitation))
+    if (intent.operation === 'manage_pending_staff') return value.invitation===p.p_invitation
+      && (p.p_action==='CANCEL' ? value.status==='CANCELLED'
+        : value.email===p.p_email&&value.role===p.p_role&&value.counter===p.p_counter&&value.status==='PENDING_FIRST_LOGIN')
     if (intent.operation === 'set_account') return value.user === p.p_user && value.role === p.p_role && value.enabled === p.p_enabled
+    if (intent.operation === 'set_staff_access') return value.user === p.p_user && value.role === p.p_role && value.enabled === p.p_enabled && value.counter === p.p_counter
     if (intent.operation === 'configure_counter') return value.counter === p.p_counter && value.open === p.p_open && JSON.stringify(value.services) === JSON.stringify(p.p_services) && JSON.stringify(value.cashiers) === JSON.stringify(p.p_cashiers)
+    if (intent.operation === 'remove_ineligible_counter_assignment') return value.counter === p.p_counter && value.user === p.p_user && value.removed === true
     return uuid(value.request_id) && value.status === 'PENDING_IDENTITY_REVIEW'
   }
   async function perform(operation, args, retry = false) {
@@ -145,14 +151,20 @@ export function createAdminWorkspace(api, { getAccess, store, withLock, onState 
         if (store.getItem(key(actor))) throw new Error('Journal not cleared')
         confirmed = true
         if (access()?.actor === actor && version === accessGeneration) emit({ phase: 'success', result: value, operation: intent.operation, canRetry: false, message: intent.operation === 'request_staff_access'
-          ? 'Staff review request recorded. No email, Auth account, approval or role was created.' : 'The database confirmed the change. Current state is refreshing.' })
+          ? 'Staff review request recorded. No email, Auth account, approval or role was created.'
+          : intent.operation==='assign_staff_by_email' ? 'Staff added successfully.'
+          : intent.operation==='manage_pending_staff' ? value.status==='CANCELLED'
+            ? 'Pending staff assignment cancelled.' : 'Pending staff assignment updated.'
+          : intent.operation==='set_staff_access' ? 'Staff changes saved successfully.'
+          : intent.operation==='remove_ineligible_counter_assignment' ? 'Ineligible counter assignment removed. Account role and history were preserved.'
+          : 'The database confirmed the change. Current state is refreshing.' })
       })
     } catch (error) {
       if (!stopped && access()?.actor === actor) {
         if (retry || sent && (!(error instanceof QueueRequestError) || error.outcome === 'unknown')) unknown(intent)
         else {
-          try { if (intent) store.removeItem(key(actor)) } catch { emit({ phase: 'blocked', message: 'Action storage is unavailable. Operator review is required.' }); return }
-          const messages = { staff_duplicate: 'A pending review request already exists for this email. This attempt created no new request. Its existing ID is not returned by this API.',
+          try { if (intent) store.removeItem(key(actor)) } catch { emit({ phase: 'blocked', message: 'Action state could not be saved. Refresh current state before trying again.' }); return }
+          const messages = { staff_duplicate: 'A pending assignment already exists for this email. Review the existing pending assignment before making another.',
             invalid_email: 'Enter a valid staff email address.', invalid_role: 'Choose CASHIER or ADMIN for a review request.' }
           emit({ phase: 'error', result: null, message: messages[error.reason] || (error.code === '42501' || error.status === 401 || error.status === 403 ? 'Current administrator authorization is insufficient. Refresh your access before another change.'
             : error.status === 429 ? 'Too many requests. Wait before another explicit submission.' : 'The server did not accept the change. Refresh and review its current database state.') })
@@ -160,7 +172,7 @@ export function createAdminWorkspace(api, { getAccess, store, withLock, onState 
       }
     } finally {
       if (!stopped && access()?.actor === actor) {
-        await refresh(reportDate, {force:true,scope:confirmed ? intent.operation==='request_staff_access' ? 'directory' : intent.operation==='configure_counter' ? 'configuration' : 'all' : 'all'})
+        await refresh(reportDate, {force:true,scope:confirmed ? intent.operation==='request_staff_access' ? 'directory' : ['configure_counter','remove_ineligible_counter_assignment'].includes(intent.operation) ? 'configuration' : 'all' : 'all'})
         if (confirmed && intent.operation==='add_verified_staff' && version===accessGeneration) {
           const p=intent.parameters, row=state.data?.directory.find(x=>x.id===p.p_user)
           const matches=state.status==='ready' && row?.enabled && row.role===p.p_role && (p.p_role==='ADMIN' || state.data.configuration.staff_assignments.some(x=>x.account_id===p.p_user&&x.counter_id===p.p_counter))

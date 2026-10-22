@@ -1,11 +1,12 @@
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
-const SERVICE_NAMES = {
-  TP: 'Tuition Payment',
-  SOA: 'Statement of Account',
-  PNEP: 'Promissory Notes and Exam Permits',
-  REF: 'Refund Process',
-  ADJ: 'Adjustment Clerk',
+const digits = { '0':'zero', '1':'one', '2':'two', '3':'three', '4':'four', '5':'five', '6':'six', '7':'seven', '8':'eight', '9':'nine' }
+const counterWords = ['Zero', 'One', 'Two', 'Three', 'Four', 'Five']
+function announcementText(ticketLabel, counterNumber) {
+  const [serviceCode, number = ''] = ticketLabel.split('-')
+  const spokenCode = [...serviceCode].join(' ')
+  const spokenNumber = [...number].map(digit => digits[digit] || digit).join(' ')
+  return `Now serving ticket ${spokenCode} ${spokenNumber} at Counter ${counterWords[counterNumber] || counterNumber}.`
 }
 
 export function useSpeechAnnouncement(getCalledTickets) {
@@ -15,6 +16,7 @@ export function useSpeechAnnouncement(getCalledTickets) {
   const announced = ref(new Set())
   const queue = ref([])
   const speaking = ref(false)
+  const lastAnnouncement = ref(null)
 
   function speak(text) {
     if (!supported || !enabled.value || muted.value) return
@@ -41,14 +43,12 @@ export function useSpeechAnnouncement(getCalledTickets) {
     window.speechSynthesis.speak(next)
   }
 
-  function announceTicket(ticketLabel, counterNumber) {
-    const key = `${ticketLabel}-${counterNumber}`
+  function announceTicket(ticketLabel, counterNumber, businessDate = '') {
+    const key = `${businessDate}:${ticketLabel}:${counterNumber}`
     if (announced.value.has(key)) return
     announced.value.add(key)
-    const serviceCode = ticketLabel.split('-')[0]
-    const serviceName = SERVICE_NAMES[serviceCode] || serviceCode
-    const number = ticketLabel.split('-')[1]
-    speak(`Counter ${counterNumber}. ${serviceName}. Ticket ${number}.`)
+    lastAnnouncement.value = { ticketLabel, counterNumber, businessDate }
+    speak(announcementText(ticketLabel, counterNumber))
   }
 
   function enable() {
@@ -78,15 +78,8 @@ export function useSpeechAnnouncement(getCalledTickets) {
 
   function replayLast() {
     if (!supported || !enabled.value) return
-    const last = [...announced.value].pop()
-    if (last) {
-      const [ticketLabel, counterNumber] = last.split('-')
-      // Re-announce without dedup check
-      const serviceCode = ticketLabel.split('-')[0]
-      const serviceName = SERVICE_NAMES[serviceCode] || serviceCode
-      const number = ticketLabel.split('-')[1]
-      speak(`Counter ${counterNumber}. ${serviceName}. Ticket ${number}.`)
-    }
+    const last = lastAnnouncement.value
+    if (last) speak(announcementText(last.ticketLabel, last.counterNumber))
   }
 
   function reset() {

@@ -10,7 +10,7 @@ const server=await createServer({mode:'test',server:{middlewareMode:true,hmr:fal
 after(()=>server.close())
 const render=async(name,props)=>renderToString(createSSRApp((await server.ssrLoadModule(`/src/components/${name}.vue`)).default,props))
 const state={hasSnapshot:true,loading:false,refreshing:false,connection:'connected',synchronized:true,error:null,
-  lastRefreshed:'2026-10-19T04:00:00Z',context:{timezone:'Asia/Manila',business_date:'2026-10-19',queue_day_open:true,services:counterRoutes},
+  lastRefreshed:'2026-10-19T04:00:00Z',context:{timezone:'Asia/Manila',business_date:'2026-10-19',queue_day_open:true,services:counterRoutes.map(x=>({...x,issuance_status:'OPEN'}))},
   counters:counterRoutes.map(x=>({counter_label:`Counter ${x.number}`,is_open:x.number<3,service_code:x.code,ticket_label:x.number===1?'TP-123':null,business_date:'2026-10-19'})),
   services:[{service_code:'TP',business_date:'2026-10-19',waiting_count:0},{service_code:'SOA',business_date:'2026-10-18',waiting_count:3}]}
 test('student embeds exactly one presentational monitor, all fixed counters and no nested main',async()=>{
@@ -33,12 +33,23 @@ test('student replaces the introductory banner with one five-service section bef
   assert.match(html,/<h1 id="student-services-title">Choose a cashier service/)
 })
 test('disabled and unknown service catalogs disable selection without inventing counter-open admission rules',async()=>{
-  const html=await render('StudentDashboard',{publicState:{...state,context:{...state.context,services:counterRoutes.filter(x=>x.code!=='ADJ')}},data:{status:'ready',rows:[]}})
+  const html=await render('StudentDashboard',{publicState:{...state,context:{...state.context,services:counterRoutes.filter(x=>x.code!=='ADJ').map(x=>({...x,issuance_status:'OPEN'}))}},data:{status:'ready',rows:[]}})
   assert.match(html,/data-testid="service-ADJ" disabled/)
   assert.doesNotMatch(html,/data-testid="service-REF" disabled/)
-  assert.match(html,/Service disabled/)
+  assert.match(html,/Service unavailable/)
   const unknown=await render('StudentDashboard',{publicState:{...state,context:null},data:{status:'ready',rows:[]}})
   assert.equal((unknown.match(/data-testid="service-[A-Z]+" disabled/g)||[]).length,5)
+})
+test('ticket buttons show cutoff reasons and are disabled by per-service admission state',async()=>{
+ const context={...state.context,services:state.context.services.map(item=>({...item,
+   issuance_status:item.code==='TP'?'COUNTER_CLOSED':item.code==='SOA'?'QUEUE_CUTOFF':item.code==='PNEP'?'AFTER_HOURS':'OPEN'}))}
+ const html=await render('StudentDashboard',{publicState:{...state,context},data:{status:'ready',rows:[]}})
+ assert.match(html,/data-testid="service-TP" disabled/)
+ assert.match(html,/data-testid="service-SOA" disabled/)
+ assert.match(html,/Counter is currently closed\./)
+ assert.match(html,/Ticket issuance for this service has ended today\./)
+ assert.match(html,/Ticket issuance closes at 5:00 PM\./)
+ assert.doesNotMatch(html,/data-testid="service-REF" disabled/)
 })
 test('missing or failed public snapshots cannot enable service selection from a cached catalog',async()=>{
   for(const change of [{hasSnapshot:false},{error:'Public availability could not be refreshed.'}]){
@@ -49,14 +60,21 @@ test('missing or failed public snapshots cannot enable service selection from a 
 })
 test('embedded monitor preserves dated totals, zero, availability and genuine update status',async()=>{
   const html=await render('PublicQueueDisplay',{state,embedded:true})
-  assert.match(html,/Live public display/);assert.match(html,/<strong>0<\/strong>/)
+  assert.doesNotMatch(html,/Live public display|Connecting|Synchronizing/);assert.match(html,/<strong>0<\/strong>/)
   assert.match(html,/3<\/strong><span> waiting · 2026-10-18/)
-  assert.match(html,/Counter closed/);assert.match(html,/Not reported/)
+  assert.match(html,/Counter closed/);assert.match(html,/aria-label="Waiting count unavailable">—/)
+  assert.doesNotMatch(html,/Refresh display/)
+})
+test('cashier dashboard embeds the shared live board and exposes the shared counter control',async()=>{
+ const html=await render('CashierDashboard',{context:{cashier_counters:[{counter_id:'11111111-1111-4111-8111-111111111111',counter_number:1,counter_label:'Counter 1',is_open:false,service_codes:['TP']}]},publicState:state,data:{status:'ready',rows:[]}})
+ assert.match(html,/data-testid="cashier-live-monitor"/);assert.match(html,/data-testid="public-board"/)
+ assert.match(html,/data-testid="toggle-counter"[^>]*>Open Counter/)
+ assert.doesNotMatch(html,/Refresh queue|Refresh display/)
   assert.doesNotMatch(html,/undefined|NaN|queue-board.*PRIVATE/)
 })
 test('disconnected embedded calls are explicitly stale and never claim live collection',async()=>{
   const html=await render('PublicQueueDisplay',{state:{...state,connection:'disconnected',synchronized:false},embedded:true})
-  assert.match(html,/Disconnected|Last reported call|TP-123/)
+  assert.match(html,/Queue synchronization is interrupted|Last reported call|TP-123/)
   assert.doesNotMatch(html,/Live public display|Proceed to|QUEUE UPDATES AUTOMATICALLY/)
 })
 test('embedded presentation starts no subscription and receives the existing shared state',()=>{

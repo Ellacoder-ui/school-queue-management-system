@@ -9,7 +9,7 @@ const tick = () => new Promise(done => setImmediate(done))
 function harness() {
   const values = new Map(), calls = []
   let scope = { actor, context: { enabled: true, role: 'STUDENT' } }
-  const api = { readMyContext: async () => scope.context, readPublicContext: async () => ({ business_date: '2026-10-18', queue_day_open: true, services: [{ code: 'TP' }] }),
+  const api = { readMyContext: async () => scope.context, readPublicContext: async () => ({ business_date: '2026-10-18', queue_day_open: true, services: [{ code: 'TP', issuance_status: 'OPEN' }] }),
     read: async () => [], createMutationIntent: (operation, parameters) => Object.freeze({ operation, parameters: Object.freeze({ ...parameters, p_request_key: randomUUID() }) }),
     executeMutation: async (intent, options) => { calls.push({ intent, options }); return receipt } }
   const options = { getAccess: () => scope, store: { getItem: key => values.get(key), setItem: (key, value) => values.set(key, value), removeItem: key => values.delete(key) }, withLock: body => body() }
@@ -29,13 +29,23 @@ test('successful issue records one immutable intent and pins its verified actor'
 })
 test('closed day, unavailable service, active ticket and served quota block before any mutation', async () => {
   for (const [day, rows] of [
-    [{ queue_day_open: false, services: [{ code: 'TP' }] }, []],
+    [{ queue_day_open: false, services: [{ code: 'TP', issuance_status: 'OPEN' }] }, []],
     [{ queue_day_open: true, services: [] }, []],
-    [{ queue_day_open: true, services: [{ code: 'TP' }] }, [{ status: 'WAITING' }]],
-    [{ queue_day_open: true, services: [{ code: 'TP' }] }, Array.from({ length: 2 }, () => ({ status: 'SERVED', service: 'TP', business_date: '2026-10-18' }))],
+    [{ queue_day_open: true, services: [{ code: 'TP', issuance_status: 'OPEN' }] }, [{ status: 'WAITING' }]],
+    [{ queue_day_open: true, services: [{ code: 'TP', issuance_status: 'OPEN' }] }, Array.from({ length: 2 }, () => ({ status: 'SERVED', service: 'TP', business_date: '2026-10-18' }))],
   ]) {
     const h = harness(); h.api.readPublicContext = async () => ({ business_date: '2026-10-18', ...day }); h.api.read = async () => rows
     await h.controller.perform('issue_ticket', { p_service: 'TP' }); assert.equal(h.calls.length, 0); assert.equal(h.controller.getState().phase, 'error')
+  }
+})
+test('closed and cutoff service admissions are stopped before queue reads or writes', async () => {
+  for (const status of ['COUNTER_CLOSED', 'QUEUE_CUTOFF', 'AFTER_HOURS']) {
+    const h = harness()
+    h.api.readPublicContext = async () => ({ business_date: '2026-10-18', queue_day_open: true, services: [{ code: 'TP', issuance_status: status }] })
+    await h.controller.perform('issue_ticket', { p_service: 'TP' })
+    assert.equal(h.calls.length, 0)
+    assert.equal(h.controller.getState().phase, 'error')
+    assert.match(h.controller.getState().message, status === 'QUEUE_CUTOFF' ? /ended today/ : status === 'COUNTER_CLOSED' ? /closed/ : /5:00 PM/)
   }
 })
 test('ambiguous write remains durable across reload and only explicit retry reuses its exact key', async () => {
@@ -74,6 +84,55 @@ test('counter and ticket state are checked against actual assignments before new
   const h = harness(); h.setScope({ actor, context: { enabled: true, role: 'CASHIER', cashier_counters: [] } })
   await h.controller.perform('call_next', { p_counter: ticket, p_service: 'TP' }); assert.equal(h.calls.length, 0)
   await h.controller.perform('finish_ticket', { p_ticket: ticket, p_action: 'SERVE' }); assert.equal(h.calls.length, 0)
+})
+test('cashier counter open/close changes require the current cashier assignment and are replay-safe', async () => {
+  const h = harness()
+  const counter = '33333333-3333-4333-8333-333333333333'
+  h.setScope({ actor, context: { enabled: true, role: 'CASHIER', cashier_counters: [
+    { counter_id: counter, counter_number: 1, service_codes: ['TP'] },
+  ] } })
+  h.api.executeMutation = async (intent, options) => {
+    h.calls.push({ intent, options })
+    return { counter: intent.parameters.p_counter, open: intent.parameters.p_open }
+  }
+  await h.controller.perform('set_counter_open', { p_counter: counter, p_open: true })
+  assert.equal(h.calls.length, 1)
+  assert.equal(h.controller.getState().phase, 'success')
+  assert.match(h.controller.getState().message, /opened/)
+
+  const denied = harness()
+  denied.setScope({ actor, context: { enabled: true, role: 'CASHIER', cashier_counters: [] } })
+  await denied.controller.perform('set_counter_open', { p_counter: counter, p_open: false })
+  assert.equal(denied.calls.length, 0)
+})
+test('calling uses the live server counter state instead of stale my_context open state', async () => {
+  const h = harness()
+  const counter = '33333333-3333-4333-8333-333333333333'
+  h.setScope({ actor, context: { enabled: true, role: 'CASHIER', cashier_counters: [
+    { counter_id: counter, counter_number: 1, counter_label: 'Counter 1', is_open: false, service_codes: ['TP'] },
+  ] } })
+  h.api.executeMutation = async (intent, options) => {
+    h.calls.push({ intent, options })
+    return { ticket_id: ticket, status: 'CALLED' }
+  }
+
+  await h.controller.perform('call_next', { p_counter: counter, p_service: 'TP' })
+
+  assert.equal(h.calls.length, 1)
+  assert.equal(h.controller.getState().phase, 'success')
+  assert.match(h.controller.getState().message, /Ticket called/)
+})
+test('after-hours counter opening denial explains the Manila closing time', async () => {
+  const h = harness()
+  const counter = '33333333-3333-4333-8333-333333333333'
+  h.setScope({ actor, context: { enabled: true, role: 'CASHIER', cashier_counters: [
+    { counter_id: counter, counter_number: 1, service_codes: ['TP'] },
+  ] } })
+  h.api.executeMutation = async () => { throw new QueueRequestError({ reason: 'counter_after_hours' }) }
+
+  await h.controller.perform('set_counter_open', { p_counter: counter, p_open: true })
+
+  assert.match(h.controller.getState().message, /5:00 PM Manila time/)
 })
 test('RPC error reasons are allowlisted; arbitrary diagnostic strings remain private', async () => {
   const api = createQueueApi({ schema: () => ({ rpc: async () => ({ error: { code: 'P0001', message: 'Active ticket already exists' }, status: 400 }) }) })

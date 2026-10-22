@@ -16,9 +16,12 @@ export function boardCounters(state) {
     const row = matches.length === 1 ? matches[0] : null
     const invalid = !!row?.ticket_label && (row.service_code !== route.code
       || !new RegExp(`^${route.code}-[0-9]{3,}$`).test(row.ticket_label))
-    return { ...route, name: state.context?.services.find(service => service.code === route.code)?.name || route.name,
+    const service = state.context?.services.find(item => item.code === route.code)
+    const enabled = !!service
+    return { ...route, name: service?.name || route.name,
       row: invalid ? null : row, invalid: matches.length > 1 || invalid,
-      enabled: state.context ? state.context.services.some(service => service.code === route.code) : null }
+      enabled: state.context ? enabled : null,
+      issuance_status: service?.issuance_status || (state.context ? 'SERVICE_UNAVAILABLE' : null) }
   })
 }
 

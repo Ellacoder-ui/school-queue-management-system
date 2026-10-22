@@ -121,7 +121,7 @@ try {
   }
   await metrics(1920,1080)
   await browser.send('Page.navigate', { url:`${origin}/display` })
-  await waitFor(() => browser.evaluate(`document.querySelector('.board-connection')?.textContent==='Live public display'`), 'Actual monitor did not become live')
+  await waitFor(() => browser.evaluate(`document.querySelector('.queue-board[data-live="true"]')`), 'Actual monitor did not become live')
   await test('Anonymous monitor uses real public state and mounts no login/workspace', async () => {
     const result = await browser.evaluate(`({text:document.body.innerText, login:!!document.querySelector('#login-email'), cards:document.querySelectorAll('[data-counter]').length})`)
     check(!result.login && result.cards===5 && result.text.includes('Liceo de Cagayan University'), 'Monitor composition incorrect')
@@ -134,11 +134,11 @@ try {
   await test('Browser offline state removes live/proceed claims and reconnect obtains fresh readiness', async () => {
     await browser.send('Network.emulateNetworkConditions', { offline:true, latency:0, downloadThroughput:0, uploadThroughput:0 })
     await browser.evaluate(`window.dispatchEvent(new Event('offline'))`)
-    await waitFor(() => browser.evaluate(`document.querySelector('.board-connection')?.textContent==='Disconnected'`), 'Offline board still live')
+    await waitFor(() => browser.evaluate(`document.querySelector('.queue-board[data-live="false"]')`), 'Offline board still live')
     check(await browser.evaluate(`!document.body.innerText.includes('QUEUE UPDATES AUTOMATICALLY')&&!document.body.innerText.includes('LIVE SERVICE BOARD')`), 'Stale live claim')
     await browser.send('Network.emulateNetworkConditions', { offline:false, latency:0, downloadThroughput:-1, uploadThroughput:-1 })
     await browser.evaluate(`window.dispatchEvent(new Event('online'))`)
-    await waitFor(() => browser.evaluate(`document.querySelector('.board-connection')?.textContent==='Live public display'`), 'Online board did not reconcile')
+    await waitFor(() => browser.evaluate(`document.querySelector('.queue-board[data-live="true"]')`), 'Online board did not reconcile')
   })
   await test('Root application retains anonymous workspace with the single Google entry', async () => {
     await browser.send('Page.navigate', {url:origin})
@@ -166,7 +166,7 @@ try {
   if (!checks.some(c=>c.result==='FAIL')) checks.push({name:'Browser/setup acceptance gate',result:'FAIL',reason:report.failure})
   report.blocked=blocked; report.runtime_errors=errors
   try {
-    report.browser_state=await browser?.evaluate(`({connection:document.querySelector('.board-connection')?.textContent,board:!!document.querySelector('.queue-board'),path:location.pathname})`)
+    report.browser_state=await browser?.evaluate(`({live:!!document.querySelector('.queue-board[data-live="true"]'),board:!!document.querySelector('.queue-board'),path:location.pathname})`)
     if(browser) await browser.screenshot(`${directory}/public_board_${run}_failure.png`)
   } catch {}
   console.error(report.failure); process.exitCode=1

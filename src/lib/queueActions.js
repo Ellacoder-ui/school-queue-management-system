@@ -2,14 +2,17 @@ import { QueueRequestError, validateOperationParameters } from '../services/queu
 import { counterRoutes } from './publicBoard.js'
 import { activeTicket } from './workspaceData.js'
 
-const supported = new Set(['issue_ticket', 'call_next', 'finish_ticket'])
+const supported = new Set(['issue_ticket', 'call_next', 'finish_ticket', 'set_counter_open'])
 const messages = {
   day_closed: 'The queue day is closed. Refresh the queue before trying again.',
   service_unavailable: 'This service is unavailable. Refresh its availability.',
   active_ticket: 'You already have an active ticket. Check your ticket first.',
   served_quota: 'You have reached two served tickets for this service on its issuance day.',
-  counter_closed: 'This counter is closed. Refresh your assignment.',
-  counter_busy: 'This counter already has a called ticket. Refresh the queue.',
+  counter_closed: 'Counter is currently closed.',
+  counter_busy: 'Mark the current ticket as served before calling the next ticket.',
+  counter_after_hours: 'Counters close at 5:00 PM Manila time and cannot be opened after hours.',
+  queue_cutoff: 'Ticket issuance for this service has ended today.',
+  after_hours: 'Ticket issuance closes at 5:00 PM.',
   unauthorized: 'Your current account is not authorized for this action. Refresh access.',
 }
 const initial = () => ({ phase: 'idle', message: null, operation: null, result: null, busy: false })
@@ -49,16 +52,22 @@ export function createQueueActions(api, { getAccess, store, withLock, online = (
     if (retry) return day.business_date
     if (operation === 'issue_ticket') {
       if (!day.queue_day_open) unavailable('day_closed')
-      if (!day.services.some(service => service.code === parameters.p_service)) unavailable('service_unavailable')
+      const service = day.services.find(row => row.code === parameters.p_service)
+      if (!service) unavailable('service_unavailable')
+      if (service.issuance_status === 'COUNTER_CLOSED') unavailable('counter_closed')
+      if (service.issuance_status === 'QUEUE_CUTOFF') unavailable('queue_cutoff')
+      if (service.issuance_status === 'AFTER_HOURS') unavailable('after_hours')
+      if (service.issuance_status !== 'OPEN') unavailable('service_unavailable')
       const tickets = await api.read('my_tickets', {}, { signal, expectedActor: actor })
       if (!Array.isArray(tickets)) unavailable()
       if (activeTicket(tickets)) unavailable('active_ticket')
       if (tickets.filter(row => row.service === parameters.p_service && row.business_date === day.business_date && row.status === 'SERVED').length >= 2) unavailable('served_quota')
+    } else if (operation === 'set_counter_open') {
+      if (!context.cashier_counters.some(row => row.counter_id === parameters.p_counter)) unavailable('unauthorized')
     } else if (operation === 'call_next') {
       const counter = context.cashier_counters.find(row => row.counter_id === parameters.p_counter)
       const fixed = counterRoutes.find(row => row.number === counter?.counter_number)
       if (!counter || fixed?.code !== parameters.p_service || !counter.service_codes.includes(parameters.p_service)) unavailable('unauthorized')
-      if (!counter.is_open) unavailable('counter_closed')
       const rows = await api.read('staff_queue', {}, { signal, expectedActor: actor })
       if (rows.some(row => row.counter_id === parameters.p_counter && row.status === 'CALLED')) unavailable('counter_busy')
     } else {
@@ -98,13 +107,15 @@ export function createQueueActions(api, { getAccess, store, withLock, online = (
         sent = true
         const result = await api.executeMutation(journal.intent, { signal: abort.signal, expectedActor: actor })
         if (op === 'issue_ticket' && result.service !== journal.intent.parameters.p_service
-          || op === 'finish_ticket' && (result.ticket_id !== journal.intent.parameters.p_ticket || result.status !== (journal.intent.parameters.p_action === 'SERVE' ? 'SERVED' : 'WAITING'))) throw new QueueRequestError({ outcome: 'unknown' })
+          || op === 'finish_ticket' && (result.ticket_id !== journal.intent.parameters.p_ticket || result.status !== (journal.intent.parameters.p_action === 'SERVE' ? 'SERVED' : 'WAITING'))
+          || op === 'set_counter_open' && (result.counter !== journal.intent.parameters.p_counter || result.open !== journal.intent.parameters.p_open)) throw new QueueRequestError({ outcome: 'unknown' })
         store.removeItem(journalKey(actor))
         if (store.getItem(journalKey(actor))) throw new Error('Operation receipt could not be cleared')
         if (version === generation && access()?.actor === actor) emit({ phase: 'success', operation: op, result,
           message: op === 'issue_ticket' ? 'Your ticket was issued. Your ticket list is refreshing.' : op === 'call_next'
             ? result.ticket_id ? 'Ticket called. The queue is refreshing.' : 'No waiting ticket was available. Nothing was called.'
-            : result.status === 'SERVED' ? 'Ticket marked served. Call Next is a separate action.' : 'Ticket returned to the waiting tail with its original number.' })
+            : op === 'set_counter_open' ? `Counter ${result.open ? 'opened' : 'closed'}. The dashboard is updating.`
+              : result.status === 'SERVED' ? 'Ticket marked served. Call Next is a separate action.' : 'Ticket returned to the waiting tail with its original number.' })
       })
     } catch (error) {
       const previousUnknown = retry && !!journal
@@ -119,7 +130,7 @@ export function createQueueActions(api, { getAccess, store, withLock, online = (
       if (error.reason === 'unauthorized') onAuthorizationChanged()
     } finally {
       if (!stopped && access()?.actor === actor) {
-        try { await afterOperation() } catch {}
+        try { await afterOperation(journal?.intent?.operation || operation) } catch {}
       }
       busy = false; abort = null
       // Do not re-enable a second operation until authoritative post-reads settle.

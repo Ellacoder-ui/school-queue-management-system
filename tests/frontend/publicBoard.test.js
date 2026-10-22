@@ -9,7 +9,7 @@ const server = await createServer({ mode: 'test', server: { middlewareMode: true
 const { default: View } = await server.ssrLoadModule('/src/components/PublicQueueDisplay.vue')
 after(() => server.close())
 const context = { timezone: 'Asia/Manila', business_date: '2026-10-17', queue_day_open: true,
-  services: ['TP', 'SOA', 'PNEP', 'REF', 'ADJ'].map(code => ({ code, name: code })) }
+  services: ['TP', 'SOA', 'PNEP', 'REF', 'ADJ'].map(code => ({ code, name: code, issuance_status: 'OPEN' })) }
 const state = { counters: [], services: [], hasSnapshot: true, loading: false, refreshing: false,
   connection: 'connected', synchronized: true, error: null, lastRefreshed: null, context }
 const row = (number, code, label = `${code}-001`) => ({ counter_id: `public-${number}`, counter_label: `Counter ${number}`,
@@ -46,7 +46,7 @@ test('waiting strip reports supplied per-date totals, preserves zero and does no
   const html = await render({ services })
   assert.match(html, /<strong>0<\/strong>/)
   assert.match(html, /<strong>7<\/strong>/)
-  assert.match(html, /Not reported/)
+  assert.match(html, /aria-label="Waiting count unavailable">—/)
   assert.doesNotMatch(html, /TP-008|UP NEXT/)
 })
 
@@ -67,12 +67,12 @@ test('disconnection keeps last calls explicitly stale and never instructs curren
 
 test('channel readiness without fresh synchronization never produces a live claim', async () => {
   const html = await render({ synchronized:false, counters:[row(1,'TP')] })
-  assert.match(html, /Synchronizing/)
-  assert.doesNotMatch(html, /LIVE SERVICE BOARD|QUEUE UPDATES AUTOMATICALLY|Now serving/)
+  assert.doesNotMatch(html, /Synchronizing|LIVE SERVICE BOARD|QUEUE UPDATES AUTOMATICALLY|Now serving/)
+  assert.match(html,/Last reported call/)
 })
 
 test('untrusted service names are escaped and public counter IDs do not enter DOM', async () => {
-  const html = await render({ context:{ ...context, services:[{ code:'TP', name:'<script>private()</script>' }] }, counters:[row(1,'TP')] })
+  const html = await render({ context:{ ...context, services:[{ code:'TP', name:'<script>private()</script>', issuance_status:'OPEN' }] }, counters:[row(1,'TP')] })
   assert.match(html, /&lt;script&gt;/)
   assert.doesNotMatch(html, /<script>private|public-1|counter_id/)
 })

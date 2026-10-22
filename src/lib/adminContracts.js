@@ -1,6 +1,6 @@
 const uuid = value => typeof value === 'string' && /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(value)
 const exact = (x, keys) => x && !Array.isArray(x) && Object.keys(x).length === keys.length && keys.every(k => Object.hasOwn(x, k))
-export const adminMutations = new Set(['set_account', 'configure_counter', 'request_staff_access', 'add_verified_staff'])
+export const adminMutations = new Set(['set_account', 'set_staff_access', 'configure_counter', 'remove_ineligible_counter_assignment', 'request_staff_access', 'add_verified_staff', 'assign_staff_by_email', 'manage_pending_staff'])
 export function normalizeStaffEmail(value) {
   if (typeof value !== 'string') throw new Error('Invalid staff email')
   const email = value.trim().toLowerCase()
@@ -50,7 +50,17 @@ export function validateInstalledStaff(configuration, value) {
 export function validateAdminMutation(operation, p) {
   if (!adminMutations.has(operation)) throw new Error('Unsupported administration action')
   if (operation === 'add_verified_staff' && (!exact(p,['p_user','p_email','p_identity_sha256','p_role','p_counter']) || !uuid(p.p_user) || normalizeStaffEmail(p.p_email)!==p.p_email || !/^[0-9a-f]{64}$/.test(p.p_identity_sha256) || !['ADMIN','CASHIER'].includes(p.p_role) || (p.p_role==='ADMIN' ? p.p_counter!==null : !uuid(p.p_counter)))) throw new Error('Invalid verified staff action')
+  if (operation === 'assign_staff_by_email' && (!exact(p,['p_email','p_role','p_counter']) || normalizeStaffEmail(p.p_email)!==p.p_email || !['ADMIN','CASHIER'].includes(p.p_role) || (p.p_role==='ADMIN' ? p.p_counter!==null : !uuid(p.p_counter)))) throw new Error('Invalid email staff assignment')
+  if (operation === 'manage_pending_staff' && (!exact(p,['p_invitation','p_action','p_email','p_role','p_counter'])
+    || !uuid(p.p_invitation) || !['UPDATE','CANCEL'].includes(p.p_action)
+    || (p.p_action==='CANCEL' ? p.p_email!==null||p.p_role!==null||p.p_counter!==null
+      : normalizeStaffEmail(p.p_email)!==p.p_email||!['ADMIN','CASHIER'].includes(p.p_role)||(p.p_role==='ADMIN'?p.p_counter!==null:!uuid(p.p_counter))))) throw new Error('Invalid pending staff action')
   if (operation === 'set_account' && (!exact(p, ['p_user', 'p_role', 'p_enabled']) || !uuid(p.p_user) || !['STUDENT', 'CASHIER', 'ADMIN'].includes(p.p_role) || typeof p.p_enabled !== 'boolean')) throw new Error('Invalid account action')
+  if (operation === 'set_staff_access' && (!exact(p, ['p_user', 'p_role', 'p_enabled', 'p_counter']) || !uuid(p.p_user)
+    || !['CASHIER', 'ADMIN'].includes(p.p_role) || typeof p.p_enabled !== 'boolean'
+    || (p.p_role === 'CASHIER' && p.p_enabled ? !uuid(p.p_counter) : p.p_counter !== null))) throw new Error('Invalid staff access action')
+  if (operation === 'remove_ineligible_counter_assignment' && (!exact(p, ['p_counter', 'p_user'])
+    || !uuid(p.p_counter) || !uuid(p.p_user))) throw new Error('Invalid counter assignment removal')
   if (operation === 'configure_counter' && (!exact(p, ['p_counter', 'p_open', 'p_services', 'p_cashiers']) || !uuid(p.p_counter) || typeof p.p_open !== 'boolean'
     || !Array.isArray(p.p_services) || p.p_services.length !== 1 || !['TP', 'SOA', 'PNEP', 'REF', 'ADJ'].includes(p.p_services[0])
     || !Array.isArray(p.p_cashiers) || p.p_cashiers.length > 100 || p.p_cashiers.some(x => !uuid(x)) || new Set(p.p_cashiers).size !== p.p_cashiers.length)) throw new Error('Invalid counter action')
@@ -59,7 +69,28 @@ export function validateAdminMutation(operation, p) {
 }
 export function validateAdminReceipt(operation, value) {
   if (operation === 'add_verified_staff' && (!exact(value,['user','role','enabled','counter']) || !uuid(value.user) || !['ADMIN','CASHIER'].includes(value.role) || value.enabled!==true || (value.role==='ADMIN'?value.counter!==null:!uuid(value.counter)))) throw new Error('Invalid staff activation receipt')
+  if (operation === 'assign_staff_by_email') {
+    if (!exact(value,['status','user','email','role','counter']) && !exact(value,['status','invitation','email','role','counter'])) throw new Error('Invalid email staff receipt')
+    if (typeof value.email!=='string'||normalizeStaffEmail(value.email)!==value.email||!['ADMIN','CASHIER'].includes(value.role)
+      ||(value.role==='ADMIN'?value.counter!==null:!uuid(value.counter))
+      ||(value.status==='ASSIGNED'?!uuid(value.user):value.status==='PENDING_FIRST_LOGIN'? !uuid(value.invitation):true)) throw new Error('Invalid email staff receipt')
+  }
+  if (operation === 'manage_pending_staff') {
+    if (exact(value,['invitation','status'])&&uuid(value.invitation)&&value.status==='CANCELLED') return value
+    if (!exact(value,['invitation','email','role','counter','status'])||!uuid(value.invitation)
+      ||typeof value.email!=='string'||normalizeStaffEmail(value.email)!==value.email
+      ||!['ADMIN','CASHIER'].includes(value.role)||(value.role==='ADMIN'?value.counter!==null:!uuid(value.counter))
+      ||value.status!=='PENDING_FIRST_LOGIN') throw new Error('Invalid pending staff receipt')
+  }
   if (operation === 'set_account' && (!exact(value, ['user', 'role', 'enabled']) || !uuid(value.user) || !['STUDENT', 'CASHIER', 'ADMIN'].includes(value.role) || typeof value.enabled !== 'boolean')) throw new Error('Invalid account receipt')
+  if (operation === 'set_staff_access' && (!exact(value, ['user', 'role', 'enabled', 'counter']) || !uuid(value.user)
+    || !['CASHIER', 'ADMIN'].includes(value.role) || typeof value.enabled !== 'boolean'
+    || (value.role === 'CASHIER' && value.enabled ? !uuid(value.counter) : value.counter !== null))) throw new Error('Invalid staff access receipt')
+  if (operation === 'remove_ineligible_counter_assignment' && (!exact(value, ['counter', 'user', 'role', 'enabled', 'removed'])
+    || !uuid(value.counter) || !uuid(value.user) || !['STUDENT', 'CASHIER', 'ADMIN'].includes(value.role)
+    || typeof value.enabled !== 'boolean' || value.role === 'CASHIER' && value.enabled || value.removed !== true)) {
+    throw new Error('Invalid counter assignment removal receipt')
+  }
   if (operation === 'configure_counter') {
     if (!exact(value, ['counter', 'open', 'services', 'cashiers'])) throw new Error('Invalid counter receipt')
     validateAdminMutation(operation, { p_counter: value.counter, p_open: value.open, p_services: value.services, p_cashiers: value.cashiers })

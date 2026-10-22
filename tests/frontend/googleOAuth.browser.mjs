@@ -9,6 +9,7 @@ import {isCancelledInterception} from './browserInterception.mjs'
 import {startTestVite} from './startTestVite.mjs'
 import {staffFixture} from './staffFixtures.mjs'
 import {OAUTH_MARKER} from '../../src/lib/oauthConfig.js'
+import {STAFF_MANAGEMENT_OWNER_ID} from '../../src/lib/adminActivation.js'
 
 const run=randomUUID().slice(0,8),checks=[],directory='supabase/tests/results'
 const origin='http://127.0.0.1:5173',viteOrigin='http://127.0.0.1:5176',api='http://127.0.0.1:54321'
@@ -95,8 +96,9 @@ const status=spawnSync(process.execPath,['node_modules/supabase/dist/supabase.js
 check(status.status===0,'Local status required; raw diagnostics suppressed')
 const settings=JSON.parse(status.stdout),pub=settings.PUBLISHABLE_KEY||settings.ANON_KEY
 validateLocalPublicConfig(settings.API_URL,pub)
-const id=()=>`00000000-0000-4000-8000-00000000000${subject}`
+const id=()=>subject===1?STAFF_MANAGEMENT_OWNER_ID:`00000000-0000-4000-8000-00000000000${subject}`
 const staffData=staffFixture(id())
+const pendingStaff=[]
 const user=()=>({id:id(),aud:'authenticated',role:'authenticated',email:'eabeso63122@liceo.edu.ph',
   app_metadata:{provider:'google',providers:['google']},user_metadata:{role:'ADMIN',email_verified:true},created_at:new Date().toISOString(),factors:mfaMode?mfaFactors:[]})
 const token=()=>`${Buffer.from(JSON.stringify({alg:'HS256',typ:'JWT'})).toString('base64url')}.${Buffer.from(JSON.stringify({sub:id(),role:'authenticated',aud:'authenticated',aal:mfaLevel,session_id:`90000000-0000-4000-8000-00000000000${subject}`,exp:Math.floor(Date.now()/1000)+3600})).toString('base64url')}.TEST_SIGNATURE`
@@ -109,6 +111,29 @@ async function reloadPage(){
   try{await Promise.all([browser.send('Page.reload'),loaded])}finally{clearTimeout(timer);dispose()}
 }
 const click=selector=>waitFor(()=>browser.evaluate(`(()=>{const element=document.querySelector(${JSON.stringify(selector)});if(!element)return false;element.focus();element.click();return true})()`),'Requested control is not available')
+const staffClick=selector=>waitFor(()=>browser.evaluate(`(()=>{const element=document.querySelector(${JSON.stringify(selector)});if(!element||element.disabled)return false;element.focus();element.click();return true})()`),`Staff control is not ready: ${selector}`)
+const field=async(selector,value)=>browser.evaluate(`{const input=document.querySelector(${JSON.stringify(selector)});input.value=${JSON.stringify(value)};input.dispatchEvent(new Event(input.tagName==='SELECT'?'change':'input',{bubbles:true}))}`)
+async function verifyEmailAssignmentFlow(){
+  await waitFor(()=>browser.evaluate(`document.querySelector('[data-testid="add-staff"]')?.disabled===false`),'Owner email assignment unavailable')
+  const attempts=staffRequests
+  await staffClick('[data-testid="add-staff"]')
+  check(await browser.evaluate(`!!document.querySelector('[data-testid="staff-request-email"]')&&!document.querySelector('[data-testid="staff-resolve"]')&&!document.body.innerText.includes('Find Google account')`),'Email form requires Google lookup')
+  await field('[data-testid="staff-request-email"]','Future.Staff@example.invalid')
+  await field('[data-testid="staff-request-counter"]',staffData.configuration.counters[0].id)
+  await staffClick('[data-testid="staff-confirm"]')
+  await waitFor(()=>browser.evaluate(`document.body.innerText.includes('Pending staff assignment saved')`),'Pending assignment receipt not shown')
+  await waitFor(()=>browser.evaluate(`document.querySelector('[data-testid="pending-staff-list"]').innerText.includes('future.staff@example.invalid')`),'Pending assignment list did not refresh')
+  check(staffRequests===attempts+1,'Email assignment did not make exactly one request')
+  check(await browser.evaluate(`!document.body.innerText.includes('Find Google account')`),'Legacy lookup step is visible')
+
+  staffMode='duplicate';await staffClick('[data-testid="add-staff"]')
+  await field('[data-testid="staff-request-email"]','future.staff@example.invalid')
+  await field('[data-testid="staff-request-counter"]',staffData.configuration.counters[0].id)
+  await staffClick('[data-testid="staff-confirm"]')
+  await waitFor(()=>browser.evaluate(`document.body.innerText.includes('A pending assignment already exists for this email')`),'Duplicate pending email was not disclosed')
+  check(staffRequests===attempts+2,'Duplicate attempt was not sent once')
+  staffMode='success'
+}
 async function reset(){await browser.evaluate('localStorage.clear(); sessionStorage.clear()');await browser.send('Page.navigate',{url:origin});await waitFor(()=>exists('[data-testid="google-login"]'),'Google login not ready')}
 async function fulfill(event,body,status=200,headers=[]){await browser.send('Fetch.fulfillRequest',{requestId:event.requestId,responseCode:status,
   responseHeaders:[{name:'Content-Type',value:'application/json'},{name:'Access-Control-Allow-Origin',value:origin},
@@ -210,6 +235,11 @@ try{
         if(role!=='ADMIN'||disabled||staffMode==='denied-directory'){await fulfill(event,{code:'42501',message:'Administrator required'},403);return}
         await fulfill(event,staffData.directory.filter(x=>['ADMIN','CASHIER'].includes(x.role)).map(({id,email,role,enabled})=>({id,email,role,enabled,google_verified:true})));return
       }
+      if(path==='/rest/v1/rpc/admin_pending_staff'){
+        if(staffMode==='missing'){await fulfill(event,{code:'PGRST202',message:'Missing proposed endpoint'},404);return}
+        if(role!=='ADMIN'||disabled||staffMode==='denied-directory'){await fulfill(event,{code:'42501',message:'Administrator required'},403);return}
+        await fulfill(event,pendingStaff);return
+      }
       if(path==='/rest/v1/rpc/resolve_staff_google'){
         const body=JSON.parse(event.request.postData||'{}');check(Object.keys(body).join(',')==='p_email','Lookup parameters');
         const row=staffData.directory.find(x=>x.email===body.p_email);
@@ -225,6 +255,20 @@ try{
         row.role=account.role=body.p_role;
         if(body.p_role==='CASHIER')staffData.configuration.staff_assignments.push({account_id:row.id,counter_id:body.p_counter});
         await fulfill(event,{user:row.id,role:row.role,enabled:true,counter:body.p_counter});return
+      }
+      if(path==='/rest/v1/rpc/assign_staff_by_email'){
+        const body=JSON.parse(event.request.postData||'{}');staffRequests++
+        check(role==='ADMIN'&&!disabled&&id()===STAFF_MANAGEMENT_OWNER_ID
+          &&Object.keys(body).sort().join(',')==='p_counter,p_email,p_request_key,p_role'
+          &&body.p_email===body.p_email.trim().toLowerCase()&&['CASHIER','ADMIN'].includes(body.p_role)
+          &&(body.p_role==='ADMIN'?body.p_counter===null:staffData.configuration.counters.some(c=>c.id===body.p_counter)),
+          'Unbound email staff assignment')
+        if(staffGate)await staffGate.pending
+        if(staffMode==='duplicate'){await fulfill(event,{code:'23505',message:'Pending staff assignment already exists for this email'},400);return}
+        if(staffMode==='server-error'){await fulfill(event,{code:'XX000',message:'TEST_STAFF_PRIVATE_DIAGNOSTIC'},503);return}
+        const invitation='50000000-0000-4000-8000-000000000005'
+        pendingStaff.push({id:invitation,email:body.p_email,role:body.p_role,counter:body.p_counter,created_at:new Date().toISOString()})
+        await fulfill(event,{status:'PENDING_FIRST_LOGIN',invitation,email:body.p_email,role:body.p_role,counter:body.p_counter});return
       }
       if(path==='/rest/v1/rpc/admin_payors'){
         if(staffMode==='missing'){await fulfill(event,{code:'PGRST202',message:'Missing proposed endpoint'},404);return}
@@ -307,21 +351,22 @@ try{
     await test(devtoolsMode?'Actual docked Chrome uses an intercepted ADMIN session without retained identity writes':'Focused headless layout uses an intercepted ADMIN session without retained identity writes',async()=>{
       enabled=true;role='ADMIN';await click('[data-testid="google-login"]');await waitFor(()=>exists('[data-testid="admin-workspace"]'),'Docked ADMIN workspace missing')
       await browser.evaluate(`[...document.querySelectorAll('button')].find(b=>b.textContent==='Staff management').click()`)
-      await waitFor(()=>browser.evaluate(`document.querySelector('[data-testid="add-staff"]')?.disabled===false`),'Docked staff data missing')
+      await waitFor(()=>browser.evaluate(`document.querySelector('[data-testid="add-staff"]')?.disabled===false`),'Owner email invitation controls did not load')
     })
+    await test('Owner can submit a first-login email assignment without Google lookup; duplicate is rejected',verifyEmailAssignmentFlow)
     await test('Admin Public Display is absent, Sign Out remains visible and monitor persists at eight widths',()=>adminResponsive('AFTER'))
     if(adminLayoutMode)await test('Admin staff confirmation and payor/mobile monitor have painted viewport evidence without private secrets',async()=>{
       const shot=async(name,width)=>{const file=`admin_final_${run}_${name}_${width}_VIEWPORT.png`;const r=await browser.send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false});writeFileSync(`${directory}/${file}`,Buffer.from(r.data,'base64'));report.screenshots.push(file)}
       await browser.evaluate(`if(!document.querySelector('#fixture-notice')){const n=document.createElement('div');n.id='fixture-notice';n.textContent='SIMULATED ADMIN / PAYOR DATA · NO RETAINED WRITES';n.style.cssText='position:fixed;bottom:0;left:0;z-index:9999;background:#fff9ed;color:#65263d;font:10px Arial;padding:4px';document.body.append(n)};window.scrollTo(0,0)`)
       for(const width of [1440,768,390]){await browser.send('Emulation.setDeviceMetricsOverride',{width,height:1000,deviceScaleFactor:1,mobile:width<600});await delay(150);await shot('staff',width)}
       await browser.send('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false})
-      await click('[data-testid="add-staff"]');await browser.evaluate(`const input=document.querySelector('[data-testid="staff-request-email"]');input.value='student@example.invalid';input.dispatchEvent(new Event('input',{bubbles:true}))`);await click('[data-testid="staff-resolve"]');await waitFor(()=>exists('[data-testid="staff-resolved-account"]'),'Google binding missing');await shot('confirmation',1440);await click('dialog button[aria-label="Close dialog"]')
+      check(await browser.evaluate(`!document.querySelector('[data-testid="staff-resolve"]')&&!document.body.innerText.includes('Find Google account')`),'Legacy Google lookup remains visible');await shot('staff-access-enabled',1440)
       await browser.evaluate(`[...document.querySelectorAll('button')].find(b=>b.textContent==='Payor management').click()`);await waitFor(()=>browser.evaluate(`document.querySelector('[data-testid="payor-management"]').innerText.includes('TP-219')`),'Payor snapshot missing')
       for(const width of [1440,768,390]){await browser.send('Emulation.setDeviceMetricsOverride',{width,height:1000,deviceScaleFactor:1,mobile:width<600});await browser.evaluate('window.scrollTo(0,0)');await delay(150);await shot('payors',width);await browser.evaluate(`document.querySelector('[data-testid="admin-live-monitor"]').scrollIntoView({block:'start'})`);await delay(150);await shot('monitor',width)}
-      staffMode='missing';await browser.evaluate(`[...document.querySelectorAll('button')].find(b=>b.textContent==='Staff management').click();window.scrollTo(0,0);window.dispatchEvent(new Event('focus'))`);await waitFor(()=>exists('[data-testid="add-staff-unavailable"]'),'Missing secure backend not disclosed');await shot('backend-unavailable',390)
+      staffMode='missing';await browser.evaluate(`[...document.querySelectorAll('button')].find(b=>b.textContent==='Staff management').click();window.scrollTo(0,0);window.dispatchEvent(new Event('focus'))`);await waitFor(()=>exists('[data-testid="add-staff-unavailable"]'),'Unavailable email assignment backend not disclosed');await shot('backend-unavailable',390)
     })
     await test('Direct public display route opens without private workspace or Auth controls',async()=>{
-      await browser.send('Page.navigate',{url:origin+'/display'});await waitFor(()=>browser.evaluate(`document.querySelector('.board-connection')?.textContent==='Live public display'`),'Docked standalone display missing')
+      await browser.send('Page.navigate',{url:origin+'/display'});await waitFor(()=>browser.evaluate(`document.querySelector('.queue-board[data-live="true"]')`),'Docked standalone display missing')
       check(await browser.evaluate(`document.querySelectorAll('[data-counter]').length===5&&!document.querySelector('#account-workspace')`),'Docked public route rendered private UI')
     })
   }else{
@@ -397,7 +442,7 @@ try{
     })
   }
   await test('Student service dialog traps focus, disables issuance and restores focus on Escape',async()=>{
-    await waitFor(()=>browser.evaluate(`document.body.innerText.includes('TP-217')&&document.body.innerText.includes('TP-216')&&document.querySelector('[data-testid="student-live-monitor"] .board-connection')?.textContent==='Live public display'`),'Owner tickets and initial public readiness not settled')
+    await waitFor(()=>browser.evaluate(`document.body.innerText.includes('TP-217')&&document.body.innerText.includes('TP-216')&&document.querySelector('[data-testid="student-live-monitor"] .queue-board[data-live="true"]')`),'Owner tickets and initial public readiness not settled')
     check(await browser.evaluate(`document.querySelectorAll('[data-testid="student-live-monitor"] [data-counter]').length===5&&document.querySelectorAll('[data-testid="public-board"]').length===1&&document.querySelectorAll('main').length===1`),'Embedded display missing counters, duplicated or nested main')
     const socketCount=await browser.evaluate('window.__publicQueueSocketCount()')
     report.embedded_public_socket_count=socketCount
@@ -428,21 +473,21 @@ try{
   })
   await test('Disabled or unavailable public service catalog prevents card selection and recovers without a duplicate socket',async()=>{
     report.simulated_service_availability=true
-    const press=selector=>waitFor(()=>browser.evaluate(`(()=>{const element=document.querySelector(${JSON.stringify(selector)});if(!element || element.disabled)return false;element.click();return true})()`),'Availability test control unavailable')
+    const signalPublic=()=>browser.evaluate(`(async()=>{const {publicSupabase}=await import('/src/lib/supabase.js');for(const channel of publicSupabase.getChannels())for(const binding of channel.bindings.postgres_changes||[])binding.callback({eventType:'UPDATE'})})()`)
     report.availability_stage='disable-service'
-    publicCatalogMode='disabled';await press('.board-refresh')
+    publicCatalogMode='disabled';await signalPublic()
     await waitFor(()=>browser.evaluate(`document.querySelector('[data-testid="service-ADJ"]')?.disabled&&document.querySelector('[data-testid="service-ADJ"]')?.textContent.includes('Service disabled')`),'Disabled service remained selectable')
     report.availability_stage='disabled-click'
     await click('[data-testid="service-ADJ"]');check(!await exists('dialog'),'Disabled service opened confirmation')
     check(await browser.evaluate(`document.querySelector('[data-testid="service-TP"]')?.disabled===false`),'Enabled service incorrectly disabled')
     report.availability_stage='unavailable-context'
-    publicCatalogMode='unavailable';await press('.board-refresh')
+    publicCatalogMode='unavailable';await signalPublic()
     await waitFor(()=>browser.evaluate(`[...document.querySelectorAll('.cqs-service-card')].every(card=>card.disabled)&&!!document.querySelector('.board-alert[role="alert"]')`),'Unavailable catalog remained selectable')
     report.availability_stage='unavailable-click'
     await click('[data-testid="service-TP"]');check(!await exists('dialog'),'Unavailable service opened confirmation')
     report.availability_stage='restore-live'
-    publicCatalogMode='live';await press('.board-refresh')
-    await waitFor(()=>browser.evaluate(`[...document.querySelectorAll('.cqs-service-card')].every(card=>!card.disabled)&&document.querySelector('.board-connection')?.textContent==='Live public display'`),'Live service availability did not recover')
+    publicCatalogMode='live';await signalPublic()
+    await waitFor(()=>browser.evaluate(`[...document.querySelectorAll('.cqs-service-card')].every(card=>!card.disabled)&&document.querySelector('[data-testid="student-live-monitor"] .queue-board[data-live="true"]')`),'Live service availability did not recover')
     check(await browser.evaluate('window.__publicQueueSocketCount()===1'),'Availability recovery duplicated public subscription')
     report.availability_stage='verified'
   })
@@ -483,7 +528,7 @@ try{
       await waitFor(()=>browser.evaluate(`document.body.innerText.includes('TP-217')`),'Staff read not rendered')
       await captureLayout(next.toLowerCase())
       if(next==='CASHIER') {
-        check(await browser.evaluate(`document.querySelector('[data-testid="call-next"]').disabled&&!document.querySelector('[data-testid="serve-ticket"]').disabled&&!document.querySelector('[data-testid="skip-ticket"]').disabled`),'Cashier controls do not match the called-ticket fixture')
+        check(await browser.evaluate(`document.querySelector('[data-testid="call-next"]').disabled&&!document.querySelector('[data-testid="serve-ticket"]').disabled&&!document.querySelector('[data-testid="skip-ticket"]')`),'Cashier controls do not match the called-ticket fixture')
         await browser.evaluate(`const input=document.querySelector('input[type=search]');input.value='NOT-A-TICKET';input.dispatchEvent(new Event('input',{bubbles:true}))`)
         check(await browser.evaluate(`document.body.innerText.includes('No tickets match your filters')`),'Cashier search not applied')
       } else {
@@ -496,8 +541,6 @@ try{
     }
   })
   if(!navigationBefore){
-  const staffClick=selector=>waitFor(()=>browser.evaluate(`(()=>{const element=document.querySelector(${JSON.stringify(selector)});if(!element||element.disabled)return false;element.focus();element.click();return true})()`),`Staff control is not ready: ${selector}`)
-  const field=async(selector,value)=>browser.evaluate(`{const input=document.querySelector(${JSON.stringify(selector)});input.value=${JSON.stringify(value)};input.dispatchEvent(new Event(input.tagName==='SELECT'?'change':'input',{bubbles:true}))}`)
   await test('Background queue notifications and focus revalidation preserve the staff tab, draft, search and component',async()=>{
     check(await browser.evaluate(`!['Refresh queue','Refresh directory'].some(label=>[...document.querySelectorAll('button')].some(b=>b.textContent.trim().toLowerCase()===label.toLowerCase()))&&document.querySelector('[data-testid="add-staff"]').getBoundingClientRect().top<document.querySelector('[data-testid="staff-search"]').getBoundingClientRect().top`),'Refresh controls remain or Add Staff is below search')
     await field('[data-testid="staff-search"]','cashier');await staffClick('[data-testid="add-staff"]');await field('[data-testid="staff-request-email"]','draft@example.invalid')
@@ -542,17 +585,14 @@ try{
     await browser.evaluate(`[...document.querySelectorAll('button')].find(b=>b.textContent==='Staff management').click()`)
     report.controlled_live_ticket_phases=true
   })
-  await test('Staff email search and explicit UUID/counter confirmations preserve existing management controls',async()=>{
+  await test('Staff email search preserves the owner-only staff controls without a separate counter editor',async()=>{
     await browser.evaluate(`window.__staffTrace=[];new MutationObserver(()=>{const s=document.querySelector('[data-testid="admin-workspace"]')?.__vueParentComponent.props.management;if(s){const value=JSON.stringify({status:s.status,phase:s.phase,busy:s.busy,message:s.message});if(window.__staffTrace.at(-1)!==value)window.__staffTrace.push(value)}}).observe(document.body,{childList:true,subtree:true,attributes:true})`)
     await field('[data-testid="staff-search"]','cashier@example.invalid');check(await browser.evaluate(`document.querySelectorAll('[data-account]').length===1`),'Email search failed');await field('[data-testid="staff-search"]','')
     await staffClick('[data-testid="staff-edit-20000000-0000-4000-8000-000000000002"]');await waitFor(()=>exists('[data-testid="staff-edit-role"]'),'Account confirmation missing')
     check(staffMutations.length===0,'Account changed before confirmation');await field('[data-testid="staff-edit-role"]','CASHIER');await staffClick('[data-testid="staff-confirm"]')
     await waitFor(()=>browser.evaluate(`!document.querySelector('dialog')&&document.querySelector('[data-account="20000000-0000-4000-8000-000000000002"]')?.textContent.includes('CASHIER')===true`),'Confirmed account change did not refresh')
-    await staffClick('[data-testid="counter-edit-2"]');await waitFor(()=>exists('[data-testid="counter-edit-open"]'),'Counter confirmation missing')
-    check(staffMutations.length===1,'Counter changed before confirmation')
-    await staffClick('[data-testid="cashier-select-20000000-0000-4000-8000-000000000002"]');await staffClick('[data-testid="counter-edit-open"]');await staffClick('[data-testid="staff-confirm"]')
-    await waitFor(()=>browser.evaluate(`!document.querySelector('dialog')&&document.querySelector('[data-testid="counter-edit-2"]')?.disabled===false`),'Counter change did not settle')
-    check(staffMutations.join(',')==='account,counter','Unexpected management operation')
+    check(await browser.evaluate(`!document.querySelector('[data-testid="staff-management"]').textContent.includes('Cashier Counter Assignments')&&!document.querySelector('[data-testid^="counter-edit-"]')&&!document.querySelector('[data-testid="staff-management"]').textContent.includes('Email unavailable')`),'Separate counter assignment editor or unavailable email was still shown')
+    check(staffMutations.join(',')==='account','Unexpected management operation')
   })
   await test('Payor tab preserves one live monitor, supports authorized history and responsive layouts',async()=>{
     const monitor=await browser.evaluate(`window.__adminMonitor=document.querySelector('[data-testid="admin-live-monitor"]');true`)
@@ -565,18 +605,11 @@ try{
     await browser.send('Emulation.setDeviceMetricsOverride',{width:1440,height:1000,deviceScaleFactor:1,mobile:false})
     await browser.evaluate(`[...document.querySelectorAll('button')].find(b=>b.textContent==='Staff management').click()`)
   })
-  await test('Read-only Google lookup resolves the exact account but cannot activate staff for either role',async()=>{
-    const attempts=staffRequests;await staffClick('[data-testid="add-staff"]');await field('[data-testid="staff-request-email"]','invalid');check(await browser.evaluate(`document.querySelector('[data-testid="staff-confirm"]').disabled`),'Invalid email selectable')
-    await field('[data-testid="staff-request-email"]','missing@example.invalid');await staffClick('[data-testid="staff-resolve"]');await waitFor(()=>browser.evaluate(`document.querySelector('dialog').innerText.includes('must sign in with Google')`),'Missing account message')
-    await field('[data-testid="staff-request-email"]','STUDENT@EXAMPLE.INVALID');await staffClick('[data-testid="staff-resolve"]');await waitFor(()=>exists('[data-testid="staff-resolved-account"]'),'Verified binding absent')
-    check(await browser.evaluate(`document.querySelector('[data-testid="staff-resolved-account"]').innerText.includes('20000000-0000-4000-8000-000000000003')`),'Exact immutable UUID absent')
-    await field('[data-testid="staff-request-counter"]',staffData.configuration.counters[0].id)
-    check(await browser.evaluate(`document.querySelector('[data-testid="staff-confirm"]').disabled&&document.querySelector('dialog').innerText.includes('Direct staff activation is not installed')`),'Read-only lookup enabled a mutation')
-    await field('[data-testid="staff-request-role"]','ADMIN');check(await browser.evaluate(`document.querySelector('[data-testid="staff-confirm"]').disabled`),'ADMIN activation was exposed')
-    await browser.evaluate(`document.querySelector('#admin-add-staff').dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}))`);check(staffRequests===attempts,'Form bypass sent a forbidden staff mutation');await staffClick('dialog button[aria-label="Close dialog"]')
+  await test('Owner can submit a first-login email assignment without Google lookup; duplicate is rejected',async()=>{
+    await verifyEmailAssignmentFlow()
   })
   await test('Missing read capability is truthful and a denied directory cannot revive cached legacy accounts',async()=>{
-    staffMode='missing';await browser.evaluate(`window.dispatchEvent(new Event('focus'))`);await waitFor(()=>exists('[data-testid="add-staff-unavailable"]'),'Missing backend not gated')
+    staffMode='missing';await browser.evaluate(`window.dispatchEvent(new Event('focus'))`);await waitFor(()=>exists('[data-testid="add-staff-unavailable"]'),'Missing assignment endpoint not gated')
     await browser.evaluate(`[...document.querySelectorAll('button')].find(b=>b.textContent==='Payor management').click()`);await waitFor(()=>exists('[data-testid="payor-unavailable"]'),'Missing payor endpoint not disclosed');await captureLayout('admin-payor-unavailable')
     staffMode='denied-directory';await browser.evaluate(`[...document.querySelectorAll('button')].find(b=>b.textContent==='Staff management').click()`)
     // A protected denial intentionally clears/reverifies authorization and can
@@ -653,7 +686,7 @@ try{
   })
   await test('Anonymous /display remains available without Auth controls after callback errors',async()=>{
     await browser.send('Page.navigate',{url:origin+'/display'})
-    await waitFor(()=>browser.evaluate(`document.querySelector('.board-connection')?.textContent==='Live public display'`),'Public board did not synchronize')
+    await waitFor(()=>browser.evaluate(`document.querySelector('.queue-board[data-live="true"]')`),'Public board did not synchronize')
     check(await browser.evaluate(`!document.querySelector('#account-workspace')&&document.querySelectorAll('[data-counter]').length===5&&!location.search`),'Monitor affected by Auth state')
   })
   await test('No unexpected network path, real Auth write, runtime error or Google/hosted contact',async()=>{check(!blocked.length&&!runtime.length,'Unexpected network/runtime behavior');check(workspaceCalls.some(path=>path.endsWith('my_tickets'))&&workspaceCalls.some(path=>path.endsWith('staff_queue')),'Read integration not exercised')})
@@ -664,7 +697,7 @@ try{
   if(mfaMode){report.mfa_fixture={calls:mfaCalls,assurance:mfaLevel,statuses:mfaFactors.map(row=>row.status)};try{report.mfa_ui=await browser?.evaluate(`({phase:document.querySelector('[data-testid="account-mfa"]')?.dataset.phase,message:document.querySelector('[data-testid="mfa-message"]')?.textContent})`)}catch{}}
   if(!checks.some(item=>item.result==='FAIL'))checks.push({name:'Browser setup gate',result:'FAIL',reason:report.failure})
   report.network_failures=networkFailures;report.public_response_statuses=publicResponses;report.socket_statuses=socketStatuses
-  try{report.browser_state=await browser?.evaluate(`({path:location.pathname,connection:document.querySelector('.board-connection')?.textContent,google:!!document.querySelector('[data-testid="google-login"]')})`)}catch{}
+  try{report.browser_state=await browser?.evaluate(`({path:location.pathname,live:!!document.querySelector('.queue-board[data-live="true"]'),google:!!document.querySelector('[data-testid="google-login"]')})`)}catch{}
   try{if(browser){report.staff_trace=await browser.evaluate(`window.__staffTrace||[]`);await browser.evaluate(`document.querySelectorAll('[data-testid="account-mfa"]').forEach(node=>node.replaceChildren(document.createTextNode('MFA content redacted for failure evidence')))`);await browser.screenshot(`${directory}/google_oauth_frontend_${run}_failure.png`)}}catch{}
   console.error(report.failure);process.exitCode=1
 }finally{

@@ -25,9 +25,68 @@ test('student has all five services, owner history and no invented queue or ETA'
 test('cashier renders only assigned services, with all operations disabled', async () => {
   const context = { cashier_counters: [{ counter_id: 'counter', counter_number: 5, counter_label: 'Counter 5', is_open: false, service_codes: ['ADJ'] }] }
   const row = { ticket_id: 'x', service: 'ADJ', number: 7, business_date: '2026-10-18', status: 'WAITING', counter_id: null, wait_position: 1 }
-  const html = await render('CashierDashboard', { context, data: { ...data, rows: [row, { ...row, ticket_id: 'y', service: 'TP', number: 99 }] } })
+  const html = await render('CashierDashboard', { context, publicState, data: { ...data, rows: [row, { ...row, ticket_id: 'y', service: 'TP', number: 99 }] } })
   assert.match(html, /Adjustment Clerk|ADJ-007/); assert.doesNotMatch(html, /TP-099|Customer name|Priority/)
-  for (const action of ['Skip', 'Mark Served', 'Call Next']) assert.match(html, new RegExp(`disabled[^>]*>${action}</button>`))
+  for (const action of ['Mark Served', 'Call Next']) assert.match(html, new RegExp(`disabled[^>]*>${action}</button>`))
+  assert.match(html, /data-testid="toggle-counter"[^>]*>Open Counter/)
+  assert.match(html, /Counter Closed/)
+  assert.match(html, /Open the counter before calling the next ticket/)
+  assert.doesNotMatch(html, /Skip|skip-ticket/)
+  assert.doesNotMatch(html, /Refresh queue|Refresh tickets|Public display ↗/)
+})
+test('Call Next is disabled with a specific reason unless the assigned counter is open and idle', async () => {
+  const context = { cashier_counters: [{ counter_id: 'counter-1', counter_number: 1, counter_label: 'Counter 1', is_open: true, service_codes: ['TP'] }] }
+  const waiting = { ticket_id: 'waiting', service: 'TP', number: 12, business_date: '2026-10-18', status: 'WAITING', counter_id: null, wait_position: 1 }
+  const called = { ...waiting, ticket_id: 'called', number: 11, status: 'CALLED', counter_id: 'counter-1', wait_position: 0 }
+  const cashier = rows => render('CashierDashboard', { context, publicState, data: { ...data, rows } })
+  const noWaiting = await cashier([])
+  assert.match(noWaiting, /disabled[^>]*>Call Next<\/button>/)
+  assert.match(noWaiting, /No waiting tickets\./)
+  const busyCounter = await cashier([called, waiting])
+  assert.match(busyCounter, /disabled[^>]*>Call Next<\/button>/)
+  assert.match(busyCounter, /Mark the current ticket as served before calling the next ticket\./)
+  const ready = await cashier([waiting])
+  assert.doesNotMatch(ready, /disabled[^>]*>Call Next<\/button>/)
+  assert.match(ready, /Actions require confirmation\./)
+  const closed = await render('CashierDashboard', { context: { cashier_counters: [{ ...context.cashier_counters[0], is_open: false }] }, publicState, data: { ...data, rows: [waiting] } })
+  assert.match(closed, /disabled[^>]*>Call Next<\/button>/)
+  assert.match(closed, /Open the counter before calling the next ticket\./)
+})
+test('cashier shows the database-confirmed counter state before the public snapshot catches up', async () => {
+  const counterId = 'counter-1'
+  const waiting = { ticket_id: 'waiting', service: 'TP', number: 12, business_date: '2026-10-18', status: 'WAITING', counter_id: null, wait_position: 1 }
+  const html = await render('CashierDashboard', {
+    context: { cashier_counters: [{ counter_id: counterId, counter_number: 1, counter_label: 'Counter 1', is_open: false, service_codes: ['TP'] }] },
+    publicState: { ...publicState, hasSnapshot: true, synchronized: true, queueVersion: 4, counters: [{ counter_id: counterId, is_open: false }] },
+    data: { ...data, rows: [waiting] },
+    actionState: { phase: 'success', operation: 'set_counter_open', result: { counter: counterId, open: true } },
+  })
+
+  assert.match(html, /Counter Open/)
+  assert.match(html, /data-testid="toggle-counter"[^>]*>Close Counter/)
+  assert.doesNotMatch(html, /disabled[^>]*>Call Next<\/button>/)
+})
+test('development cashier preview uses the real dashboard with synthetic data and a clear non-live banner', async () => {
+  const html = await render('CashierPreview', {})
+  assert.match(html, /DEVELOPMENT PREVIEW/)
+  assert.match(html, /not an authenticated Google session/)
+  assert.match(html, /sample data/)
+  assert.match(html, /Counter 1/)
+  assert.match(html, /Tuition Payment/)
+  assert.match(html, /TP-031/)
+  assert.match(html, /TP-032/)
+  assert.match(html, /Now serving/)
+  assert.match(html, /Up next/)
+  assert.match(html, /data-testid="call-next"[^>]*>Call Next/)
+  assert.match(html, /data-testid="serve-ticket"[^>]*>Mark Served/)
+  assert.doesNotMatch(html, /data-testid="skip-ticket"|>Skip</)
+  assert.match(html, /Mark the current ticket as served before calling the next ticket/)
+  assert.match(html, /data-testid="toggle-counter"/)
+  assert.match(html, /Active queue/)
+  assert.doesNotMatch(html,/My workspace|Public display ↗|Refresh queue/)
+  assert.match(html, /Exit preview/)
+  assert.doesNotMatch(html,/<nav[^>]*aria-label="Workspace navigation"/)
+  assert.doesNotMatch(html, /Verified account access/)
 })
 test('admin uses current snapshots and unavailable historical metrics instead of demo charts', async () => {
   const html = await render('AdminDashboard', { publicState, data })
@@ -37,13 +96,13 @@ test('admin uses current snapshots and unavailable historical metrics instead of
   assert.doesNotMatch(html, /98%|9 min|Supervisor|<canvas|Average wait.*\d/)
 })
 
-const liveState=()=>({hasSnapshot:true,synchronized:true,connection:'connected',refreshing:false,error:null,lastRefreshed:'2026-10-19T19:25:00Z',context:{business_date:'2026-10-20',services:[{code:'TP',name:'Tuition Payment'},{code:'SOA',name:'Statement of Account'},{code:'PNEP',name:'Promissory Notes and Exam Permits'},{code:'REF',name:'Refund Process'},{code:'ADJ',name:'Adjustment Clerk'}]},counters:['TP','SOA','PNEP','REF','ADJ'].map((code,i)=>({counter_label:`Counter ${i+1}`,is_open:i<2,ticket_label:i===0?'TP-073':null,service_code:i===0?'TP':null,business_date:i===0?'2026-10-20':null})),services:[{service_code:'TP',business_date:'2026-10-20',waiting_count:0}]})
+const liveState=()=>({hasSnapshot:true,synchronized:true,connection:'connected',refreshing:false,error:null,lastRefreshed:'2026-10-19T19:25:00Z',context:{business_date:'2026-10-20',services:[{code:'TP',name:'Tuition Payment',issuance_status:'OPEN'},{code:'SOA',name:'Statement of Account',issuance_status:'OPEN'},{code:'PNEP',name:'Promissory Notes and Exam Permits',issuance_status:'OPEN'},{code:'REF',name:'Refund Process',issuance_status:'OPEN'},{code:'ADJ',name:'Adjustment Clerk',issuance_status:'OPEN'}]},counters:['TP','SOA','PNEP','REF','ADJ'].map((code,i)=>({counter_label:`Counter ${i+1}`,is_open:i<2,ticket_label:i===0?'TP-073':null,service_code:i===0?'TP':null,business_date:i===0?'2026-10-20':null})),services:[{service_code:'TP',business_date:'2026-10-20',waiting_count:0}]})
 test('ADMIN live tickets render five fixed destinations and dated public calls without private history',async()=>{
  const html=await render('AdminLiveTickets',{state:liveState()})
  assert.equal((html.match(/data-live-counter=/g)||[]).length,5)
  for(const [i,code]of ['TP','SOA','PNEP','REF','ADJ'].entries())assert.match(html,new RegExp(`data-live-counter="${i+1}"[\\s\\S]*?data-service="${code}"`))
  assert.match(html,/Currently called/);assert.match(html,/TP-073/);assert.match(html,/Ticket date 2026-10-20/)
- assert.match(html,/<strong>0<\/strong> waiting/);assert.equal((html.match(/No ticket being called/g)||[]).length,4)
+ assert.match(html,/<strong>0<\/strong><span> waiting/);assert.equal((html.match(/No ticket being called/g)||[]).length,4)
  assert.doesNotMatch(html,/<button|Refresh|SERVED|FORFEITED/)
 })
 test('cleared called projection never reuses a served or forfeited private ticket',async()=>{
@@ -55,20 +114,19 @@ test('cleared called projection never reuses a served or forfeited private ticke
 test('disconnected and resynchronizing snapshots are explicitly stale until fresh readiness',async()=>{
  const state=liveState();state.connection='disconnected';state.synchronized=false
  const offline=await render('AdminLiveTickets',{state});assert.match(offline,/Connection interrupted/);assert.match(offline,/Last reported call · stale/);assert.doesNotMatch(offline,/Currently called/)
- state.connection='connected';const reconnect=await render('AdminLiveTickets',{state});assert.match(reconnect,/Synchronizing/);assert.match(reconnect,/Last-known snapshot/)
- state.synchronized=true;const ready=await render('AdminLiveTickets',{state});assert.match(ready,/Currently called/);assert.doesNotMatch(ready,/snapshot — stale/)
+ state.connection='connected';const reconnect=await render('AdminLiveTickets',{state});assert.doesNotMatch(reconnect,/Connection interrupted|Synchronizing|Last-known snapshot/);assert.match(reconnect,/Last reported call · stale/)
+ state.synchronized=true;const ready=await render('AdminLiveTickets',{state});assert.match(ready,/Currently called/);assert.doesNotMatch(ready,/snapshot — stale|Live<\/span>/)
 })
 test('background updating keeps the public calls and zero/missing waiting counts distinct',async()=>{
  const state=liveState();state.refreshing=true
- const html=await render('AdminLiveTickets',{state});assert.match(html,/data-live="true"/);assert.match(html,/Updating/);assert.match(html,/TP-073/)
- assert.match(html,/Updating call snapshot/);assert.doesNotMatch(html,/Currently called/)
- assert.equal((html.match(/Waiting count not reported/g)||[]).length,4)
- state.services.push({...state.services[0]});const duplicate=await render('AdminLiveTickets',{state});assert.equal((duplicate.match(/Waiting count not reported/g)||[]).length,5)
+ const html=await render('AdminLiveTickets',{state});assert.match(html,/data-live="true"/);assert.doesNotMatch(html,/Updating|Live<\/span>/);assert.match(html,/TP-073/)
+ assert.match(html,/Currently called/);assert.equal((html.match(/aria-label="Waiting count unavailable">—/g)||[]).length,4)
+ state.services.push({...state.services[0]});const duplicate=await render('AdminLiveTickets',{state});assert.equal((duplicate.match(/aria-label="Waiting count unavailable">—/g)||[]).length,5)
 })
 test('missing or mismatched counter projections cannot claim live current calls',async()=>{
  const state=liveState();state.counters[0].service_code='SOA'
- const html=await render('AdminLiveTickets',{state});assert.match(html,/Data unavailable/);assert.match(html,/Call data unavailable/);assert.doesNotMatch(html,/TP-073|Currently called/)
- state.hasSnapshot=false;const pending=await render('AdminLiveTickets',{state});assert.match(pending,/Waiting for a verified public queue snapshot/);assert.doesNotMatch(pending,/TP-073/)
+ const html=await render('AdminLiveTickets',{state});assert.match(html,/Call data unavailable/);assert.doesNotMatch(html,/TP-073|Currently called/)
+ state.hasSnapshot=false;const pending=await render('AdminLiveTickets',{state});assert.match(pending,/data-live="false"/);assert.doesNotMatch(pending,/TP-073|Waiting for a verified public queue snapshot/)
 })
 test('unavailable private reads never render cached ticket rows', async () => {
   const rows = [{ id: 'x', service: 'TP', number: 987, status: 'SERVED', business_date: '2026-10-18' }]

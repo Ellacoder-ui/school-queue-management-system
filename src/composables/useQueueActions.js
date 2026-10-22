@@ -13,7 +13,10 @@ export function useQueueActions(auth, workspace, refreshPublic) {
     online: () => navigator.onLine,
     onState: value => { state.value = value },
     onAuthorizationChanged: auth.protectedDenied,
-    afterOperation: async () => { await workspace.refresh(); refreshPublic() },
+    afterOperation: async operation => {
+      await workspace.refresh()
+      refreshPublic()
+    },
   })
   watch(auth.state, () => controller.syncAccess(), { flush: 'sync' })
   const storage = event => { if (event.key?.startsWith('cqs-queue-intent-v1:')) controller.syncAccess() }

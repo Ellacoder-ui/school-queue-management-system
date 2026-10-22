@@ -21,8 +21,7 @@
 .board-skip:focus { top: 10px; }
 .board-header { min-height: 126px; padding: 26px 2.8vw; display: flex; justify-content: space-between; align-items: center; gap: 24px; background: #2b131e; border-bottom: 1px solid #ffffff14; }
 .board-brand { display: flex; align-items: center; gap: 20px; min-width: 0; }
-.board-icon { color: #321821; background: #edb23e; width: 67px; height: 67px; border-radius: 20px; display: grid; place-items: center; flex-shrink: 0; }
-.board-icon svg { width: 35px; height: 35px; }
+.board-logo { width: 72px; height: 72px; object-fit: contain; flex-shrink: 0; }
 .board-brand h1 { font-size: clamp(20px, 1.45vw, 30px); font-weight: 700; letter-spacing: -.7px; }
 .board-brand p { margin-top: 7px; color: var(--muted); font-size: 13px; letter-spacing: 2px; }
 .board-clock { text-align: right; flex-shrink: 0; }
@@ -34,15 +33,16 @@
 .board-intro > p { color: var(--muted); font-size: 14px; }
 .board-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #d7a45a; box-shadow: 0 0 0 6px #d7a45a15; flex-shrink: 0; }
 .board-dot.is-live { background: #8ed5ac; box-shadow: 0 0 0 6px #8ed5ac15; }
-.board-connection { margin-left: auto; color: #f3c686; font-size: 12px; }
-.board-connection.is-live { color: #8ed5ac; }
-.board-refresh { background: #ffffff08; border: 1px solid #ffffff30; color: #f2dce3; font-size: 12px; padding: 7px 12px; cursor: pointer; }
 .board-voice-controls { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
 .board-voice-btn { background: #ffffff08; border: 1px solid #ffffff30; color: #f2dce3; font-size: 11px; padding: 6px 12px; cursor: pointer; border-radius: 999px; }
 .board-voice-btn.is-active { background: #e5bd6820; border-color: #e5bd68; color: #e5bd68; }
 .board-voice-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-.board-refresh:hover { background: #ffffff16; }
-.board-refresh:disabled { opacity: .65; cursor: wait; }
+.cqs-live-tickets .board-voice-controls { margin-top: 0; }
+.cqs-live-tickets .board-voice-btn { background: #fff; border: 1px solid #64243D; color: #64243D; font-size: 12px; font-weight: 600; padding: 8px 14px; min-height: 36px; border-radius: 10px; cursor: pointer; }
+.cqs-live-tickets .board-voice-btn.is-active { background: #64243D; color: #fff; border-color: #64243D; }
+.cqs-live-tickets .board-voice-btn:disabled { opacity: 0.45; color: #64243D; background: #f3f3f3; border-color: #b8a0a8; }
+.cqs-live-tickets .board-voice-btn:hover:not(:disabled) { background: #64243D; color: #fff; }
+.cqs-live-tickets .board-voice-btn:focus-visible { outline: 2px solid #64243D; outline-offset: 2px; }
 .board-context { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px 20px; color: var(--muted); font-size: 12px; margin: 10px 0 18px; }
 .board-alert { padding: 10px 14px; border: 1px solid #f7be7366; border-radius: 10px; color: #ffdeac; font-size: 14px; margin-bottom: 14px !important; }
 .board-feature { position: relative; display: grid; grid-template-columns: 1fr 1.5fr 1fr; align-items: center; gap: 24px; min-height: clamp(230px, 30vh, 325px); padding: 38px 3vw 58px; border: 1px solid #ad7a3f99; border-radius: 30px; background: radial-gradient(ellipse at 50% 10%, #70354b, #512234); }
@@ -57,6 +57,20 @@
 .board-feature-idle h2 { color: var(--gold); font-size: clamp(32px, 4vw, 68px); font-weight: 700; line-height: 1.15; }
 .board-feature-idle p { color: #f2dce3; margin-top: 18px; font-size: 16px; }
 .board-counters { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; margin-top: 22px; scroll-margin-top: 12px; }
+.admin-live-grid { display: grid; grid-template-columns: 1fr; gap: 16px; width: 100%; min-width: 0; margin-top: 16px; }
+.cqs-staff-directory-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+.admin-live-heading-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+.admin-public-display-link { color: #64243D; font-weight: 600; text-decoration: none; font-size: 13px; }
+.admin-public-display-link:hover { text-decoration: underline; }
+.admin-public-display-link:focus-visible { outline: 2px solid #64243D; outline-offset: 2px; }
+.admin-overview-layout { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 24px; align-items: start; width: 100%; }
+.admin-overview-left, .admin-overview-right { min-width: 0; }
+@media (max-width: 900px) { .admin-overview-layout { grid-template-columns: 1fr; } }
+.admin-live-grid .board-counter { min-width: 0; word-break: normal; overflow-wrap: normal; color: #f5eef1; }
+.admin-live-grid .board-counter .board-code { color: var(--gold, #d4a64a); }
+.admin-live-grid .board-counter .board-counter-badge { color: var(--gold, #d4a64a); }
+.admin-live-grid .board-counter-service { white-space: normal; word-break: normal; overflow-wrap: normal; }
+.admin-live-grid .board-counter-ticket { white-space: normal; word-break: normal; overflow-wrap: normal; }
 .board-counter { min-width: 0; background: #2d1b24; border: 1px solid #ffffff1c; border-radius: 21px; padding: 22px 22px 18px; }
 .board-counter-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
 .board-counter-status { color: #ead4dc; font-size: 11px; letter-spacing: .8px; text-transform: uppercase; font-weight: 700; display: flex; align-items: center; gap: 10px; }
@@ -86,7 +100,7 @@
 .board-monitor-link { color: #065f46; text-decoration: underline; font-size: 14px; }
 @media (max-width: 1400px) and (min-width: 1001px) {
   .board-header { min-height: 96px; padding-top: 16px; padding-bottom: 16px; }
-  .board-icon { width: 56px; height: 56px; border-radius: 16px; }
+  .board-logo { width: 60px; height: 60px; }
   .board-clock p { font-size: 30px; }
   .board-main { padding-top: 12px; padding-bottom: 12px; }
   .board-intro { gap: 12px; }
@@ -110,7 +124,6 @@
   .board-main { padding: 22px; }
   .board-intro { gap: 14px; }
   .board-intro > p { flex-basis: 100%; order: 4; }
-  .board-connection { margin-left: 0; }
   .board-feature { grid-template-columns: 1fr 1fr; padding: 28px 26px 62px; gap: 24px; }
   .board-feature-ticket { grid-column: 1 / -1; grid-row: 1; font-size: clamp(60px, 12vw, 108px); letter-spacing: -3px; }
   .board-feature-service p { font-size: 17px; }
@@ -125,8 +138,7 @@
 @media (max-width: 600px) {
   .board-header { padding: 20px 18px; align-items: flex-start; flex-direction: column; gap: 20px; }
   .board-brand { gap: 13px; }
-  .board-icon { width: 48px; height: 48px; border-radius: 14px; }
-  .board-icon svg { width: 28px; height: 28px; }
+  .board-logo { width: 52px; height: 52px; }
   .board-brand h1 { font-size: 19px; letter-spacing: -.4px; line-height: 1.2; }
   .board-brand p { font-size: 10px; letter-spacing: 1.1px; }
   .board-clock { text-align: left; }

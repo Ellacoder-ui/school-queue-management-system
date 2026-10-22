@@ -9,11 +9,21 @@
 .cqs-cashier-choice { display: flex; align-items: start; gap: 10px; margin: 12px 0; overflow-wrap: anywhere; }
 @media (max-width: 1000px) { .cqs-counter-admin-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
 @media (max-width: 540px) { .cqs-counter-admin-grid { grid-template-columns: 1fr; } }
-.cqs-staff-add { margin: 26px 0; padding: 22px 0; border-top: 1px solid #e8dfd9; border-bottom: 1px solid #e8dfd9; }
+.cqs-staff-add { margin: 18px 0; padding: 14px 0; border-top: 1px solid #e8dfd9; border-bottom: 1px solid #e8dfd9; }
+.cqs-staff-add .cqs-section-heading { justify-content: flex-start; margin: 0; }
+.cqs-dialog .cqs-field select { width:100%; min-width:0; min-height:44px; padding:10px 38px 10px 12px; border:1px solid var(--cqs-line); border-radius:8px; color:var(--cqs-ink); background-color:#fff; }
+.cqs-dialog .cqs-field span { display:flex; align-items:center; gap:10px; }
+.cqs-dialog .cqs-dialog-actions { flex-wrap:wrap; }
+.cqs-dialog .cqs-dialog-actions .cqs-button { flex:1 1 132px; min-width:0; }
+.cqs-dialog .cqs-dialog-actions .cqs-button-danger { color:#8b1e2d; border:1px solid #8b1e2d; background:#fff; }
+.cqs-dialog .cqs-dialog-actions .cqs-button-danger:hover { color:#fff; background:#8b1e2d; }
+.cqs-table-actions { display:flex; align-items:center; gap:8px; flex-wrap:wrap; min-width:180px; }
+.cqs-table-actions .cqs-link { display:inline-flex; align-items:center; justify-content:center; min-height:40px; padding:8px 10px; border:1px solid var(--cqs-line); border-radius:7px; white-space:nowrap; }
+.cqs-table-actions .cqs-link:disabled { opacity:.55; }
 .cqs-staff-panel .cqs-counter-admin-grid { margin-top: 18px; }
 .cqs-staff-panel .cqs-counter-admin-grid .cqs-caption { overflow-wrap: anywhere; }
 .cqs-staff-panel .cqs-section-heading { flex-wrap: wrap; }
-.cqs-admin-shell { display:grid; grid-template-columns:minmax(0,1.6fr) minmax(310px,1fr); gap:24px; align-items:start; }
+.cqs-admin-shell { display:grid; grid-template-columns:minmax(0,1fr); gap:24px; align-items:start; }
 .cqs-admin-content,.cqs-admin-live { min-width:0; }
 .cqs-admin-live { position:static; }
 .cqs-admin-live-fits { position:sticky; top:calc(var(--cqs-header-height, 90px) + 24px); }

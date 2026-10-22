@@ -77,7 +77,7 @@ test('non-idempotent lost response persists and neither explicit retry nor anoth
   await h.controller.refresh();await h.controller.perform('request_staff_access',{p_email:'new@example.com',p_role:'CASHIER'})
   assert.equal(h.controller.getState().phase,'unknown');assert.equal(h.controller.getState().canRetry,false);assert.equal(h.store.size,1)
   h.controller.syncAccess();await new Promise(r=>setImmediate(r));await h.controller.retry();await h.controller.perform('request_staff_access',{p_email:'different@example.com',p_role:'ADMIN'})
-  assert.equal(attempts,1);assert.match(h.controller.getState().message,/trusted operator/);assert.equal(h.store.size,1);h.controller.stop()
+  assert.equal(attempts,1);assert.match(h.controller.getState().message,/status is checked/);assert.equal(h.store.size,1);h.controller.stop()
 })
 test('concurrent clicks send one request; background reads do not flicker or close the ready view',async()=>{
   let release;const h=setup({executeMutation:()=>new Promise(r=>release=r)});await h.controller.refresh()

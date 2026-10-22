@@ -27,6 +27,49 @@ test('business reads target queue_api; issuance is an explicit validated mutatio
   assert.equal(api.createMutationIntent('issue_ticket', { p_service: 'TP' }).operation, 'issue_ticket')
   assert.throws(() => api.createMutationIntent('issue_ticket', { p_service: 'UNKNOWN' }))
   assert.throws(() => api.createMutationIntent('issue_ticket', { p_service: 'TP', p_role: 'ADMIN' }))
+  assert.equal(api.createMutationIntent('set_counter_open', {
+    p_counter: '11111111-1111-4111-8111-111111111111', p_open: true,
+  }).operation, 'set_counter_open')
+  assert.throws(() => api.createMutationIntent('set_counter_open', {
+    p_counter: '11111111-1111-4111-8111-111111111111', p_open: 'true',
+  }))
+})
+test('counter opening after hours has a distinct operator-facing reason',async()=>{
+ const api=createQueueApi({schema(){return{rpc(){return Promise.resolve({
+  error:{code:'P0001',message:'Counter opening is unavailable after 5:00 PM'},status:400
+ })}}}})
+ const intent=api.createMutationIntent('set_counter_open',{p_counter:'11111111-1111-4111-8111-111111111111',p_open:true})
+ await assert.rejects(api.executeMutation(intent),error=>error.reason==='counter_after_hours')
+})
+
+test('email assignments use the owner RPC contract and validate pending-first-login receipts',async()=>{
+ const calls=[],receipt={status:'PENDING_FIRST_LOGIN',invitation:'11111111-1111-4111-8111-111111111111',email:'new.staff@example.invalid',role:'CASHIER',counter:'22222222-2222-4222-8222-222222222222'}
+ const api=createQueueApi({schema(schema){return{rpc(name,params){calls.push({schema,name,params});return Promise.resolve({data:receipt,error:null,status:200})}}}})
+ const intent=api.createMutationIntent('assign_staff_by_email',{p_email:'new.staff@example.invalid',p_role:'CASHIER',p_counter:receipt.counter})
+ assert.deepEqual(await api.executeMutation(intent),receipt)
+ assert.equal(calls[0].schema,'queue_api');assert.equal(calls[0].name,'assign_staff_by_email')
+ assert.equal(calls[0].params.p_request_key,intent.parameters.p_request_key)
+ assert.throws(()=>api.createMutationIntent('assign_staff_by_email',{p_email:'new.staff@example.invalid',p_role:'STUDENT',p_counter:null}))
+})
+
+test('staff role and counter changes use the atomic owner RPC contract',async()=>{
+ const calls=[],receipt={user:'11111111-1111-4111-8111-111111111111',role:'CASHIER',enabled:true,counter:'22222222-2222-4222-8222-222222222222'}
+ const api=createQueueApi({schema(schema){return{rpc(name,params){calls.push({schema,name,params});return Promise.resolve({data:receipt,error:null,status:200})}}}})
+ const intent=api.createMutationIntent('set_staff_access',{p_user:receipt.user,p_role:'CASHIER',p_enabled:true,p_counter:receipt.counter})
+ assert.deepEqual(await api.executeMutation(intent),receipt)
+ assert.equal(calls[0].schema,'queue_api');assert.equal(calls[0].name,'set_staff_access')
+ assert.equal(calls[0].params.p_request_key,intent.parameters.p_request_key)
+ assert.throws(()=>api.createMutationIntent('set_staff_access',{p_user:receipt.user,p_role:'CASHIER',p_enabled:true,p_counter:null}))
+})
+
+test('ineligible counter assignment cleanup uses the explicit owner RPC contract',async()=>{
+ const calls=[],receipt={counter:'11111111-1111-4111-8111-111111111111',user:'22222222-2222-4222-8222-222222222222',role:'STUDENT',enabled:true,removed:true}
+ const api=createQueueApi({schema(schema){return{rpc(name,params){calls.push({schema,name,params});return Promise.resolve({data:receipt,error:null,status:200})}}}})
+ const intent=api.createMutationIntent('remove_ineligible_counter_assignment',{p_counter:receipt.counter,p_user:receipt.user})
+ assert.deepEqual(await api.executeMutation(intent),receipt)
+ assert.equal(calls[0].schema,'queue_api');assert.equal(calls[0].name,'remove_ineligible_counter_assignment')
+ assert.equal(calls[0].params.p_request_key,intent.parameters.p_request_key)
+ assert.throws(()=>api.createMutationIntent('remove_ineligible_counter_assignment',{p_counter:receipt.counter,p_user:'student@example.invalid'}))
 })
 
 test('an ambiguous action retry preserves its UUID and immutable original parameters', async () => {
@@ -110,6 +153,13 @@ test('context contracts reject unexpected identity fields, unknown roles and dis
   assert.deepEqual(validateMyContext({ role: null, enabled: false, cashier_counters: [] }), { role: null, enabled: false, cashier_counters: [] })
   assert.throws(() => validatePublicContext({ ...context, account_id: 'PRIVATE' }))
   assert.throws(() => validatePublicContext({ ...context, timezone: 'Browser/Timezone' }))
+})
+
+test('public context exposes only validated per-service issuance states', () => {
+  const value = { ...context, services: [{ code: 'TP', name: 'Tuition Payment', issuance_status: 'QUEUE_CUTOFF' }] }
+  assert.deepEqual(validatePublicContext(value).services[0].issuance_status, 'QUEUE_CUTOFF')
+  assert.throws(() => validatePublicContext({ ...context, services: [{ ...value.services[0], issuance_status: 'OPEN_FOR_ALL' }] }))
+  assert.throws(() => validatePublicContext({ ...context, services: [{ code: 'TP', name: 'Tuition Payment' }] }))
 })
 
 test('request guard rejects hosted traffic and refuses redirect following', async () => {
