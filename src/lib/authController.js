@@ -5,7 +5,7 @@ export function createAuthController(auth, api, {
 } = {}) {
   let state = { status: 'initializing', signedIn: false, context: null, workspace: 'public', message: null, accountVersion: 0 }
   let started = false, stopped = false, generation = 0, command = 0, session = null
-  let subscription, active, expiration, blocked = false, autoNavigate = true, revalidationScheduled = false
+  let subscription, active, expiration, restoration, blocked = false, autoNavigate = true, revalidationScheduled = false
   const emit = patch => { if (!stopped) { state = { ...state, ...patch }; onState?.(state) } }
   const clear = (status, message = null) => {
     generation++
@@ -69,9 +69,35 @@ export function createAuthController(auth, api, {
     } catch (error) {
       if (!stopped && expectedGeneration === generation) {
         if (error?.status === 401 || error?.code === 'PGRST301') expired()
-        else emit({ status: 'error', revalidating:false, verificationStep:null, context: null, workspace: 'public', message: 'Account access could not be verified. Retry or sign out.' })
+        else emit({ status: 'error', revalidating:false, verificationStep:null, context: null, workspace: 'public', message: 'Unable to verify your session. Please try again.' })
       }
     } finally { clearTimer(deadline); if (active === abort) active = null; if (expectedGeneration === generation) revalidationScheduled = false }
+  }
+  async function restoreSession({ initial = false } = {}) {
+    if (stopped || restoration || (initial && state.status !== 'initializing')
+      || (!initial && ['signing-in', 'signing-out'].includes(state.status))) return restoration
+    if (!initial) { blocked = false; clear('checking') }
+    const expectedGeneration = generation
+    restoration = (async () => {
+      try {
+        const result = await bounded(auth.getSession())
+        if (stopped || expectedGeneration !== generation) return
+        if (result.error) throw new Error('Session unavailable')
+        const next = result.data.session
+        if (!next) {
+          blocked = false; session = null; clear('anonymous'); return
+        }
+        if (next.user.id !== session?.user.id) { command++; autoNavigate = true }
+        session = next; blocked = false
+        const epoch = clear('checking')
+        defer(() => { void verify(epoch) })
+      } catch {
+        if (!stopped && expectedGeneration === generation) {
+          clear('error', 'Unable to verify your session. Please try again.')
+        }
+      } finally { restoration = null }
+    })()
+    return restoration
   }
   function receive(next, event) {
     if (stopped) return
@@ -120,20 +146,29 @@ export function createAuthController(auth, api, {
     emit({ revalidating: true })
     defer(() => { void verify(epoch) })
   }
+  function resume() {
+    if (stopped || restoration || active || ['initializing','checking','signing-in','signing-out'].includes(state.status)) return
+    autoNavigate = true
+    if (session && !blocked) {
+      if (state.status === 'ready' && state.context?.enabled) {
+        const workspace = state.context.role?.toLowerCase() === 'admin' ? 'admin' : state.context.role?.toLowerCase()
+        emit({ workspace })
+        revalidate()
+      } else refresh()
+      return
+    }
+    void restoreSession()
+  }
   return {
     getState: () => state,
     start({ suspended = false } = {}) {
       if (started || stopped) return
       started = true
       blocked = suspended
-      subscription = auth.onAuthStateChange((event, next) => receive(next, event)).data.subscription
+      try { subscription = auth.onAuthStateChange((event, next) => receive(next, event)).data.subscription }
+      catch { clear('error', 'Unable to verify your session. Please try again.'); return }
       if (suspended) return
-      const epoch = generation
-      void bounded(auth.getSession()).then(result => {
-        if (stopped || generation !== epoch) return
-        if (result.error) { session = null; clear('error', 'Session recovery failed. Sign in again.'); return }
-        receive(result.data.session, 'INITIAL_SESSION')
-      }).catch(() => { if (!stopped && generation === epoch) clear('error', 'Session recovery failed. Try again.') })
+      void restoreSession({ initial: true })
     },
     beginExternal() {
       command++; blocked = true; session = null; autoNavigate = true
@@ -195,7 +230,16 @@ export function createAuthController(auth, api, {
         && (state.status === 'checking' || state.context?.enabled)
         ? { actor: session.user.id, version: command } : null
     },
-    refresh, revalidate,
+    refresh() {
+      if (stopped) return
+      if (!session || blocked) {
+        if (state.status === 'error') return restoreSession()
+        return
+      }
+      const epoch = clear('checking')
+      defer(() => { void verify(epoch) })
+    },
+    revalidate, resume,
     offline() { if (!stopped && session) clear('error', 'You are offline. Reconnect to verify account access.') },
     protectedDenied() { refresh() },
     navigate(workspace) {

@@ -70,7 +70,7 @@ const cardStatus = counter => !props.state.hasSnapshot ? 'Awaiting data' : !coun
         <div class="board-intro">
           <div class="board-service-label"><span class="board-dot" aria-hidden="true"></span>SERVICE BOARD</div>
           <p>Listen for your ticket number and proceed to the assigned counter.</p>
-          <button v-if="speech.supported && !speech.enabled.value" type="button" class="board-voice-btn" data-testid="voice-enable" @click="speech.enable()">Enable voice announcements</button>
+          <button v-if="!embedded && speech.supported && !speech.enabled.value" type="button" class="board-voice-btn" data-testid="voice-enable" @click="speech.enable()">Enable voice announcements</button>
         </div>
 
         <p v-if="synchronizationFailed && state.hasSnapshot" class="board-context-note" role="status">Last reported state may be out of date.</p>
@@ -109,7 +109,7 @@ const cardStatus = counter => !props.state.hasSnapshot ? 'Awaiting data' : !coun
           <div class="board-waiting-title"><h2>WAITING TICKETS</h2><p>Please be ready</p></div>
           <div v-for="service in waiting" :key="service.code" class="board-waiting-item">
             <span class="board-waiting-code">{{ service.code }}</span>
-            <ul v-if="service.rows.length"><li v-for="row in service.rows" :key="row.business_date"><strong>{{ row.waiting_count }}</strong><span> waiting · {{ row.business_date }}</span></li></ul>
+            <p v-if="service.available"><strong>{{ service.waiting_count }}</strong><span> waiting</span></p>
             <p v-else class="board-waiting-unavailable" aria-label="Waiting count unavailable">—</p>
           </div>
         </section>

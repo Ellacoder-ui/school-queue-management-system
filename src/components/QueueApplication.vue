@@ -27,6 +27,6 @@ const developmentLogin = isDevelopmentLoginPath(import.meta.env.DEV, window.loca
       :management-state="management.state.value" @refresh-staff="management.refresh" @management-action="management.perform" @reconcile-management="management.retry"
       :admin-records="{staff:records.staff.value,pending:records.pending.value,lookup:records.lookup.value,payors:records.payors.value,history:records.history.value}"
       @records-tab="records.activate" @records-find="records.find" @records-clear="records.clearLookup" @records-query="records.query" @records-events="records.events" @records-close-history="records.clearHistory" @records-retry="records.retry"
-      @google="auth.google" @reconcile-oauth="auth.reconcileOAuth" @cancel-oauth="auth.cancelOAuth"
+      @google="auth.google"
       @login="auth.login" @logout="auth.logout" @refresh="auth.refresh" @navigate="auth.navigate" />
 </template>

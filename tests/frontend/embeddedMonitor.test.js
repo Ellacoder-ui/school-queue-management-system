@@ -20,6 +20,11 @@ test('student embeds exactly one presentational monitor, all fixed counters and 
   assert.match(html,/Live queue monitor|TP-123/);assert.doesNotMatch(html,/Open lobby display/)
   assert.doesNotMatch(html,/<main|Counter 6|TP-001/)
 })
+test('student keeps service cards and removes manual notification and browse buttons',async()=>{
+  const html=await render('StudentDashboard',{publicState:state,data:{status:'ready',rows:[]}})
+  assert.equal((html.match(/class="cqs-service-card"/g)||[]).length,5)
+  assert.doesNotMatch(html,/Enable notifications|Notifications on|Browse services|enable-notifications/)
+})
 test('student replaces the introductory banner with one five-service section before the monitor',async()=>{
   const html=await render('StudentDashboard',{publicState:state,data:{status:'ready',rows:[]}})
   assert.doesNotMatch(html,/cqs-banner|Student &amp; payor portal|Your time matters\.|Choose your service\. Follow your ticket\.|01—05/)
@@ -58,11 +63,11 @@ test('missing or failed public snapshots cannot enable service selection from a 
     assert.match(html,/Service unavailable/)
   }
 })
-test('embedded monitor preserves dated totals, zero, availability and genuine update status',async()=>{
+test('embedded monitor shows current-day totals, zero and genuine update status',async()=>{
   const html=await render('PublicQueueDisplay',{state,embedded:true})
   assert.doesNotMatch(html,/Live public display|Connecting|Synchronizing/);assert.match(html,/<strong>0<\/strong>/)
-  assert.match(html,/3<\/strong><span> waiting · 2026-10-18/)
-  assert.match(html,/Counter closed/);assert.match(html,/aria-label="Waiting count unavailable">—/)
+  assert.doesNotMatch(html,/2026-10-18/)
+  assert.match(html,/Counter closed/)
   assert.doesNotMatch(html,/Refresh display/)
 })
 test('cashier dashboard embeds the shared live board and exposes the shared counter control',async()=>{

@@ -22,6 +22,17 @@ test('student has all five services, owner history and no invented queue or ETA'
   assert.match(html, /No served or forfeited tickets/); assert.match(html, /Review your chosen service before confirming/)
   assert.doesNotMatch(html, /TP-001|Estimated wait|You are next|Student ID/)
 })
+test('student history displays the persisted serving counter and explicit missing evidence', async () => {
+  const rows = [
+    { id:'served-ref', service:'REF', number:1, business_date:'2026-10-22', status:'SERVED', counter:'Counter 04 — Refund Process', issued_at:'2026-10-22T01:00:00Z' },
+    { id:'legacy-soa', service:'SOA', number:1, business_date:'2026-10-21', status:'SERVED', counter:'Counter not recorded', issued_at:'2026-10-21T01:00:00Z' },
+  ]
+  const html = await render('StudentDashboard', { publicState, data: { ...data, rows } })
+  assert.match(html, /Counter 04/)
+  assert.match(html, /Refund Process/)
+  assert.match(html, /Counter not recorded/)
+  assert.doesNotMatch(html, /Not assigned/)
+})
 test('cashier renders only assigned services, with all operations disabled', async () => {
   const context = { cashier_counters: [{ counter_id: 'counter', counter_number: 5, counter_label: 'Counter 5', is_open: false, service_codes: ['ADJ'] }] }
   const row = { ticket_id: 'x', service: 'ADJ', number: 7, business_date: '2026-10-18', status: 'WAITING', counter_id: null, wait_position: 1 }

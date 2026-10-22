@@ -39,15 +39,26 @@ test('simultaneous calls stay visible and lowest counter highlight is determinis
   assert.match(html, /Counter 5, ADJ-033/)
 })
 
-test('waiting strip reports supplied per-date totals, preserves zero and does not calculate next tickets', async () => {
+test('waiting strip shows one current-day total per service and excludes historical dates', async () => {
   const services = [{ service_code:'TP', business_date:'2026-10-17', waiting_count:0 },
-    { service_code:'TP', business_date:'2026-10-16', waiting_count:7 }]
-  assert.deepEqual(boardWaiting({ ...state, services })[0].rows.map(r => r.waiting_count), [7,0])
+    { service_code:'TP', business_date:'2026-10-16', waiting_count:7 },
+    { service_code:'SOA', business_date:'2026-10-17', waiting_count:2 }]
+  assert.equal(boardWaiting({ ...state, services })[0].waiting_count, 0)
+  assert.equal(boardWaiting({ ...state, services })[1].waiting_count, 2)
+  assert.equal(boardWaiting({ ...state, services }).length, 5)
   const html = await render({ services })
   assert.match(html, /<strong>0<\/strong>/)
-  assert.match(html, /<strong>7<\/strong>/)
-  assert.match(html, /aria-label="Waiting count unavailable">—/)
+  assert.match(html, /<strong>2<\/strong>/)
+  assert.doesNotMatch(html, /2026-10-16|2026-10-17|<strong>7<\/strong>/)
+  assert.equal((html.match(/class="board-waiting-item"/g) || []).length, 5)
   assert.doesNotMatch(html, /TP-008|UP NEXT/)
+})
+
+test('waiting totals default to zero before queue day opens', () => {
+  const services = [{ service_code:'TP', business_date:'2026-10-17', waiting_count:9 }]
+  const waiting = boardWaiting({ ...state, context: { ...context, queue_day_open: false }, services })
+  assert.equal(waiting.length, 5)
+  assert.ok(waiting.every(service => service.waiting_count === 0))
 })
 
 test('closed day remains authoritative with open idle counters', async () => {

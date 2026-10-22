@@ -55,6 +55,31 @@ test('one verification deadline bounds the entire session user and database auth
  await turn();assert.equal(h.controller.getState().status,'error');assert.equal(h.controller.getVerifiedActor(),null)
 })
 
+test('a stalled initial session read reaches an error, and retry restores a valid session',async t=>{
+ const managed=identity('retry-session'),lookup=deferred()
+ const h=harness(t,null,{getSession:()=>lookup.promise,getUser:async()=>({data:{user:managed.user},error:null})},{timeoutMs:15})
+ await new Promise(resolve=>setTimeout(resolve,30))
+ assert.equal(h.controller.getState().status,'error')
+ assert.match(h.controller.getState().message,/Unable to verify your session/)
+ lookup.resolve({data:{session:managed},error:null})
+ await h.controller.refresh();await waitForRequest(h)
+ h.requests.at(-1).resolve(context('CASHIER'));await turn()
+ assert.equal(h.controller.getState().status,'ready')
+ assert.equal(h.controller.getState().workspace,'cashier')
+})
+
+test('backend verification error keeps the valid session and retry fetches fresh role context',async t=>{
+ const h=harness(t,identity('backend-retry'));await ready(h,'ADMIN')
+ h.controller.revalidate();await waitForRequest(h)
+ h.requests.at(-1).reject({status:503});await turn()
+ assert.equal(h.controller.getState().status,'error')
+ assert.equal(h.controller.getState().signedIn,true)
+ h.controller.refresh();await waitForRequest(h)
+ h.requests.at(-1).resolve(context('CASHIER'));await turn()
+ assert.equal(h.controller.getState().workspace,'cashier')
+ assert.equal(h.controller.getState().status,'ready')
+})
+
 test('routine access revalidation coalesces without clearing a valid workspace; changed role still rebinds access',async t=>{
   const h=harness(t,identity('stable'));await ready(h,'ADMIN');const version=h.controller.getState().accountVersion
   h.controller.revalidate();h.controller.revalidate();await waitForRequest(h)

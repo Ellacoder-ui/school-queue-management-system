@@ -30,10 +30,11 @@ test('pending session verification shows a neutral loading view, never login or 
   }
 })
 
-test('pending OAuth callback keeps cancellation available without presenting another sign-in', async () => {
+test('pending OAuth callback shows progress without presenting another sign-in or recovery controls', async () => {
   const html = await render({ status: 'signing-in' }, { oauthState: { phase: 'exchanging', message: 'Completing sign-in.' } })
   assert.match(html, /data-testid="auth-pending"/)
-  assert.match(html, /Completing sign-in\.|Cancel sign-in/)
+  assert.match(html, /Completing sign-in/)
+  assert.doesNotMatch(html, /Cancel sign-in|Check sign-in outcome/)
   assert.doesNotMatch(html, /data-testid="google-login"/)
 })
 test('ordinary users share Queue Dashboard without an enrollment or admin-email exception', async () => {
@@ -88,17 +89,24 @@ test('cashier dashboard embeds the live board without a top-level public-display
   assert.match(html, /data-testid="public-board"/)
   assert.doesNotMatch(html, /data-testid="public-display-link"|Public display ↗/)
 })
-test('callback interruption exposes reconciliation and cancellation without raw diagnostics', async () => {
+test('callback interruption shows a safe retry message without raw diagnostics or recovery buttons', async () => {
   const html = await render({}, {oauthState:{phase:'uncertain',message:'Sign-in could not be confirmed.'}})
-  assert.match(html,/Check sign-in outcome|Cancel sign-in/)
+  assert.doesNotMatch(html,/Check sign-in outcome|Cancel sign-in/)
   assert.match(html,/role="alert"/)
   assert.doesNotMatch(html,/access_token|refresh_token|code_verifier/)
 })
 
-test('unfinished OAuth recovery asks for action instead of presenting an endless completion spinner',async()=>{
- const html=await render({status:'signing-in',signedIn:false},{oauthState:{phase:'uncertain',message:'An unfinished sign-in needs checking or cancellation.'}})
- assert.match(html,/Sign-in needs your attention/);assert.match(html,/Check sign-in outcome/)
- assert.doesNotMatch(html,/class="cqs-spinner"|Completing sign-in|data-testid="google-login"/)
+test('ordinary login has no unfinished OAuth warning or manual recovery controls',async()=>{
+ const html=await render({status:'anonymous',signedIn:false},{oauthState:{phase:'idle',message:null}})
+ assert.doesNotMatch(html,/An unfinished sign-in needs checking or cancellation|Sign-in needs your attention|Check sign-in outcome|Cancel sign-in/)
+ assert.match(html,/data-testid="google-login"/)
+})
+
+test('session restoration error provides an explicit retry',async()=>{
+ const html=await render({status:'error',signedIn:false,message:'Unable to verify your session. Please try again.'})
+ assert.match(html,/Unable to verify your session/)
+ assert.match(html,/data-testid="auth-retry"/)
+ assert.match(html,/Retry session verification/)
 })
 for (const role of ['STUDENT','CASHIER','ADMIN']) test(`${role} cannot execute operations without ready queue data/assignment`, async () => {
   const html = await render({ status: 'ready', signedIn: true, workspace: role.toLowerCase(), context: { role, enabled: true, cashier_counters: [] } })

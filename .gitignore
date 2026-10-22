@@ -34,3 +34,12 @@ dist-ssr
 *.sw?
 
 /.local-auth-only/
+
+# Supabase temporary files and secrets
+supabase/.temp/
+supabase/.branches/
+
+# Local environment files
+.env
+.env.*
+!.env.example

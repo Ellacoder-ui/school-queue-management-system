@@ -5,8 +5,11 @@ const STORAGE_KEY = 'cqs-notified-tickets-v1'
 export function useTicketNotifications(getTickets) {
   const supported = typeof window !== 'undefined' && 'Notification' in window
   const permission = ref(supported ? Notification.permission : 'denied')
-  const enabled = ref(false)
+  // Browser permission must have been granted already. Never prompt without
+  // a user gesture; visual queue updates remain available either way.
+  const enabled = ref(supported && Notification.permission === 'granted')
   const notified = ref(new Set())
+  let previousStatuses = null
 
   // Load previously notified ticket IDs from localStorage
   try {
@@ -55,30 +58,21 @@ export function useTicketNotifications(getTickets) {
   }
 
   function checkTickets(tickets) {
-    if (!enabled.value || !Array.isArray(tickets)) return
+    if (!Array.isArray(tickets)) return
+    const current = new Map(tickets.filter(ticket => ticket?.id).map(ticket => [ticket.id, ticket.status]))
+    if (previousStatuses === null) { previousStatuses = current; return }
+    if (!enabled.value) { previousStatuses = current; return }
     for (const ticket of tickets) {
-      if (!ticket || !ticket.id) continue
-      const key = `${ticket.id}-${ticket.status}`
+      if (!ticket?.id || ticket.status !== 'CALLED' || previousStatuses.get(ticket.id) !== 'WAITING') continue
+      const key = `${ticket.id}-CALLED`
       if (notified.value.has(key)) continue
       notified.value.add(key)
       saveNotified()
 
       const label = `${ticket.service}-${String(ticket.number).padStart(3, '0')}`
-      switch (ticket.status) {
-        case 'WAITING':
-          notify('Ticket Issued', `Your ticket ${label} is in the queue.`, key)
-          break
-        case 'CALLED':
-          notify('Ticket Called', `Your ticket ${label} is being called. Please proceed to your counter.`, key)
-          break
-        case 'SERVED':
-          notify('Ticket Served', `Your ticket ${label} has been served.`, key)
-          break
-        case 'FORFEITED':
-          notify('Ticket Forfeited', `Your ticket ${label} was forfeited.`, key)
-          break
-      }
+      notify('Ticket Called', `Your ticket ${label} is being called. Please proceed to your counter.`, key)
     }
+    previousStatuses = current
   }
 
   // Watch for ticket changes

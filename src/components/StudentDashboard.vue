@@ -68,10 +68,7 @@ function waiting(code) {
           <p class="cqs-eyebrow">Your active ticket</p>
           <template v-if="data.status === 'ready' && ticket"><div class="cqs-ticket-number">{{ ticketLabel(ticket) }}</div><span class="cqs-ticket-status">{{ ticket.status === 'CALLED' ? 'You are being called' : 'Waiting for your call' }}</span><p>{{ ticket.business_date }} · {{ ticket.counter || 'Counter assigned when called' }}</p><div class="cqs-ticket-divider"></div><p>{{ ticket.status === 'CALLED' ? 'Please proceed to your assigned counter.' : 'Keep this dashboard open and check the public display.' }}</p></template>
           <template v-else><div class="cqs-ticket-placeholder" aria-hidden="true">— — —</div><h2>{{ data.status === 'ready' ? 'No active ticket' : data.status === 'loading' ? 'Checking your ticket…' : 'Ticket unavailable' }}</h2><p>{{ data.status === 'ready' ? 'Choose an available service to request your ticket.' : 'Your ticket status will be checked automatically when the connection is restored.' }}</p></template>
-          <div class="cqs-ticket-divider"></div><small>One active ticket across all services. Maximum two SERVED tickets per service per issuance day.</small><a class="cqs-button cqs-ticket-locked" href="#request-services">Browse services</a>
-          <div v-if="notifications.supported" class="cqs-notification-control">
-            <button type="button" class="cqs-button cqs-button-outline" data-testid="enable-notifications" :disabled="notifications.enabled.value" @click="notifications.enable()">{{ notifications.enabled.value ? 'Notifications on' : 'Enable notifications' }}</button>
-          </div>
+          <div class="cqs-ticket-divider"></div><small>One active ticket across all services. Maximum two SERVED tickets per service per issuance day.</small>
         </section>
         <section class="cqs-card cqs-checklist"><p class="cqs-eyebrow">Before your turn</p><h2>Come prepared</h2><label v-for="(item, index) in checklistItems" :key="item"><input v-model="checklist" type="checkbox" :value="index" @change="saveChecklist"> <span>{{ item }}</span></label><small>Checklist saved on this browser. Specific document requirements should be confirmed with the cashier office.</small></section>
         <p class="cqs-notice">Review your chosen service before confirming. Browsing a service does not join a queue.</p>
@@ -83,7 +80,7 @@ function waiting(code) {
           <p v-if="data.status === 'loading'" role="status" class="cqs-empty">Loading your tickets…</p>
           <p v-else-if="data.status !== 'ready'" role="alert" class="cqs-empty">Your ticket history is unavailable. Updates will resume automatically when the connection is restored.</p>
           <p v-else-if="!history.length" class="cqs-empty">No served or forfeited tickets to show.</p>
-          <div v-else class="cqs-table-scroll" tabindex="0" aria-label="Ticket history table"><table class="cqs-table"><thead><tr><th>Ticket</th><th>Queue date</th><th>Counter</th><th>Status</th></tr></thead><tbody><tr v-for="row in history" :key="row.id"><td><strong>{{ ticketLabel(row) }}</strong></td><td>{{ row.business_date }}</td><td>{{ row.counter || 'Not assigned' }}</td><td><span class="cqs-badge">{{ row.status }}</span></td></tr></tbody></table></div>
+          <div v-else class="cqs-table-scroll" tabindex="0" aria-label="Ticket history table"><table class="cqs-table"><thead><tr><th>Ticket</th><th>Queue date</th><th>Counter</th><th>Status</th></tr></thead><tbody><tr v-for="row in history" :key="row.id"><td><strong>{{ ticketLabel(row) }}</strong></td><td>{{ row.business_date }}</td><td>{{ row.counter || (row.status === 'WAITING' ? 'Awaiting counter' : 'Counter not recorded') }}</td><td><span class="cqs-badge">{{ row.status }}</span></td></tr></tbody></table></div>
         </section>
     </div>
     <WorkspaceDialog v-if="selected" title="Review your service" @close="selected = null">

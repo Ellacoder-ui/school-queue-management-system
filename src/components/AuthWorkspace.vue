@@ -22,25 +22,33 @@ const props = defineProps({ state: { type: Object, required: true }, development
   publicState: { type: Object, default: () => ({ counters: [], services: [], hasSnapshot: false, context: null }) },
   data: { type: Object, default: emptyWorkspace },
   actionState: { type: Object, default: () => ({ phase: 'idle', message: null }) } })
-const emit = defineEmits(['login', 'logout', 'refresh', 'navigate', 'google', 'reconcile-oauth', 'cancel-oauth', 'refresh-data', 'queue-action', 'retry-action', 'dismiss-action', 'mfa-open', 'mfa-close', 'mfa-enroll', 'mfa-select', 'mfa-verify', 'mfa-request-discard', 'mfa-cancel-discard', 'mfa-discard', 'refresh-staff', 'management-action', 'reconcile-management','records-tab','records-find','records-clear','records-query','records-events','records-close-history','records-retry'])
+const emit = defineEmits(['login', 'logout', 'refresh', 'navigate', 'google', 'refresh-data', 'queue-action', 'retry-action', 'dismiss-action', 'mfa-open', 'mfa-close', 'mfa-enroll', 'mfa-select', 'mfa-verify', 'mfa-request-discard', 'mfa-cancel-discard', 'mfa-discard', 'refresh-staff', 'management-action', 'reconcile-management','records-tab','records-find','records-clear','records-query','records-events','records-close-history','records-retry'])
 const busy = computed(() => ['initializing', 'signing-in', 'signing-out', 'checking'].includes(props.state.status))
 const ready = computed(() => props.state.status === 'ready' && props.state.context?.enabled)
-const oauthBusy = computed(() => ['starting', 'redirecting', 'exchanging', 'checking'].includes(props.oauthState.phase))
-const oauthNeedsAction = computed(() => props.state.status==='signing-in' && ['uncertain','blocked','error'].includes(props.oauthState.phase))
+const oauthBusy = computed(() => ['starting', 'redirecting', 'exchanging', 'checking', 'blocked'].includes(props.oauthState.phase))
 const profile = ref({ name: '', avatar: '' })
-async function loadProfile() {
-  try {
-    const { data } = await supabase.auth.getUser()
-    const u = data?.user
-    if (!u) { profile.value = { name: '', avatar: '' }; return }
-    const meta = u.user_metadata || {}
-    const name = meta.full_name || meta.name || meta.display_name || u.email || 'Signed-in user'
-    const avatar = meta.avatar_url || meta.picture || ''
-    profile.value = { name, avatar }
-  } catch { profile.value = { name: 'Signed-in user', avatar: '' } }
+function loadProfile(user) {
+  if (!user) { profile.value = { name: '', avatar: '' }; return }
+  const meta = user.user_metadata || {}
+  profile.value = {
+    name: meta.full_name || meta.name || meta.display_name || user.email || 'Signed-in user',
+    avatar: meta.avatar_url || meta.picture || '',
+  }
 }
-onMounted(() => { loadProfile(); const { data: sub } = supabase.auth.onAuthStateChange(() => loadProfile()); (window).__authSub = sub })
-onUnmounted(() => { try { window.__authSub?.unsubscribe?.() } catch {} })
+let profileEventTimer, profileSubscription
+onMounted(() => {
+  const { data } = supabase.auth.onAuthStateChange((_event, session) => {
+    // Supabase awaits auth listeners under its auth lock. Defer UI-only session
+    // metadata work and never call another Auth method from this callback.
+    clearTimeout(profileEventTimer)
+    profileEventTimer = setTimeout(() => loadProfile(session?.user), 0)
+  })
+  profileSubscription = data.subscription
+})
+onUnmounted(() => {
+  clearTimeout(profileEventTimer)
+  profileSubscription?.unsubscribe?.()
+})
 const displayName = computed(() => profile.value.name || 'Signed-in user')
 const roleLabel = computed(() => ({ STUDENT: 'Payor', CASHIER: 'Cashier Staff', ADMIN: 'Admin' })[props.state.context?.role] || '')
 const avatarUrl = computed(() => profile.value.avatar)
@@ -71,18 +79,18 @@ function closeMfa() { emit('mfa-close'); void nextTick(() => (document.querySele
     <main v-else-if="busy" id="workspace-main" class="cqs-session" data-testid="auth-pending">
       <section class="cqs-session-card" aria-labelledby="session-title">
         <div class="cqs-brand"><img src="/liceo-logo.png" alt="Liceo de Cagayan University logo" class="cqs-brand-logo" /><span><strong>Liceo de Cagayan University</strong><small>University cashier services</small></span></div>
-        <h1 id="session-title">{{ oauthNeedsAction ? 'Sign-in needs your attention' : state.status === 'initializing' ? 'Restoring your session' : state.status === 'signing-out' ? 'Signing out' : state.status === 'signing-in' ? 'Completing sign-in' : 'Verifying account access' }}</h1>
-        <p role="status" class="cqs-verifying"><span v-if="!oauthNeedsAction" class="cqs-spinner" aria-hidden="true"></span>{{ oauthNeedsAction ? 'Choose Check sign-in outcome below to verify an existing session. No new Google code will be exchanged.' : state.status === 'signing-out' ? 'Clearing your session…' : ({session:'Checking your saved session…',user:'Confirming your sign-in with Auth…',permissions:'Checking your account permissions…'}[state.verificationStep] || 'Please wait while we verify your access.') }}</p>
-        <GoogleAuthCallback :state="oauthState" @reconcile="emit('reconcile-oauth')" @cancel="emit('cancel-oauth')" />
+        <h1 id="session-title">{{ state.status === 'initializing' ? 'Restoring your session' : state.status === 'signing-out' ? 'Signing out' : state.status === 'signing-in' ? 'Completing sign-in' : 'Verifying account access' }}</h1>
+        <p role="status" class="cqs-verifying"><span class="cqs-spinner" aria-hidden="true"></span>{{ state.status === 'signing-out' ? 'Clearing your session…' : ({session:'Checking your saved session…',user:'Confirming your sign-in with Auth…',permissions:'Checking your account permissions…'}[state.verificationStep] || 'Please wait while we verify your access.') }}</p>
+        <GoogleAuthCallback :state="oauthState" />
       </section>
     </main>
     <main v-else id="workspace-main" class="cqs-login">
       <section class="cqs-login-story" aria-label="University cashier services"><a href="/" class="cqs-brand"><img src="/liceo-logo.png" alt="Liceo de Cagayan University logo" class="cqs-brand-logo" /><span><strong>Liceo de Cagayan University</strong><small>University cashier services</small></span></a><div class="cqs-login-message"><p class="cqs-eyebrow">Campus cashier services</p><h1>Less waiting.<br>More learning.</h1><p>Your campus, your time. A simpler way to connect with the university cashier office.</p><div class="cqs-login-features"><div><strong>05</strong><span>Dedicated services</span></div><div><strong>One</strong><span>Secure sign-in</span></div><div><strong>Live</strong><span>Public queue updates</span></div></div></div><p class="cqs-login-footer">University Cashier Office <span>Made for a more organized day.</span></p></section>
       <section class="cqs-login-form" aria-label="Account workspace"><div class="cqs-login-inner"><p class="cqs-eyebrow">{{ developmentLogin ? 'Local development' : 'Welcome to your campus queue' }}</p><h2>{{ developmentLogin ? 'Development test sign-in' : 'Get in line, not held up.' }}</h2><p class="cqs-login-intro">{{ developmentLogin ? 'For existing local test accounts only.' : 'Sign in with Google to access your student or authorized staff workspace.' }}</p>
         <p v-if="signedOut" class="cqs-notice cqs-notice-success" role="status">You have signed out of this browser.</p><p v-if="state.message" role="alert" class="cqs-notice">{{ state.message }}</p>
-        <GoogleAuthCallback :state="oauthState" @reconcile="emit('reconcile-oauth')" @cancel="emit('cancel-oauth')" />
+        <GoogleAuthCallback :state="oauthState" />
         <div v-if="state.status === 'disabled'" class="cqs-notice" data-testid="access-disabled"><h3>Account access disabled</h3><p>Contact the institution to review your access. The public queue remains available.</p><button type="button" class="cqs-link" @click="emit('refresh')">Check access again</button></div>
-        <button v-else-if="state.signedIn" type="button" class="cqs-button cqs-button-outline" @click="emit('refresh')">Retry access verification</button>
+        <button v-else-if="state.signedIn || state.status === 'error'" type="button" class="cqs-button cqs-button-outline" data-testid="auth-retry" :disabled="busy" @click="emit('refresh')">{{ state.signedIn ? 'Retry access verification' : 'Retry session verification' }}</button>
         <LocalTestLogin v-else-if="developmentLogin" :disabled="busy || oauthBusy" @login="(...args) => emit('login', ...args)" />
         <div v-else class="cqs-google-entry"><button type="button" class="cqs-google-button" data-testid="google-login" :disabled="busy || oauthBusy" @click="emit('google')"><svg aria-hidden="true" viewBox="0 0 24 24"><path fill="#4285F4" d="M21.6 12.2c0-.7-.1-1.4-.2-2.1H12v4h5.4a4.6 4.6 0 0 1-2 3v2.6h3.3c1.9-1.8 2.9-4.4 2.9-7.5Z"/><path fill="#34A853" d="M12 22c2.7 0 4.9-.9 6.6-2.4l-3.3-2.6a6 6 0 0 1-9-3.1H2.9v2.7A10 10 0 0 0 12 22Z"/><path fill="#FBBC05" d="M6.3 13.9a6 6 0 0 1 0-3.8V7.4H2.9a10 10 0 0 0 0 9.2l3.4-2.7Z"/><path fill="#EA4335" d="M12 6a5.5 5.5 0 0 1 3.9 1.5l2.9-2.9A9.8 9.8 0 0 0 12 2a10 10 0 0 0-9.1 5.4l3.4 2.7A6 6 0 0 1 12 6Z"/></svg>Continue with Google</button><p class="cqs-caption">Use your personal or school Google account. Provider availability is checked when you continue.</p></div>
         <button v-if="state.signedIn" type="button" class="cqs-link cqs-signout-recovery" :disabled="busy" @click="logoutOpen = true">Sign out</button>

@@ -24,10 +24,16 @@ export function useQueueAuth() {
   const recovery = createRecoveryTask(controller.revalidate, { visible: () => document.visibilityState === 'visible' })
   const online = recovery.schedule
   const offline = () => controller.offline()
-  const visible = recovery.schedule
+  const visible = () => {
+    recovery.schedule()
+    if (oauth.returnedToApp()) controller.resume()
+  }
+  const historyNavigation = () => {
+    if (!oauth.returnedToApp()) controller.resume()
+  }
   let stopDenials
   onMounted(() => {
-    controller.start({ suspended:!!oauthEntry || oauth.shouldGate() })
+    controller.start({ suspended:!!oauthEntry })
     if (oauthEntry) void oauth.callback(oauthEntry)
     else oauth.pending()
     stopDenials = queueApi.onAuthorizationDenied(controller.protectedDenied)
@@ -35,6 +41,8 @@ export function useQueueAuth() {
     document.addEventListener('visibilitychange', visible)
     window.addEventListener('storage',storage)
     window.addEventListener('focus', visible)
+    window.addEventListener('popstate', historyNavigation)
+    window.addEventListener('pageshow', historyNavigation)
   })
   onUnmounted(() => {
     recovery.stop(); stopDenials?.(); oauth.stop(); controller.stop()
@@ -42,8 +50,10 @@ export function useQueueAuth() {
     document.removeEventListener('visibilitychange', visible)
     window.removeEventListener('storage',storage)
     window.removeEventListener('focus', visible)
+    window.removeEventListener('popstate', historyNavigation)
+    window.removeEventListener('pageshow', historyNavigation)
   })
-  return { state, oauthState, mfa, google:oauth.start, reconcileOAuth:oauth.reconcile, cancelOAuth:oauth.cancel,
+  return { state, oauthState, mfa, google:oauth.start,
     login: controller.login, logout:() => { oauth.cancel(); return controller.logout() }, refresh: controller.refresh,
     navigate: controller.navigate, protectedDenied: controller.protectedDenied, getVerifiedActor: controller.getVerifiedActor }
 }

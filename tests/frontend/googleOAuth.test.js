@@ -11,7 +11,7 @@ const storage=()=>{ const map=new Map();return{getItem:k=>map.get(k)||null,setIt
 const session={user:{id:'verified-user',user_metadata:{role:'ADMIN',email:'eabeso63122@liceo.edu.ph'}},expires_at:Date.now()/1000+3600,access_token:'PRIVATE-OAUTH-TOKEN'}
 const authorization=()=>`http://127.0.0.1:54321/auth/v1/authorize?${new URLSearchParams({provider:'google',redirect_to:OAUTH_CALLBACK,code_challenge:'a'.repeat(43),code_challenge_method:'s256',prompt:'select_account'})}`
 function harness(options={}) {
-  const store=options.store||storage(),tabStore=storage(),accepted=[],rejected=[],navigations=[],states=[]
+  const store=options.store||storage(),tabStore=options.tabStore||storage(),accepted=[],rejected=[],navigations=[],states=[]
   let calls=0,version=0,current=null
   const auth={getSession:async()=>({data:{session:current},error:null}),getUser:async()=>({data:{user:current?.user},error:null}),
     signInWithOAuth:async args=>{calls++;assert.equal(args.provider,'google');assert.equal(args.options.redirectTo,OAUTH_CALLBACK);assert.equal(args.options.skipBrowserRedirect,true);return{data:{url:authorization()},error:null}},
@@ -81,26 +81,28 @@ test('cancellation masks provider text and cannot adopt a workspace',async()=>{
   const h=harness();await h.controller.start();await h.controller.callback({cancelled:true,error:true,code:null})
   assert.equal(h.accepted.length,0);assert.equal(h.controller.getState().phase,'cancelled')
 })
-test('missing verifier or expired code remains generic with explicit reconciliation',async()=>{
+test('missing verifier or expired code is reconciled automatically without provider diagnostics',async()=>{
   for(const code of ['pkce_verifier_missing','flow_state_expired']) {
     const h=harness({auth:{exchangeCodeForSession:async()=>({error:{code,message:'PRIVATE PROVIDER DIAGNOSTIC'},data:{session:null}})}})
     await h.controller.start();await h.controller.callback({code:'PRIVATE-CODE'})
-    assert.equal(h.accepted.length,0);assert.equal(h.controller.getState().phase,'uncertain')
+    await turn()
+    assert.equal(h.accepted.length,0);assert.equal(h.controller.getState().phase,'error')
+    assert.equal(h.store.getItem(OAUTH_MARKER),null)
     assert.doesNotMatch(JSON.stringify(h.states),/PRIVATE|pkce_verifier|flow_state_expired/)
   }
 })
-test('interrupted exchange cannot automatically restore access when its response arrives late',async()=>{
+test('interrupted exchange automatically reconciles when its late response settles',async()=>{
   const pending=deferred();const h=harness({timeoutMs:10,auth:{exchangeCodeForSession:()=>pending.promise}})
   await h.controller.start();await h.controller.callback({code:'PRIVATE-CODE'})
   h.setSession(session);pending.resolve({data:{session},error:null});await turn()
-  assert.equal(h.accepted.length,0);assert.equal(h.controller.getState().phase,'uncertain')
-  await h.controller.reconcile();assert.equal(h.accepted.length,1)
+  await turn()
+  assert.equal(h.accepted.length,1);assert.equal(h.controller.getState().phase,'complete')
 })
 test('cancel/logout invalidates late callback and leaves persistent access gate',async()=>{
   const pending=deferred();const h=harness({auth:{exchangeCodeForSession:()=>pending.promise}})
   await h.controller.start();const task=h.controller.callback({code:'PRIVATE-CODE'});await turn();h.controller.cancel()
   h.setSession(session);pending.resolve({data:{session},error:null});await task
-  assert.equal(h.accepted.length,0);assert.equal(h.controller.shouldGate(),true)
+  assert.equal(h.accepted.length,0);assert.equal(h.controller.shouldGate(),false)
 })
 
 test('checking a cancelled sign-in reaches a generic error instead of waiting forever',async()=>{
@@ -111,6 +113,37 @@ test('checking a cancelled sign-in reaches a generic error instead of waiting fo
   assert.match(h.controller.getState().message,/No sign-in could be verified/)
 })
 
+test('reload leaves an abandoned attempt recoverable and preserves SDK storage',async()=>{
+  const h=harness();await h.controller.start()
+  const verifierKey='sb-127-auth-token-code-verifier';h.store.setItem(verifierKey,'PKCE-VERIFIER')
+  h.setSession(null)
+  const reloaded=harness({store:h.store,tabStore:h.tabStore})
+  reloaded.controller.pending();await turn()
+  assert.equal(reloaded.controller.getState().phase,'idle')
+  assert.ok(h.store.getItem(OAUTH_MARKER))
+  assert.equal(h.store.getItem(verifierKey),'PKCE-VERIFIER')
+  await reloaded.controller.start()
+  assert.equal(reloaded.calls,1)
+})
+
+test('history return cancels stale redirect UI without clearing the shared Auth session',async()=>{
+  const h=harness();await h.controller.start();h.setSession(session)
+  assert.equal(h.controller.returnedToApp(),true)
+  assert.equal(h.controller.getState().phase,'cancelled')
+  assert.equal(h.accepted.length,0)
+  assert.equal((await h.auth.getSession()).data.session,session)
+})
+
+test('terminal and expired OAuth markers do not suspend session restoration',()=>{
+  for(const phase of ['cancelled','error','complete']){
+    const h=harness();h.store.setItem(OAUTH_MARKER,JSON.stringify({id:'old',owner:'tab',created:Date.now(),phase}))
+    assert.equal(h.controller.shouldGate(),false);assert.equal(h.store.getItem(OAUTH_MARKER),null)
+  }
+  const h=harness()
+  h.store.setItem(OAUTH_MARKER,JSON.stringify({id:'old',owner:'tab',created:Date.now()-11*60*1000,phase:'redirect'}))
+  assert.equal(h.controller.shouldGate(),false);assert.equal(h.store.getItem(OAUTH_MARKER),null)
+})
+
 test('reconciliation cannot remain checking when its flow marker disappears',async()=>{
   const h=harness();await h.controller.start();h.setSession(session)
   h.auth.getUser=async()=>{h.store.removeItem(OAUTH_MARKER);return{data:{user:session.user},error:null}}
@@ -118,9 +151,11 @@ test('reconciliation cannot remain checking when its flow marker disappears',asy
   assert.equal(h.accepted.length,0)
   assert.equal(h.controller.getState().phase,'error')
 })
-test('other-tab marker blocks competing verifier generation and context restoration',async()=>{
+test('other-tab marker does not warn until a competing sign-in is attempted',async()=>{
   const store=storage(),one=harness({store}),two=harness({store});await one.controller.start();await two.controller.start()
-  assert.equal(two.calls,0);assert.equal(two.accepted.length,0);assert.match(two.controller.getState().message,/Another tab/)
+  assert.equal(two.calls,0);assert.equal(two.accepted.length,0);assert.equal(two.controller.getState().phase,'blocked')
+  assert.match(two.controller.getState().message,/in progress in another tab/)
+  assert.equal(two.rejected.at(-1)?.message,null)
 })
 test('unmount prevents pending OAuth navigation',async()=>{
   const pending=deferred();const h=harness({providerEnabled:()=>pending.promise})

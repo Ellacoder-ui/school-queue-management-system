@@ -26,10 +26,16 @@ export function boardCounters(state) {
 }
 
 export function boardWaiting(state) {
-  return counterRoutes.map(route => ({ ...route,
-    rows: state.hasSnapshot ? state.services.filter(row => row.service_code === route.code)
-      .sort((a, b) => a.business_date.localeCompare(b.business_date)) : [],
-  }))
+  const context = state.context
+  return counterRoutes.map(route => {
+    // Public context is the authoritative Manila queue date. A closed or
+    // not-yet-created day has no live waiting tickets.
+    const rows = state.hasSnapshot && context?.queue_day_open
+      ? state.services.filter(row => row.service_code === route.code && row.business_date === context.business_date)
+      : []
+    return { ...route, waiting_count: rows.reduce((total, row) => total + row.waiting_count, 0),
+      available: state.hasSnapshot && !!context }
+  })
 }
 
 export function manilaClock(instant) {

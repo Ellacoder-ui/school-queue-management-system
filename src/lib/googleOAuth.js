@@ -7,7 +7,7 @@ export function createGoogleOAuthController(auth, access, {
   now = Date.now, uuid = () => crypto.randomUUID(), timeoutMs = 14000,
   setTimer = setTimeout, clearTimer = clearTimeout, onState,
 } = {}) {
-  let state = { phase:'idle', message:null }, stopped = false, epoch = 0, task = null, callbackTask = null, action
+  let state = { phase:'idle', message:null }, stopped = false, epoch = 0, task = null, callbackTask = null, markerExpiry, action
   let locallyCancelled = false
   const emit = patch => { if (!stopped) { state = { ...state, ...patch }; onState?.(state) } }
   const read = () => {
@@ -26,8 +26,26 @@ export function createGoogleOAuthController(auth, access, {
   const write = marker => store.setItem(OAUTH_MARKER, JSON.stringify(marker))
   const owned = marker => marker && marker.owner === owner()
   const current = marker => { const next = read(); return next?.id === marker.id && next.phase !== 'cancelled' }
-  const fail = (message = generic, existingSession = null) => { access.rejectExternal(action, message, existingSession); emit({phase:'error',message}) }
-  function shouldGate() { try { const marker = read(); return !!marker && marker.phase !== 'complete' } catch { return true } }
+  // OAuth status owns OAuth errors; keep the Auth banner clear to avoid rendering
+  // the same failure twice.
+  const fail = (message = generic, existingSession = null) => { access.rejectExternal(action, null, existingSession); emit({phase:'error',message}) }
+  // This marker is app-owned recovery metadata, not Supabase Auth state. Retiring
+  // it never removes the SDK's session or PKCE verifier.
+  function shouldGate() {
+    try {
+      const marker = read()
+      if (!marker) return false
+      if (['complete','cancelled','error'].includes(marker.phase) || now()-marker.created >= ttl) {
+        clearTimer(markerExpiry); markerExpiry=null
+        store.removeItem(OAUTH_MARKER)
+        return false
+      }
+      return true
+    } catch {
+      store.removeItem(OAUTH_MARKER)
+      return false
+    }
+  }
   async function bounded(promise) {
     let timer
     try { return await Promise.race([promise, new Promise((_,reject) => { timer=setTimer(() => reject(new Error('Unavailable')),timeoutMs) })]) }
@@ -60,7 +78,16 @@ export function createGoogleOAuthController(auth, access, {
           if (stopped || version !== epoch) return
           const previous = read()
           if (previous && !owned(previous) && previous.phase !== 'complete' && now()-previous.created < ttl) {
-            fail('Another tab has an unfinished sign-in. Finish or cancel it there first.'); return
+            const message='Google sign-in is in progress in another tab. Try again after it finishes.'
+            access.rejectExternal(action,null)
+            emit({phase:'blocked',message})
+            clearTimer(markerExpiry)
+            markerExpiry=setTimer(() => {
+              markerExpiry=null
+              try { if (read()?.id === previous.id && now()-previous.created >= ttl && state.phase === 'blocked') emit({phase:'idle',message:null}) }
+              catch { emit({phase:'idle',message:null}) }
+            },Math.max(0,ttl-(now()-previous.created))+1)
+            return
           }
           const session = await bounded(auth.getSession())
           if (session.error) throw new Error('Session unavailable')
@@ -94,7 +121,7 @@ export function createGoogleOAuthController(auth, access, {
         if (marker.phase !== 'redirect') {
           // Reloaded/duplicate callback: never exchange its single-use code again.
           emit({phase:'uncertain',message:'This sign-in was already handled or interrupted. Check its outcome or start a new attempt.'})
-          access.rejectExternal(action, 'Sign-in needs reconciliation.'); return
+          access.rejectExternal(action, null); return
         }
         // Hold an origin-wide Web Lock through the real exchange, even if the UI
         // deadline expires. Another tab cannot overwrite its SDK PKCE verifier.
@@ -105,14 +132,27 @@ export function createGoogleOAuthController(auth, access, {
           if (stopped || version !== epoch || !current(marker)) return
           if (result.error) throw new Error('Exchange rejected')
           await accept(result.data.session,version,marker)
-        }).finally(() => { task=null })
+        }).finally(() => {
+          task=null
+          // A deadline can expire while Auth is still finishing its request.
+          // Reconcile automatically once the SDK/lock settles; never replay
+          // the single-use authorization code.
+          if (!stopped && state.phase === 'uncertain') void reconcile()
+        })
         await bounded(task)
       } catch {
         if (stopped || version !== epoch) return
         epoch++ // A late SDK completion may save a session, but cannot restore navigation.
-        if (marker && owned(marker) && current(marker)) write({...marker,phase:'uncertain'})
-        emit({phase:'uncertain',message:'Sign-in could not be confirmed. Check its outcome before starting another attempt.'})
-        access.rejectExternal(action, 'Sign-in could not be confirmed.')
+        const exchangeMayHaveCompleted = marker && owned(marker) && ['exchanging','uncertain'].includes(marker.phase) && current(marker)
+        if (exchangeMayHaveCompleted) {
+          write({...marker,phase:'uncertain'})
+          emit({phase:'uncertain',message:'Sign-in is being checked. If the check is interrupted, refresh the page to recover it.'})
+          access.rejectExternal(action, null)
+          if (!task) void reconcile()
+        } else {
+          try { if (marker && owned(marker) && current(marker)) store.removeItem(OAUTH_MARKER) } catch { store.removeItem(OAUTH_MARKER) }
+          fail()
+        }
       } finally { if (entry) entry.code = null; entry = null }
     })()
     return callbackTask
@@ -127,26 +167,57 @@ export function createGoogleOAuthController(auth, access, {
       const result = await bounded(auth.getSession())
       if (result.error || !result.data.session) throw new Error('No session')
       if (!await accept(result.data.session,version,marker)) throw new Error('Sign-in changed')
-    } catch { if (!stopped && version === epoch) fail('No sign-in could be verified. Cancel this attempt and sign in again.') }
+    } catch {
+      if (!stopped && version === epoch) {
+        // A reload without a callback cannot finish the code exchange. Retire
+        // only this attempt's marker so a fresh login can start. Do not touch
+        // Supabase storage: valid sessions and PKCE state belong to the SDK.
+        try { const marker=read(); if (owned(marker) && marker.phase !== 'complete') store.removeItem(OAUTH_MARKER) } catch { store.removeItem(OAUTH_MARKER) }
+        fail('No sign-in could be verified. You can try Google sign-in again.')
+      }
+    }
   }
   function cancel(message = 'Sign-in cancelled. You can start a new attempt.') {
     locallyCancelled = true; block()
-    try { const marker=read(); if (marker && marker.phase !== 'complete') write({...marker,phase:'cancelled'}) } catch {}
+    try { const marker=read(); if (marker && owned(marker) && marker.phase !== 'complete') store.removeItem(OAUTH_MARKER) } catch {}
     access.rejectExternal(action,message)
     emit({phase:'cancelled',message})
   }
-  async function storageChanged() {
+  function storageChanged() {
     if (stopped || locallyCancelled) return
     try {
       const marker=read()
-      if (marker && marker.phase !== 'complete') {
-        block(); emit({phase:'blocked',message:'A sign-in change in another tab requires fresh verification.'})
-      } else if (marker?.phase === 'complete' && state.phase === 'blocked') await reconcile()
-    } catch { block(); fail() }
+      if (!marker || ['complete','cancelled','error'].includes(marker.phase) || now()-marker.created >= ttl) {
+        clearTimer(markerExpiry); markerExpiry=null
+        if (['blocked','error'].includes(state.phase)) emit({phase:'idle',message:null})
+      }
+      // A shared marker never suspends Auth restoration or warns merely because
+      // another tab opened. start() checks it before a new PKCE flow is created.
+    } catch {
+      clearTimer(markerExpiry); markerExpiry=null; store.removeItem(OAUTH_MARKER)
+      if (['blocked','error'].includes(state.phase)) emit({phase:'idle',message:null})
+    }
+  }
+  function returnedToApp() {
+    if (stopped || state.phase !== 'redirecting') return false
+    try {
+      const marker=read()
+      // A history-restored page has no callback to finish. Invalidate only its
+      // local attempt state; never delete Supabase session or PKCE storage.
+      if (marker && !owned(marker) && now()-marker.created < ttl) return false
+      cancel('')
+      return true
+    } catch {
+      cancel('')
+      return true
+    }
   }
   return { getState:() => state, shouldGate, start, callback, reconcile, cancel, storageChanged,
-    pending() { if (shouldGate()) { block(); emit({phase:'uncertain',message:'An unfinished sign-in needs checking or cancellation.'}) } },
-    stop() { if (task) cancel(); stopped=true; epoch++ },
+    returnedToApp,
+    pending() {
+      shouldGate() // retire only terminal, malformed, or expired app-owned markers
+    },
+    stop() { clearTimer(markerExpiry); if (task) cancel(); stopped=true; epoch++ },
   }
 }
 
